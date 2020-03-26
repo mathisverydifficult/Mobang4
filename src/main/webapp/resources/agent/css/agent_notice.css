@@ -1,12 +1,13 @@
 /* 전체 div */
-.noticewrap{width:100%; min-height: 100vh;}
+.noticewrap{width:100%; min-height: 100vh;overflow:hidden;
+		height:auto;}
 /* head div (공지사항) */
 .servicehead{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
 			text-align: center; font-size: 50px; line-height: 5;}
 
 /*-----------------------------------agent_notice--------------------------------------*/
 /* 게시글 테이블 */
-.noticetable{position:relative; width: 1200px; height: 500px; padding-top:100px;
+.noticetable{position:relative; width: 1200px; padding-top:100px;
 	margin-left: auto; margin-right: auto; margin: 0px auto;}
 .noticewrap .noticetable table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300; 
                   			border-top: 1px solid rgb(51, 85, 139); border-bottom: 1px solid rgb(51, 85, 139);}
@@ -18,6 +19,10 @@
 .noticewrap .noticetable table tbody tr td:nth-child(2){cursor: pointer;}
 /*.noticewrap .noticetable table tbody tr:hover{background-color: rgba(51, 85, 139,0.6); color: rgb(255,255,255);}
 .noticewrap .noticetable table tbody tr a:hover{color: rgb(255,255,255);} jquery로 구현햇음*/
+/* 페이징 */
+.noticewrap .pagination{text-align: center; margin: 30px;}
+.noticewrap .pagination li{float: left; padding: 6px;}
+
 
 /*---------------------------------agent_notice_selectone----------------------------------------*/
 	.noticeselectwrap{position:relative; width: 1040px; padding-top:100px; margin-left: auto; margin-right: auto; margin: 0px auto;}

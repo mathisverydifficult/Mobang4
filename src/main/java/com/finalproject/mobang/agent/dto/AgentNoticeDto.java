@@ -4,52 +4,52 @@ import java.util.Date;
 
 public class AgentNoticeDto {
 
-	private int noticeno;
-	private String noticetitle;
-	private String noticecon;
-	private Date noticedate;
+	private int seq_nt;
+	private String title_nt;
+	private String content_nt;
+	private Date date_nt;
 
 	public AgentNoticeDto() {
 
 	}
 
-	public AgentNoticeDto(int noticeno, String noticetitle, String noticecon, Date noticedate) {
-		this.noticeno = noticeno;
-		this.noticetitle = noticetitle;
-		this.noticecon = noticecon;
-		this.noticedate = noticedate;
+	public AgentNoticeDto(int seq_nt, String title_nt, String content_nt, Date date_nt) {
+		this.seq_nt = seq_nt;
+		this.title_nt = title_nt;
+		this.content_nt = content_nt;
+		this.date_nt = date_nt;
 	}
 
-	public int getNoticeno() {
-		return noticeno;
+	public int getSeq_nt() {
+		return seq_nt;
 	}
 
-	public void setNoticeno(int noticeno) {
-		this.noticeno = noticeno;
+	public void setSeq_nt(int seq_nt) {
+		this.seq_nt = seq_nt;
 	}
 
-	public String getNoticetitle() {
-		return noticetitle;
+	public String getTitle_nt() {
+		return title_nt;
 	}
 
-	public void setNoticetitle(String noticetitle) {
-		this.noticetitle = noticetitle;
+	public void setTitle_nt(String title_nt) {
+		this.title_nt = title_nt;
 	}
 
-	public String getNoticecon() {
-		return noticecon;
+	public String getContent_nt() {
+		return content_nt;
 	}
 
-	public void setNoticecon(String noticecon) {
-		this.noticecon = noticecon;
+	public void setContent_nt(String content_nt) {
+		this.content_nt = content_nt;
 	}
 
-	public Date getNoticedate() {
-		return noticedate;
+	public Date getDate_nt() {
+		return date_nt;
 	}
 
-	public void setNoticedate(Date noticedate) {
-		this.noticedate = noticedate;
+	public void setDate_nt(Date date_nt) {
+		this.date_nt = date_nt;
 	}
 	
 	

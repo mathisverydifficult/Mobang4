@@ -5,6 +5,7 @@
 		<typeAlias type="com.finalproject.mobang.admin.dto.AccountBoardDto" alias="accountBoardDto"/>
 		<typeAlias type="com.finalproject.mobang.admin.dto.QnaBoardDto" alias="qnaBoardDto"/>
 		<typeAlias type="com.finalproject.mobang.user.dto.reviewDto" alias="reviewDto"/>
+		<typeAlias type="com.finalproject.mobang.agent.dto.AgentNoticeDto" alias="agentNoticeDto"/>
 	</typeAliases>
 	
 	<!-- resource : src/main/resources부터 검색 -->
@@ -12,5 +13,6 @@
 		<mapper resource="/mybatis/admin/account-mapper.xml"/>
 		<mapper resource="/mybatis/admin/qna-mapper.xml"/>
 		<mapper resource="/mybatis/user/user-mapper.xml"/>
+		<mapper resource="/mybatis/agent/notice-mapper.xml"/>
 	</mappers>
 </configuration>

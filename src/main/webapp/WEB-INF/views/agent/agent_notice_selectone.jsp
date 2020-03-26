@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/reset.css">
-<link rel="stylesheet" type="text/css" href="resources/css/agent_notice.css">
+<link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
+<link rel="stylesheet" type="text/css" href="resources/agent/css/agent_notice.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -16,21 +16,20 @@
 	<div class="noticewrap">
 		<div class="servicehead">공지사항</div>
 		<div class="noticeselectwrap">
-			<h2>공지사항제목</h2>
+			<h2>${dto.title_nt }</h2>
 				<div class="sysinfo">
 					<p class="last">
-						작성시간
+						${dto.date_nt }
 					</p>
 				</div>
 			<input type="hidden" id="board_no" value="">
 			<div class="text">
-				<p>공지사항내용</p>
+				<p>${dto.content_nt }</p>
 				<button onclick="">목록</button>
 			</div>
 		</div>
 
-	</div>
-	<!-- noticewrap -->
+	</div><!-- noticewrap -->
 
 
 
