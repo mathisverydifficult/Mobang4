@@ -3,7 +3,6 @@ package com.finalproject.mobang.admin.dao;
 import java.util.List;
 
 import com.finalproject.mobang.admin.dto.QnaBoardDto;
-import com.finalproject.mobang.admin.dto.UploadFile;
 
 public interface QnaBoardDao {
 

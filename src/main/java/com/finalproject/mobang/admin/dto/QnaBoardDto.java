@@ -30,12 +30,7 @@ public class QnaBoardDto {
     // 글 작성일자 
     private Date dateQ;
     
-    // 파일 이름
-    private String name;
-    // 파일경로
-	private String filePath;
-	// 파일
-	private MultipartFile mpfile;
+    
     
     
     
@@ -49,7 +44,7 @@ public class QnaBoardDto {
 	
 
 	public QnaBoardDto(int seqQ, int groupseqQ, int orderQ, String titletQ, String titleQ, String contentQ,
-			String email, Date dateQ, String filePath) {
+			String email, Date dateQ) {
 		super();
 		this.seqQ = seqQ;
 		this.groupseqQ = groupseqQ;
@@ -59,29 +54,13 @@ public class QnaBoardDto {
 		this.contentQ = contentQ;
 		this.email = email;
 		this.dateQ = dateQ;
-		this.filePath = filePath;
 	}
 
 
 
 
 
-	public QnaBoardDto(int seqQ, int groupseqQ, int orderQ, String titletQ, String titleQ, String contentQ,
-			String email, Date dateQ, String name, String filePath, MultipartFile mpfile) {
-		super();
-		this.seqQ = seqQ;
-		this.groupseqQ = groupseqQ;
-		this.orderQ = orderQ;
-		this.titletQ = titletQ;
-		this.titleQ = titleQ;
-		this.contentQ = contentQ;
-		this.email = email;
-		this.dateQ = dateQ;
-		this.name = name;
-		this.filePath = filePath;
-		this.mpfile = mpfile;
-	}
-
+	
 	public int getSeqQ() {
         return seqQ;
     }
@@ -146,34 +125,6 @@ public class QnaBoardDto {
         this.dateQ = dateQ;
     }
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-
-
-	public MultipartFile getMpfile() {
-		return mpfile;
-	}
-
-	public void setMpfile(MultipartFile mpfile) {
-		this.mpfile = mpfile;
-	}
-    
     
 
 }

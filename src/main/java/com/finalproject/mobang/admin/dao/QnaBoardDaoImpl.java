@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalproject.mobang.admin.dto.QnaBoardDto;
-import com.finalproject.mobang.admin.dto.UploadFile;
 
 @Repository
 public class QnaBoardDaoImpl implements QnaBoardDao {

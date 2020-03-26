@@ -12,7 +12,6 @@
 		<result property="titletQ" column="TITLET_Q"/>
 		<result property="titleQ" column="TITLE_Q"/>
 		<result property="dateQ" column="DATE_Q"/>
-		<result property="filePath" column="FILEPATH"/>
 	</resultMap>
   
   	<select id="selectList" resultMap="boardMap">
@@ -22,14 +21,14 @@
   	</select>
   	
   	<select id="selectOne" resultMap="boardMap">
-		SELECT SEQ_Q, GROUPSEQ_Q, ORDER_Q, CONTENT_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q, DESC
+		SELECT SEQ_Q, GROUPSEQ_Q, ORDER_Q, CONTENT_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q
 		FROM QNA_TB
 		WHERE SEQ_Q=#{seqQ}
 	</select>
   	
    	
   	<insert id="insert" parameterType="QnaBoardDto"> 
-		INSERT INTO QNA_TB VALUES(SEQ_QSEQ.NEXTVAL,1,3,#{titletQ},#{titleQ},#{contentQ},'don toliver',SYSDATE, #{filePath})
+		INSERT INTO QNA_TB VALUES(SEQ_QSEQ.NEXTVAL,1,3,#{titletQ},#{titleQ},#{contentQ},'don toliver',SYSDATE)
 	</insert>
 
 	
