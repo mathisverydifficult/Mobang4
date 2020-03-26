@@ -1,0 +1,36 @@
+	/* 2020팬톤컬러 color:rgb(51, 85, 139) */
+	/*전체div*/
+	.agenthead{position: fixed; top: 0px; width: 100%; min-width: 1200px; background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0); z-index: 1000; border-bottom: 1px solid rgb(229, 229, 229); margin: 0px auto;}
+    /*로고&방구하기사이트*/
+    .headleft{padding-left:20px;}
+    .headleft h1{position: absolute;top: 50%; transform: translateY(-50%);}
+    .headleft .h2 {width: 100px; color: rgb(136, 136, 136); font-size: 16px; line-height: 16px;
+    position: absolute; top: 53%; left: 230px; transform: translateY(-50%); text-align: left;}
+	/*메뉴div*/
+    .headright{text-align: right; margin-right: 30px;}
+    .headright ul{float: right; height: 80px; font-size: 0px; }
+    .headright li{position: relative; display: inline-block; height: 80px;
+    vertical-align: middle; color: rgb(34, 34, 34); line-height: 80px;}
+    /* 광고상품 소개 & 고객센터 */
+    .headright .first{font-size: 18px; font-weight: bold; cursor: pointer; margin: 0px 25px;}
+    /* 로그인 & 회원가입 */
+    .headright li>a{color: rgb(42, 42, 42); line-height: 1; vertical-align: middle;}
+    /* 광고상품 소개 */
+    .adsubmenu{position: absolute;top: 80px; left: 50%; display: none; width: 170px;  min-height: 45px;
+    box-shadow: rgba(0, 0, 0, 0.13) 6px 10px 16px 0px; transform: translateX(-50%); background: rgb(255, 255, 255);
+    border-width: 1px; border-style: solid; border-color: rgb(234, 234, 234); border-image: initial;}
+	/*고객센터*/
+    .scsubmenu{position: absolute;top: 80px; left: 50%; display: none; width: 170px;  min-height: 45px;
+    box-shadow: rgba(0, 0, 0, 0.13) 6px 10px 16px 0px; transform: translateX(-50%); background: rgb(255, 255, 255);
+    border-width: 1px; border-style: solid; border-color: rgb(234, 234, 234); border-image: initial;}
+    /* 자잘이들 */
+    .submenu{width: 100%; height: 45px; line-height: 45px; text-align: center;
+    font-size: 15px; font-weight: normal; color: rgb(102, 102, 102); cursor: pointer;}
+    /* 로그인 & 회원가입 */
+    .headright .second{color:rgb(136, 136, 136);font-size: 13px; cursor: pointer;}
+    /* 매물관리 바로가기 */
+    .headright .button{display: inline-block; width: 137px; height: 36px; margin-left: 30px; background-color: rgba(234, 234, 234, 0);
+    font-size: 13px; font-weight: 700; text-align: center; color: rgb(51, 85, 139); cursor: pointer;
+    vertical-align: middle; line-height: 40px; padding: 0px; border-width: 1px; border-style: solid;
+    border-color: rgb(51, 85, 139); border-image: initial; outline: none;}

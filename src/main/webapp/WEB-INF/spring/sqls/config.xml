@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.finalproject.mobang.admin.dto.AccountBoardDto" alias="accountBoardDto"/>
+		<typeAlias type="com.finalproject.mobang.admin.dto.QnaBoardDto" alias="qnaBoardDto"/>
+		<typeAlias type="com.finalproject.mobang.user.dto.reviewDto" alias="reviewDto"/>
+	</typeAliases>
+	
+	<!-- resource : src/main/resources부터 검색 -->
+	<mappers>
+		<mapper resource="/mybatis/admin/account-mapper.xml"/>
+		<mapper resource="/mybatis/admin/qna-mapper.xml"/>
+		<mapper resource="/mybatis/user/user-mapper.xml"/>
+	</mappers>
+</configuration>

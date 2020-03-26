@@ -1,0 +1,50 @@
+
+
+.aa{
+	margin-top:10px;
+	margin-left:20px;
+	color:black;
+	font-weight: 700;
+}
+
+.headerbox {
+    width: 100%;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    z-index: 21;
+    padding: 0px 30px;
+    border-bottom: 3px solid rgb(235, 235, 235);
+}
+
+.myhome{
+	color:black;
+	font-size:40px;
+	font-weight:700;
+}
+
+.left{
+	margin-top:10px;
+	float:left;
+	height:70px;
+	display:inline-block;
+}
+
+.right{
+	margin-top: 22px;
+	float:right;
+}
+
+.right1{
+	float:left;
+	font-size:22px;
+}
+
+.right2{
+	display:inline-block;
+	margin-top:7px;
+}
+
+
+
+

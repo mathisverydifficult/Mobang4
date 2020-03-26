@@ -1,0 +1,42 @@
+/* 전체 div */
+.noticewrap{width:100%; min-height: 100vh;}
+/* head div (공지사항) */
+.servicehead{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
+			text-align: center; font-size: 50px; line-height: 5;}
+
+/*-----------------------------------agent_notice--------------------------------------*/
+/* 게시글 테이블 */
+.noticetable{position:relative; width: 1200px; height: 500px; padding-top:100px;
+	margin-left: auto; margin-right: auto; margin: 0px auto;}
+.noticewrap .noticetable table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300; 
+                  			border-top: 1px solid rgb(51, 85, 139); border-bottom: 1px solid rgb(51, 85, 139);}
+.noticewrap .noticetable table th{position: relative; height: 65px; font-weight: 300; color:rgb(51, 85, 139);}
+.noticewrap .noticetable table thead tr{border-bottom: 1px solid rgb(51, 85, 139);}
+.noticewrap .noticetable table tbody{color: black;}
+.noticewrap .noticetable table tbody tr {border-top: 1px solid #f4f2ef; height: 65px;}
+/* 공지사항 여러가지 */
+.noticewrap .noticetable table tbody tr td:nth-child(2){cursor: pointer;}
+/*.noticewrap .noticetable table tbody tr:hover{background-color: rgba(51, 85, 139,0.6); color: rgb(255,255,255);}
+.noticewrap .noticetable table tbody tr a:hover{color: rgb(255,255,255);} jquery로 구현햇음*/
+
+/*---------------------------------agent_notice_selectone----------------------------------------*/
+	.noticeselectwrap{position:relative; width: 1040px; padding-top:100px; margin-left: auto; margin-right: auto; margin: 0px auto;}
+	.noticeselectwrap>h2{position: relative; width: 100%; font-size: 24px; color: #333; font-weight: 400;
+						  float: left; line-height: 1.3; border-top: 1px solid rgba(51, 85, 139,0.8); background-color:rgba(51, 85, 139,0.2);
+						 padding: 37px 0 0 27px; word-break: break-all;}
+	
+	.noticeselectwrap .sysinfo{width: 100%; height: 35px;  background-color:rgba(51, 85, 139,0.2); border-bottom: 1px solid rgba(51, 85, 139,0.8); 
+							   float:left; padding-left: 27px;}
+	.noticeselectwrap .sysinfo p{float: right; font-size: 12px; color: #aaa; margin-right: 25px; line-height: 1; margin-top: 10px;}
+	.noticeselectwrap .sysinfo p img{margin-right: 4px; vertical-align: middle; margin-bottom: 2px;}
+	.noticeselectwrap .sysinfo p.last{margin-right: 27px;}
+	.noticeselectwrap .text{float: left; width: 1040px; margin-top: 40px; margin-left: 27px; font-size: 16px;
+   							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
+	.noticeselectwrap .text>button{border: 1px solid rgb(51, 85, 139); background-color: rgba(0,0,0,0);color: rgb(51, 85, 139); padding:20px 30px; position: relative; left: 45%; top: 90px;}
+	.noticeselectwrap .text>button:hover{background-color: rgb(51, 85, 139);color: white;}
+
+
+
+
+
+

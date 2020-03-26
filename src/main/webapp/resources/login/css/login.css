@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+body{
+	background-color: #e9ecef;
+}
+
+.mobang {
+    color: #33558b;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.h2, h2 {
+    font-size: 1.5rem;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1.5px solid rgba(0,0,0,1.5);
+}
+
+div#main {
+    margin-top: 15%;
+    padding: 3%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 1.0rem;
+    margin-top: 1.5rem;
+}
+
+.form-control:focus {
+  border-color: #33558b;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(51, 85, 139, 0.6);
+}
+
+.none_blue {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.pwfind{
+	margin-top: 0.5rem;
+	text-align: right;
+}
+#pwfind_span{
+	font-size: 14px;
+}
+
+.login_btn{
+	display: inline-block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 4px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-color: #33558b;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.img-rounded{
+    width: 14%;;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-left: -1px;
+    vertical-align: top;
+}
+
+.sns {
+    font-size: 0px;
+    line-height: 0px;
+    margin-top: 4%;
+}
+
+#sns_naver{
+	margin-top: 15%;
+}
+
+#sns_kakao{
+	margin-top: 2%;
+}
+
+.sns_btn{
+	display: inline-block;
+    width: 85.5%;
+    height: calc(1.5em + .75rem + 4px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+#kakao{
+	background-color: white;
+    border: 2px solid #f7e600;
+    color: black;
+    
+}
+
+#naver{
+	background-color: white;
+    border: 2px solid #2DB400;
+    color: black;
+}
+
+.signup {
+    width: 50%;
+    float: left;
+    font-size: 15px;
+    margin-top: 5%;
+}
+
+.signup_click {
+    text-align: right;
+    font-size: 15px;
+    margin-top: 5%;
+}
+
+
+/*modal*/
+
+.h4, h4 {
+    font-size: 1.4rem;
+}
+
+div#pwfind_modal {
+    margin-top: 7.2%;
+}
+
+.modal-content {
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+#modal_form{
+	margin-top: 0.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.email_confirm {
+    background-color: #33558b;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    height: 28px;
+    position: relative;
+    left: 80%;
+    top: -33px;
+}
+
+.btn{
+	flex: 1;
+	padding: 0;
+}
+
+input#pwd_find {
+    margin-bottom: 10%;
+}
+
+
