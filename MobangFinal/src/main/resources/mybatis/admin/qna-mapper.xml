@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="qnaboard">
+
+	<resultMap type="QnaBoardDto" id="boardMap">
+		<result property="seqQ" column="SEQ_Q"/>
+		<result property="groupseqQ" column="GROUPSEQ_Q"/>
+		<result property="orderQ" column="ORDER_Q"/>
+		<result property="contentQ" column="CONTENT_Q"/>
+		<result property="email" column="EMAIL"/>
+		<result property="titletQ" column="TITLET_Q"/>
+		<result property="titleQ" column="TITLE_Q"/>
+		<result property="dateQ" column="DATE_Q"/>
+	</resultMap>
+  
+  	<select id="selectList" resultMap="boardMap">
+  		SELECT SEQ_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q
+  		FROM QNA_TB
+  		ORDER BY DATE_Q DESC
+  	</select>
+  	
+  	<select id="selectOne" resultMap="boardMap">
+		SELECT SEQ_Q, GROUPSEQ_Q, ORDER_Q, CONTENT_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q
+		FROM QNA_TB
+		WHERE SEQ_Q=#{seqQ}
+	</select>
+  	
+   	
+  	<insert id="insert" parameterType="QnaBoardDto"> 
+		INSERT INTO QNA_TB VALUES(SEQ_QSEQ.NEXTVAL,1,3,#{titletQ},#{titleQ},#{contentQ},'don toliver',SYSDATE)
+	</insert>
+
+	
+	<update id="update" parameterType="QnaBoardDto">
+		UPDATE QNA_TB SET CONTENT_Q=#{contentQ} WHERE SEQ_Q=#{seqQ}
+	</update>
+ 	
+  	<delete id="delete" parameterType="int">
+		DELETE FROM QNA_TB WHERE SEQ_Q=#{seqQ}
+	</delete>
+	
+	<delete id="multidelete" parameterType="java.util.List">
+		DELETE FROM QNA_TB
+		<where>
+		<foreach collection="list" item="item" open="" close="" separator="OR">
+			(SEQ_Q=#{seqQ})
+		</foreach>
+		</where>
+	</delete>
+</mapper>

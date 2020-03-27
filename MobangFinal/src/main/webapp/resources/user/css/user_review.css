@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.title{
+	    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: rgb(51, 85, 139);
+}
+
+.word{
+	color: white;
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 58px;
+    text-align: center;
+    letter-spacing: -0.8px;
+    position: relative;
+    z-index: 20;
+}
+
+.secondpara>table{
+	text-align:center;
+	margin:auto;
+}
+
+.tabletitle{
+	background-color:darkgray;
+	border-color:gray;
+}
+
+.tabletitle>th{
+	font-weight: bold;
+    text-align: center;
+}

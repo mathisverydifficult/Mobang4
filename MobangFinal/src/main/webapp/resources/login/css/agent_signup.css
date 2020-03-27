@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+body{
+	background-color: #e9ecef;
+}
+
+.container {
+    background-color: white;
+    padding: 4% 8% 8%;
+    box-sizing: border-box;
+}
+
+.mobang {
+    color: #33558b;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1.5px solid rgba(0,0,0,1.5);
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: 18px;
+    margin-top: 5%;
+}
+
+form.form-horizontal {
+    margin-top: 5%;
+}
+
+div#main {
+    padding: 3%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 1.0rem;
+    margin-top: 1.5rem;
+}
+
+.form-control:focus {
+  border-color: #33558b;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(51, 85, 139, 0.6);
+  border-radius: 50%;
+}
+
+.send {
+    background-color: #33558b;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    width: 95px;
+    height: 38px;
+    position: absolute;
+    top: 328px;
+    left: 1363px;
+    font-size: 18px;
+}
+
+.email_confirm {
+    background-color: #33558b;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    width: 95px;
+    height: 38px;
+    position: absolute;
+    top: 439px;
+    left: 1363px;
+    font-size: 18px;
+}
+
+.signup_btn{
+	display: inline-block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 4px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-color: #33558b;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin-top: 10%;
+    font-size: 18px;
+}
+
+
+/*modal*/
+
+.modal-content {
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+#modal_form{
+	margin-top: 0.5rem;
+}
+
+.btn{
+	flex: 1;
+	padding: 0;
+}
+
+
