@@ -39,6 +39,15 @@ public class HomeController {
 		return "user/user_home";
 	}
 	
+	@RequestMapping(value="/homesearch.user")
+	public String homesearch(Model model, String keyword) {
+		//String keyword = (String) model.getAttribute("keyword");
+		
+		model.addAttribute("keyword", keyword);
+		
+		return "user/room_search";
+	}
+	
 	
 	@RequestMapping(value="index.all")
 	public String index() {
