@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="notice">
+	
+	<resultMap type="AgentNoticeDto" id="noticeMap">
+		<result property="seq_nt" column="SEQ_NT"/>
+		<result property="title_nt" column="TITLE_NT"/>
+		<result property="content_nt" column="CONTENT_NT"/>
+		<result property="date_nt" column="DATE_NT"/>
+	</resultMap>
+	
+	<select id="selectList" resultMap="noticeMap" parameterType="com.finalproject.mobang.agent.dto.Criteria" >
+		SELECT  SEQ_NT, 
+		        TITLE_NT, 
+		        CONTENT_NT,
+		        DATE_NT
+		 FROM ( 
+		        SELECT SEQ_NT, 
+		               TITLE_NT, 
+		               CONTENT_NT, 
+		               DATE_NT, 
+		               ROW_NUMBER() OVER(ORDER BY SEQ_NT DESC) AS RNUM
+		         FROM NOTICE_TB
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY SEQ_NT DESC
+	</select>
+	
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(SEQ_NT)
+		  FROM NOTICE_TB
+		 WHERE SEQ_NT > 0
+	]]>
+	</select>
+	
+	<select id="selectOne" resultMap="noticeMap">
+		SELECT SEQ_NT,TITLE_NT,CONTENT_NT,DATE_NT
+		FROM NOTICE_TB
+		WHERE SEQ_NT=#{seq_nt}
+	</select>
+	
+	
+
+
+</mapper>

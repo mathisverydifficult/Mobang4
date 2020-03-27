@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,18 +18,21 @@
 }*/
 $(document).ready(function() {
 	
-	$('.noticetable table tbody tr').hover(function(){
-		$(this).css({'background-color': 'rgba(51, 85, 139,0.6)','color': 'rgb(255,255,255)'});
+	$('.noticetable table tbody tr td').hover(function(){
+		$(this).parent().css({'background-color': 'rgba(51, 85, 139,0.6)','color': 'rgb(255,255,255)'});
 		$(this).find('a').css('color','rgb(255,255,255)');
 	},function(){
-		$(this).css({'background-color':'' ,'color': 'black'});
+		$(this).parent().css({'background-color':'' ,'color': 'black'});
 		$(this).find('a').css('color','black');
 	});
 	
+	
+	
+	
 });
 	
-	function selectone(){
-		location.href="agent_notice_selectone.jsp";		
+	function selectone(seq_nt){
+		location.href="selectone.agent?seq_nt="+seq_nt;		
 	}
 	
 
@@ -54,34 +59,42 @@ $(document).ready(function() {
 						</tr>
 					</thead>
 					<tbody><!-- 나중에 db값 불러오기 -->
-						<tr>
-							<td>5</td>
-							<td onclick="selectone()"><a href="agent_notice_selectone.jsp">공지사항입니다</a></td>
-							<td>2020.03.20</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>공지사항입니다</td>
-							<td>2020.03.19</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>공지사항입니다</td>
-							<td>2020.03.18</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>공지사항입니다</td>
-							<td>2020.03.17</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>공지사항입니다</td>
-							<td>2020.03.16</td>
-						</tr>
+					<c:choose>
+						<c:when test="${empty list }">
+							<tr>
+								<th colspan="3">===작성된 글이 존재하지 않습니다===</th>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list }" var="dto">
+								<tr>
+									<td>${dto.seq_nt }</td>
+									<td onclick="selectone(${dto.seq_nt})"><a href="selectone.agent?seq_nt=${dto.seq_nt }">${dto.title_nt }</a></td>
+									<td><fmt:formatDate value="${dto.date_nt }" pattern="yyyy.MM.dd"/></td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 					</tbody>
 			</table>
 			<!-- 숫자페이징 -->
+			<div class="pagination">
+					<ul>
+					<c:if test="${pageMaker.prev }">
+				    	<li class="arrow"><a href="noticelist.agent${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
+				    </c:if>
+				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				    	<li><a href="noticelist.agent${pageMaker.makeQuery(idx) }">${idx }</a></li>
+				    </c:forEach>
+				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				    <li class="arrow">
+				      <a href="noticelist.agent${pageMaker.makeQuery(pageMaker.endPage+1) }">
+				        &raquo;
+				      </a>
+				    </li>
+				     </c:if> 
+				  </ul>
+			</div>
 		</div>
 	<!-- 관리자페이지에서 글 쓸 수있게??? 관리자만 -->
 	</div>
