@@ -26,10 +26,13 @@ $(document).ready(function() {
 		$(this).find('a').css('color','black');
 	});
 	
+	
+	
+	
 });
 	
-	function selectone(){
-		//location.href="selectone.agent?seq_nt=${dto.seq_nt }";		
+	function selectone(seq_nt){
+		location.href="selectone.agent?seq_nt="+seq_nt;		
 	}
 	
 
@@ -66,7 +69,7 @@ $(document).ready(function() {
 							<c:forEach items="${list }" var="dto">
 								<tr>
 									<td>${dto.seq_nt }</td>
-									<td><a href="selectone.agent?seq_nt=${dto.seq_nt }">${dto.title_nt }</a></td>
+									<td onclick="selectone(${dto.seq_nt})"><a href="selectone.agent?seq_nt=${dto.seq_nt }">${dto.title_nt }</a></td>
 									<td><fmt:formatDate value="${dto.date_nt }" pattern="yyyy.MM.dd"/></td>
 								</tr>
 							</c:forEach>
@@ -78,20 +81,20 @@ $(document).ready(function() {
 			<div class="pagination">
 					<ul>
 					<c:if test="${pageMaker.prev }">
-				    	<li><a href="noticelist.agent${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
+				    	<li class="arrow"><a href="noticelist.agent${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
 				    </c:if>
 				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 				    	<li><a href="noticelist.agent${pageMaker.makeQuery(idx) }">${idx }</a></li>
 				    </c:forEach>
 				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				    <li>
+				    <li class="arrow">
 				      <a href="noticelist.agent${pageMaker.makeQuery(pageMaker.endPage+1) }">
 				        &raquo;
 				      </a>
 				    </li>
 				     </c:if> 
 				  </ul>
-				 </div>
+			</div>
 		</div>
 	<!-- 관리자페이지에서 글 쓸 수있게??? 관리자만 -->
 	</div>

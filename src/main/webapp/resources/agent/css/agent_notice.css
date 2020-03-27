@@ -19,11 +19,9 @@
 .noticewrap .noticetable table tbody tr td:nth-child(2){cursor: pointer;}
 /*.noticewrap .noticetable table tbody tr:hover{background-color: rgba(51, 85, 139,0.6); color: rgb(255,255,255);}
 .noticewrap .noticetable table tbody tr a:hover{color: rgb(255,255,255);} jquery로 구현햇음*/
-/* 페이징 */
-.noticewrap .pagination{text-align: center; margin: 30px;}
-.noticewrap .pagination li{float: left; padding: 6px;}
-
-
+/* 페이징
+.noticewrap .pagination{text-align: center; margin: 30px; height: 50px; padding-left: 40%;}
+*/
 /*---------------------------------agent_notice_selectone----------------------------------------*/
 	.noticeselectwrap{position:relative; width: 1040px; padding-top:100px; margin-left: auto; margin-right: auto; margin: 0px auto;}
 	.noticeselectwrap>h2{position: relative; width: 100%; font-size: 24px; color: #333; font-weight: 400;
@@ -37,7 +35,8 @@
 	.noticeselectwrap .sysinfo p.last{margin-right: 27px;}
 	.noticeselectwrap .text{float: left; width: 1040px; margin-top: 40px; margin-left: 27px; font-size: 16px;
    							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
-	.noticeselectwrap .text>button{border: 1px solid rgb(51, 85, 139); background-color: rgba(0,0,0,0);color: rgb(51, 85, 139); padding:20px 30px; position: relative; left: 45%; top: 90px;}
+	.noticeselectwrap .text>button{border: 1px solid rgb(51, 85, 139); background-color: rgba(0,0,0,0);color: rgb(51, 85, 139); padding:20px 30px; position: relative; 
+									border-radius: 30px; left: 45%; top: 90px;}
 	.noticeselectwrap .text>button:hover{background-color: rgb(51, 85, 139);color: white;}
 
 

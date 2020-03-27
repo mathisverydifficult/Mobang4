@@ -11,7 +11,7 @@
 	</resultMap>
 	
 	<select id="selectList" resultMap="noticeMap" parameterType="com.finalproject.mobang.agent.dto.Criteria" >
-SELECT  SEQ_NT, 
+		SELECT  SEQ_NT, 
 		        TITLE_NT, 
 		        CONTENT_NT,
 		        DATE_NT

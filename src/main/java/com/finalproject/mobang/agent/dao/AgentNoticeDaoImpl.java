@@ -30,6 +30,12 @@ public class AgentNoticeDaoImpl implements AgentNoticeDao {
 		return list;
 	}
 
+	// 게시물 총 개수
+	@Override
+	public int listCount() {
+		return sqlSession.selectOne(NAMESPACE+"listCount");
+	}
+	
 	@Override
 	public AgentNoticeDto selectOne(int seq_nt) {
 		AgentNoticeDto dto = null;
@@ -62,10 +68,5 @@ public class AgentNoticeDaoImpl implements AgentNoticeDao {
 		return 0;
 	}
 	
-	// 게시물 총 개수
-	@Override
-	public int listCount() {
-		return sqlSession.selectOne(NAMESPACE+"listCount");
-	}
 
 }

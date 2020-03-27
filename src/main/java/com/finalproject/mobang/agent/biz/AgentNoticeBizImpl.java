@@ -21,6 +21,11 @@ public class AgentNoticeBizImpl implements AgentNoticeBiz {
 	}
 
 	@Override
+	public int listCount() {
+		return dao.listCount();
+	}
+	
+	@Override
 	public AgentNoticeDto selectOne(int seq_nt) {
 		return dao.selectOne(seq_nt);
 	}
@@ -41,10 +46,6 @@ public class AgentNoticeBizImpl implements AgentNoticeBiz {
 	}
 
 
-	@Override
-	public int listCount() {
-		return dao.listCount();
-	}
 	
 	
 	

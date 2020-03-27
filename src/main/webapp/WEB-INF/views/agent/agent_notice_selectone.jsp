@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 			<h2>${dto.title_nt }</h2>
 				<div class="sysinfo">
 					<p class="last">
-						${dto.date_nt }
+						<fmt:formatDate value="${dto.date_nt }" pattern="yyyy년 MM월 dd일"/>
 					</p>
 				</div>
 			<input type="hidden" id="board_no" value="">
