@@ -5,6 +5,7 @@
 		<typeAlias type="com.finalproject.mobang.admin.dto.AccountBoardDto" alias="accountBoardDto"/>
 		<typeAlias type="com.finalproject.mobang.admin.dto.QnaBoardDto" alias="qnaBoardDto"/>
 		<typeAlias type="com.finalproject.mobang.user.dto.reviewDto" alias="reviewDto"/>
+		<typeAlias type="com.finalproject.mobang.user.dto.roomsearchDto" alias="roomsearchDto"/>
 		<typeAlias type="com.finalproject.mobang.agent.dto.AgentNoticeDto" alias="agentNoticeDto"/>
 		<typeAlias type="com.finalproject.mobang.common.dto.UploadFile" alias="uploadFile"/>
 	</typeAliases>
@@ -14,6 +15,7 @@
 		<mapper resource="/mybatis/admin/account-mapper.xml"/>
 		<mapper resource="/mybatis/admin/qna-mapper.xml"/>
 		<mapper resource="/mybatis/user/user-mapper.xml"/>
+		<mapper resource="/mybatis/user/roomsearch-mapper.xml"/>
 		<mapper resource="/mybatis/agent/notice-mapper.xml"/>
 		<mapper resource="/mybatis/admin/file-mapper.xml"/>
 	</mappers>
