@@ -47,6 +47,10 @@
 		
 		</div>
 </div>
+
+
 <%@ include file="form/admin_footer.jsp" %>
+
+
 </body>
 </html>

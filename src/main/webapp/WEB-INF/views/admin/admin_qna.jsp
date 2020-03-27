@@ -97,7 +97,9 @@
 	<br/><br/><br/><br/><br/><br/>
 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	
-	
+	파일번호 : ${fileObj.seqQ }<br/>
+	파일명 : ${fileObj.name }<br/>
+	파일설명 : ${fileObj.content }<br/>
 	
 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	

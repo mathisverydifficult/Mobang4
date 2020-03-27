@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalproject.mobang.admin.dto.QnaBoardDto;
+import com.finalproject.mobang.common.dto.UploadFile;
 
 @Repository
 public class QnaBoardDaoImpl implements QnaBoardDao {
@@ -102,23 +103,6 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 		return res;
 	}
 	
-	// 파일이랑 글 동시에 올리기
-//	@Override
-//	public int insertFile(UploadFile uploadfile) {
-//		int resfile =0;
-//		try {
-//			resfile = sqlSessionTemplate.insert(NAMESPACE+"insertfile",uploadfile);
-//			
-//			
-//		} catch (Exception e) {
-//			System.out.println("[error] : insertfile ");
-//			e.printStackTrace();
-//		}
-//		
-//		return resfile;
-//	}
-
-
 	
 
 
