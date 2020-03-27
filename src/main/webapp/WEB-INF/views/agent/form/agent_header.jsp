@@ -31,7 +31,7 @@
 				</li>
 				<li class="first"><a href="#">고객센터</a>
 					<article class="scsubmenu">
-						<a href="notice.agent"><div class="submenu">공지사항</div></a>
+						<a href="noticelist.agent"><div class="submenu">공지사항</div></a>
 						<a href="fnq.agent"><div class="submenu">문의사항</div></a>
 					</article>
 				</li>
