@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.finalproject.mobang.user.biz.reviewBiz;
+import com.finalproject.mobang.user.biz.roomsearchBiz;
 
 /**
  * Handles requests for the application home page.
@@ -20,7 +21,9 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
+	private roomsearchBiz roombiz;
 	private reviewBiz biz;
+	
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
@@ -83,7 +86,7 @@ public class HomeController {
 		
 		logger.info("select list");
 		
-		model.addAttribute("list", biz.selectList());
+		model.addAttribute("list", roombiz.selectList());
 		
 		return "user/user_review";
 	}
