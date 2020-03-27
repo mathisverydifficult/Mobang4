@@ -71,62 +71,51 @@ function validate() {
 	<div>
 	<!-- 	<form action="qna_insert.admin" method="post" id="insertform" name="frm" onsubmit="return validate();" enctype="multipart/form-data">  -->
 		<form:form method="post" enctype="multipart/form-data" modelAttribute="QnaBoardDto" action="qna_insert.admin" onsubmit="return validate();">		
-					<label>작성구분</label>
-					<select id="titletQ" name="titletQ">
-					    <option value="U" selected>User</option>
-					    <option value="A">Agent</option>
-					</select>
-					<br/>
-					<label>제목</label>
-					<input type="text" id="titleQ" name="titleQ"/> <br/>
-					
-										
-					<label>내용</label><br/>
-					<textarea id="summernote" name="contentQ"></textarea>
-				    <script>
-				      $('#summernote').summernote({
-				        tabsize: 2,
-				        height: 400
-				      });
-				    </script>
-				
-					
-					<br/><br/>
-					<br/><br/>
-					<input type="file" name="file"> 
-					<br/><br/> 
-				
-					<input type="submit" value="글작성"/>
-					<input type="button" value="취소" onclick="location.href='admin_qna.admin'"/><br/>
-					<a href="#this" class="btn" id="write">작성하기</a> <a href="#this" class="btn" id="list">목록으로</a> 
+			<label>작성구분</label>
+			<select id="titletQ" name="titletQ">
+			    <option value="U" selected>User</option>
+			    <option value="A">Agent</option>
+			</select>
+			<br/>
+			<label>제목</label>
+			<input type="text" id="titleQ" name="titleQ"/> <br/>
+			
+								
+			<label>내용</label><br/>
+			<textarea id="summernote" name="contentQ"></textarea>
+		    <script>
+		      $('#summernote').summernote({
+		        tabsize: 2,
+		        height: 400
+		      });
+		    </script>
+		
+			
+			<br/><br/>
+			<br/><br/>
+			<br/><br/> 
+		
+			<input type="submit" value="글작성"/>
+			<input type="button" value="취소" onclick="location.href='admin_qna.admin'"/><br/>
 		</form:form>
 	</div>
 	
 	
+	<div>
+	
+	
+	
+	
+	
+	
+	
+	</div>
+	
 	
 </div>
 
-<script type="text/javascript"> 
 
-	$(document).ready(function(){ $("#list").on("click", function(e){ //목록으로 버튼
-		e.preventDefault(); fn_openBoardList(); }); 
-	$("#write").on("click", function(e){ //작성하기 버튼
-		e.preventDefault(); fn_insertBoard(); }); }); 
-	
-	function fn_openBoardList(){ 
-		var comSubmit = new ComSubmit(); 
-		comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />"); 
-		comSubmit.submit(); } 
-	function fn_insertBoard(){ 
-		var comSubmit = new ComSubmit("frm"); 
-		comSubmit.setUrl("<c:url value='/sample/insertBoard.do' />"); 
-		comSubmit.submit(); 
-	} 
-
-
-</script>
-
-
+<%@ include file="form/admin_footer.jsp" %>
 
 
 </body>

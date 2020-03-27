@@ -24,6 +24,6 @@
 	<a href="agent_mypage.agent">마이페이지</a><br/>
 	<a href="agent_roommanage.agent">매물관리바로가기</a><br/>
 	
-	
+	<a href="file.all">파일 업로드 기능</a>
 </body>
 </html>
