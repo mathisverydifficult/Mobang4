@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 파일 업로드용 매퍼 -->
+<mapper namespace="fileupload">
+
+	<resultMap type="UploadFile" id="uploadMap">
+		<result property="seqQ" column="SEQ_Q"/>	  <!-- 불러올 글 번호 -->
+		<result property="name" column="NAME"/> <!-- 파일 이름으로 -->
+		<result property="content" column="CONTENT"/> <!-- 파일말고 다른 부분들-->
+
+	</resultMap>
+<!--   
+  	<select id="selectList" resultMap="boardMap">
+  		SELECT SEQ_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q
+  		FROM QNA_TB
+  		ORDER BY DATE_Q DESC
+  	</select>
+  	
+  	<select id="selectOne" resultMap="boardMap">
+		SELECT SEQ_Q, GROUPSEQ_Q, ORDER_Q, CONTENT_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q
+		FROM QNA_TB
+		WHERE SEQ_Q=#{seqQ}
+	</select>
+--> 	
+   	
+   	
+  	<insert id="insert" parameterType="UploadFile"> 
+		INSERT INTO FILEUPLOAD VALUES(
+			FILEUPSEQ.NEXTVAL,
+			#{name},
+			#{content}
+				
+		)
+	</insert>
+
+	<select id="selectone" resultMap="uploadMap">
+		SELECT SEQ_Q, NAME, CONTENT FROM FILEUPLOAD WHERE NAME=#{name}
+	</select>
+<!--  
+	<update id="update" parameterType="QnaBoardDto">
+		UPDATE QNA_TB SET CONTENT_Q=#{contentQ} WHERE SEQ_Q=#{seqQ}
+	</update>
+ 	
+  	<delete id="delete" parameterType="int">
+		DELETE FROM QNA_TB WHERE SEQ_Q=#{seqQ}
+	</delete>
+	
+	<delete id="multidelete" parameterType="java.util.List">
+		DELETE FROM QNA_TB
+		<where>
+		<foreach collection="list" item="item" open="" close="" separator="OR">
+			(SEQ_Q=#{seqQ})
+		</foreach>
+		</where>
+	</delete>
+	
+-->		
+</mapper>

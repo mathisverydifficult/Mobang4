@@ -11,4 +11,5 @@ public interface QnaBoardBiz {
 	public int insert(QnaBoardDto dto);
 	public int update(QnaBoardDto dto);
 	public int delete(int seqQ);
+	
 }
