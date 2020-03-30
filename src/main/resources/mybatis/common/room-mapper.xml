@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="room">
+	
+	<select id="selectAgentList" parameterType="String" resultType="roomDto">
+		SELECT TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
+		FROM ROOM_TB
+		WHERE EMAIL=#{email}
+		ORDER BY NO_RM DESC
+		SELECT  TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
+		 FROM ( 
+		        SELECT NO_RM,TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM, 
+		               ROW_NUMBER() OVER(ORDER BY NO_RM DESC) AS RNUM
+		         FROM ROOM_TB
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} 
+		ORDER BY NO_RM DESC		
+	</select>
+	
+		<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(SEQ_NT)
+		  FROM NOTICE_TB
+		 WHERE SEQ_NT > 0
+	]]>
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="roomDto">
+		SELECT *
+		FROM ROOM_TB
+		WHERE NO_RM=#{no_rm}
+	</select>
+	
+	<insert id="insert" parameterType="roomDto">
+		INSERT INTO ROOM_TB VALUES
+		(
+			ROOMSEQ.NEXTVAL,
+			#{email},
+			#{phone_rm},
+			#{agtname_rm},
+			#{plusyn_rm},
+			#{title_rm},
+			#{picture_rm},
+			#{heat_rm},
+			#{builtin_rm},
+			#{animal_rm},
+			#{elevator_rm},
+			#{veranda_rm},
+			#{roomin_rm},
+			#{content_rm},
+			#{aircon_rm},
+			#{washer_rm},
+			#{gasrange_rm},
+			#{induction_rm},
+			#{desk_rm},
+			#{tv_rm},
+			#{ref_rm},
+			#{bed_rm},
+			#{showhouse_rm},
+			#{closet_rm},
+			#{microwave_rm},
+			#{sink_rm},
+			#{rent_rm},
+			#{roomprice_rm},
+			#{expense_rm},
+			#{roomtype_rm},
+			#{addr_rm},
+			#{addr_dt_rm},
+			#{roomsize_rm},
+			#{roomsize2_rm},
+			#{floor_rm},
+			#{floor2_rm},
+			#{parking_rm}
+		)
+</insert>
+	
+	<update id="">
+	
+	</update>
+	
+	<delete id="delete" parameterType="int">
+  		DELETE FROM ROOM_TB WHERE NO_RM=#{no_rm}
+	</delete>
+
+
+</mapper>

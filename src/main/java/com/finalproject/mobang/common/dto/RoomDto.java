@@ -1,6 +1,7 @@
-package com.finalproject.mobang.agent.dto;
+package com.finalproject.mobang.common.dto;
 
-public class AgentRoomDto {
+// test sql creat&insert 수정했어요
+public class RoomDto {
 	
 	private int no_rm;
 	private String email;
@@ -40,12 +41,28 @@ public class AgentRoomDto {
 	private String floor2_rm;
 	private String parking_rm;
 	
-	public AgentRoomDto() {
+	public RoomDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public AgentRoomDto(int no_rm, String email, String phone_rm, String agtname_rm, String plusyn_rm, String title_rm,
+	public RoomDto(String plusyn_rm, String title_rm, String picture_rm, String roomprice_rm, String expense_rm,
+			String roomtype_rm, String roomsize_rm, String floor_rm) {
+		this.plusyn_rm = plusyn_rm;
+		this.title_rm = title_rm;
+		this.picture_rm = picture_rm;
+		this.roomprice_rm = roomprice_rm;
+		this.expense_rm = expense_rm;
+		this.roomtype_rm = roomtype_rm;
+		this.roomsize_rm = roomsize_rm;
+		this.floor_rm = floor_rm;
+	}
+
+
+
+	public RoomDto(int no_rm, String email, String phone_rm, String agtname_rm, String plusyn_rm, String title_rm,
 			String picture_rm, String heat_rm, String builtin_rm, String animal_rm, String elevator_rm,
 			String veranda_rm, String roomin_rm, String content_rm, String aircon_rm, String washer_rm,
 			String gasrange_rm, String induction_rm, String desk_rm, String tv_rm, String ref_rm, String bed_rm,
