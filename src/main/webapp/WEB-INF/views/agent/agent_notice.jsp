@@ -13,26 +13,12 @@
 <link rel="stylesheet" type="text/css" href="resources/agent/css/agent_notice.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-/*function selectone(board_no){
-	location.href="BoardFrServlet?command=select&board_no="+board_no;
-}*/
-$(document).ready(function() {
+/*$(document).ready(function() {
 	
-	$('.noticetable table tbody tr td').hover(function(){
-		$(this).parent().css({'background-color': 'rgba(51, 85, 139,0.6)','color': 'rgb(255,255,255)'});
-		$(this).find('a').css('color','rgb(255,255,255)');
-	},function(){
-		$(this).parent().css({'background-color':'' ,'color': 'black'});
-		$(this).find('a').css('color','black');
-	});
+});*/
 	
-	
-	
-	
-});
-	
-	function selectone(seq_nt){
-		location.href="selectone.agent?seq_nt="+seq_nt;		
+	function selectone(seq_nt,page,perPageNum){
+		location.href="selectone.agent?seq_nt="+seq_nt+"&page="+page+"&perPageNum="+perPageNum;
 	}
 	
 
@@ -69,7 +55,9 @@ $(document).ready(function() {
 							<c:forEach items="${list }" var="dto">
 								<tr>
 									<td>${dto.seq_nt }</td>
-									<td onclick="selectone(${dto.seq_nt})"><a href="selectone.agent?seq_nt=${dto.seq_nt }">${dto.title_nt }</a></td>
+									<td onclick="selectone(${dto.seq_nt},${cri.page},${cri.perPageNum})">
+										<a href="selectone.agent?seq_nt=${dto.seq_nt }&page=${cri.page}&perPageNum=${cri.perPageNum}">${dto.title_nt }</a>
+									</td>
 									<td><fmt:formatDate value="${dto.date_nt }" pattern="yyyy.MM.dd"/></td>
 								</tr>
 							</c:forEach>

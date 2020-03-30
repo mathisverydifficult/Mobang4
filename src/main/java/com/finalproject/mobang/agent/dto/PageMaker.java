@@ -71,5 +71,14 @@ public class PageMaker {
 		   
 		return uriComponents.toUriString();
 	}
+	
+//    public String makeQueryPage(int page) {
+//        UriComponents uri = UriComponentsBuilder.newInstance()
+//                .queryParam("page", page)
+//                .queryParam("perPageNum", cri.getPerPageNum())
+//                .build();
+//        return uri.toUriString();
+//    }
+
 
 }
