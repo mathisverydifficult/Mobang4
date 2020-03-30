@@ -18,7 +18,7 @@
 			<div class="right">
 				<div class="right1">
 					<a href="review.user">로그인되면 리뷰로 갈 것</a>
-					<a href="room_search.user" class="aa">방찾기</a>
+					<a href="homesearch.user" class="aa">방찾기</a>
 					<a href="favorite_recent.user" class="aa">관심목록</a>
 					<a href="" class="aa">알림</a>
 				</div>

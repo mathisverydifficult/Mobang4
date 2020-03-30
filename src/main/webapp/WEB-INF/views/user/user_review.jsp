@@ -40,7 +40,8 @@
 						<td>${dto.mycontent }</td>
 						<td>${dto.myname }</td>
 					</tr>
-					<div style="width:260px; height:260px; background-color:aqua;">${dto.mypath }</div>
+					<div class="test" style=" background-image:url('${dto.mypath }')">됐냐?</div>
+					<div class="test" style=" background-image:url('resources/user/img/test/ex_hoban.jpg')">ㅎ2ㅎ2</div>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>

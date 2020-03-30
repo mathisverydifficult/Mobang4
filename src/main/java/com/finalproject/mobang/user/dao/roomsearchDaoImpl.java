@@ -30,6 +30,20 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		
 		return list;
 	}
+	
+	@Override
+	public List<roomsearchDto> selectsearchList(String keyword) {
+		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
+		
+		try {
+			list=sqlSession.selectList(NAMESPACE+"selectsearchList",keyword);
+		} catch(Exception e) {
+			System.out.println("[error] : selectList");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 
 	@Override
 	public roomsearchDto selectOne(int myno) {

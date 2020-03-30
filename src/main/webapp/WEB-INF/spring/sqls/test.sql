@@ -59,10 +59,16 @@ CREATE TABLE TESTBOARD(
 	CONSTRAINT TEST_CHK CHECK(MYPREMIUM IN ('Y', 'N'))
 );
 
-INSERT INTO TESTBOARD VALUES(TESTSEQ.NEXTVAL,'김동주','이천은 비싸냐','이천은 싸다',' ','N');
+ALTER TABLE TESTBOARD ADD(MYADDRESS VARCHAR2(500));
+
+INSERT INTO TESTBOARD VALUES(TESTSEQ.NEXTVAL,'김동주','이천은 비싸냐','이천은 싸다','resources/user/img/test/sokcho.JPG','N','이천시');
+INSERT INTO TESTBOARD VALUES(TESTSEQ.NEXTVAL,'김송주','강남은 비싸냐','강남은 제일 싸다','resources/user/img/test/sokcho.JPG','N','강남1');
+INSERT INTO TESTBOARD VALUES(TESTSEQ.NEXTVAL,'김소주','의정부?','의정부는 비쌈','resources/user/img/test/sokcho.JPG','N','강남2');
 DELETE FROM TESTBOARD;
 SELECT * FROM TESTBOARD;
 
+select * from testboard 
+  		where myaddress like '%강남%';
 
 
 
@@ -149,7 +155,6 @@ CREATE TABLE ROOM_TB
     PARKING_RM      VARCHAR2(2)    NULL, 
     CONSTRAINT ROOM_TB_PK PRIMARY KEY (NO_RM)
 );
-
 
 
 INSERT INTO ROOM_TB VALUES
@@ -290,13 +295,6 @@ INSERT INTO REVIEW_TB VALUES
 );
 
 SELECT * FROM REVIEW_TB;
-
-
-
-
-
-
-
 
 
 
