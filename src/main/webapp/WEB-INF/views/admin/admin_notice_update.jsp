@@ -17,27 +17,21 @@
 <link rel="stylesheet" type="text/css" href="resources/admin/css/reset.css">
 <title>부동산 필수웹 모방</title>
 </head>
-<%@ include file="form/admin_header.jsp" %>
 <body>
 
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/>
-<br/>
+
 
 
 <div class ="container">
 
-	<form action="qna_updateres.admin" method="post">
-		<input type="hidden" value="${dto.seq_nt }" name="seqQ"/> <!-- 수정할 때 글봐야하니까. -->
+	<form action="notice_updateres.admin" method="post">
+		<input type="hidden" value="${dto.seq_nt }" name="seq_nt"/> <!-- 수정할 때 글봐야하니까. -->
 		<h2>${dto.title_nt }</h2>	
 		<br/>
 		
 		
 		<p>내용</p><br/>
-		<textarea id="summernote" name="contentQ">${dto.contentQ }</textarea>
+		<textarea id="summernote" name="content_nt">${dto.content_nt }</textarea>
 	    <script>
 	      $('#summernote').summernote({
 
@@ -49,15 +43,11 @@
 		
 		
 		<input type="submit" value="수정" />
-		<input type="button" value="취소" onclick="location.href='admin_qna.admin'"/>
-		<input type="button" value="삭제" onclick="location.href='qna_delete.admin?seqQ=${dto.seqQ}'"/>
+		<input type="button" value="취소" onclick="location.href='notice_list.admin'"/>
+		<input type="button" value="삭제" onclick="location.href='notice_delete.admin?seq_nt=${dto.seq_nt}'"/>
 	</form>
-		<div>
-		<h2>답글창</h2>
-		
-		
-		</div>
 </div>
-<%@ include file="form/admin_footer.jsp" %>
+
+
 </body>
 </html>

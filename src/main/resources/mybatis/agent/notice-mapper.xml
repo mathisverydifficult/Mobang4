@@ -40,8 +40,36 @@
 		FROM NOTICE_TB
 		WHERE SEQ_NT=#{seq_nt}
 	</select>
-	
-	
+	<!-- 관리자가 공지를 적을 때 사용 -->
+	<insert id="insert" parameterType="AgentNoticeDto"> 
+	<![CDATA[
+		INSERT INTO NOTICE_TB VALUES
+		(
+		SEQ_NT_SEQ.NEXTVAL,
+		#{title_nt},
+		#{content_nt},
+		SYSDATE
+		)
+	]]>	
+	</insert>
+	<!-- 관리자가 공지를 수정할 때 사용 -->
+	<update id="update" parameterType="AgentNoticeDto">
+		UPDATE NOTICE_TB SET
+			 CONTENT_NT=#{content_nt}
+	</update>
+ 	<!-- 관리자가 공지에 들어가서 삭제할 때 사용 -->
+  	<delete id="delete" parameterType="int">
+		DELETE FROM NOTICE_TB WHERE SEQ_NT=#{seq_nt}
+	</delete>
+	<!-- 관리자가 공지를 여러개 삭제할 때 사용 -->
+	<delete id="multidelete" parameterType="java.util.List">
+		DELETE FROM NOTICE_TB
+		<where>
+		<foreach collection="list" item="item" open="" close="" separator="OR">
+			(SEQ_NT=#{seq_nt})
+		</foreach>
+		</where>
+	</delete>
 
 
 </mapper>
