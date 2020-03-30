@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="hello.all">hello</a><br/>
 	<a href="home.user">홈</a><br/>
 	<a href="roommate_recommand.user">추천받은 룸메이트</a><br/>
 	<a href="favorite_recent.user">최근 본 방</a><br/>
