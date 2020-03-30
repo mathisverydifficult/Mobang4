@@ -20,6 +20,11 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	public List<roomsearchDto> selectList() {
 		return dao.selectList();
 	}
+	
+	@Override
+	public List<roomsearchDto> selectsearchList(String keyword) {
+		return dao.selectsearchList(keyword);
+	}
 
 	@Override
 	public roomsearchDto selectOne(int myno) {

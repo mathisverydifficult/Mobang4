@@ -7,10 +7,11 @@ public class roomsearchDto {
 	private String mycontent;
 	private String mypath;
 	private String mypremium;
+	private String myaddress;
 	
 	public roomsearchDto() {}
 	
-	public roomsearchDto(int myno, String myname, String mytitle, String mycontent, String mypath, String mypremium) {
+	public roomsearchDto(int myno, String myname, String mytitle, String mycontent, String mypath, String mypremium, String myaddress) {
 		
 		this.myno = myno;
 		this.myname = myname;
@@ -18,6 +19,7 @@ public class roomsearchDto {
 		this.mycontent = mycontent;
 		this.mypath = mypath;
 		this.mypremium = mypremium;
+		this.myaddress = myaddress;
 	}
 
 	public int getMyno() {
@@ -66,6 +68,14 @@ public class roomsearchDto {
 
 	public void setMypremium(String mypremium) {
 		this.mypremium = mypremium;
+	}
+
+	public String getMyaddress() {
+		return myaddress;
+	}
+
+	public void setMyaddress(String myaddress) {
+		this.myaddress = myaddress;
 	}
 	
 	

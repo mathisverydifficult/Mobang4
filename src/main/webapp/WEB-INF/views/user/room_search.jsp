@@ -32,6 +32,18 @@ function favoriteclick(){
 		
 	});
 }
+
+function toggleBtn() {
+//  	 if ( $(".filterbox").css("display") == "none" ) $(".filterbox").show(); 
+
+//  	 else $(".filterbox").hide(); 
+
+// 		$(this).children(".filterbox").show();
+
+		$(this).parent().children(".filterbox").show();
+
+	 }
+
 </script>
 
 </head>
@@ -40,7 +52,7 @@ function favoriteclick(){
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8ded785b631dc1b3efa28d959d4d6d5&libraries=services"></script>
 
 	<div class="container">
-		<form>
+		<form action="">
 			<div class="searchheader">
 				<div class="keyword">
 					<a>
@@ -52,14 +64,72 @@ function favoriteclick(){
 				</div>
 				<div class="filter">
 					<div class="smallfilter">
-						<div class="seperate">
+						<div class="seperate" onclick="toggleBtn()">
 							<span>원룸, 투·쓰리룸, 오피스텔</span>
 						</div>
+						<div class="filterbox" id="roomfilterbox">
+							<h1>
+							방종류
+							<p class="dupcheck">중복선택이 가능합니다.</p>
+							<ul>
+								<li>
+									<label class="roomlabel">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<span class="CheckBox"></span>
+										<span class="checktext">원룸</span>
+									</label>
+								</li>
+								<li>
+									<label class="roomlabel">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<span class="CheckBox"></span>
+										<span class="checktext">투·쓰리룸</span>
+									</label>
+								</li>
+								<li>
+									<label class="roomlabel">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<span class="CheckBox"></span>
+										<span class="checktext">오피스텔</span>
+									</label>
+								</li>
+							</ul>
+							</h1>
+						</div> 
 					</div>
 					<div class="smallfilter">
-						<div class="seperate">
+						<div class="seperate" onclick="toggleBtn()">
 							<span>월세, 전세, 매매</span>
 						</div>
+						<div class="filterbox">
+							<h1>
+							매물종류
+							<p class="dupcheck">중복선택이 가능합니다.</p>
+							<ul>
+								<li>
+									<label>
+										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<span class="CheckBox"></span>
+										<span class="checktext">월세</span>
+									</label>
+								</li>
+								<li>
+									<label>
+										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<span class="CheckBox"></span>
+										<span class="checktext">전세</span>
+									</label>
+								</li>
+								<li>
+									<label>
+										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<span class="CheckBox"></span>
+										<span class="checktext">매매</span>
+									</label>
+								</li>
+							</ul>
+							</h1>
+						</div> 
 					</div>
 					<div class="smallfilter">
 						<div class="seperate">
@@ -86,20 +156,7 @@ function favoriteclick(){
 		<div class="row" style="margin-bottom: 50px;">
 			<div class="col-sm-6">
 				<div class="leftpart">
-		 			<c:forEach var="room" begin="0" end="10">
-						<div class="room">
-							<a>
-								<div class="photo">
-									<img src="resources/user/img/cat4.png">
-									<div class="favorite">
-										<img id="img1" src="resources/user/img/favorite_1.png" onclick="favoriteclick()"/>
-									</div>
-								</div>
-								<p class="explain" id="roomtitle">이천역원룸</p>
-								<p class="explain">가격 저렴</p>
-							</a>
-						</div>
-					</c:forEach>
+		 			
 				</div>
 				<div style="text-align:center;">
 					<ul class="pagination">
@@ -172,8 +229,7 @@ function favoriteclick(){
 // 					map : map,
 // 					position: coords
 // 				});
-				
-// 				//인포윈도우로 장소에 대한 설명을 표시
+//				map.setCenter(coords);
 // 			}
 // 		})
 		
@@ -183,10 +239,34 @@ function favoriteclick(){
 		function searchPlace(){
 			var keyword = document.getElementById('keyword').value;
 			
-			
-		    
-			
-			
+			$.ajax({
+				type: "GET", //요청 메소드 방식
+				url:"room_search.user",
+				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				data: {
+					keyword: keyword
+				},
+				success : function(result){
+					var list = new Array();
+					var html = "";
+					
+					for(var i=0; i<result.length; i++){
+						list[i] = result[i];
+						
+						html += "<div class='room'>	<a> <div class='photo'>"
+							+"<img src="+list[i].mypath+">"
+							+"<div class='favorite'>"
+							+"<img id='img1' src='resources/user/img/favorite_1.png' onclick='favoriteclick()'/></div></div>"
+						+"<p class='explain' id='roomtitle'>"+list[i].myname+"</p>"
+						+"<p class='explain'>"+list[i].mytitle+"</p></a></div>"
+					}
+					$(".leftpart").html(html);
+				},
+				error : function(a, b, c){
+					//통신 실패시 발생하는 함수(콜백)
+					alert(a + b + c);
+				}
+			});
 			
 			ps.keywordSearch(keyword, placesSearchCB); //키워드로 장소를 검색
 		}
