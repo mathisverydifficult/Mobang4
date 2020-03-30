@@ -1,30 +1,30 @@
 package com.finalproject.mobang.user.dto;
 
-import java.util.Date;
-
-public class reviewDto {
-	private String myno; 
+public class roomsearchDto {
+	private int myno;
 	private String myname;
 	private String mytitle;
 	private String mycontent;
-	private Date mydate;
+	private String mypath;
+	private String mypremium;
 	
-	public reviewDto() {}
+	public roomsearchDto() {}
 	
-	public reviewDto(String myno, String myname, String mytitle, String mycontent, Date mydate) {
-		super();
+	public roomsearchDto(int myno, String myname, String mytitle, String mycontent, String mypath, String mypremium) {
+		
 		this.myno = myno;
 		this.myname = myname;
 		this.mytitle = mytitle;
 		this.mycontent = mycontent;
-		this.mydate = mydate;
+		this.mypath = mypath;
+		this.mypremium = mypremium;
 	}
 
-	public String getMyno() {
+	public int getMyno() {
 		return myno;
 	}
 
-	public void setMyno(String myno) {
+	public void setMyno(int myno) {
 		this.myno = myno;
 	}
 
@@ -52,14 +52,21 @@ public class reviewDto {
 		this.mycontent = mycontent;
 	}
 
-	public Date getMydate() {
-		return mydate;
+	public String getMypath() {
+		return mypath;
 	}
 
-	public void setMydate(Date mydate) {
-		this.mydate = mydate;
+	public void setMypath(String mypath) {
+		this.mypath = mypath;
 	}
-	
+
+	public String getMypremium() {
+		return mypremium;
+	}
+
+	public void setMypremium(String mypremium) {
+		this.mypremium = mypremium;
+	}
 	
 	
 	

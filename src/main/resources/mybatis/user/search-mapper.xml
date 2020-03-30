@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="search">
+	
+	<resultMap type="SearchDto" id="searchMap">
+		<result property="seqSh" column="SEQ_SH"/>
+		<result property="email" column="EMAIL"/>
+		<result property="contentSh" column="CONTENT_SH"/>
+		<result property="dateSh" column="DATE_SH"/>
+	</resultMap>
+<!-- 유저가 검색했을 때 추가함 -->	
+<!-- 유저별 검색 리스트를 뽑아냄 -->
+<!-- 유저별 검색 리스트를 하나만 삭제함 -->
+<!-- 유저별 검색 리스트를 전체 삭제함 -->
+<!-- 가장 최근 검색어를 불러오는 함수(방찾기를 들어갈 때 자동으로 검색할 수 있는 값을 넘겨줌 or 랜덤으로 지역을 정해 줄 지) -->
+
+
+
+<!-- 유저가 검색했을 때 추가함 -->
+	<insert id="insertSearch" parameterType="SearchDto"> 
+	<![CDATA[
+		INSERT INTO SEARCH_TB VALUES
+		(
+		SEQ_SHSEQ.NEXTVAL,
+		#{email},
+		#{contentSh},
+		SYSDATE
+		)
+	]]>	
+	</insert>
+	
+	
+	
+<!-- 유저별 최근 검색 리스트 5개를 뽑아냄 -->
+	<select id = "selectListSearch" resultMap="searchMap">
+	<![CDATA[
+	SELECT SEQ_SH,
+		   EMAIL,
+		   CONTENT_SH
+	FROM (
+	SELECT SEQ_SH, EMAIL, CONTENT_SH
+	FROM SEARCH_TB
+	WHERE EMAIL=#{email}
+	ORDER BY DATE_SH DESC
+	)
+	WHERE ROWNUM <= 5	   
+	]]>
+	</select>
+
+
+<!-- 유저별 검색 리스트를 하나만 삭제함 -->
+	<delete id="deleteOneSearch" parameterType="int">
+		DELETE FROM SEARCH_TB WHERE SEQ_SH=#{seqSh} 
+	</delete>
+
+<!-- 유저별 검색 리스트를 전체 삭제함 -->
+	<delete id="multidelete" parameterType="java.util.List">
+		DELETE FROM SEARCH_TB WHERE EMAIL=#{email}
+	</delete>
+
+
+<!-- 가장 최근 검색어를 불러오는 함수(방찾기를 들어갈 때 자동으로 검색할 수 있는 값을 넘겨줌 or 랜덤으로 지역을 정해 줄 지) -->
+	<select id = "selectOneSearch" resultType="String">
+	<![CDATA[
+	SELECT CONTENT_SH
+	FROM (
+	SELECT SEQ_SH, EMAIL, CONTENT_SH
+	FROM SEARCH_TB
+	WHERE EMAIL=#{email}
+	ORDER BY DATE_SH DESC
+	)
+	WHERE ROWNUM <= 1	   
+	]]>
+	</select>
+
+
+</mapper>

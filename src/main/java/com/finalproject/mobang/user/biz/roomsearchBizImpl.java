@@ -5,35 +5,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finalproject.mobang.user.dao.reviewDao;
-import com.finalproject.mobang.user.dto.reviewDto;
+import com.finalproject.mobang.user.dao.roomsearchDao;
+import com.finalproject.mobang.user.dto.roomsearchDto;
 
 
 
 @Service
-public class reviewBizImpl implements reviewBiz {
+public class roomsearchBizImpl implements roomsearchBiz {
 
 	@Autowired
-	private reviewDao dao;
+	private roomsearchDao dao;
 	
 	@Override
-	public List<reviewDto> selectList() {
+	public List<roomsearchDto> selectList() {
 		return dao.selectList();
 	}
 
 	@Override
-	public reviewDto selectOne(int myno) {
+	public roomsearchDto selectOne(int myno) {
 		// TODO Auto-generated method stub
 		return dao.selectOne(myno);
 	}
 
 	@Override
-	public int insert(reviewDto dto) {
+	public int insert(roomsearchDto dto) {
 		return dao.insert(dto);
 	}
 
 	@Override
-	public int update(reviewDto dto) {
+	public int update(roomsearchDto dto) {
 		return dao.update(dto);
 	}
 

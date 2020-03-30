@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.finalproject.mobang.user.biz.reviewBiz;
+
+import com.finalproject.mobang.user.biz.roomsearchBiz;
 
 /**
  * Handles requests for the application home page.
@@ -20,7 +21,8 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private reviewBiz biz;
+	private roomsearchBiz roombiz;
+	
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
@@ -39,8 +41,17 @@ public class HomeController {
 		return "user/user_home";
 	}
 	
+	@RequestMapping(value="/homesearch.user")
+	public String homesearch(Model model, String keyword) {
+		//String keyword = (String) model.getAttribute("keyword");
+		
+		model.addAttribute("keyword", keyword);
+		
+		return "user/room_search";
+	}
 	
-	@RequestMapping(value="index.all")
+	
+	@RequestMapping(value="/index.all")
 	public String index() {
 		return "index";
 	}
@@ -74,7 +85,7 @@ public class HomeController {
 		
 		logger.info("select list");
 		
-		model.addAttribute("list", biz.selectList());
+		model.addAttribute("list", roombiz.selectList());
 		
 		return "user/user_review";
 	}

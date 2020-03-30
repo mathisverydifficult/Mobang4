@@ -14,7 +14,8 @@
 .noticewrap .noticetable table th{position: relative; height: 65px; font-weight: 300; color:rgb(51, 85, 139);}
 .noticewrap .noticetable table thead tr{border-bottom: 1px solid rgb(51, 85, 139);}
 .noticewrap .noticetable table tbody{color: black;}
-.noticewrap .noticetable table tbody tr {border-top: 1px solid #f4f2ef; height: 65px;}
+.noticewrap .noticetable table tbody tr {border-top: 1px solid #f4f2ef; height: 65px; color: black;}
+.noticewrap .noticetable table tbody tr:hover {background-color: rgba(51, 85, 139,0.6); color:rgb(255,255,255); }
 /* 공지사항 여러가지 */
 .noticewrap .noticetable table tbody tr td:nth-child(2){cursor: pointer;}
 /*.noticewrap .noticetable table tbody tr:hover{background-color: rgba(51, 85, 139,0.6); color: rgb(255,255,255);}

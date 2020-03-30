@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="hello.all">hello</a><br/>
 	<a href="home.user">홈</a><br/>
 	<a href="roommate_recommand.user">추천받은 룸메이트</a><br/>
 	<a href="favorite_recent.user">최근 본 방</a><br/>
@@ -25,5 +24,8 @@
 	<a href="agent_roommanage.agent">매물관리바로가기</a><br/>
 	
 	<a href="file.all">파일 업로드 기능</a>
+	
+	<a href="notice_list.admin">관리자 공지 페이지 들어가기</a>
+	
 </body>
 </html>

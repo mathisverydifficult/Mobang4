@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace = "myreview">
+<mapper namespace = "roomsearch">
   
-  <resultMap type="reviewDto" id="reviewMap">
+  <resultMap type="roomsearchDto" id="roomsearchMap">
   	<result property="myno" column="MYNO"/>
   	<result property="myname" column="MYNAME"/>
   	<result property="mytitle" column="MYTITLE"/>
   	<result property="mycontent" column="MYCONTENT"/>
-  	<result property="mydate" column="MYDATE"/>
+  	<result property="mypath" column="MYPATH"/>
+  	<result property="mypremium" column="MYPREMIUM"/>
   </resultMap>
   
-  <select id="selectList" resultMap="reviewMap">
-  	SELECT MYNO, MYNAME, MYTITLE, MYCONTENT, MYDATE
-  	FROM MYMYBOARD
-  	ORDER BY MYNO DESC
+  <select id="selectList" resultMap="roomsearchMap">
+  	select * from testboard
   </select>
   
   

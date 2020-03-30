@@ -1,4 +1,4 @@
-package com.finalproject.mobang.agent.dto;
+package com.finalproject.mobang.admin.dto;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -71,14 +71,5 @@ public class PageMaker {
 		   
 		return uriComponents.toUriString();
 	}
-	
-//    public String makeQueryPage(int page) {
-//        UriComponents uri = UriComponentsBuilder.newInstance()
-//                .queryParam("page", page)
-//                .queryParam("perPageNum", cri.getPerPageNum())
-//                .build();
-//        return uri.toUriString();
-//    }
-
 
 }

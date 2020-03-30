@@ -7,19 +7,19 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.finalproject.mobang.user.dto.reviewDto;
+import com.finalproject.mobang.user.dto.roomsearchDto;
 
 
 
 @Repository
-public class reviewDaoImpl implements reviewDao{
+public class roomsearchDaoImpl implements roomsearchDao{
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<reviewDto> selectList() {
-		List<reviewDto> list=new ArrayList<reviewDto>();
+	public List<roomsearchDto> selectList() {
+		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"selectList");
@@ -32,9 +32,9 @@ public class reviewDaoImpl implements reviewDao{
 	}
 
 	@Override
-	public reviewDto selectOne(int myno) {
+	public roomsearchDto selectOne(int myno) {
 		
-		reviewDto dto = new reviewDto();
+		roomsearchDto dto = new roomsearchDto();
 		
 		try {
 			dto = sqlSession.selectOne(NAMESPACE+"selectone", myno);
@@ -47,7 +47,7 @@ public class reviewDaoImpl implements reviewDao{
 	}
 
 	@Override
-	public int insert(reviewDto dto) {
+	public int insert(roomsearchDto dto) {
 		int res=0;
 		
 		try {
@@ -61,7 +61,7 @@ public class reviewDaoImpl implements reviewDao{
 	}
 
 	@Override
-	public int update(reviewDto dto) {
+	public int update(roomsearchDto dto) {
 		
 		int res = 0;
 		
