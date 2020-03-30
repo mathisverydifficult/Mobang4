@@ -1,66 +1,77 @@
 package com.finalproject.mobang.user.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class reviewDto {
-	private String myno; 
-	private String myname;
-	private String mytitle;
-	private String mycontent;
-	private Date mydate;
-	
-	public reviewDto() {}
-	
-	public reviewDto(String myno, String myname, String mytitle, String mycontent, Date mydate) {
+public class ReviewDto {
+
+	 // 글 작성자 
+    private String email;
+
+    // 공인중개사 
+    private String agemail;
+
+    // 리뷰내용 
+    private String rcontent;
+
+    // 별점 
+    private String star;
+
+    // 작성날짜 
+    private Date rdate;
+    
+    
+
+    public ReviewDto() {
 		super();
-		this.myno = myno;
-		this.myname = myname;
-		this.mytitle = mytitle;
-		this.mycontent = mycontent;
-		this.mydate = mydate;
 	}
 
-	public String getMyno() {
-		return myno;
+	public ReviewDto(String email, String agemail, String rcontent, String star, Date rdate) {
+		super();
+		this.email = email;
+		this.agemail = agemail;
+		this.rcontent = rcontent;
+		this.star = star;
+		this.rdate = rdate;
 	}
 
-	public void setMyno(String myno) {
-		this.myno = myno;
-	}
+	public String getEmail() {
+        return email;
+    }
 
-	public String getMyname() {
-		return myname;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setMyname(String myname) {
-		this.myname = myname;
-	}
+    public String getAgemail() {
+        return agemail;
+    }
 
-	public String getMytitle() {
-		return mytitle;
-	}
+    public void setAgemail(String agemail) {
+        this.agemail = agemail;
+    }
 
-	public void setMytitle(String mytitle) {
-		this.mytitle = mytitle;
-	}
+    public String getRcontent() {
+        return rcontent;
+    }
 
-	public String getMycontent() {
-		return mycontent;
-	}
+    public void setRcontent(String rcontent) {
+        this.rcontent = rcontent;
+    }
 
-	public void setMycontent(String mycontent) {
-		this.mycontent = mycontent;
-	}
+    public String getStar() {
+        return star;
+    }
 
-	public Date getMydate() {
-		return mydate;
-	}
+    public void setStar(String star) {
+        this.star = star;
+    }
 
-	public void setMydate(Date mydate) {
-		this.mydate = mydate;
-	}
-	
-	
-	
+    public Date getRdate() {
+        return rdate;
+    }
+
+    public void setRdate(Date rdate) {
+        this.rdate = rdate;
+    }
 	
 }

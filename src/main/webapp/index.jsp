@@ -8,7 +8,6 @@
 </head>
 <body>
 	<a href="hello.do">hello</a>
-	<h2>гого</h2>
 	
 	
 </body>

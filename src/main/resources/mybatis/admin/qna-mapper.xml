@@ -13,7 +13,9 @@
 		<result property="titleQ" column="TITLE_Q"/>
 		<result property="dateQ" column="DATE_Q"/>
 	</resultMap>
-  
+
+
+<!-- qna글을 모두 불러오는 함수 -->
   	<select id="selectList" resultMap="boardMap">
   		SELECT SEQ_Q, EMAIL, TITLET_Q, TITLE_Q, DATE_Q
   		FROM QNA_TB
