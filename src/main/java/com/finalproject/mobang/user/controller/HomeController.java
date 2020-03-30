@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.finalproject.mobang.user.biz.reviewBiz;
+
 import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.roomsearchDto;
 
@@ -25,7 +25,6 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
-	private reviewBiz biz;
 	
 
 	@RequestMapping(value = "/")
@@ -55,7 +54,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value="index.all")
+	@RequestMapping(value="/index.all")
 	public String index() {
 		return "index";
 	}

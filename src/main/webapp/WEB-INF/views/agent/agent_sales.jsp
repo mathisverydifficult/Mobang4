@@ -182,7 +182,7 @@ button{
     				</div>
     				<div>
     					<h1>88,000원</h1>
-    					<button class = "item_buy">자세히 보기</button>
+    					<button class = "item_buy" onclick="location.href = 'agent_pay.agent'">구매하기</button>
     				</div>
     			</li>
     			<li class = "sales_item">
@@ -193,7 +193,7 @@ button{
     				</div>
     				<div>
     					<h1>44,000원</h1>
-    					<button class = "item_buy">자세히 보기</button>
+    					<button class = "item_buy">구매하기</button>
     				</div>
     			</li>
     		</ul>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 유저별 찜한 방이나 봤던 방을 저장하고 불러오는 함수들을 정하는 MAPPER -->
+<mapper namespace="favorite">
+	
+	<resultMap type="FavoriteDto" id="favoriteMap">
+		<result property="email" column="EMIAL"/>
+		<result property="recentFv" column="RECENT_FV"/>
+		<result property="dibsFv" column="DIBS_FV"/>
+		<result property="dateFv" column="DATE_FV"/>
+		<result property="roomEx" column="ROOM_EX"/>
+	</resultMap>
+<!-- 유저가 클릭했을 때 본 방을 DB에 추가하는 함수 -->
+<!-- 유저가 찜을 하면 DB에 추가하는 함수-->
+<!-- 찜한 방을 제거하는 함수 -->
+<!-- 찜한 방의 리스트를 출력하는 함수 -->
+<!-- 본 방의 리스트(30개)를 출력하는 함수 -->
+<!-- 찜한 방의 수를 출력하는 함수 -->
+<!--  -->
+
+	<!-- 유저가 클릭했을 때 본 방을 DB에 추가하는 함수 -->
+	<insert id="insertRecent" parameterType="FavoriteDto"> 
+	<![CDATA[
+		INSERT INTO USERFAVORITE_TB (EMAIL, RECENT_FV, DATE_FV, ROOM_EX) VALUES
+		(
+		#{email},
+		#{recnetFv},
+		SYSDATE
+		)
+	]]>	
+	</insert>
+	
+	<!-- 유저가 찜을 하면 DB에 추가하는 함수-->
+	<insert id="insertDibs" parameterType="FavoriteDto"> 
+	<![CDATA[
+		INSERT INTO USERFAVORITE_TB (EMAIL, DIBS_FV, DATE_FV, ROOM_EX) VALUES
+		(
+		#{email},
+		#{dibsFv},
+		SYSDATE,
+		'Y'
+		)
+	]]>	
+	</insert>
+	
+	
+	<!-- 찜한 방을 제거하는 함수 상태가 변경... -->
+	<delete id="deletedibs" parameterType="FavoriteDto">
+		DELETE FROM USERFAVORITE_TB WHERE DIBS_FV=#{dibsFv} AND EMAIL=#{email}
+	</delete>
+	
+	
+	<!-- 올린 방이 삭제되면 상태를 변경(삭제되기 전에 넣어주면 될듯)!! 추천에서 제거하기 위해 방의 존재여부를 알려주는 컬럼을 만든다. -->
+	<update id="updateRoomEx" parameterType="FavoriteDto">
+		UPDATE USERFAVORITE_TB SET
+		ROOM_EX='N'
+		WHERE RECENT_FV=#{recentFv} 
+	</update>
+	
+	<!-- 찜한 방의 리스트를 출력하는 함수 -->
+	<select id="selectListDibs" resultMap="favoriteMap">
+		SELECT EMAIL, DIBS_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL=#{email}
+		ORDER BY DATE_FV DESC
+	</select>
+	<!-- 최근 본 방을 30개까지 보여주는 함수 -->
+	<select id="selectListRecent" resultMap="favoriteMap">
+	<![CDATA[
+		SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
+		FROM (SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL=#{email}
+		ORDER BY DATE_FV DESC)
+		WHERE ROWNUM <= 30;
+	]]>		
+	</select>
+	
+	<!-- 찜한 방의 수를 출력하는 함수 -->
+	<select id="dibsCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(DIBS_FV)
+		  FROM USERFAVORITE_TB
+		 WHERE EMAIL =#{email}
+	]]>
+	</select>
+	
+	<!-- 본 방의 수를 출력하는 함수 -->
+	<select id="recentCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(RECENT_FV)
+		  FROM USERFAVORITE_TB
+		 WHERE EMAIL =#{email}
+	]]>
+	</select>
+	
+
+
+</mapper>

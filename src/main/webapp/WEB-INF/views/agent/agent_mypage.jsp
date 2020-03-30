@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/agent_mypage.css">
+<link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
+<link rel="stylesheet" type="text/css" href="resources/agent/css/agent_mypage.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 
@@ -20,9 +21,15 @@ $(document).ready(function(){
 		if(viewid=="account"){
 			$('.mypagewrap .account').css('display','');
 			$('.mypagewrap .product').css('display','none');
+			$('.mypagewrap .review').css('display','none');
 		}else if(viewid=="product"){
-			$('.mypagewrap .product').css('display','block');
+			$('.mypagewrap .product').css('display','inline');
 			$('.mypagewrap .account').css('display','none');
+			$('.mypagewrap .review').css('display','none');
+		} else{
+			$('.mypagewrap .product').css('display','none');
+			$('.mypagewrap .account').css('display','none');
+			$('.mypagewrap .review').css('display','block');
 		}
 	});
 	$("#account").prop('class','clicked');
@@ -38,6 +45,7 @@ $(document).ready(function(){
 		<article class="menu">
 			<div class="nonclick" id="account">계정 관리</div>
 			<div class="nonclick" id="product">상품 관리</div>
+			<div class="nonclick" id="review">리뷰/문의 관리</div>
 		</article>
 		<article class="account">
 			<span>공인중개사 정보</span>
@@ -66,9 +74,9 @@ $(document).ready(function(){
 			<span>개인 정보</span>
 			<div>
 				<div>	
-					<div class="titlelist" style="height: 155px; line-height: 164px; padding-top: 4px;">프로필</div>
+					<div class="titlelist" style="height: 155px; line-height: 152px; padding-top: 15px;">프로필</div>
 					<div class="list" style="height: 155px;">
-						<img src="resources/img/sampleprofile.png">
+						<img src="resources/agent/img/sampleprofile.png">
 					</div>
 				</div>
 				<div>
@@ -129,8 +137,13 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 			</div>
-		</article>
 		<!-- 숫자 pagenation추가 -->
+		</article>
+		<article class="review">
+			<span>리뷰 내역</span>
+			<span>1:1 문의 내역</span>
+		
+		</article>
 	</div>
 	
 	
