@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.mobang.admin.controller.AdminController;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
@@ -91,8 +92,20 @@ public class AgentController {
 		return "/agent/agent_premium_sales";
 	}
 	
-	@RequestMapping(value="/mypage.agent")
+	@RequestMapping(value="/agent_mypage.agent")
 	public String mypage(Model model) {
 		return "/agent/agent_mypage";
+	}
+	@RequestMapping(value = "/agent_pay.agent")
+	public String agentPay(@RequestParam("roomType")String roomType,@RequestParam("price")int price,Model model) {
+		model.addAttribute("roomType", roomType);
+		model.addAttribute("price", price);
+		return "/agent/agent_pay";
+	}
+	
+	@RequestMapping(value = "/agent_sales_complete.agent")
+	public String agentSalesComplete(Model model) {
+		
+		return "/agent/agent_sales_complete";
 	}
 }
