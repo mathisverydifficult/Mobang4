@@ -6,86 +6,95 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
 <style type="text/css">
-@font-face { font-family: 'RIDIBatang'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff'); font-weight: normal; font-style: normal; }
-
-/* 기본 스타일 초기화 태그 -> 초기화를 하는 이유? 브라우저마다 각각의 태그에 들어있는 default style이 다르므로, 브라우저마다 레이아웃이 달라지는 오류를 범하기 위해 초기화를 선언해준다. */
-	*{margin: 0; padding: 0;} /* *는 모든 태그에 적용되는 스타일이므로 신중히 사용해야함. 전체 태그에 들어있는 margin과 padding을 없애준다. */
-	a{text-decoration: none; color:inherit;} /* a태그엔 기본적으로 text-decoration: underline 이 적용되어있어 a태그를 사용하면 텍스트 아래 밑줄이 자동으로 생긴다. 이를 없애주기 위한 것. color:inherit은 a태그는 부모요소의 color를 상속받지 않아서 일일히 a태그에 color스타일을 지정해줘야 하는데 이런 불편함을 없애기 위해 inherit(상속)속성을 미리 지정해준다.*/
-
-	.container {
-        width: 1200px;
-        margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/
-    }
+	.container {width: 1200px; margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/}
     .main_title{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
 			text-align: center; font-size: 50px; line-height: 5;}
-    .navy_theme th {
-    	width: 192px;
-    	background-color: rgb(51,85,139);
-    	color: white;
-    	padding: 25px 0;
-    }
-    .navy_theme td {
-    	width: 965px;
-    	padding: 15px 25px;
-    	box-sizing: border-box;
-    }
-    .navy_theme {
-    	border-spacing: 0px;
-    	border: 2px solid rgb(51,85,139);
-    	margin: 0 auto;
-    }
-    .navy_theme  input {
-    	padding : 0 15px;
-    	box-sizing: border-box;
-    	border: 1px solid rgb(51,85,139);
-    	height: 30px;
-    }
+    .navy_theme th {width: 192px; background-color: rgb(51,85,139); color: white; padding: 25px 0;}
+    .navy_theme td {width: 965px; padding: 15px 25px; box-sizing: border-box;}
+    .navy_theme {border-spacing: 0px; border: 2px solid rgb(51,85,139); margin: 0 auto; }
+    .navy_theme  input {padding : 0 15px; box-sizing: border-box; border: 1px solid rgb(51,85,139); height: 30px;}
     .navy_theme textarea{border: 1px solid rgb(51,85,139);}
-    
-    p.title {
-    	margin: 80px 0px 30px 25px;
-    	font-size: 1.3em;
-    	color: rgb(51,85,139);
-    }
-    .top_container{    
-        background-color: rgb(51,85,139);
-        color: #fff;
-        text-align: center;
-    }
-    .top_container h1{
-        font-size: 3em;
-        margin-bottom: 1em;
-    }
-    .photo_wrap {
-    	margin: 0 auto;
-    	width: 1157px;
-    }
+    p.title {margin: 80px 0px 30px 25px; font-size: 1.3em; color: rgb(51,85,139); }
+    .top_container{background-color: rgb(51,85,139); color: #fff; text-align: center;}
+    .top_container h1{font-size: 3em; margin-bottom: 1em; }
+    .photo_wrap {margin: 0 auto; width: 1157px;}
     .photo_wrap::after{ /* after란 이 태그 마지막에 무언가 들어가게 하는것.*/
-    	clear:both;
-    	content: "";
-    	width: 100%;
-    	height: 1px;
-    	display: block;
-    }
-    .photo_wrap > div {
-    	width: 200px;
-    	height: 200px;
-    	border: 2px solid rgb(51,85,139);
-    	float: left;
-    	margin-left :100px;
-    	margin-bottom: 50px;
-    }
-    .photo_wrap > div:first-child {
-    	margin-left:0;
-    }
-    .photo_wrap > div:nth-child(4n+1) {
-    	margin-left:0;
-    }
-    
+    	clear:both; content: ""; width: 100%; height: 1px; display: block; }
+    .photo_wrap > div {width: 200px; height: 200px; border: 2px solid rgb(51,85,139); float: left;
+    					margin-left :100px; margin-bottom: 50px;}
+    .photo_wrap > div:first-child {margin-left:0;}
+    .photo_wrap > div:nth-child(4n+1) {margin-left:0;}
     .dt_container{margin-bottom: 25px;}
+    
+    .location{width: 1157px;  margin: 0 auto;}
+    .location input{border: 1px solid rgb(51,85,139); height: 30px; font-size: 14px; padding: 5px; margin: 5px;}
+    #postcode{width: 150px;}
+    .button{text-align: center;}
+    .button>input{margin:10px; background-color: rgba(51, 85, 139,0.85); color: white; font-size: 15px; padding: 11px 25px; cursor: pointer; }
+	.button>input:hover{background-color: rgb(51, 85, 139);}
+    
 </style>
+<script type="text/javascript">
+
+function execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("roadAddress").value = roadAddr;
+            document.getElementById("jibunAddress").value = data.jibunAddress;
+            
+            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+            if(roadAddr !== ''){
+                document.getElementById("extraAddress").value = extraRoadAddr;
+            } else {
+                document.getElementById("extraAddress").value = '';
+            }
+
+            var guideTextBox = document.getElementById("guide");
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                guideTextBox.style.display = 'block';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                guideTextBox.style.display = 'block';
+            } else {
+                guideTextBox.innerHTML = '';
+                guideTextBox.style.display = 'none';
+            }
+        }
+    }).open();
+}
+
+</script>
 </head>
 <body>
 <%@ include file="form/agent_header.jsp" %>
@@ -96,22 +105,20 @@
             </div>
         </div>
     </section>
+			<form action="" method="post">
     <section class = "map_container">
     	<div class = "container _00">
     		<p class = "title">위치정보</p>
-    		<form action="" method="post">
-    			<table class = "navy_theme">
-    				<tr>
-    					<th>주소</th>
-    					<td><input type = "text" placeholder="내용을 입력해주세요." name = "addr_rm" required="required" style="width:300px; height:40px;"/><button style = "width:99px; height:41px; background-color: rgb(51,85,139); color: #fff; margin-left:15px; border-radius: 4px;">주소검색</button></td>
-    				</tr>
-    				<tr>
-    					<th>상세주소</th>
-    					<td><input type = "text" placeholder="내용을 입력해주세요." name = "addr_dt_rm" style = "width:657px; height:40px"/></td>
-    				</tr>
-    			</table>
-   			</form>
-    	</div>
+				<div class="location">
+					<input type="text" id="postcode" placeholder="우편번호">
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br> 
+					<input type="text" id="roadAddress" placeholder="도로명주소"> 
+					<input type="text" id="jibunAddress" placeholder="지번주소">
+					<span id="guide" style="color: #999; display: none"></span><br> 
+					<input type="text" id="detailAddress" placeholder="상세주소">
+					<input type="text" id="extraAddress" placeholder="참고항목">
+				</div>
+		</div>
     </section>
     <section class = "photo_container">
     	<div class = "container _01">
@@ -132,7 +139,6 @@
     <section class = "dt_container">
     	<div class = "container _02">
     		<p class = "title">상세정보</p>
-    		<form action="" method="post">
     			<table class = "navy_theme">
     			
     				<tr>	
@@ -176,21 +182,20 @@
     					<td>
     						<div>
     							<input type = "checkbox" name = "aircon_rm" value = "에어컨"/><span>에어컨</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "냉장고"/><span>냉장고</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "세탁기"/><span>세탁기</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "가스레인지"/><span>가스레인지</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "인덕션"/><span>인덕션</span>
+    							<input type = "checkbox" name = "ref_rm" value = "냉장고"/><span>냉장고</span>
+    							<input type = "checkbox" name = "washer_rm" value = "세탁기"/><span>세탁기</span>
+    							<input type = "checkbox" name = "gasrange_rm" value = "가스레인지"/><span>가스레인지</span>
     						</div>
     						<div>
-    							<input type = "checkbox" name = "aircon_rm" value = "전자레인지"/><span>전자레인지</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "책상"/><span>책상</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "책장"/><span>책장</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "침대"/><span>침대</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "옷장"/><span>옷장</span>
+    							<input type = "checkbox" name = "induction_rm" value = "인덕션"/><span>인덕션</span>
+    							<input type = "checkbox" name = "microwave_rm" value = "전자레인지"/><span>전자레인지</span>
+    							<input type = "checkbox" name = "desk_rm" value = "책상"/><span>책상</span>
+    							<input type = "checkbox" name = "bed_rm" value = "침대"/><span>침대</span>
+    							<input type = "checkbox" name = "closet_rm" value = "옷장"/><span>옷장</span>
     						</div>
     						<div>
-    							<input type = "checkbox" name = "aircon_rm" value = "신발장"/><span>신발장</span>
-    							<input type = "checkbox" name = "aircon_rm" value = "싱크대"/><span>싱크대</span>
+    							<input type = "checkbox" name = "showhouse_rm" value = "신발장"/><span>신발장</span>
+    							<input type = "checkbox" name = "sink_rm" value = "싱크대"/><span>싱크대</span>
     						</div>
     					</td>
     				</tr>
@@ -236,9 +241,12 @@
     					<td><textarea rows="20" cols="60" name = "content_rm"></textarea></td>
     				</tr>
     			</table>
-    		</form>
+    			<div class="button">
+    				<input type="submit" value="완료">
+    			</div>
     	</div>
     </section>
+    		</form>
 <%@ include file="form/agent_footer.jsp" %>
 </body>
 </html>
