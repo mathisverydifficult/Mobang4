@@ -1,5 +1,6 @@
 package com.finalproject.mobang.user.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.finalproject.mobang.user.biz.reviewBiz;
+
 import com.finalproject.mobang.user.biz.roomsearchBiz;
+import com.finalproject.mobang.user.dto.roomsearchDto;
 
 /**
  * Handles requests for the application home page.
@@ -22,7 +25,6 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
-	private reviewBiz biz;
 	
 
 	@RequestMapping(value = "/")
@@ -52,7 +54,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value="index.all")
+	@RequestMapping(value="/index.all")
 	public String index() {
 		return "index";
 	}
@@ -74,10 +76,13 @@ public class HomeController {
 		return "/user/favorite_dibs";
 	}
 	
+	@ResponseBody		//데이터 조회시 붙이는 annotation
 	@RequestMapping(value="/room_search.user")
-	public String roomsearch(Model model) {
+	public List<roomsearchDto> roomsearch(Model model, String keyword) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
 		
-		return "user/room_search";
+		List<roomsearchDto> test = roombiz.selectsearchList(keyword);
+		
+		return test;
 	}
 	
 	@RequestMapping(value="/review.user")

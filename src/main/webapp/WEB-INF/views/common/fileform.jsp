@@ -29,7 +29,7 @@
 	<!-- 선택한 파일에 대한 이미지가 출력되게 하는 스크립트 -->
 	<script>
 	  $("#gdsImg").change(function(){
-		   if(this.files && this.files[0]) {
+		   if(this.files && this.files[0]) { 
 		    var reader = new FileReader;
 		    reader.onload = function(data) {
 		     $(".select_img img").attr("src", data.target.result).width(500);        

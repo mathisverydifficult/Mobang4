@@ -31,9 +31,8 @@
 <div class ="container">
 
 	<form action="qna_updateres.admin" method="post">
-		<input type="hidden" value="${dto.seqQ }" name="seqQ"/> <!-- 수정할 때 글봐야하니까. -->
-		<h2>${dto.titleQ }</h2>	
-		<p>작성자 : ${dto.email }</p>
+		<input type="hidden" value="${dto.seq_nt }" name="seqQ"/> <!-- 수정할 때 글봐야하니까. -->
+		<h2>${dto.title_nt }</h2>	
 		<br/>
 		
 		

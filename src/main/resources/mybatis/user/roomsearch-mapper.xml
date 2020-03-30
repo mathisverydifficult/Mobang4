@@ -9,10 +9,19 @@
   	<result property="mycontent" column="MYCONTENT"/>
   	<result property="mypath" column="MYPATH"/>
   	<result property="mypremium" column="MYPREMIUM"/>
+  	<result property="myaddress" column="MYADDRESS"/>
   </resultMap>
   
   <select id="selectList" resultMap="roomsearchMap">
   	select * from testboard
+  </select>
+  
+  <select id="selectsearchList" resultMap="roomsearchMap" parameterType="string">
+  	select * from testboard 
+  	<if test="keyword != null and keyword !='' ">
+  		where myaddress like '%${keyword}%'
+  	</if>
+  	
   </select>
   
   

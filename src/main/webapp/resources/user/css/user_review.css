@@ -34,3 +34,17 @@
 	font-weight: bold;
     text-align: center;
 }
+
+.test{
+	width:260px; 
+	height:260px;
+	display:inline-block; 
+	background-color:aqua;
+	background-size: 100% 100%;
+	margin-right:10px;
+}
+
+
+
+
+
