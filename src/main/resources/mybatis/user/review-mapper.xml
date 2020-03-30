@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="review">
+	
+	<resultMap type="ReviewDto" id="reviewMap">
+		<result property="email" column="EMAIL"/>
+		<result property="agemail" column="AGEMAIL"/>
+		<result property="rcontent" column="RCONTENT"/>
+		<result property="star" column="STAR"/>
+		<result property="rdate" column="RDATE"/>
+	</resultMap>
+<!-- 내가 작성했던 리뷰 리스트를 보는 기능 -->
+<!-- 공인중개사 별 작성된 리뷰 리스트를 불러오는 기능 (글자수 제한 걸어서 내용도 바로 출력)-->
+<!-- 내가 공인중개사에게 리뷰를 남기는 것(insert) -->
+<!-- 리뷰 삭제하는 기능 -->
+
+
+
+<!-- 내가 작성했던 리뷰 리스트를 보는 기능 -->
+	<select id = "selectListReview" resultMap="reviewMap">
+	<![CDATA[
+	SELECT AGEMAIL,
+		   RCONTENT,
+		   STAR
+	FROM REVIEW_TB
+	WHERE EMAIL=#{email}
+	ORDER BY RDATE DESC   
+	]]>
+	</select>
+
+
+<!-- 공인중개사 별 작성된 리뷰 리스트를 불러오는 기능 (글자수 제한 걸어서 내용도 바로 출력)-->
+	<select id = "selectListAgReview" resultMap="reviewMap">
+	<![CDATA[
+		SELECT EMAIL,
+			   RCONTENT,
+			   STAR
+		FROM REVIEW_TB
+		WHERE AGEMAIL=#{agemail}
+		ORDER BY RDATE DESC
+	]]>
+	</select>
+
+
+
+<!-- 유저가 공인중개사에게 리뷰를 남기는 것(insert) -->
+	<insert id="insert" parameterType="ReviewDto"> 
+	<![CDATA[
+		INSERT INTO REVIEW_TB VALUES
+		(
+		#{email},
+		#{agemail},
+		#{rcontent},
+		#{star},
+		SYSDATE
+		)
+	]]>	
+	</insert>
+
+<!-- 리뷰 삭제하는 기능 -->
+	<delete id="delete" parameterType="ReviewDto">
+		<![CDATA[
+		DELETE FROM REVIEW_TB 
+		WHERE EMAIL=#{email} AND AGEMAIL=#{agemail}
+		]]>	
+	</delete>
+	
+	
+	
+	
+	
+
+
+</mapper>

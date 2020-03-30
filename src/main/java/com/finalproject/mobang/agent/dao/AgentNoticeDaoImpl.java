@@ -50,7 +50,7 @@ public class AgentNoticeDaoImpl implements AgentNoticeDao {
 		return dto;
 	}
 
-	@Override
+	@Override	
 	public int insert(AgentNoticeDto dto) {
 		// TODO Auto-generated method stub
 		return 0;

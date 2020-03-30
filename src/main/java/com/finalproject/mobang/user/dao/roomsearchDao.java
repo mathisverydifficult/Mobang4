@@ -10,6 +10,7 @@ public interface roomsearchDao {
 	String NAMESPACE = "roomsearch.";
 	
 	public List<roomsearchDto> selectList();
+	public List<roomsearchDto> selectsearchList(String keyword);
 	public roomsearchDto selectOne(int myno);
 	public int insert(roomsearchDto dto);
 	public int update(roomsearchDto dto);

@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.mobang.admin.controller.AdminController;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
@@ -37,6 +39,7 @@ public class AgentController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(biz.listCount());
 		
+		model.addAttribute("cri", cri);
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "/agent/agent_notice";
@@ -44,11 +47,13 @@ public class AgentController {
 	
 	// 공지사항 selectOne
 	@RequestMapping(value="/selectone.agent",method = RequestMethod.GET)
-	public String noticeSelectOne(Model model,int seq_nt) {
+	public String noticeSelectOne(Model model,int seq_nt,@ModelAttribute("cri") Criteria cri) {
 		logger.info("notice - selectOne");
 		
 		AgentNoticeDto dto = biz.selectOne(seq_nt);
 		model.addAttribute("dto", dto);
+		model.addAttribute("cri", cri);
+		
 		
 		return "/agent/agent_notice_selectone";
 	}
@@ -87,8 +92,20 @@ public class AgentController {
 		return "/agent/agent_premium_sales";
 	}
 	
-	@RequestMapping(value="/mypage.agent")
+	@RequestMapping(value="/agent_mypage.agent")
 	public String mypage(Model model) {
 		return "/agent/agent_mypage";
+	}
+	@RequestMapping(value = "/agent_pay.agent")
+	public String agentPay(@RequestParam("roomType")String roomType,@RequestParam("price")int price,Model model) {
+		model.addAttribute("roomType", roomType);
+		model.addAttribute("price", price);
+		return "/agent/agent_pay";
+	}
+	
+	@RequestMapping(value = "/agent_sales_complete.agent")
+	public String agentSalesComplete(Model model) {
+		
+		return "/agent/agent_sales_complete";
 	}
 }
