@@ -21,7 +21,7 @@
 <script type="text/javascript">
 function favoriteclick(){
 	
-	$(".favorite").on("click",function(e){
+	$(".favorite").click(function(){
 		$(".favorite>img").each(function(){
 			if(this.src.indexOf("_2") > 0){
 				this.src=this.src.replace("_2.png","_1.png");
@@ -33,16 +33,19 @@ function favoriteclick(){
 	});
 }
 
-function toggleBtn() {
-//  	 if ( $(".filterbox").css("display") == "none" ) $(".filterbox").show(); 
-
-//  	 else $(".filterbox").hide(); 
-
-// 		$(this).children(".filterbox").show();
-
-		$(this).parent().children(".filterbox").show();
-
-	 }
+$(function(){
+	
+	$(".seperate").click(function(){
+		
+		if($(this).next().css("display")=="none" ){
+			$(".filterbox").hide();
+			var target = $(this).next();
+			target.show();
+			
+		} else $(this).next().hide();
+		
+	});
+});
 
 </script>
 
@@ -63,32 +66,32 @@ function toggleBtn() {
 					</a>
 				</div>
 				<div class="filter">
-					<div class="smallfilter">
-						<div class="seperate" onclick="toggleBtn()">
+					<div class="smallfilter" id="roomtype">
+						<div class="seperate">
 							<span>원룸, 투·쓰리룸, 오피스텔</span>
 						</div>
-						<div class="filterbox" id="roomfilterbox">
+						<div class="filterbox">
 							<h1>
 							방종류
 							<p class="dupcheck">중복선택이 가능합니다.</p>
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">원룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">투·쓰리룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">오피스텔</span>
 									</label>
@@ -97,8 +100,8 @@ function toggleBtn() {
 							</h1>
 						</div> 
 					</div>
-					<div class="smallfilter">
-						<div class="seperate" onclick="toggleBtn()">
+					<div class="smallfilter" id="rent">
+						<div class="seperate">
 							<span>월세, 전세, 매매</span>
 						</div>
 						<div class="filterbox">
@@ -107,22 +110,22 @@ function toggleBtn() {
 							<p class="dupcheck">중복선택이 가능합니다.</p>
 							<ul>
 								<li>
-									<label>
-										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+									<label class="roomlabel">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">월세</span>
 									</label>
 								</li>
 								<li>
-									<label>
-										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+									<label class="roomlabel">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">전세</span>
 									</label>
 								</li>
 								<li>
-									<label>
-										<input name=multi_room_type" type="checkbox" class="checkbox_check">
+									<label class="roomlabel">
+										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">매매</span>
 									</label>
@@ -135,15 +138,33 @@ function toggleBtn() {
 						<div class="seperate">
 							<span>가격대</span>
 						</div>
+						<div class="filterbox">
+							<h1>
+							매물종류
+							
+							</h1>
+						</div> 
 					</div>
 					<div class="smallfilter">
 						<div class="seperate">
 							<span>관리비</span>
 						</div>
+						<div class="filterbox">
+							<h1>
+							매물종류
+							
+							</h1>
+						</div>
 					</div>
 					<div class="smallfilter">
 						<div class="seperate">
 							<span>방크기</span>
+						</div>
+						<div class="filterbox">
+							<h1>
+							매물종류
+							
+							</h1>
 						</div>
 					</div>
 				</div>
@@ -207,37 +228,27 @@ function toggleBtn() {
 		var container = document.getElementById('map');
 		var options = {
 			center : new kakao.maps.LatLng(37.271, 127.435),
-			level : 7
+			level : 6
 		};
+		
+// 		var clusterer = new kakao.maps.MarkerClusterer({
+// 	        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+// 	        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+// 	        minLevel: 10 // 클러스터 할 최소 지도 레벨 
+// 	    });
+		
 
 		var map = new kakao.maps.Map(container, options); //지도 생성
 		
-		//주소 - 좌표 변환 객체 생성
-		var geocoder=new kakao.maps.services.Geocoder();
-		
-		//주소로 좌표 검색
-// 		geocoder.addressSearch(keyword, function(result, status){	//keyword = 올라와 있는 매물의 주소로 변경!
-			
-// 			//정상적으로 검색이 완료됐을 경우
-// 			if(status===kakao.maps.services.Status.OK){
-// 				var coords=new kakao.maps.LataLng(result[0].y, result[0].x);
-// 				yy = result[0].x;
-// 				xx = result[0].y;
-				
-// 				//결과값으로 받은 위치를 마커로 표시
-// 				var marker = new kakao.maps.Marker({
-// 					map : map,
-// 					position: coords
-// 				});
-//				map.setCenter(coords);
-// 			}
-// 		})
-		
-
-		var ps = new kakao.maps.services.Places(); //장소 검색 객체 생성
+		var geocoder=new kakao.maps.services.Geocoder(); //주소 - 좌표 변환 객체 생성
 
 		function searchPlace(){
-			var keyword = document.getElementById('keyword').value;
+ 			var keyword = document.getElementById('keyword').value;
+ 			
+// 			$("#roomtype>.checkbox_check:checked").each(function(){
+// 				var roomtype = $(this).val();
+// 				alert("벨류값확인:" + roomtype);
+// 			})
 			
 			$.ajax({
 				type: "GET", //요청 메소드 방식
@@ -253,64 +264,95 @@ function toggleBtn() {
 					for(var i=0; i<result.length; i++){
 						list[i] = result[i];
 						
-						html += "<div class='room'>	<a> <div class='photo'>"
+						html += "<div class='room' style='cursor:pointer;'>	<a> <div class='photo'>"
 							+"<img src="+list[i].mypath+">"
 							+"<div class='favorite'>"
 							+"<img id='img1' src='resources/user/img/favorite_1.png' onclick='favoriteclick()'/></div></div>"
 						+"<p class='explain' id='roomtitle'>"+list[i].myname+"</p>"
-						+"<p class='explain'>"+list[i].mytitle+"</p></a></div>"
+						+"<p class='explain'>"+list[i].mytitle+"</p>"
+						+"<p class='explain'>"+list[i].myroomname+"</p>"
+						+"<p class='explain'>"+list[i].myaddress+"</a>"
+						+"</div>"
+						myaddress(list[i].myaddress, list[i].myroomname);
 					}
 					$(".leftpart").html(html);
 				},
 				error : function(a, b, c){
-					//통신 실패시 발생하는 함수(콜백)
 					alert(a + b + c);
 				}
 			});
-			
-			ps.keywordSearch(keyword, placesSearchCB); //키워드로 장소를 검색
 		}
-			
-		//키워드 검색 완료 시 호출되는 콜백함수
-		function placesSearchCB(data, status, pagination) {
-			if (status === kakao.maps.services.Status.OK) {
 
-				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-				// LatLngBounds 객체에 좌표를 추가합니다
-				var bounds = new kakao.maps.LatLngBounds();
-
-				for (var i = 0; i < data.length; i++) {
-					displayMarker(data[i]);
-					bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+		//주소로 좌표 검색
+		function myaddress(address, roomname){
+			geocoder.addressSearch(address, function(result, status){	//keyword = 올라와 있는 매물의 주소로 변경!
+				
+				//정상적으로 검색이 완료됐을 경우
+				if(status===kakao.maps.services.Status.OK){
+					var coords=new kakao.maps.LatLng(result[0].y, result[0].x);
+					yy = result[0].x;
+					xx = result[0].y;
+					
+					//결과값으로 받은 위치를 마커로 표시
+					var marker = new kakao.maps.Marker({
+						map : map,
+						position: coords
+					});
+					map.setCenter(coords);
 				}
-
-				// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다.
-				map.setBounds(bounds);
-			}
+				kakao.maps.event
+				.addListener(
+					marker,
+					'click',
+					function() {
+						//마커를 클릭하면 장소명이 인포 윈도우에 표출
+						infowindow.setContent('<div style="padding:5px; font-size:12px;">'+ roomname + '</div>');
+						infowindow.open(map, marker);
+					});
+				
+			})
+			
 		}
 
+		//키워드 검색 완료 시 호출되는 콜백함수
+// 		function placesSearchCB(data, status, pagination) {
+// 			if (status === kakao.maps.services.Status.OK) {
+
+// 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+// 				// LatLngBounds 객체에 좌표를 추가합니다
+// 				var bounds = new kakao.maps.LatLngBounds();
+
+// 				for (var i = 0; i < data.length; i++) {
+// 					displayMarker(data[i]);
+// 					bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+// 				}
+
+// 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다.
+// 				map.setBounds(bounds);
+// 			}
+// 		}
 		//지도에 마커를 표시하는 함수입니다
-		function displayMarker(place) {
+// 		function displayMarker(place) {
 
-			//마커를 생성하고 지도에 표시합니다
-			var marker = new kakao.maps.Marker({
-				map : map,
-				position : new kakao.maps.LatLng(place.y, place.x)
-			});
+// 			//마커를 생성하고 지도에 표시합니다
+// 			var marker = new kakao.maps.Marker({
+// 				map : map,
+// 				position : new kakao.maps.LatLng(place.y, place.x)
+// 			});
 
-			//마커에 클릭이벤트 등록
-			kakao.maps.event
-					.addListener(
-							marker,
-							'click',
-							function() {
-								//마커를 클릭하면 장소명이 인포 윈도우에 표출
-								infowindow
-										.setContent('<div style="padding:5px; font-size:12px;">'
-												+ place.place_name + '</div>');
-								infowindow.open(map, marker);
-							});
-		}
+// 			//마커에 클릭이벤트 등록
+// 			kakao.maps.event
+// 					.addListener(
+// 							marker,
+// 							'click',
+// 							function() {
+// 								//마커를 클릭하면 장소명이 인포 윈도우에 표출
+// 								infowindow
+// 										.setContent('<div style="padding:5px; font-size:12px;">'
+// 												+ place.place_name + '</div>');
+// 								infowindow.open(map, marker);
+// 							});
+// 		}
 		
 	</script>
 

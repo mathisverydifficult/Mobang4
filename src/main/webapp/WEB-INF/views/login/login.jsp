@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/login/css/login.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/login/js/login.js"></script>
 </head>
 
 <body>
@@ -20,7 +23,8 @@
 			<div class="col-xs-6 col-md-4" id="main">
 				<h2><a class="mobang" href="#">모방</a>｜ 로그인</h2>
 				<hr class="hr"/>
-				<form role="form" action="">
+				<form name="loginfrm" action="<c:url value='/home.user'/>" method="post">
+					 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
 					<div class="form-group">
 						<label>이메일</label> <input type="email" class="form-control" name="email" placeholder="이메일을 입력하세요.">
 					</div>
@@ -30,14 +34,21 @@
 							<span id="pwfind_span"><a class="none_blue" data-toggle="modal" href="#pwfind_modal">비밀번호 찾기</a></span>
 						</div>
 					</div>
+					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+					    <font color="red">
+					        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+					        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+					    </font>
+					</c:if>
+
 					<div class="button_group">
-						<input class="login_btn" type="submit" value="로그인">
+						<input class="login_btn" type="submit" name="loginbtn" value="로그인">
 						<div class="sns" id="sns_naver">
-							<img src="resources/images/naver.png" class="img-rounded">
+							<img src="resources/login/img/naver.png" class="img-rounded">
 							<input class="sns_btn" id="naver" type="button" value="네이버 로그인">
 						</div>
 						<div class="sns" id="sns_kakao">
-							<img src="resources/images/kakao.JPG" class="img-rounded">
+							<img src="resources/login/img/kakao.JPG" class="img-rounded">
 							<input class="sns_btn" id="kakao" type="button" value="카카오톡 로그인">
 						</div>
 					</div >
@@ -55,6 +66,8 @@
 		</div>
 	</div>
 	
+	
+
 	<!-- Modal -->
 	<div class="modal fade" id="pwfind_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   		<div class="modal-dialog modal-sm" role="document">
