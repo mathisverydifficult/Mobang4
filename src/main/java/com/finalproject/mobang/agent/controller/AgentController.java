@@ -5,14 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.mobang.admin.controller.AdminController;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
+import com.finalproject.mobang.agent.dto.AgentItemDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
+import com.finalproject.mobang.agent.dto.AgentPayDto;
 import com.finalproject.mobang.agent.dto.Criteria;
 import com.finalproject.mobang.agent.dto.PageMaker;
 
@@ -39,7 +40,6 @@ public class AgentController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(biz.listCount());
 		
-		model.addAttribute("cri", cri);
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "/agent/agent_notice";
@@ -47,13 +47,11 @@ public class AgentController {
 	
 	// 공지사항 selectOne
 	@RequestMapping(value="/selectone.agent",method = RequestMethod.GET)
-	public String noticeSelectOne(Model model,int seq_nt,@ModelAttribute("cri") Criteria cri) {
+	public String noticeSelectOne(Model model,int seq_nt) {
 		logger.info("notice - selectOne");
 		
 		AgentNoticeDto dto = biz.selectOne(seq_nt);
 		model.addAttribute("dto", dto);
-		model.addAttribute("cri", cri);
-		
 		
 		return "/agent/agent_notice_selectone";
 	}
@@ -72,7 +70,6 @@ public class AgentController {
 	
 	@RequestMapping(value ="/agent_sales.agent")
 	public String sales(Model model) {
-			
 		return "/agent/agent_sales";
 	}
 	@RequestMapping(value="/agent_roominsert.agent")
@@ -97,10 +94,13 @@ public class AgentController {
 		return "/agent/agent_mypage";
 	}
 	@RequestMapping(value = "/agent_pay.agent")
-	public String agentPay(@RequestParam("roomType")String roomType,@RequestParam("price")int price,Model model) {
-		model.addAttribute("roomType", roomType);
-		model.addAttribute("price", price);
+	public String agentPay(AgentItemDto dto, Model model) {
+		model.addAttribute("dto", dto);
 		return "/agent/agent_pay";
+	}
+	@RequestMapping(value = "/agent_pay2.agent")
+	public String agentPay2(Model model) {
+		return "/agent/agent_pay2";
 	}
 	
 	@RequestMapping(value = "/agent_sales_complete.agent")
