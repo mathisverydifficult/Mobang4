@@ -3,23 +3,26 @@
 <mapper namespace = "roomsearch">
   
   <resultMap type="roomsearchDto" id="roomsearchMap">
-  	<result property="myno" column="MYNO"/>
-  	<result property="myname" column="MYNAME"/>
-  	<result property="mytitle" column="MYTITLE"/>
-  	<result property="mycontent" column="MYCONTENT"/>
-  	<result property="mypath" column="MYPATH"/>
-  	<result property="mypremium" column="MYPREMIUM"/>
-  	<result property="myaddress" column="MYADDRESS"/>
+  	<result property="myno" column="NO_RM"/>
+  	<result property="myname" column="AGTNAME_RM"/>
+  	<result property="mytitle" column="TITLE_RM"/>
+  	<result property="mycontent" column="CONTENT_RM"/>
+  	<result property="mypath" column="PICTURE_RM"/>
+  	<result property="mypremium" column="PLUSYN_RM"/>
+  	<result property="myaddress" column="ADDR_RM"/>
+  	<result property="myroomname" column="ADDR_DT_RM"/>
+  	<result property="myrent" column="RENT_RM"/>
+  	<result property="myroomtype" column="ROOMTYPE_RM"/>
   </resultMap>
   
   <select id="selectList" resultMap="roomsearchMap">
-  	select * from testboard
+  	select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm from room_tb
   </select>
   
   <select id="selectsearchList" resultMap="roomsearchMap" parameterType="string">
-  	select * from testboard 
+  	select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm from room_tb
   	<if test="keyword != null and keyword !='' ">
-  		where myaddress like '%${keyword}%'
+  		where addr_rm like '%${keyword}%'
   	</if>
   	
   </select>
