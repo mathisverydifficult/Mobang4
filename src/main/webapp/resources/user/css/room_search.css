@@ -160,12 +160,12 @@ ul, li{
 }
 
 .checkbox_check{
-	width: 1px;
-    height: 1px;
-    opacity: 0;
+	width: 21px;
+    height: 21px;
     position: absolute;
     top: 0px;
     left: 0px;
+    z-index:1;
 }
 
 .checktext{

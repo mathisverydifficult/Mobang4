@@ -97,8 +97,26 @@ CREATE TABLE USER_TB
 );
 
 INSERT INTO USER_TB VALUES(
+	2,
+	'djkim1216@naver.com',
+	'김동주',
+	'123',
+	'01089898989' ,
+	'USER',
+	NULL,
+	'Y',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+);
+
+INSERT INTO USER_TB VALUES(
 	1,
-	'michaelhj@naver2.com',
+	'michaelhj@naver.com',
 	'곽',
 	'123',
 	'01039107929' ,
@@ -155,7 +173,21 @@ CREATE TABLE ROOM_TB
     PARKING_RM      VARCHAR2(2)    NULL, 
     CONSTRAINT ROOM_TB_PK PRIMARY KEY (NO_RM)
 );
+INSERT INTO ROOM_TB VALUES(2,'djkim1216@naver.com',null,'김동주', 'N','이천에서 원룸 최고!','resources/user/img/test/sokcho.JPG','Y','Y','Y','Y','Y',sysdate,'흥정가능',
+'Y','Y','Y','Y','Y',null,null,null,null,null,'전세','1억2천','5만원','원룸','경기도 이천시 구만리로 191','동주건물1','20','18','15층','20층','Y');
 
+INSERT INTO ROOM_TB VALUES(3,'djkim1216@naver.com',null,'김동주', 'N','개구림.','resources/user/img/favorite_1.png','Y','Y','Y','Y','Y',sysdate,'즐',
+'Y','Y','Y','Y','Y',null,null,null,null,null,'전세','1억2천','5만원','투룸','경기 이천시 중리천로115번길 45','동주건물2','20','18','15층','20층','Y')
+
+INSERT INTO ROOM_TB VALUES(4,'djkim1216@naver.com',null,'김동주', 'N','이천은 구데기입니다.','resources/user/img/favorite_2.png','Y','Y','Y','Y','Y',sysdate,'킥',
+'Y','Y','Y','Y','Y',null,null,null,null,null,'전세','1억2천','5만원','투룸','경기도 이천시 중리천로 76','동주건물3','20','18','15층','20층','Y')
+
+INSERT INTO ROOM_TB VALUES(5,'djkim1216@naver.com',null,'김동주', 'N','강남은 비싸다.','resources/user/img/search.PNG','Y','Y','Y','Y','Y',sysdate,'넘나비싼것',
+'Y','Y','Y','Y','Y',null,null,null,null,null,'전세','50억2천','500만원','쓰리룸','서울 강남구 테헤란로14길 6 남도빌딩','KH정보교육원','20','18','15층','20층','Y')
+
+DELETE FROM room_tb WHERE no_rm=1;
+
+select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm,addr_rm, addr_dt_rm from room_tb;
 
 INSERT INTO ROOM_TB VALUES
 (
@@ -165,7 +197,7 @@ INSERT INTO ROOM_TB VALUES
     '미래중개사',
     'Y',
     '좋은집',
-    'FILEPATH+FILENAME',
+    'suntown.JPG',
     'Y',
     'Y',
     'Y',
@@ -187,7 +219,7 @@ INSERT INTO ROOM_TB VALUES
     '20',
     '10',
     '오피스텔',
-    '고양시',
+    '경기도 고양시 덕양구 행신동 946',
     '햇빛마을',
     '20',
     '18',
@@ -199,7 +231,7 @@ SELECT * FROM ROOM_TB;
 
 DELETE FROM ROOM_TB WHERE NO_RM=1;
 
-
+select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm from room_tb;
 
 DROP TABLE USERFAVORITE_TB;
 CREATE TABLE USERFAVORITE_TB

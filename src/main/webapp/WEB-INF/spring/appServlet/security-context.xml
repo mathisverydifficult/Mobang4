@@ -6,25 +6,61 @@
                                  http://www.springframework.org/schema/beans/spring-beans.xsd
                                  http://www.springframework.org/schema/security
                                  http://www.springframework.org/schema/security/spring-security.xsd">
-        
-       <!-- 확장자를 이용해 패턴을 걸 때는 /**/*.확장자 로 해야한다 (Ant Pattern) -->
-       <http pattern="/**/*.js" security="none"/>
-       <http pattern="/**/*.css" security="none"/>
-       <http pattern="/img/*" security="none"/> 
-       <http auto-config="true" use-expressions="true">
-            <intercept-url pattern="/hello.do" access="hasRole('ROLE_USER')"/>
-            <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-       </http>
-        
-        <authentication-manager>
-            <authentication-provider>
-                <user-service>
-                    <user name="user1" password="{noop}password" authorities="ROLE_USER"/>
-                    <user name="guest" password="{noop}guest" authorities="ROLE_GUEST"/>
-                </user-service>
-            </authentication-provider>
-        </authentication-manager>
-    	
-    	
-    	
+		
+		<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+			<beans:property name="dataSource" ref="dataSource"/>
+		</beans:bean>
+		
+		<jdbc-user-service data-source-ref="dataSource" id="userService"
+   			users-by-username-query="SELECT EMAIL, PWD, ENABLED FROM USER_TB WHERE EMAIL=?"
+    		authorities-by-username-query="SELECT EMAIL, AUTHORITY FROM USER_TB WHERE EMAIL=?"
+		/>
+		
+		<http pattern="/" security="none"/>
+		
+		<http auto-config="true" use-expressions="true">
+			<intercept-url pattern="/*.user" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+			<intercept-url pattern="/*.admin" access="hasRole('ROLE_ADMIN')"/>
+			<intercept-url pattern="/*.agent" access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')"/>
+			<intercept-url pattern="/login.all" access="isAnonymous()" />
+			 	
+            <form-login
+            	username-parameter="email"
+            	password-parameter="pwd"
+            	login-page="/login.all"
+            	login-processing-url="/home.user"
+            	authentication-failure-url="/login.all"
+       		/>
+       		
+       		<access-denied-handler
+    			error-page="/access_denied_page.all"
+			/>
+       		
+       		<logout 
+       			logout-url="/logout.all" 
+       			logout-success-url="/" 
+       			delete-cookies="JSESSIONID"
+       		/>
+       		
+       		<csrf disabled="false"/>
+		</http>
+		
+		<!-- provider --> 
+		<authentication-manager> 
+			 <authentication-provider user-service-ref="userService"/>
+		</authentication-manager>
+
+		
+		<!-- 
+		<authentication-manager>
+			<authentication-provider>
+				<user-service>
+	                <user name="user@naver.com" password="{noop}1234" authorities="ROLE_USER" />
+	                <user name="member@naver.com" password="{noop}1234" authorities="ROLE_MEMBER" />
+	                <user name="admin@naver.com" password="{noop}1234" authorities="ROLE_ADMIN" />
+            	</user-service>	
+        	</authentication-provider>
+    	</authentication-manager>
+    	 -->
+
 </beans:beans>
