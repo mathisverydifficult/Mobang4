@@ -86,7 +86,7 @@ public class AgentController {
 	
 	@RequestMapping(value="/agent_premium.agent")
 	public String premiumsale(Model model) {
-		return "/agent/agent_premium_	sales";
+		return "/agent/agent_premium_sales";
 	}
 	
 	@RequestMapping(value="/agent_mypage.agent")
