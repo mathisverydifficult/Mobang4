@@ -2,28 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="room">
-	
-	<select id="selectAgentList" parameterType="String" resultType="roomDto">
-		SELECT TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
-		FROM ROOM_TB
-		WHERE EMAIL=#{email}
-		ORDER BY NO_RM DESC
-		SELECT  TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
+
+	<!-- 중개사 리스트 출력 -->
+	<!-- parameterType="com.finalproject.mobang.common.dto.Criteria" -->
+	<!-- parameterType="com.finalproject.mobang.common.dto.RoomDto" -->
+	<select id="selectAgentList" parameterType="hashMap" resultType="roomDto">
+		SELECT  TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
 		 FROM ( 
-		        SELECT NO_RM,TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM, 
+		        SELECT NO_RM,TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,EMAIL,
 		               ROW_NUMBER() OVER(ORDER BY NO_RM DESC) AS RNUM
 		         FROM ROOM_TB
 		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} 
-		ORDER BY NO_RM DESC		
+		WHERE EMAIL=#{email} AND RNUM BETWEEN #{rowStart} AND #{rowEnd} 
+		ORDER BY NO_RM DESC
 	</select>
 	
-		<select id="listCount" resultType="int">
-	<![CDATA[
-		SELECT COUNT(SEQ_NT)
-		  FROM NOTICE_TB
-		 WHERE SEQ_NT > 0
-	]]>
+		<select id="listCount" resultType="int" parameterType="String">
+			<![CDATA[
+			SELECT COUNT(NO_RM)
+			FROM ROOM_TB
+			WHERE NO_RM > 0 AND EMAIL=#{email}
+			]]>
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="roomDto">
@@ -42,25 +41,23 @@
 			#{plusyn_rm},
 			#{title_rm},
 			#{picture_rm},
-			#{heat_rm},
-			#{builtin_rm},
 			#{animal_rm},
 			#{elevator_rm},
 			#{veranda_rm},
 			#{roomin_rm},
 			#{content_rm},
-			#{aircon_rm},
-			#{washer_rm},
-			#{gasrange_rm},
-			#{induction_rm},
-			#{desk_rm},
-			#{tv_rm},
-			#{ref_rm},
-			#{bed_rm},
-			#{showhouse_rm},
-			#{closet_rm},
-			#{microwave_rm},
-			#{sink_rm},
+			#{aircon_rm, jdbcType=VARCHAR},
+			#{washer_rm, jdbcType=VARCHAR},
+			#{gasrange_rm, jdbcType=VARCHAR},
+			#{induction_rm, jdbcType=VARCHAR},
+			#{desk_rm, jdbcType=VARCHAR},
+			#{tv_rm, jdbcType=VARCHAR},
+			#{ref_rm, jdbcType=VARCHAR},
+			#{bed_rm, jdbcType=VARCHAR},
+			#{showhouse_rm, jdbcType=VARCHAR},
+			#{closet_rm, jdbcType=VARCHAR},
+			#{microwave_rm, jdbcType=VARCHAR},
+			#{sink_rm, jdbcType=VARCHAR},
 			#{rent_rm},
 			#{roomprice_rm},
 			#{expense_rm},

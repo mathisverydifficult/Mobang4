@@ -10,8 +10,6 @@ public class RoomDto {
 	private String plusyn_rm;
 	private String title_rm;
 	private String picture_rm;
-	private String heat_rm;
-	private String builtin_rm;
 	private String animal_rm;
 	private String elevator_rm;
 	private String veranda_rm;
@@ -49,13 +47,14 @@ public class RoomDto {
 	
 
 	public RoomDto(String plusyn_rm, String title_rm, String picture_rm, String roomprice_rm, String expense_rm,
-			String roomtype_rm, String roomsize_rm, String floor_rm) {
+			String roomtype_rm,String rent_rm, String roomsize_rm, String floor_rm) {
 		this.plusyn_rm = plusyn_rm;
 		this.title_rm = title_rm;
 		this.picture_rm = picture_rm;
 		this.roomprice_rm = roomprice_rm;
 		this.expense_rm = expense_rm;
 		this.roomtype_rm = roomtype_rm;
+		this.rent_rm=rent_rm;
 		this.roomsize_rm = roomsize_rm;
 		this.floor_rm = floor_rm;
 	}
@@ -63,7 +62,7 @@ public class RoomDto {
 
 
 	public RoomDto(int no_rm, String email, String phone_rm, String agtname_rm, String plusyn_rm, String title_rm,
-			String picture_rm, String heat_rm, String builtin_rm, String animal_rm, String elevator_rm,
+			String picture_rm,String animal_rm, String elevator_rm,
 			String veranda_rm, String roomin_rm, String content_rm, String aircon_rm, String washer_rm,
 			String gasrange_rm, String induction_rm, String desk_rm, String tv_rm, String ref_rm, String bed_rm,
 			String showhouse_rm, String closet_rm, String microwave_rm, String sink_rm, String rent_rm,
@@ -77,8 +76,6 @@ public class RoomDto {
 		this.plusyn_rm = plusyn_rm;
 		this.title_rm = title_rm;
 		this.picture_rm = picture_rm;
-		this.heat_rm = heat_rm;
-		this.builtin_rm = builtin_rm;
 		this.animal_rm = animal_rm;
 		this.elevator_rm = elevator_rm;
 		this.veranda_rm = veranda_rm;
@@ -165,21 +162,21 @@ public class RoomDto {
 		this.picture_rm = picture_rm;
 	}
 
-	public String getHeat_rm() {
-		return heat_rm;
-	}
-
-	public void setHeat_rm(String heat_rm) {
-		this.heat_rm = heat_rm;
-	}
-
-	public String getBuiltin_rm() {
-		return builtin_rm;
-	}
-
-	public void setBuiltin_rm(String builtin_rm) {
-		this.builtin_rm = builtin_rm;
-	}
+//	public String getHeat_rm() {
+//		return heat_rm;
+//	}
+//
+//	public void setHeat_rm(String heat_rm) {
+//		this.heat_rm = heat_rm;
+//	}
+//
+//	public String getBuiltin_rm() {
+//		return builtin_rm;
+//	}
+//
+//	public void setBuiltin_rm(String builtin_rm) {
+//		this.builtin_rm = builtin_rm;
+//	}
 
 	public String getAnimal_rm() {
 		return animal_rm;
@@ -404,7 +401,6 @@ public class RoomDto {
 	public void setSink_rm(String sink_rm) {
 		this.sink_rm = sink_rm;
 	}
-
 
 	
 }

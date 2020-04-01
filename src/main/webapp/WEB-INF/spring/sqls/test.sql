@@ -107,10 +107,27 @@ INSERT INTO USER_TB VALUES(
 	NULL,
 	NULL
 );
+INSERT INTO USER_TB VALUES(
+	3,
+	'missdla4929@naver.com',
+	'임미경',
+	'10041004',
+	'01071164929' ,
+	'AGENT',
+	NULL,
+	'Y',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+);
 SELECT * FROM USER_TB;
 
 DROP TABLE ROOM_TB;
-
+DROP SEQUENCE ROOMSEQ;
 CREATE SEQUENCE ROOMSEQ;
 CREATE TABLE ROOM_TB
 (
@@ -119,16 +136,14 @@ CREATE TABLE ROOM_TB
     PHONE_RM        VARCHAR2(20)    NULL, 
     AGTNAME_RM      VARCHAR2(100)    NOT NULL, 
     PLUSYN_RM       VARCHAR2(2)    NOT NULL, 
-    TITLE_RM        VARCHAR2(100)    NOT NULL, 
+    TITLE_RM        VARCHAR2(1000)    NOT NULL, 	-- 크기너무작다ㅠ 1000으로 늘리기
     PICTURE_RM      VARCHAR2(1000)    NOT NULL, 
-    HEAT_RM         VARCHAR2(10)    NOT NULL, 
-    BUILTIN_RM      VARCHAR2(2)    NOT NULL, 
-    ANIMAL_RM       VARCHAR2(2)    NOT NULL, 
+    ANIMAL_RM       VARCHAR2(20)    NOT NULL, 
     ELEVATOR_RM     VARCHAR2(2)    NOT NULL, 
     VERANDA_RM      VARCHAR2(2)    NOT NULL, 
     ROOMIN_RM       DATE    	   NOT NULL, 
     CONTENT_RM      VARCHAR2(2000)    NOT NULL, 
-    AIRCON_RM       VARCHAR2(2)    NULL, 
+    AIRCON_RM       VARCHAR2(10)    NULL, 
     WASHER_RM       VARCHAR2(2)    NULL,
     GASRANGE_RM		VARCHAR2(2)	   NULL,
     INDUCTION_RM	VARCHAR2(2)	   NULL,
@@ -141,11 +156,11 @@ CREATE TABLE ROOM_TB
     MICROWAVE_RM    VARCHAR2(2)    NULL,
     SINK_RM			VARCHAR2(2)	   NULL,
     RENT_RM         VARCHAR2(10)    NOT NULL, 
-    ROOMPRICE_RM    VARCHAR2(50)   NOT NULL, 
+    ROOMPRICE_RM    VARCHAR2(100)   NOT NULL, 
     EXPENSE_RM      VARCHAR2(50)   NOT NULL, 
     ROOMTYPE_RM     VARCHAR2(50)   NOT NULL, 
-    ADDR_RM         VARCHAR2(50)    NOT NULL, 
-    ADDR_DT_RM      VARCHAR2(50)    NOT NULL, 
+    ADDR_RM         VARCHAR2(100)    NOT NULL, 
+    ADDR_DT_RM      VARCHAR2(100)    NOT NULL, 
     ROOMSIZE_RM     VARCHAR2(20)    NOT NULL, 
     ROOMSIZE2_RM    VARCHAR2(20)    NOT NULL, 
     FLOOR_RM        VARCHAR2(20)    NOT NULL, 
@@ -153,24 +168,26 @@ CREATE TABLE ROOM_TB
     PARKING_RM      VARCHAR2(2)    NULL, 
     CONSTRAINT ROOM_TB_PK PRIMARY KEY (NO_RM)
 );
+--    HEAT_RM         VARCHAR2(10)    NOT NULL, 
+--    BUILTIN_RM      VARCHAR2(2)    NOT NULL, 		
 
 
 
 INSERT INTO ROOM_TB VALUES
 (
-    1,
-    'michaelhj@naver.com', 
+    12,
+    'missdla4929@naver.com', 
     NULL,
-    '미래중개사',
+    'feel중개사',
     'Y',
-    '좋은집',
+    '제목제목제목',
     'FILEPATH+FILENAME',
     'Y',
     'Y',
     'Y',
     'Y',
     'Y',
-    '20200328',
+    '20200331',
     '좋은집입니다', 
     NULL,
     NULL,
@@ -185,15 +202,15 @@ INSERT INTO ROOM_TB VALUES
     NULL,
     NULL,
     '월세',
-    '20',
+    '500/30',
     '10',
-    '오피스텔',
-    '고양시',
-    '햇빛마을',
+    '원룸',
+    '광주시',
+    '경기광주역',
     '20',
     '18',
-    '3',
-    '6', 
+    '4',
+    '3', 
     'N'
 );
 SELECT * FROM ROOM_TB;
@@ -306,7 +323,9 @@ SELECT * FROM REVIEW_TB;
 
 
 
-
+		SELECT COUNT(NO_RM)
+			FROM ROOM_TB
+			WHERE NO_RM > 0 AND EMAIL='missdla4929@naver.com';
 
 
 

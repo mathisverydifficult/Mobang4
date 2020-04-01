@@ -32,7 +32,8 @@ public class AgentController {
 	@RequestMapping(value="/noticelist.agent", method = RequestMethod.GET)
 	public String noticeList(Model model,Criteria cri) {
 		logger.info("select notice list");
-		
+		System.out.println(cri);
+		System.out.println(cri.getRowStart());
 		model.addAttribute("list", biz.selectList(cri));
 		
 		PageMaker pageMaker = new PageMaker();
@@ -64,27 +65,10 @@ public class AgentController {
 		return "/agent/agent_fnq";
 	}
 	
-	@RequestMapping(value="/roommanage.agent")
-	public String roommanage(Model model) {
-		
-		return "/agent/agent_roommanage";
-	}
-	
 	@RequestMapping(value ="/agent_sales.agent")
 	public String sales(Model model) {
 			
 		return "/agent/agent_sales";
-	}
-	@RequestMapping(value="/agent_roominsert.agent")
-	public String roominsert(Model model) {
-		
-		return "/agent/agent_roominsert";
-	}
-	
-	@RequestMapping(value = "/agent_roomcomplete.agent")
-	public String roomComplete(Model model) {
-		
-		return "/agent/agent_roomcomplete";
 	}
 	
 	@RequestMapping(value="/agent_premium.agent")

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finalproject.mobang.agent.dto.Criteria;
+import com.finalproject.mobang.common.dto.Criteria;
 import com.finalproject.mobang.common.dao.RoomDao;
 import com.finalproject.mobang.common.dto.RoomDto;
 
@@ -16,15 +16,13 @@ public class RoomBizImpl implements RoomBiz {
 	private RoomDao dao;
 
 	@Override
-	public List<RoomDto> selectAgentList(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RoomDto> selectAgentList(Criteria cri,String email) {
+		return dao.selectAgentList(cri,email);
 	}
 
 	@Override
-	public int listCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int listCount(String email) {
+		return dao.listCount(email);
 	}
 
 	@Override

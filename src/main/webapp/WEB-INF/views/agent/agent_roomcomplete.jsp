@@ -8,26 +8,11 @@
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
 </head>
 <style>
-@font-face { font-family: 'RIDIBatang'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff'); font-weight: normal; font-style: normal; }
-	* {
-		margin: 0; 
-		padding: 0;
-	}
-	body{
-		font-family: "RIDIBatang";
-    	-webkit-tap-highlight-color: transparent;
-    	text-decoration: none;
-	}
-	.top_container{    
-        padding: 3em 0 2em;
-        background-color: rgb(51,85,139);
-        color: #fff;
-        text-align: center;
-    }
-    .top_container h1{
-        font-size: 3em;
-        margin-bottom: 1em;
-    }
+	/*전체div*/
+	.completewrap{width: 100%; min-height:100vh;}
+    /* head div (방올리기) */
+    .completewrap .completehead{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
+			text-align: center; font-size: 50px; line-height: 5;}
     .container {
         width: 1200px;
         margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/
@@ -56,14 +41,10 @@
 </style>
 <body>
 <%@ include file="form/agent_header.jsp" %>
-	<section class = "top_container">
-        <div class = "container">
-            <div class = "main_title">
-                <h1>방올리기</h1>
+	<div class = "completewrap">
+            <div class = "completehead">
+                방올리기
             </div>
-        </div>
-    </section>
-    <section>
     	<div class = "container">
     		<p class = "title">방 올리기 완료</p>
     		<table class = "navy_theme">
@@ -88,8 +69,11 @@
     				<td>16.52m2 / 16.52m2</td>
     			</tr>
     		</table>
+    		<div class="button">
+    			<input type="button" value="확인" onclick="location.href='roommanage.agent?email=missdla4929@naver.com'">
+    		</div>
     	</div>
-    </section>
+    </div>
 <%@ include file="form/agent_footer.jsp" %>
 </body>
 </html>
