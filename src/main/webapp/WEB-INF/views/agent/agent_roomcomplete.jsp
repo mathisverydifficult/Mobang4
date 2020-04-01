@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,19 +59,29 @@
     		<table class = "navy_theme">
     			<tr>
     				<th>주소</th>
-    				<td>주소예제</td>
+    				<td>${dto.addr_rm } ${dto.addr_dt_rm }</td>
     			</tr>
-    			<tr>
-    				<th>보증금 / 월세</th><!-- choose문 돌려서 월세면 보증금/월세 나머지 매물가격?  -->
-    				<td>500 / 35만원</td>
-    			</tr>
+    			<c:choose>
+    				<c:when test="${dto.rent_rm=='원룸' }">
+    					<tr>
+    						<th>보증금 / 월세</th><!-- choose문 돌려서 월세면 보증금/월세 나머지 매물가격?  -->
+    						<td>${dto.roomprice_rm } 만원</td>
+    					</tr>
+    				</c:when>
+    				<c:otherwise>
+    					<tr>
+    						<th>매물 가격</th>
+    						<td>${dto.roomprice_rm } 만원</td>
+    					</tr>
+    				</c:otherwise>
+    			</c:choose>
     			<tr>
     				<th>방구조</th>
-    				<td>원룸</td>
+    				<td>${dto.roomtype_rm }</td>
     			</tr>
     			<tr>
     				<th>전용 / 계약면적</th>
-    				<td>16.52m2 / 16.52m2</td>
+    				<td>${dto.roomsize_rm }m2 / ${dto.roomsize2_rm }m2</td>
     			</tr>
     		</table>
     		<div class="button">

@@ -77,7 +77,7 @@
 					<c:forEach items="${list }" var="dto">
 						<div class="roomlist" onclick="">
 							<div class="picture"><img src="resources/agent/img/sampleroom.jpg"> </div>
-							<c:if test="${dto.plusyn_rm eq 'Y' }"><span>플러스+</span><br></c:if>
+							<c:if test="${dto.plusyn_agt eq 'Y' }"><span>플러스+</span><br></c:if>
 							<span>${dto.roomtype_rm }</span><br>
 							<span>${dto.rent_rm }</span> <span>${dto.roomprice_rm }</span><br>
 							<span>${dto.floor_rm } 층,${dto.roomsize_rm }m²,관리비${dto.expense_rm }만</span><br>

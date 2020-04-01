@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
 import com.finalproject.mobang.common.dto.Criteria;
 import com.finalproject.mobang.common.dto.RoomDto;
 
@@ -18,8 +19,8 @@ public class RoomDaoImpl implements RoomDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<RoomDto> selectAgentList(Criteria cri,String email) {
-		List<RoomDto> list = new ArrayList<RoomDto>();
+	public List<AgentRoomListDto> selectAgentList(Criteria cri,String email) {
+		List<AgentRoomListDto> list = new ArrayList<AgentRoomListDto>();
 		//System.out.println(email);
 		int rowstart = cri.getRowStart();
 		System.out.println("dao cri:"+cri);

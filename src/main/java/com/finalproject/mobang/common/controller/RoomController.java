@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.finalproject.mobang.agent.controller.AgentController;
 import com.finalproject.mobang.common.biz.RoomBiz;
@@ -45,20 +47,21 @@ public class RoomController {
 	
 	// 방올리기
 	@RequestMapping(value="/agent_roominsert.agent")
-	public String roominsert(Model model) {
-		
-		
+	public String roominsert() {
 		return "/agent/agent_roominsert";
 	}
-	@RequestMapping(value="/roominsertres.agent")
-	public String roominsertres(Model model,RoomDto dto) {
-		logger.info("insert result");
+	
+	
+	@RequestMapping(value="/roominsertres.agent", method={RequestMethod.POST, RequestMethod.GET})
+	public String roominsertres(RedirectAttributes redirect,RoomDto dto) {
+		logger.info("방 insert result 컨트롤러");
 		
-		int res=biz.insert(dto);
+		int resNo_rm=biz.insert(dto);
 
-		if(res>0) {
-			return "redirect:agent_roomcomplete.agent";
+		if(resNo_rm>0) {
+			return "redirect:agent_roomcomplete.agent?no_rm"+resNo_rm;
 		}else {
+			logger.info("방인서트 실패 컨트롤러");
 			return "redirect:agent_roominsert.agent";
 		}
 	}
@@ -66,11 +69,12 @@ public class RoomController {
 	
 	// 방올리기 완료페이지...일종의 select one?
 	@RequestMapping(value = "/agent_roomcomplete.agent")
-	public String roomComplete(Model model) {
+	public ModelAndView roomComplete(ModelAndView mv, int no_rm) {
+		logger.info("mv를 사용해서 방올리기 완료페이지");
+		mv.addObject("dto", biz.insertcomplete(no_rm));
+		mv.setViewName("/agent/agent_roomcomplete");
 		
-		
-		
-		return "/agent/agent_roomcomplete";
+		return mv;
 	}
 	
 	

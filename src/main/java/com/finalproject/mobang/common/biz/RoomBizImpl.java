@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
 import com.finalproject.mobang.common.dto.Criteria;
 import com.finalproject.mobang.common.dao.RoomDao;
 import com.finalproject.mobang.common.dto.RoomDto;
@@ -16,7 +17,7 @@ public class RoomBizImpl implements RoomBiz {
 	private RoomDao dao;
 
 	@Override
-	public List<RoomDto> selectAgentList(Criteria cri,String email) {
+	public List<AgentRoomListDto> selectAgentList(Criteria cri,String email) {
 		return dao.selectAgentList(cri,email);
 	}
 

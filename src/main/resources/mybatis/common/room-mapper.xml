@@ -6,12 +6,13 @@
 	<!-- 중개사 리스트 출력 -->
 	<!-- parameterType="com.finalproject.mobang.common.dto.Criteria" -->
 	<!-- parameterType="com.finalproject.mobang.common.dto.RoomDto" -->
-	<select id="selectAgentList" parameterType="hashMap" resultType="roomDto">
-		SELECT  TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
+	<select id="selectAgentList" parameterType="hashMap" resultType="com.finalproject.mobang.common.dto.AgentRoomListDto">
+		SELECT  TITLE_RM,PICTURE_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,PLUSYN_AGT
 		 FROM ( 
-		        SELECT NO_RM,TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,EMAIL,
+		        SELECT A.NO_RM,A.TITLE_RM,A.PICTURE_RM,A.ROOMTYPE_RM,A.RENT_RM,A.ROOMPRICE_RM,A.FLOOR_RM,
+		        	   A.ROOMSIZE_RM,A.EXPENSE_RM,EMAIL,B.PLUSYN_AGT,
 		               ROW_NUMBER() OVER(ORDER BY NO_RM DESC) AS RNUM
-		         FROM ROOM_TB
+		         FROM ROOM_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
 		                       ) MP
 		WHERE EMAIL=#{email} AND RNUM BETWEEN #{rowStart} AND #{rowEnd} 
 		ORDER BY NO_RM DESC
@@ -36,9 +37,6 @@
 		(
 			ROOMSEQ.NEXTVAL,
 			#{email},
-			#{phone_rm},
-			#{agtname_rm},
-			#{plusyn_rm},
 			#{title_rm},
 			#{picture_rm},
 			#{animal_rm},

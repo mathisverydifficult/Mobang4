@@ -79,10 +79,6 @@ function execDaumPostcode() {
     </section>
 			<form action="roominsertres.agent" method="post">
 			<input type="hidden" value="missdla4929@naver.com" name="email"><!-- 나중에 session에 담긴 이메일값으로 변경 -->
-			<input type="hidden" value="010-7116-4929" name="phone_rm"><!-- agentjoin테이블 값 받아오기 -->
-			<input type="hidden" value="무지개중개사" name="agtname_rm"><!-- agentjoin테이블 값 받아오기 -->
-			<input type="hidden" value="Y" name="plusyn_rm"><!-- agentjoin테이블 값 받아오기 -->
-   
     <section class = "map_container">
     	<div class = "container _00">
     		<p class = "title">위치정보</p>
