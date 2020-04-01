@@ -9,6 +9,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
+	var name_it = ${dto.name_it};
+	var price_it = ${dto.price_it};
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp29158322'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	
@@ -16,8 +18,8 @@
 	    pg : 'kakaopay', // version 1.1.0부터 지원.
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명:원룸 결제',
-	    amount : 88000,
+	    name : name_it,
+	    amount : price_it,
 	    buyer_email : 'iamport@siot.do',
 	    buyer_name : '구매자이름',
 	    buyer_tel : '010-1234-5678',
