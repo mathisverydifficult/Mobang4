@@ -57,16 +57,18 @@ public class RoomController {
 		int res=biz.insert(dto);
 
 		if(res>0) {
-			return "/agent/agent_roomcomplete";
+			return "redirect:agent_roomcomplete.agent";
 		}else {
 			return "redirect:agent_roominsert.agent";
 		}
 	}
 	
 	
-	
+	// 방올리기 완료페이지...일종의 select one?
 	@RequestMapping(value = "/agent_roomcomplete.agent")
 	public String roomComplete(Model model) {
+		
+		
 		
 		return "/agent/agent_roomcomplete";
 	}

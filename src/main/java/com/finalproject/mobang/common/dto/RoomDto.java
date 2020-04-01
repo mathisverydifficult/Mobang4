@@ -46,6 +46,20 @@ public class RoomDto {
 	
 	
 
+	public RoomDto(String rent_rm, String roomprice_rm, String roomtype_rm, String addr_rm, String addr_dt_rm,
+			String roomsize_rm, String roomsize2_rm) {
+		super();
+		this.rent_rm = rent_rm;
+		this.roomprice_rm = roomprice_rm;
+		this.roomtype_rm = roomtype_rm;
+		this.addr_rm = addr_rm;
+		this.addr_dt_rm = addr_dt_rm;
+		this.roomsize_rm = roomsize_rm;
+		this.roomsize2_rm = roomsize2_rm;
+	}
+
+
+
 	public RoomDto(String plusyn_rm, String title_rm, String picture_rm, String roomprice_rm, String expense_rm,
 			String roomtype_rm,String rent_rm, String roomsize_rm, String floor_rm) {
 		this.plusyn_rm = plusyn_rm;

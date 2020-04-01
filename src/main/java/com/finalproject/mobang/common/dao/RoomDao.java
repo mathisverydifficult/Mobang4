@@ -15,5 +15,7 @@ public interface RoomDao {
 	public int insert(RoomDto dto);
 	public int update(RoomDto dto);
 	public int delete(int no_rm);	
+	
+	public RoomDto insertcomplete(int no_rm);		// 인서트 후 selectone
 
 }

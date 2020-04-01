@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <style>
 	/*전체div*/
@@ -13,6 +14,11 @@
     /* head div (방올리기) */
     .completewrap .completehead{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
 			text-align: center; font-size: 50px; line-height: 5;}
+      /* 버튼 */
+    .button{text-align: center;}
+    .button>input{margin:10px; background-color: rgba(51, 85, 139,0.85); color: white; font-size: 15px; padding: 11px 25px; cursor: pointer; }
+	.button>input:hover{background-color: rgb(51, 85, 139);}
+   
     .container {
         width: 1200px;
         margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/
@@ -53,12 +59,8 @@
     				<td>주소예제</td>
     			</tr>
     			<tr>
-    				<th>보증금 / 월세</th>
+    				<th>보증금 / 월세</th><!-- choose문 돌려서 월세면 보증금/월세 나머지 매물가격?  -->
     				<td>500 / 35만원</td>
-    			</tr>
-    			<tr>
-    				<th>건물형태</th>
-    				<td>다세대 / 다가구</td>
     			</tr>
     			<tr>
     				<th>방구조</th>

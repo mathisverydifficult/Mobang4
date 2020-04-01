@@ -36,6 +36,7 @@ public class AgentNoticeDaoImpl implements AgentNoticeDao {
 		return sqlSession.selectOne(NAMESPACE+"listCount");
 	}
 	
+	// 
 	@Override
 	public AgentNoticeDto selectOne(int seq_nt) {
 		AgentNoticeDto dto = null;

@@ -59,7 +59,8 @@ public class RoomDaoImpl implements RoomDao {
 
 	@Override
 	public RoomDto selectOne(int no_rm) {
-		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
 	
@@ -68,15 +69,18 @@ public class RoomDaoImpl implements RoomDao {
 	@Override
 	public int insert(RoomDto dto) {
 		int res=0;
+		int no_rm=0;
 		
 		try {
 			res = sqlSession.insert(NAMESPACE+"insert", dto);
+			no_rm = dto.getNo_rm();      // key번호
+			 
 		} catch (Exception e) {
 			System.out.println("[DAO error] : insert");
 			e.printStackTrace();
 		}
 		
-		return res;
+		return no_rm;
 	}
 
 	@Override
@@ -97,6 +101,22 @@ public class RoomDaoImpl implements RoomDao {
 		}
 		
 		return res;
+	}
+	
+	
+	// insert후 selectone
+	@Override
+	public RoomDto insertcomplete(int no_rm) {
+		RoomDto dto = null;
+		
+		try {
+			dto=sqlSession.selectOne(NAMESPACE+"insertcomplete", no_rm);
+		} catch (Exception e) {
+			System.out.println("[DAO error] : insertcomplete");
+			e.printStackTrace();
+		}
+		
+		return dto;
 	}
 
 }
