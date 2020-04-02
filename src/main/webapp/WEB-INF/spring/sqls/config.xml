@@ -11,6 +11,7 @@
 		<typeAlias type="com.finalproject.mobang.user.dto.SearchDto" alias="searchDto"/>
 		<typeAlias type="com.finalproject.mobang.common.dto.UploadFile" alias="uploadFile"/>
 		<typeAlias type="com.finalproject.mobang.common.dto.RoomDto" alias="roomDto"/>
+		<typeAlias type="com.finalproject.mobang.agent.dto.AgentAccountDto" alias="agentAccountDto"/>
 	</typeAliases>
 	
 	<!-- resource : src/main/resources부터 검색 -->
@@ -24,5 +25,6 @@
 		<mapper resource="/mybatis/user/review-mapper.xml"/>
 		<mapper resource="/mybatis/user/search-mapper.xml"/>
 		<mapper resource="/mybatis/common/room-mapper.xml"/>
+		<mapper resource="/mybatis/agent/mypage-mapper.xml"/>
 	</mappers>
 </configuration>
