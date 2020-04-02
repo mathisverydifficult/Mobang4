@@ -36,6 +36,13 @@
 		form3.submit();
 		form4.submit();
 	}
+	function scroll_move(seq){
+	    var offset = $("#target" + seq).offset();
+	    $('html, body').animate({scrollTop : offset.top}, 400);
+	}
+	function remote() {
+		$('html').scrollTop(0);
+	}
 </script>
 </head>
 <style type="text/css">
@@ -176,18 +183,21 @@ input{
       font-size: 18px;
       padding : 15px 30px;
    }
+   .floating { position: fixed; right: 50%; top: 580px; margin-right: -720px; text-align:center; width: 120px; }
 </style>
 <body>
 <%@ include file="form/agent_header.jsp" %>
+	<div class = "floating"><img onclick = "remote()" alt = "이미지 표시불가" src="./resources/agent/img/up-arrow.svg" width="50px"></div>
 	<div class = "saleswrap">
     <div class = "top_container">
                 $ 구매하기
                 <div>
-                <a class ="item" onclick="">일반 상품</a>
-                <a class ="item" onclick="">프리미엄 상품</a>
-                <a class ="item" onclick="">플러스 상품</a>
+                <a class ="item" onclick = "scroll_move('1')">일반 상품</a>
+                <a class ="item" onclick="scroll_move('2')">프리미엄 상품</a>
+                <a class ="item" onclick="scroll_move('3')">플러스 상품</a>
                 </div>
     </div>
+    <div id = "target1"></div>
     <section id = "no_p" class = "sales_view">
     	<div class = "container _01">
     		<div class ="sales_text">
@@ -231,6 +241,7 @@ input{
     		</ul>
     	</div>
     </section>
+    <div id = "target2"></div>
     <section id = "prim_p" class = "sales_view">
     	<div class = "container _01">
     		<div class = "sales_text">
@@ -274,6 +285,7 @@ input{
            </ul>
     	</div>
     </section>
+    <div id = "target3"></div>
     <section id = "plus_p" class = "sales_view">
         <div class = "container _01">
             <div class = "sales_text">
