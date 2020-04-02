@@ -8,35 +8,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
-<style type="text/css">
-	.container {width: 1200px; margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/}
-    .main_title{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
-			text-align: center; font-size: 50px; line-height: 5;}
-    .navy_theme th {width: 192px; background-color: rgb(51,85,139); color: white; padding: 25px 0;}
-    .navy_theme td {width: 965px; padding: 15px 25px; box-sizing: border-box;}
-    .navy_theme {border-spacing: 0px; border: 2px solid rgb(51,85,139); margin: 0 auto; }
-    .navy_theme  input {padding : 0 15px; box-sizing: border-box; border: 1px solid rgb(51,85,139); height: 30px;}
-    .navy_theme textarea{border: 1px solid rgb(51,85,139);}
-    p.title {margin: 80px 0px 30px 25px; font-size: 1.3em; color: rgb(51,85,139); }
-    .top_container{background-color: rgb(51,85,139); color: #fff; text-align: center;}
-    .top_container h1{font-size: 3em; margin-bottom: 1em; }
-    .photo_wrap {margin: 0 auto; width: 1157px;}
-    .photo_wrap::after{ /* after란 이 태그 마지막에 무언가 들어가게 하는것.*/
-    	clear:both; content: ""; width: 100%; height: 1px; display: block; }
-    .photo_wrap > div {width: 200px; height: 200px; border: 2px solid rgb(51,85,139); float: left;
-    					margin-left :100px; margin-bottom: 50px;}
-    .photo_wrap > div:first-child {margin-left:0;}
-    .photo_wrap > div:nth-child(4n+1) {margin-left:0;}
-    .dt_container{margin-bottom: 25px;}
-    
-    .location{width: 1157px;  margin: 0 auto;}
-    .location input{border: 1px solid rgb(51,85,139); height: 30px; font-size: 14px; padding: 5px; margin: 5px;}
-    #postcode{width: 150px;}
-    .button{text-align: center;}
-    .button>input{margin:10px; background-color: rgba(51, 85, 139,0.85); color: white; font-size: 15px; padding: 11px 25px; cursor: pointer; }
-	.button>input:hover{background-color: rgb(51, 85, 139);}
-    
-</style>
+<link rel="stylesheet" type="text/css" href="resources/agent/css/agent_roominsert.css">
 <script type="text/javascript">
 
 function execDaumPostcode() {
@@ -105,18 +77,19 @@ function execDaumPostcode() {
             </div>
         </div>
     </section>
-			<form action="" method="post">
+			<form action="roominsertres.agent" method="post">
+			<input type="hidden" value="missdla4929@naver.com" name="email"><!-- 나중에 session에 담긴 이메일값으로 변경 -->
     <section class = "map_container">
     	<div class = "container _00">
     		<p class = "title">위치정보</p>
 				<div class="location">
-					<input type="text" id="postcode" placeholder="우편번호">
+					<input type="text" id="postcode" placeholder="우편번호" readonly="readonly">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br> 
-					<input type="text" id="roadAddress" placeholder="도로명주소"> 
+					<input type="text" id="roadAddress" placeholder="도로명주소" readonly="readonly" name="addr_rm"> 
 					<input type="text" id="jibunAddress" placeholder="지번주소">
+					<input type="text" id="detailAddress" placeholder="상세주소" name="addr_dt_rm">
+					<input type="text" id="extraAddress" placeholder="참고항목" readonly="readonly">
 					<span id="guide" style="color: #999; display: none"></span><br> 
-					<input type="text" id="detailAddress" placeholder="상세주소">
-					<input type="text" id="extraAddress" placeholder="참고항목">
 				</div>
 		</div>
     </section>
@@ -124,7 +97,7 @@ function execDaumPostcode() {
     	<div class = "container _01">
     		<p class = "title">사진등록</p>
     		<div class= "photo_wrap">
-	    		<div></div>
+	    		<div><input type="hidden" value="path" name="picture_rm"></div>
 	    		<div></div>
 	    		<div></div>
 	    		<div></div>
@@ -141,14 +114,24 @@ function execDaumPostcode() {
     		<p class = "title">상세정보</p>
     			<table class = "navy_theme">
     			
+    				<tr>
+    					<th>계약형태</th>
+    					<td>
+    						<div>
+    							<input type = "radio" name= "rent_rm" checked="checked" value = "월세"/><span>월세</span>
+    							<input type = "radio" name= "rent_rm" value = "전세"/><span>전세</span>
+    							<input type = "radio" name= "rent_rm" value = "매매"/><span>매매</span>
+    						</div>
+    					</td>
+    				</tr>
     				<tr>	
     					<th>보증금/월세</th>
-    					<td><input type = "text" name = "roomprice_rm" placeholder="금액을 입력해주세요."/><span>만원</span><span style="color: red; padding-left:15px;">※무보증일 경우 0/월세를 입력, 월세가 없을시 보증금/0을 입력하세요.</span></td>
+    					<td><input type = "text" name = "roomprice_rm" placeholder="금액을 입력해주세요."/><span>만원</span><span class="remark">※무보증일 경우 0/월세를 입력, 월세가 없을시 보증금/0을 입력하세요.</span></td>
     				</tr>
     				<tr>	
     					<th>방구조</th>
     					<td>
-    						<select name = "roomtype_rm">
+    						<select name = "roomtype_rm" class="roomtype">
     							<option value = "원룸" selected="selected">원룸</option>
     							<option value = "투룸">투룸</option>
     							<option value = "쓰리룸">쓰리룸</option>
@@ -159,7 +142,7 @@ function execDaumPostcode() {
     				</tr>
     				<tr>	
     					<th>관리비</th>
-    					<td><input type = "text" name = "expense_rm" placeholder="금액을 입력해주세요."/><span>만원</span><span style="color: red; padding-left:15px;">※ 없을시엔 0 입력.</span></td>
+    					<td><input type = "text" name = "expense_rm" placeholder="금액을 입력해주세요."/><span>만원</span><span class="remark">※ 없을시엔 0 입력.</span></td>
     				</tr>
     				<tr>	
     					<th>크기</th>
@@ -174,28 +157,32 @@ function execDaumPostcode() {
     					</td>
     				</tr>
     				<tr>
-    					<th>빌트인</th>
-    					<td><input type = "text" name = "builtin_rm" placeholder="ex)에어컨,냉장고,옷장 등"/></td>
-    				</tr>
-    				<tr>
     					<th>옵션</th>
     					<td>
     						<div>
-    							<input type = "checkbox" name = "aircon_rm" value = "에어컨"/><span>에어컨</span>
-    							<input type = "checkbox" name = "ref_rm" value = "냉장고"/><span>냉장고</span>
-    							<input type = "checkbox" name = "washer_rm" value = "세탁기"/><span>세탁기</span>
-    							<input type = "checkbox" name = "gasrange_rm" value = "가스레인지"/><span>가스레인지</span>
+    							<input type = "checkbox" name = "aircon_rm" value = "Y"/><span>에어컨</span>
+    							<input type = "checkbox" name = "ref_rm" value = "Y"/><span>냉장고</span>
+    							<input type = "checkbox" name = "washer_rm" value = "Y"/><span>세탁기</span>
+    							<input type = "checkbox" name = "gasrange_rm" value = "Y"/><span>가스레인지</span>
+    							<input type = "checkbox" name = "induction_rm" value = "Y"/><span>인덕션</span>
+    							<input type = "checkbox" name = "microwave_rm" value = "Y"/><span>전자레인지</span>
     						</div>
     						<div>
-    							<input type = "checkbox" name = "induction_rm" value = "인덕션"/><span>인덕션</span>
-    							<input type = "checkbox" name = "microwave_rm" value = "전자레인지"/><span>전자레인지</span>
-    							<input type = "checkbox" name = "desk_rm" value = "책상"/><span>책상</span>
-    							<input type = "checkbox" name = "bed_rm" value = "침대"/><span>침대</span>
-    							<input type = "checkbox" name = "closet_rm" value = "옷장"/><span>옷장</span>
+    							<input type = "checkbox" name = "tv_rm" value = "Y"/><span>TV</span>
+    							<input type = "checkbox" name = "desk_rm" value = "Y"/><span>책상</span>
+    							<input type = "checkbox" name = "bed_rm" value = "Y"/><span>침대</span>
+    							<input type = "checkbox" name = "closet_rm" value = "Y"/><span>옷장</span>
+    							<input type = "checkbox" name = "showhouse_rm" value = "Y"/><span>신발장</span>
+    							<input type = "checkbox" name = "sink_rm" value = "Y"/><span>싱크대</span>
     						</div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<th>베란다</th>
+    					<td>
     						<div>
-    							<input type = "checkbox" name = "showhouse_rm" value = "신발장"/><span>신발장</span>
-    							<input type = "checkbox" name = "sink_rm" value = "싱크대"/><span>싱크대</span>
+    							<input type = "radio" name= "veranda_rm" checked="checked" value = "Y"/><span>있음 </span>
+    							<input type = "radio" name= "veranda_rm" value = "N"/><span>없음  </span>
     						</div>
     					</td>
     				</tr>
@@ -203,8 +190,8 @@ function execDaumPostcode() {
     					<th>주차</th>
     					<td>
     						<div>
-    							<input type = "radio" name= "parking_rm" checked="checked" value = "가능"/><span>가능  </span>
-    							<input type = "radio" name= "parking_rm" value = "불가능"/><span>불가능  </span>
+    							<input type = "radio" name= "parking_rm" checked="checked" value = "Y"/><span>가능  </span>
+    							<input type = "radio" name= "parking_rm" value = "N"/><span>불가능  </span>
     						</div>
     					</td>
     				</tr>
@@ -212,8 +199,8 @@ function execDaumPostcode() {
     					<th>엘레베이터</th>
     					<td>
     						<div>
-    							<input type = "radio" name= "elevator_rm" checked="checked" value = "가능"/><span>가능 </span>
-    							<input type = "radio" name= "elevator_rm" value = "불가능"/><span>불가능 </span>
+    							<input type = "radio" name= "elevator_rm" checked="checked" value = "Y"/><span>가능 </span>
+    							<input type = "radio" name= "elevator_rm" value = "N"/><span>불가능 </span>
     						</div>
     					</td>
     				</tr>
@@ -221,8 +208,8 @@ function execDaumPostcode() {
     					<th>반려동물</th>
     					<td>
     						<div>
-    							<input type = "radio" name= "animal_rm" checked="checked" value ="가능"/><span>가능 </span>
-    							<input type = "radio" name= "animal_rm" value = "불가능"/><span>불가능 </span>
+    							<input type = "radio" name= "animal_rm" checked="checked" value ="Y"/><span>가능 </span>
+    							<input type = "radio" name= "animal_rm" value = "N"/><span>불가능 </span>
     							<input type = "radio" name= "animal_rm" value = "고양이만"/><span>고양이만 </span>
     							<input type = "radio" name= "animal_rm" value = "확인 필요"/><span>확인필요 </span>
     						</div>
@@ -234,7 +221,7 @@ function execDaumPostcode() {
     				</tr>
     				<tr>
     					<th>제목</th>
-    					<td><input type = "text" name = "title_rm"/></td>
+    					<td><input type = "text" name = "title_rm" class="content"/></td>
     				</tr>
     				<tr>
     					<th>상세설명</th>

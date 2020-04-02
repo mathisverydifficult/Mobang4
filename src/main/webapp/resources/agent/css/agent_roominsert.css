@@ -1,0 +1,37 @@
+	.container {width: 1200px; margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/}
+    .main_title{position: relative; width: 100%; min-width:1200px; background-color: rgb(51,85,139); color: rgb(255,255,255); height: 300px; margin-top: 150px;
+			text-align: center; font-size: 50px; line-height: 5;}
+    .navy_theme th {width: 192px; background-color: rgb(51,85,139); color: white; padding: 25px 0;}
+    .navy_theme td {width: 965px; padding: 15px 25px; box-sizing: border-box;}
+    .navy_theme {border-spacing: 0px; border: 2px solid rgb(51,85,139); margin: 0 auto; }
+    .navy_theme  input {padding : 0 15px; box-sizing: border-box; border: 1px solid rgb(51,85,139); height: 30px; margin: 5px;}
+    .navy_theme textarea{border: 1px solid rgb(51,85,139); width: 500px; padding: 5px 8px;}
+    p.title {margin: 80px 0px 30px 25px; font-size: 1.3em; color: rgb(51,85,139); }
+    .top_container{background-color: rgb(51,85,139); color: #fff; text-align: center;}
+    .top_container h1{font-size: 3em; margin-bottom: 1em; }
+    .photo_wrap {margin: 0 auto; width: 1157px;}
+    .photo_wrap::after{ /* after란 이 태그 마지막에 무언가 들어가게 하는것.*/
+    	clear:both; content: ""; width: 100%; height: 1px; display: block; }
+    .photo_wrap > div {width: 200px; height: 200px; border: 2px solid rgb(51,85,139); float: left;
+    					margin-left :100px; margin-bottom: 50px;}
+    .photo_wrap > div:first-child {margin-left:0;}
+    .photo_wrap > div:nth-child(4n+1) {margin-left:0;}
+    .dt_container{margin-bottom: 25px;}
+    
+  /*---------imk 수정-------------*/  
+    .location{width: 1157px;  margin: 0 auto;}
+    .location input{border: 1px solid rgb(51,85,139); height: 30px; font-size: 14px; padding: 5px; margin: 5px;}
+    .location input[type=button]{padding: 10px; height: 40px; width: 150px; background-color: rgba(51, 85, 139,0.85);color: white; cursor: pointer;}
+    .location input[type=button]:hover{background-color: rgb(51, 85, 139);}
+    #postcode{width: 150px;}
+    #roadAddress,#jibunAddress,#detailAddress,#extraAddress{width: 260px;}
+    #jibunAddress{display: none;}
+   
+   /* 버튼 */
+    .button{text-align: center;}
+    .button>input{margin:10px; background-color: rgba(51, 85, 139,0.85); color: white; font-size: 15px; padding: 11px 25px; cursor: pointer; }
+	.button>input:hover{background-color: rgb(51, 85, 139);}
+	
+	.roomtype{height: 30px; width: 150px; border: 1px solid rgb(51,85,139); padding: 5px;}
+	.remark{color: red; padding-left:15px;}
+	.content{width: 510px;}

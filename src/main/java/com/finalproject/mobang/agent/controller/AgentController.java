@@ -32,7 +32,8 @@ public class AgentController {
 	@RequestMapping(value="/noticelist.agent", method = RequestMethod.GET)
 	public String noticeList(Model model,Criteria cri) {
 		logger.info("select notice list");
-		
+		System.out.println(cri);
+		System.out.println(cri.getRowStart());
 		model.addAttribute("list", biz.selectList(cri));
 		
 		PageMaker pageMaker = new PageMaker();
@@ -64,27 +65,10 @@ public class AgentController {
 		return "/agent/agent_fnq";
 	}
 	
-	@RequestMapping(value="/roommanage.agent")
-	public String roommanage(Model model) {
-		
-		return "/agent/agent_roommanage";
-	}
-	
 	@RequestMapping(value ="/agent_sales.agent")
 	public String sales(Model model) {
 			
 		return "/agent/agent_sales";
-	}
-	@RequestMapping(value="/agent_roominsert.agent")
-	public String roominsert(Model model) {
-		
-		return "/agent/agent_roominsert";
-	}
-	
-	@RequestMapping(value = "/agent_roomcomplete.agent")
-	public String roomComplete(Model model) {
-		
-		return "/agent/agent_roomcomplete";
 	}
 	
 	@RequestMapping(value="/agent_premium.agent")
@@ -109,3 +93,54 @@ public class AgentController {
 		return "/agent/agent_sales_complete";
 	}
 }
+
+
+
+
+
+
+
+////서머노트 insertres(save)   
+//@RequestMapping(value ="/save.do", method = {RequestMethod.POST, RequestMethod.GET})   // button태그에서 보낸 onclick함수 경로
+//public String save(RedirectAttributes redirect, NoteDto dto) {
+////   RedirectAttributes redirect
+//   logger.info("서머노트 insert는 잘 되었나요? dto : "+dto);
+//   
+//   if(dto.getNtitle() instanceof String) {
+//      logger.info("ntitle은 String입니다.");            //당첨
+//   } else if (dto.getNtitle() instanceof Object) {
+//      logger.info("ntitle은 object입니다.");
+//   } else if (dto.getNtitle() == null) { 
+//      logger.info("ntitle은 null값입니다.");
+//   } else {
+//      logger.info("ntitle은 String도 object도 null도 아닙니다.");
+//   }
+//
+//   int resNno = notebiz.insert(dto);   // 0or1이 아니라 nno번호로 나올거에요
+//
+////시퀀스 번호를 seq.nextval, 이런걸로 해당 저장된 값 확인, 그걸 토대로 nno.
+////   notebiz.selectOne(nno);
+//   
+//   //Stringify사용해서 object -> 문자열로.
+//   
+//   //처리해주고 화면전환
+//   if(resNno > 0) {
+//      return "redirect: user_meetinglogdetail.do?nno="+resNno;   //controller로 다시 ...
+////      return "redirect: /user_meetinglogdetail?nno="+ 변수명;
+//   }else {
+//          logger.info("ㅠ ㅠ 서머노트 insert Controller에서 안넘어감");
+//      return "redirect:user_list.do";
+//   }
+//   //테이블
+//   //model.addAttribute("dto", notebiz.insert(dto));
+//}
+//--------------------------------------------------------------------------------------------------
+//@RequestMapping(value="/user_meetinglogdetail.do")
+//public ModelAndView userMeetinglogdetail(HttpServletRequest request, ModelAndView mv, int nno) {
+//   logger.info("mv를 사용해서 user_meetinglogdetail 페이지로 갈겁니다.");
+//   
+//   mv.addObject("select", notebiz.selectOne(nno));
+//   mv.setViewName("./user_meetinglogdetail");
+//   
+//   return mv;
+//}
