@@ -59,7 +59,7 @@ public class RoomController {
 		int resNo_rm=biz.insert(dto);
 
 		if(resNo_rm>0) {
-			return "redirect:agent_roomcomplete.agent?no_rm"+resNo_rm;
+			return "redirect:agent_roomcomplete.agent?no_rm="+resNo_rm;
 		}else {
 			logger.info("방인서트 실패 컨트롤러");
 			return "redirect:agent_roominsert.agent";

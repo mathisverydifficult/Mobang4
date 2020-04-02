@@ -69,7 +69,7 @@
 			#{parking_rm}
 		)
 			<selectKey keyProperty="no_rm" resultType="Integer" order="AFTER">
-				SELECT idx_test_seq.currval FROM dual
+				SELECT roomseq.currval FROM dual
 			</selectKey>
 	</insert>
 	

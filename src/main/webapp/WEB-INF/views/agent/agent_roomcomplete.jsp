@@ -62,7 +62,7 @@
     				<td>${dto.addr_rm } ${dto.addr_dt_rm }</td>
     			</tr>
     			<c:choose>
-    				<c:when test="${dto.rent_rm=='원룸' }">
+    				<c:when test="${dto.rent_rm=='월세' }">
     					<tr>
     						<th>보증금 / 월세</th><!-- choose문 돌려서 월세면 보증금/월세 나머지 매물가격?  -->
     						<td>${dto.roomprice_rm } 만원</td>
