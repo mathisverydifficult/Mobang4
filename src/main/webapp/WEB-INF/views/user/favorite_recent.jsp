@@ -8,14 +8,9 @@
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="resources/user/css/reset.css">
 <link rel="stylesheet" href="resources/user/css/favorite_recent.css">
   
 <style type="text/css">
-
-#headblock{
-	margin-top: 186px;
-}
 
 
 </style>  
@@ -26,9 +21,14 @@
 
 
 <title>Insert title here</title>
-<%@ include file="form/user_header.jsp" %>
 </head>
+<jsp:include page="/WEB-INF/views/user/header.jsp" />
 <body>
+<br/><br/><br/>
+<br/><br/><br/>
+${list }<br/>
+<br/>
+<h1>${count }</h1><br/>
 
 <!-- rgb(51, 85, 139) 모방 메인색깔 -->
 <div class="jumbotron text-center" id="headblock" style="background-color:#33558B;">
@@ -49,7 +49,7 @@
 </div>
            
 <div class="container">
-		<p>총 34개의 최근 본 방이 있습니다.</p>
+		<p>총 개의 최근 본 방이 있습니다.</p>
 		<p style="">최근 본 방은 최대 50개까지 저장됩니다.</p>
 </div>
 

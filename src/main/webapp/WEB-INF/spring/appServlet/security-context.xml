@@ -42,7 +42,7 @@
        			delete-cookies="JSESSIONID"
        		/>
        		
-       		<csrf disabled="false"/>
+       		<csrf disabled="true"/>
 		</http>
 		
 		<!-- provider --> 

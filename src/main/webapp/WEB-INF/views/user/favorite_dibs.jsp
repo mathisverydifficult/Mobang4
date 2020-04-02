@@ -8,28 +8,24 @@
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="resources/user/css/reset.css">
 <link rel="stylesheet" href="resources/user/css/favorite_dibs.css">
   
 <style type="text/css">
 
-#headblock{
-	margin-top: 186px;
-}
-
-.container{
-	padding-top: 20px;
-}
 
 </style>  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
-<%@ include file="form/user_header.jsp" %>
 <title>Insert title here</title>
 </head>
+<jsp:include page="/WEB-INF/views/user/header.jsp" />
 <body>
+
+<h1>${count }</h1>
+<h2>${list }</h2>
+
 
 <!-- 댓글다는 페이지 할 때 참고할 페이지 
 https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_blog&stacked=h

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,59 +15,60 @@
 
 <body>
 
-<div class="container" style="margin-bottom : 50px">
-	<div class="title">
-		<p class="word">My 리뷰</p>
-	</div>
+			<table>
+					<colgroup>
+						<col width="15%">
+						<col width="*">
+						<col width="5%">
+						<col width="15%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>중개사</th>
+							<th>리뷰 내용</th>
+							<th>별점</th>
+							<th>날짜</th>
+						</tr>
+					</thead>
+					<tbody><!-- 나중에 db값 불러오기 -->
+					<c:choose>
+						<c:when test="${empty list }">
+							<tr>
+								<th colspan="4">===작성된 글이 존재하지 않습니다===</th>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list }" var="dto">
+								<tr>
+									<td>${dto.agemail }</td>
+									<td>${dto.rcontent }</td>
+									<td>${dto.star }</td>
+									<td>${dto.rdate }</td>
+								<!-- 	<td><fmt:formatDate value="${dto.rdate }" pattern="yyyy.MM.dd"/></td>  -->
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					</tbody>
+			</table>
 
-	<div class="secondpara">
-		<table class="table table-hover" border="1">
-		<col width="50"/>
-		<col width="800"/>
-		<col width="100"/>
-		<tr class="tabletitle">
-			<th>번호</th>
-			<th>내용</th>
-			<th>평가</th>
-		</tr>
-		<c:choose>
-			<c:when test="${empty list }">
-				<tr><td colspan="3">----------------작성된 글이 존재하지 않습니다--------------------</td></tr>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${list }" var="dto">
-					<tr>
-						<td>${dto.myno }</td>
-						<td>${dto.mycontent }</td>
-						<td>${dto.myname }</td>
-					</tr>
-					<div class="test" style=" background-image:url('${dto.mypath }')">됐냐?</div>
-					<div class="test" style=" background-image:url('resources/user/img/test/ex_hoban.jpg')">ㅎ2ㅎ2</div>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		<tr>
-	</table>
-		<div style="text-align:center">
-			<ul class="pagination">
-				<li>
-					<a href="#" aria-label="Previous"> 
-						<span aria-hidden="true">&laquo;</span>
-					</a>
-				</li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> 
-						<span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-<jsp:include page="/WEB-INF/views/user/footer.jsp" />
+			<div class="pagination">
+					<ul>
+					<c:if test="${pageMaker.prev }">
+				    	<li class="arrow"><a href="review_list.user${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
+				    </c:if>
+				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				    	<li><a href="review_list.user${pageMaker.makeQuery(idx) }">${idx }</a></li>
+				    </c:forEach>
+				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				    <li class="arrow">
+				      <a href="review_list.user${pageMaker.makeQuery(pageMaker.endPage+1) }">
+				        &raquo;
+				      </a>
+				    </li>
+				     </c:if> 
+				  </ul>
+			</div>
+
 </body>
 </html>
