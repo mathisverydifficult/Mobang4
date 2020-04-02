@@ -20,7 +20,7 @@ $(document).ready(function(){
 		$(this).prop('class','clicked');
 		var viewid = $(this).attr('id');
 		if(viewid=="account"){
-			$('.mypagewrap .account').css('display','');
+			$('.mypagewrap .account').css('display','block');
 			$('.mypagewrap .product').css('display','none');
 			$('.mypagewrap .review').css('display','none');
 		}else if(viewid=="product"){
@@ -33,7 +33,20 @@ $(document).ready(function(){
 			$('.mypagewrap .review').css('display','block');
 		}
 	});
-	$("#account").prop('class','clicked');
+	
+	var id = $('.menu>input').val();
+	
+	//alert(id);
+		
+	if(id=="product"){
+		$("#product").prop('class','clicked');
+		$('.mypagewrap .product').css('display','inline');
+		
+	}else{
+		
+		$("#account").prop('class','clicked');
+		$('.mypagewrap .account').css('display','block');
+	}
 	
 });
 
@@ -44,6 +57,7 @@ $(document).ready(function(){
 	<div class="mypagewrap">
 		<span>마이페이지</span>
 		<article class="menu">
+			<input type="hidden" value="${id }">
 			<div class="nonclick" id="account">계정 관리</div>
 			<div class="nonclick" id="product">상품 관리</div>
 			<div class="nonclick" id="review">리뷰/문의 관리</div>

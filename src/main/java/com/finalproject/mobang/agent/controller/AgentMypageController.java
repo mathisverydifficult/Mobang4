@@ -27,4 +27,13 @@ public class AgentMypageController {
 		return "/agent/agent_mypage";
 	}
 
+	@RequestMapping(value="/agent_mypageproduct.agent")
+	public String mypageproduct(Model model,String email) {
+		System.out.println(email);
+		AgentAccountDto accountdto = biz.selectAccount(email);
+		model.addAttribute("account", accountdto);
+		model.addAttribute("id", "product");
+		
+		return "/agent/agent_mypage";
+	}
 }

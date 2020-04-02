@@ -56,7 +56,7 @@
 			<div class="right">
 				<div class="smalltitle">
 					나의 광고 상품
-					<span onclick="location.href='agent_mypage.agent?email=missdla4929@naver.com'">더보기></span> <!-- 마이페이지 상품관리랑 연결 -->
+					<span onclick="location.href='agent_mypageproduct.agent?email=missdla4929@naver.com'">더보기></span> <!-- 마이페이지 상품관리랑 연결 -->
 				</div>
 				<div class="ad">일반 상품<span></span><span class="dday">D-120</span></div>
 				<div class="ad">프리미엄 상품<span></span><span class="dday">D-60</span></div>
