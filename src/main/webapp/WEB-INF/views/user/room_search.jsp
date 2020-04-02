@@ -134,7 +134,7 @@ $(function(){
 							</h1>
 						</div> 
 					</div>
-					<div class="smallfilter">
+					<div class="smallfilter" id="price">
 						<div class="seperate">
 							<span>가격대</span>
 						</div>
@@ -145,7 +145,7 @@ $(function(){
 							</h1>
 						</div> 
 					</div>
-					<div class="smallfilter">
+					<div class="smallfilter" id="manageprice">
 						<div class="seperate">
 							<span>관리비</span>
 						</div>
@@ -156,7 +156,7 @@ $(function(){
 							</h1>
 						</div>
 					</div>
-					<div class="smallfilter">
+					<div class="smallfilter" id="roomsize">
 						<div class="seperate">
 							<span>방크기</span>
 						</div>
@@ -264,7 +264,8 @@ $(function(){
 					for(var i=0; i<result.length; i++){
 						list[i] = result[i];
 						
-						html += "<div class='room' style='cursor:pointer;'>	<a> <div class='photo'>"
+						html += "<div class='room' style='cursor:pointer;'>	"
+							+"<a href=''> <div class='photo'>"
 							+"<img src="+list[i].mypath+">"
 							+"<div class='favorite'>"
 							+"<img id='img1' src='resources/user/img/favorite_1.png' onclick='favoriteclick()'/></div></div>"

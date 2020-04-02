@@ -51,7 +51,7 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		roomsearchDto dto = new roomsearchDto();
 		
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectone", myno);
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne", myno);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();

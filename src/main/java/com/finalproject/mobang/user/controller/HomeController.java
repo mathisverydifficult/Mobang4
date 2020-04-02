@@ -85,6 +85,15 @@ public class HomeController {
 		return test;
 	}
 	
+	@RequestMapping(value="/room_detail.user")
+	public String roomdetail(Model model) {
+		
+		
+		logger.info("select One");
+		
+		return "user/room_detail";
+	}
+	
 	@RequestMapping(value="/review.user")
 	public String review(Model model) {
 		

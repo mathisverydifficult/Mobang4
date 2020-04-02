@@ -4,15 +4,43 @@
   
   <resultMap type="roomsearchDto" id="roomsearchMap">
   	<result property="myno" column="NO_RM"/>
+  	<result property="" column="EMAIL"/>
+  	<result property="" column="PHONE_RM"/>
   	<result property="myname" column="AGTNAME_RM"/>
-  	<result property="mytitle" column="TITLE_RM"/>
-  	<result property="mycontent" column="CONTENT_RM"/>
-  	<result property="mypath" column="PICTURE_RM"/>
   	<result property="mypremium" column="PLUSYN_RM"/>
+  	<result property="mytitle" column="TITLE_RM"/>
+  	<result property="mypath" column="PICTURE_RM"/>
+  	<result property="" column="HEAT_RM"/>
+  	<result property="" column="BUILTIN_RM"/>
+  	<result property="" column="ANIMAL_RM"/>
+  	<result property="" column="ELEVATOR_RM"/>
+  	<result property="" column="VERANDA_RM"/>
+  	<result property="" column="ROOMIN_RM"/>
+  	<result property="mycontent" column="CONTENT_RM"/>
+  	<result property="" column="AIRCON_RM"/>
+  	<result property="" column="WASHER_RM"/>
+  	<result property="" column="GASRANGE_RM"/>
+  	<result property="" column="INDUCTION_RM"/>
+  	<result property="" column="DESK_RM"/>
+  	<result property="" column="TV_RM"/>
+  	<result property="" column="REF_RM"/>
+  	<result property="" column="BED_RM"/>
+  	<result property="" column="SHOWHOUSE_RM"/>
+  	<result property="" column="CLOSET_RM"/>
+  	<result property="" column="MICROWAVE_RM"/>
+  	<result property="" column="SINK_RM"/>
+  	<result property="myrent" column="RENT_RM"/>
+  	<result property="" column="ROOMPRICE_RM"/>
+  	<result property="" column="EXPENSE_RM"/>
+  	<result property="myroomtype" column="ROOMTYPE_RM"/>
   	<result property="myaddress" column="ADDR_RM"/>
   	<result property="myroomname" column="ADDR_DT_RM"/>
-  	<result property="myrent" column="RENT_RM"/>
-  	<result property="myroomtype" column="ROOMTYPE_RM"/>
+  	<result property="" column="ROOMSIZE_RM"/>
+  	<result property="" column="ROOMSIZE2_RM"/>
+  	<result property="" column="FLOOR_RM"/>
+  	<result property="" column="FLOOR2_RM"/>
+  	<result property="" column="PARKING_RM"/>
+  	
   </resultMap>
   
   <select id="selectList" resultMap="roomsearchMap">
@@ -27,5 +55,8 @@
   	
   </select>
   
+  <select id="selectOne" resultMap="roomsearchMap" parameterType="int">
+  	select * from room_tb where no_rm=#{myno}
+  </select>
   
 </mapper>
