@@ -35,12 +35,18 @@ VALUES(USER_SEQ.NEXTVAL, 'djkim1216@naver.com', '관리자', '{noop}1234', '010-
 INSERT INTO USER_TB 
 VALUES(USER_SEQ.NEXTVAL, 'agent@naver.com', '공인중개사', '{noop}1234', '010-0000-0001',
 'ROLE_MEMBER', '', '', '', '', '', '', '', '', '', '1');
+INSERT INTO USER_TB 
+VALUES(USER_SEQ.NEXTVAL, 'missdla4929@naver.com', '임미경', '{noop}1004', '010-7116-4929',
+'ROLE_MEMBER', '', '', '', '', '', '', '', '', '', '1');
 
 INSERT INTO USER_TB 
 VALUES(USER_SEQ.NEXTVAL, 'user@naver.com', '세입자', '{noop}1234', '010-0000-0002',
 'ROLE_USER', '', '', '', '', '', '', '', '', '', '1');
 
 UPDATE USER_TB SET AUTHORITY = 'ROLE_MEMBER' WHERE SEQ = 2; 
+
+DELETE FROM USER_TB
+WHERE EMAIL='missdla4929@naver.com';
 
 SELECT * FROM USER_TB;
 
@@ -384,17 +390,22 @@ DROP TABLE AGENTJOIN_TB;
 CREATE TABLE AGENTJOIN_TB
 (
     EMAIL             VARCHAR2(100)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
-    MOBILE_AGT        VARCHAR2(100)    NOT NULL, 
-    PHONE_AGT         VARCHAR2(100)    NOT NULL, 
-    ADDR_AGT          VARCHAR2(100)    NOT NULL, 
+    AGTNAME_AGT		  VARCHAR2(100)	  NOT NULL,
+    MOBILE_AGT        VARCHAR2(20)    NOT NULL, 
+    PHONE_AGT         VARCHAR2(20)    NOT NULL, 
+    ADDR_AGT          VARCHAR2(100)   NOT NULL, 
     QUALNO_AGT        VARCHAR2(100)    NOT NULL, 
     COMNO_AGT         VARCHAR2(100)    NOT NULL, 
     QUALNOPATH_AGT    VARCHAR2(100)    NOT NULL, 
     COMNOPATH_AGT     VARCHAR2(100)    NOT NULL, 
-    NAME_AGT          VARCHAR2(100)    NOT NULL, 
-    DDAY_AGT          VARCHAR2(100)    NULL, 
+    NAME_AGT          VARCHAR2(100)    NOT NULL,
+    PLUSYN_AGT		  VARCHAR2(2)		NULL,
     CONSTRAINT AGENTJOIN_TB_PK PRIMARY KEY (EMAIL)
 );
+
+INSERT INTO AGENTJOIN_TB
+VALUES('missdla4929@naver.com','도미솔중개소','010-0000-1010', '031-777-6666', '경기도 광주',
+'면허번호', '사업자등록번호', '면허번호경로', '사업자등록번호경로', '임미경','Y');
 
 
 
