@@ -16,6 +16,15 @@
 		<result property="phone"  column="PHONE" />
 	</resultMap>
 	
+	<!-- 상품관리에서 쓸 map -->
+	<resultMap type="agentProductDto" id="productMap">
+		<result property="name_it" column="NAME_IT"/>
+		<result property="addr_pay" column="ADDR_PAY"/>
+		<result property="startdate_pay" column="STARTDATE_PAY"/>
+		<result property="enddate_pay" column="ENDDATE_PAY"/>
+		<result property="price_it" column="PRICE_IT"/>
+	</resultMap>
+	
 	
 	<!-- 마이페이지 계정관리 -->
 	<!-- 프로필 경로 추가하기 -->
@@ -25,5 +34,13 @@
 		FROM USER_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
 		WHERE EMAIL=#{email}
 	</select>
+	
+	<!-- 마이페이지 상품관리 -->
+	<select id="productList" parameterType="String" resultMap="productMap">
+		SELECT NAME_IT, ADDR_PAY, STARTDATE_PAY, ENDDATE_PAY, PRICE_IT
+		FROM PAY_TB JOIN ITEM_TB USING(NAME_IT)
+		WHERE EMAIL=#{email}
+	</select>
+	
 
 </mapper>

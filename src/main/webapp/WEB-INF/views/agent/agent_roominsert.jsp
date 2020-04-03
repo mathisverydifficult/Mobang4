@@ -160,20 +160,20 @@ function execDaumPostcode() {
     					<th>옵션</th>
     					<td>
     						<div>
-    							<input type = "checkbox" name = "aircon_rm" value = "Y"/><span>에어컨</span>
-    							<input type = "checkbox" name = "ref_rm" value = "Y"/><span>냉장고</span>
-    							<input type = "checkbox" name = "washer_rm" value = "Y"/><span>세탁기</span>
-    							<input type = "checkbox" name = "gasrange_rm" value = "Y"/><span>가스레인지</span>
-    							<input type = "checkbox" name = "induction_rm" value = "Y"/><span>인덕션</span>
-    							<input type = "checkbox" name = "microwave_rm" value = "Y"/><span>전자레인지</span>
+    							<input type = "checkbox" name = "aircon_rm" value = "에어컨"/><span>에어컨</span>
+    							<input type = "checkbox" name = "ref_rm" value = "냉장고"/><span>냉장고</span>
+    							<input type = "checkbox" name = "washer_rm" value = "세탁기"/><span>세탁기</span>
+    							<input type = "checkbox" name = "gasrange_rm" value = "가스레인지"/><span>가스레인지</span>
+    							<input type = "checkbox" name = "induction_rm" value = "인덕션"/><span>인덕션</span>
     						</div>
     						<div>
-    							<input type = "checkbox" name = "tv_rm" value = "Y"/><span>TV</span>
-    							<input type = "checkbox" name = "desk_rm" value = "Y"/><span>책상</span>
-    							<input type = "checkbox" name = "bed_rm" value = "Y"/><span>침대</span>
-    							<input type = "checkbox" name = "closet_rm" value = "Y"/><span>옷장</span>
-    							<input type = "checkbox" name = "showhouse_rm" value = "Y"/><span>신발장</span>
-    							<input type = "checkbox" name = "sink_rm" value = "Y"/><span>싱크대</span>
+    							<input type = "checkbox" name = "microwave_rm" value = "전자레인지"/><span>전자레인지</span>
+    							<input type = "checkbox" name = "tv_rm" value = "TV"/><span>TV</span>
+    							<input type = "checkbox" name = "desk_rm" value = "책상"/><span>책상</span>
+    							<input type = "checkbox" name = "bed_rm" value = "침대"/><span>침대</span>
+    							<input type = "checkbox" name = "closet_rm" value = "옷장"/><span>옷장</span>
+    							<input type = "checkbox" name = "showhouse_rm" value = "신발장"/><span>신발장</span>
+    							<!--<input type = "checkbox" name = "sink_rm" value = "싱크대"/><span>싱크대</span> -->
     						</div>
     					</td>
     				</tr>
