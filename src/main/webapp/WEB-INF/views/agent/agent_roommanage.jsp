@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,9 +31,13 @@
 	.roommanagewrap .ad .dday{float: right; padding-right: 20px; font-size: 17px;}
 	/* 방리스트 div */
 	.roommanagewrap .listwrap{width:1200px; padding-top:30px; margin-left: auto; margin-right: auto;}
-	.roommanagewrap .listwrap span{color:rgb(136, 136, 136); display: block; margin: 20px 10px 10px 10px; font-size: 20px;
+	.roommanagewrap .listwrap>span{color:rgb(136, 136, 136); display: block; margin: 20px 10px 10px 10px; font-size: 20px;
 	padding-left: 10px; border-left: 2px solid rgb(51, 85, 139);}
-
+	.roommanagewrap .roomlistnone{text-align: center; font-size: 27px; padding-top: 110px; height: 290px;}
+	.roommanagewrap .roomlist{overflow:hidden; height:auto; display: inline-block;}
+	.roommanagewrap .roomlist .picture>img{width: 360px; height: 280px; float: left; margin: 10px;}
+	
+	
 </style>
 </head>
 <body>
@@ -51,7 +56,7 @@
 			<div class="right">
 				<div class="smalltitle">
 					나의 광고 상품
-					<span onclick="">더보기></span> <!-- 마이페이지 상품관리랑 연결 -->
+					<span onclick="location.href='agent_mypage.agent?email=missdla4929@naver.com'">더보기></span> <!-- 마이페이지 상품관리랑 연결 -->
 				</div>
 				<div class="ad">일반 상품<span></span><span class="dday">D-120</span></div>
 				<div class="ad">프리미엄 상품<span></span><span class="dday">D-60</span></div>
@@ -62,6 +67,44 @@
 			<span>올린 방 목록</span>
 			<!-- list 있을 경우와 없을경우 db불러오기 -->
 			<!-- 없을 경우 올린 방 목록이 없습니다 / 있을 경우 6개씩 나오게 스크롤페이징 or 숫자로 페이징 -->
+			<c:choose>
+				<c:when test="${empty list }">
+					<div class="roomlistnone">
+						방을 등록해 주세요
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<div class="roomlist" onclick="">
+							<div class="picture"><img src="resources/agent/img/sampleroom.jpg"> </div>
+							<c:if test="${dto.plusyn_agt eq 'Y' }"><span>플러스+</span><br></c:if>
+							<span>${dto.roomtype_rm }</span><br>
+							<span>${dto.rent_rm }</span> <span>${dto.roomprice_rm }</span><br>
+							<span>${dto.floor_rm } 층,${dto.roomsize_rm }m²,관리비${dto.expense_rm }만</span><br>
+							<span>${dto.title_rm }</span>							
+						</div>
+					</c:forEach>
+					
+							<div class="pagination">
+					<ul>
+					<c:if test="${pageMaker.prev }">
+				    	<li class="arrow"><a href="roommanage.agent${pageMaker.makeQuery(pageMaker.startPage-1) }&email=missdla4929@naver.com">&laquo;</a></li>
+				    </c:if>
+				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				    	<li><a href="roommanage.agent${pageMaker.makeQuery(idx) }&email=missdla4929@naver.com">${idx }</a></li>
+				    </c:forEach>
+				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				    <li class="arrow">
+				      <a href="roommanage.agent${pageMaker.makeQuery(pageMaker.endPage+1) }&email=missdla4929@naver.com">
+				        &raquo;
+				      </a>
+				    </li>
+				     </c:if> 
+				  </ul>
+			</div>
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 	</div>
 

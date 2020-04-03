@@ -7,6 +7,7 @@
 <title>모방</title>
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
 <script type="text/javascript">
 $function(){
