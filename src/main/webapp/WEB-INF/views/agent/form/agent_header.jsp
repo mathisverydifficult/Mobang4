@@ -40,7 +40,7 @@
 					<a href="#">회원가입</a>
 				</li>
 				<li>
-					<a href="roommanage.agent?email=missdla4929@naver.com"><div class="button">매물관리 바로가기</div></a>
+					<a href="roommanage.agent"><div class="button">매물관리 바로가기</div></a>
 				</li>
 			</ul>
 		</div>
