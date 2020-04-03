@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.finalproject.mobang.agent.biz.AgentMypageBiz;
 import com.finalproject.mobang.agent.dto.AgentAccountDto;
+import com.finalproject.mobang.agent.dto.AgentProductDto;
+import com.finalproject.mobang.common.utils.CurrentUserName;
 
 @Controller
 public class AgentMypageController {
@@ -19,12 +21,29 @@ public class AgentMypageController {
 	private AgentMypageBiz biz;
 	
 	@RequestMapping(value="/agent_mypage.agent")
-	public String mypage(Model model,String email) {
-		System.out.println(email);
+	public String mypage(Model model) {
+		
+		String email = CurrentUserName.currentUserName();
+		// 계정관리
 		AgentAccountDto accountdto = biz.selectAccount(email);
 		model.addAttribute("account", accountdto);
+		
+		// 상품관리
+		model.addAttribute("productlist", biz.selectProductList(email));
 		
 		return "/agent/agent_mypage";
 	}
 
+	@RequestMapping(value="/agent_mypageproduct.agent")
+	public String mypageproduct(Model model) {
+		String email = CurrentUserName.currentUserName();
+		AgentAccountDto accountdto = biz.selectAccount(email);
+		model.addAttribute("account", accountdto);
+		model.addAttribute("id", "product");
+		
+		// 상품관리
+		model.addAttribute("productlist", biz.selectProductList(email));
+		
+		return "/agent/agent_mypage";
+	}
 }
