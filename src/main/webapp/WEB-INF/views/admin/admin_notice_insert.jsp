@@ -67,7 +67,7 @@ function validate() {
 		<form:form method="post" enctype="multipart/form-data" modelAttribute="AgentNoticeDto" action="notice_insert.admin" onsubmit="return validate();">		
 			
 			<label>제목</label><br/>
-			<input type="text" id="title_nt" name="title"/> <br/>
+			<input type="text" id="title_nt" name="title_nt"/> <br/>
 			
 								
 			<label>내용</label><br/>

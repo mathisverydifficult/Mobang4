@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalproject.mobang.admin.biz.NoticeBoardBiz;
 import com.finalproject.mobang.admin.dto.Criteria;
 import com.finalproject.mobang.admin.dto.PageMaker;
-import com.finalproject.mobang.admin.dto.QnaBoardDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
 
 @Controller
@@ -41,7 +40,7 @@ public class NoticeController {
 			
 			return "/admin/admin_notice";
 		}
-	
+		
 		@RequestMapping(value="/notice_selectone.admin",method = RequestMethod.GET)
 		public String noticeSelectOne(Model model,int seq_nt) {
 			logger.info("notice - selectOne");
@@ -60,8 +59,8 @@ public class NoticeController {
 			return "/admin/admin_notice_insert";
 		}
 		
-		// qna 글작성
-		@RequestMapping(value="/notice_insert.admin")
+		// 공지 글작성
+		@RequestMapping(value="/notice_insert.admin",method = RequestMethod.POST)
 		public String noticeInsert(Model model, AgentNoticeDto dto) {
 			logger.info("qna - insert");
 			
@@ -79,7 +78,7 @@ public class NoticeController {
 		}
 		
 			
-		// qna 게시판 글수정 폼으로 이동
+		// 공지 게시판 글수정 폼으로 이동
 		@RequestMapping(value="/notice_update.admin")
 		public ModelAndView qnaUpdate(int seq_nt) {
 			logger.info("update");
@@ -89,7 +88,7 @@ public class NoticeController {
 			mv.addObject("dto",dto);
 			return mv;
 		}
-		// qna 게시판에서 업데이트를 처리해 줌 
+		// 공지 게시판에서 업데이트를 처리해 줌 
 		@RequestMapping(value="/notice_updateres.admin")
 		public String updateform(AgentNoticeDto dto) {
 			logger.info("updateres");
@@ -103,7 +102,7 @@ public class NoticeController {
 			}
 		}
 		
-		// qna 상세보기에서 글 삭제
+		// 공지 상세보기에서 글 삭제
 		@RequestMapping(value="/notice_delete.admin")
 		public String qnaDelete(int seq_nt) {
 			logger.info("qna - delete");
@@ -115,7 +114,7 @@ public class NoticeController {
 			return "notice_selectone.admin?seq_nt="+seq_nt;
 		}
 		
-		// qna 게시판에서 글 여러개 삭제
+		// 공지 게시판에서 글 여러개 삭제
 
 		@RequestMapping(value="/notice_multidelete.admin")
 		public String qnaMultiDelete(@RequestParam("chk") String[] chk) throws Exception {
@@ -129,9 +128,9 @@ public class NoticeController {
 				}
 			} // 목록 페이지로 이동 
 			return "redirect:notice_list.admin";
-
-			
 		}
+		
+		
 		
 		
 		

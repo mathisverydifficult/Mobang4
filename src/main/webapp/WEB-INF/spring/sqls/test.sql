@@ -241,7 +241,6 @@ INSERT INTO ROOM_TB VALUES
     '월세',
     '500/30',
     '10',
-<<<<<<< HEAD
     '오피스텔',
     '경기도 고양시 덕양구 행신동 946',
     '햇빛마을',
@@ -269,16 +268,27 @@ CREATE TABLE USERFAVORITE_TB
 
 INSERT INTO USERFAVORITE_TB VALUES
 (
-	'michaelhj@naver1.com',
+	'michaelhj@naver.com',
 	1,
 	NULL,
 	SYSDATE,
 	'Y'
 );
 SELECT * FROM USERFAVORITE_TB;
-SELECT COUNT(RECENT_FV)
-		  FROM USERFAVORITE_TB
-		 WHERE EMAIL ='michaelhj@naver.com';
+
+SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
+		FROM (SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL='michaelhj@naver.com' AND NOT RECENT_FV IS NULL
+		ORDER BY DATE_FV DESC)
+		WHERE ROWNUM <= 30;
+	
+SELECT EMAIL,DIBS_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL='michaelhj@naver.com' AND NOT DIBS_FV IS NULL
+		ORDER BY DATE_FV DESC;
+	
+	
 DELETE FROM USERFAVORITE_TB WHERE EMAIL='michaelhj@naver.com';
 
 
@@ -317,6 +327,7 @@ SELECT SEQ_SH, EMAIL,
 	WHERE ROWNUM <= 5;	  
 
 DROP TABLE NOTICE_TB;
+DROP SEQUENCE SEQ_NT_SEQ;
 CREATE SEQUENCE SEQ_NT_SEQ;
 CREATE TABLE NOTICE_TB
 (
@@ -327,8 +338,14 @@ CREATE TABLE NOTICE_TB
     CONSTRAINT NOTICE_TB_PK PRIMARY KEY (SEQ_NT)
 );
 
-
-
+SELECT * FROM NOTICE_TB;
+INSERT INTO NOTICE_TB VALUES
+		(
+		SEQ_NT_SEQ.NEXTVAL,
+		'공지1',
+		'어떤 내용을 공지할까요',
+		SYSDATE
+		);
 
 -- reivew table
 DROP TABLE REVIEW_TB;
@@ -338,14 +355,14 @@ CREATE TABLE REVIEW_TB
     AGEMAIL     VARCHAR2(100)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
     RCONTENT    VARCHAR2(300)    NOT NULL,
     STAR        NUMBER    NOT NULL,
-    RDATE		DATE 	  NOT NULL,
-    CONSTRAINT REVIEW_TB_PK PRIMARY KEY (EMAIL,AGEMAIL)
+    RDATE		DATE 	  NOT NULL
 );
+--CONSTRAINT REVIEW_TB_PK PRIMARY KEY (EMAIL,AGEMAIL)
 INSERT INTO REVIEW_TB VALUES
 (
 	'michaelhj@naver.com',
 	'michaelhj@naver2.com',
-	'별로',
+	'이거 맞아? 너무 좋아~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
 	4.5,
 	SYSDATE
 );
@@ -354,9 +371,18 @@ SELECT * FROM REVIEW_TB;
 
 
 
+
+INSERT INTO USER_TB 
+VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '관리자', '{noop}1234', '010-0000-0000',
+'ROLE_ADMIN', '', '', '', '', '', '', '', '', '', '1');
+INSERT INTO USER_TB 
+VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver2.com', '관리자', '{noop}1234', '010-0000-0000',
+'ROLE_ADMIN', '', '', '', '', '', '', '', '', '', '1');
+
 		SELECT TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
 		FROM ROOM_TB
 		ORDER BY NO_RM DESC
+
 
 
 
