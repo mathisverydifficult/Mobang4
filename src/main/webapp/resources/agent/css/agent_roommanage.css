@@ -1,0 +1,30 @@
+
+	/*전체div*/
+	.roommanagewrap{width: 100%; min-height:100vh;}
+	/* 관리홈 div */
+	.roommanagewrap .managewrap{position:relative; width: 1200px; height: 500px; padding-top:100px;
+	margin-left: auto; margin-right: auto; margin: 0px auto; }
+	.roommanagewrap .managewrap>span{color:rgb(136, 136, 136); display: block; margin: 20px 10px 10px 10px; font-size: 20px;
+	padding-left: 10px; border-left: 2px solid rgb(51, 85, 139);}
+	/* 왼쪽 매물등록현황 */
+	.roommanagewrap .managewrap .left{width:400px; height:300px; float:left; margin:50px 75px 50px 100px;
+	background-color: rgb(51, 85, 139);}
+	/* 오른쪽 나의광고 상품 */
+	.roommanagewrap .managewrap .right{float: left; width: 450px; height:300px; margin:50px 70px 50px 75px;
+	background-color:rgb(51, 85, 139);}
+	/* 네모안 요소들 */
+	.roommanagewrap .managewrap .smalltitle{color: rgb(255, 255, 255); height: 40px; border-bottom: 1px solid rgb(136, 136, 136); 
+	font-size: 15px; padding-left: 20px; line-height: 40px; }
+	.roommanagewrap .smalltitle>span{color:rgb(136, 136, 136); position: relative; float: right; font-size: 15px; margin-top: 0px; margin-right: 10px; cursor: pointer;}
+	.roommanagewrap .ad{color: rgb(255, 255, 255); font-size: 20px; line-height: 81px; padding-left: 10px;}
+	.roommanagewrap .ad .dday{float: right; padding-right: 20px; font-size: 17px;}
+	/* 방리스트 div */
+	.roommanagewrap .listwrap{width:1200px; padding-top:30px; margin-left: auto; margin-right: auto;}
+	.roommanagewrap .listwrap>span{color:rgb(136, 136, 136); display: block; margin: 20px 10px 10px 10px; font-size: 20px;
+	padding-left: 10px; border-left: 2px solid rgb(51, 85, 139);}
+	.roommanagewrap .roomlistnone{text-align: center; font-size: 27px; padding-top: 110px; height: 290px;}
+	.roommanagewrap .roomlist{overflow:hidden; height:auto; display: inline-block; cursor: pointer;}
+	.roommanagewrap .roomlist .picture>img{width: 360px; height: 280px; float: left; margin: 10px;}
+	.roommanagewrap .roomlist>span{padding:0 10px;}
+	.roommanagewrap .roomlist .price{font-size: 30px; color: black;padding-right: 0px;}
+	

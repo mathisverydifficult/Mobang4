@@ -12,6 +12,7 @@
 		<typeAlias type="com.finalproject.mobang.common.dto.UploadFile" alias="uploadFile"/>
 		<typeAlias type="com.finalproject.mobang.common.dto.RoomDto" alias="roomDto"/>
 		<typeAlias type="com.finalproject.mobang.agent.dto.AgentAccountDto" alias="agentAccountDto"/>
+		<typeAlias type="com.finalproject.mobang.agent.dto.AgentProductDto" alias="agentProductDto"/>
 	</typeAliases>
 	
 	<!-- resource : src/main/resources부터 검색 -->

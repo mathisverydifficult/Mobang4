@@ -33,27 +33,22 @@ $(document).ready(function(){
 			$('.mypagewrap .review').css('display','block');
 		}
 	});
+
 	
-	var id = $('.menu>input').val();
-	
-	//alert(id);
-		
+	var id = $(".menu>input").val();
 	if(id=="product"){
 		$("#product").prop('class','clicked');
 		$('.mypagewrap .product').css('display','inline');
-		
-	}else{
-		
+	} else{
 		$("#account").prop('class','clicked');
 		$('.mypagewrap .account').css('display','block');
 	}
-	
 });
 
 </script>
 </head>
 <body>
-<%@ include file="form/agent_header2.jsp" %>
+<%@ include file="form/agent_header.jsp" %>
 	<div class="mypagewrap">
 		<span>마이페이지</span>
 		<article class="menu">
@@ -127,45 +122,43 @@ $(document).ready(function(){
 			<div class="productlist">
 				<table>
 					<colgroup>
-						<col width="16.6%">
-						<col width="16.6%">
-						<col width="16.6%">
-						<col width="16.6%">
-						<col width="16.6%">
-						<col width="16.6%">	
+						<col width="19.6%">
+						<col width="19.6%">
+						<col width="19.6%">
+						<col width="19.6%">
+						<col width="19.6%">
 					</colgroup>
 					<thead><!-- 나중에 보고 바꾸거나 알아서 -->
 						<tr>
 							<th>결제일</th>
 							<th>상품명</th>
 							<th>상품분류</th>
-							<th>광고개수</th>
 							<th>광고기간</th>
 							<th>결제금액</th>
 						</tr>
 					</thead>
 					<tbody><!-- 리스트 비었을때 & 있을때 나누자  -->
-						<tr><th colspan="6">상품내역이 없습니다.</th></tr>
-						<tr>
-							<td>2019-04-01</td>
-							<td>대학교</td>
-							<td>서울대학교</td>
-							<td>50개</td>
-							<td>2019-04-01 ~ 2019-05-01</td>
-							<td>30000원</td>
-						</tr>
-						<tr>
-							<td>2019-03-27</td>
-							<td>지하철</td>
-							<td>강남역</td>
-							<td>50개</td>
-							<td>2019-03-27 ~ 2019-04-26</td>
-							<td>30000원</td>
-						</tr>
+						<c:choose>
+							<c:when test="${empty productlist}">
+								<tr><th colspan="6">상품내역이 없습니다.</th></tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${productlist }" var="product">
+									<tr>
+										<td>${product.startdate_pay }</td>
+										<td>${product.name_it }</td>
+										<td>${product.addr_pay }</td>
+										<td>${product.startdate_pay } ~ ${product.enddate_pay }</td>
+										<td>${product.price_it }원</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>
 		<!-- 숫자 pagenation추가 -->
+		
 		</article>
 		<!-- 리뷰/문의 관리 -->
 		<article class="review">

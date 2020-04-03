@@ -39,7 +39,7 @@
 					<a href="agent_roominsert.agent"><div class="button">방 올리기</div></a>
 				</li>
 				<li class="second">
-					<a href="agent_mypage.agent?email=missdla4929@naver.com" style="color:black;">마이페이지</a>
+					<a href="agent_mypage.agent" style="color:black;">마이페이지</a>
 					<a href="#">로그아웃</a>
 				</li>
 			</ul>
