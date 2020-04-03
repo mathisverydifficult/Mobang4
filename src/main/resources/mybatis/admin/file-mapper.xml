@@ -36,6 +36,13 @@
 	<select id="selectone" resultMap="uploadMap">
 		SELECT SEQ_Q, NAME, CONTENT FROM FILEUPLOAD WHERE NAME=#{name}
 	</select>
+	
+	<select id="selectList" resultMap="uploadMap">
+		SELECT SEQ_Q, NAME, CONTENT
+		FROM FILEUPLOAD
+		WHERE CONTENT=#{content}
+	</select>
+	
 <!--  
 	<update id="update" parameterType="QnaBoardDto">
 		UPDATE QNA_TB SET CONTENT_Q=#{contentQ} WHERE SEQ_Q=#{seqQ}

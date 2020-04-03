@@ -3,6 +3,9 @@ package com.finalproject.mobang.user.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,8 @@ public class ReviewController {
 	@RequestMapping(value="/review_list.user")
 	public String review(Model model, Criteria cri) {
 		
-		String email = "michaelhj@naver.com";
+		
+		String email= currentUserName();
 		
 		logger.info("select Review user list");
 		
@@ -42,7 +46,12 @@ public class ReviewController {
 		return "user/user_review";
 	}
 	
-	
+	public static String currentUserName() { 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) authentication.getPrincipal();
+		
+		return user.getUsername(); 
+	}
 	
 
 	

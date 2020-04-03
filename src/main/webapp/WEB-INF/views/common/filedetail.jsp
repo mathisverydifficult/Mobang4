@@ -27,7 +27,8 @@
 <h2>${imagepath }</h2>
 <img src="${imagepath }"><br/>
 
-
+<p>${filenames }</p>
+<p>${list }</p>
 
 <form action="download.all" method="post">
 		<input type="hidden" name="name" value="${dto.name }"/>

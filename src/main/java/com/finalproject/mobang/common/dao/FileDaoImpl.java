@@ -1,6 +1,9 @@
 package com.finalproject.mobang.common.dao;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,10 +40,22 @@ public class FileDaoImpl implements FileDao {
 		} catch (Exception e) {
 			System.out.println("error : selectone file");
 			e.printStackTrace();
-			
+		}
+		return dto;
+	}
+
+	@Override
+	public List<UploadFile> selectList(String src) {
+		
+		List<UploadFile> list = new ArrayList<UploadFile>();
+		
+		try {
+			list = sqlSessionTemplate.selectList(NAMESPACE+"selectList",src);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return dto;
+		return list;
 	}
 
 }

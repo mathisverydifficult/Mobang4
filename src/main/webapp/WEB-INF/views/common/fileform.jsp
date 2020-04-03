@@ -11,13 +11,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+ 
 	<h1>파일업로드 및 저장 연습</h1>
 	<br/>
 	<form:form action="insertfile.all" method="post" enctype="multipart/form-data" modelAttribute="uploadFile" >
 		file<br/>
 		<input type="file" id="gdsImg" name="mpfile" placeholder="파일선택 "/><br/>
-		<p style="color:red; font-weight:bold;"><form:errors path="mpfile"/></p> <!-- 에러가 발생할 때! -->
+		<p style="color:red; font-weight:bold;"><form:errors path="mpfile"/></p> 
 		<br/><br/>
 		<br/><br/>
 		content<br/>
@@ -27,6 +27,7 @@
 	<div class = "select_img"><img src=""/></div><br/>
 	
 	<!-- 선택한 파일에 대한 이미지가 출력되게 하는 스크립트 -->
+	
 	<script>
 	  $("#gdsImg").change(function(){
 		   if(this.files && this.files[0]) { 
@@ -39,5 +40,21 @@
 	  });
 	 </script>
 	<%=request.getRealPath("/") %>
+	 -->
+	
+	<h1>다중파일업로드 및 저장 연습</h1>
+	<br/>
+	<form:form action="requestupload.all" method="post" enctype="multipart/form-data" modelAttribute="uploadFile" >
+		file<br/>
+		<input multiple="multiple" type="file" name="file" placeholder="파일선택 "/><br/>
+		<p style="color:red; font-weight:bold;"><form:errors path="mpfile"/></p> 
+		<br/><br/>
+		<input type="text" name="src"/>
+		<input type="submit" value="업로드"/>
+	</form:form>
+	
+
+	<%=request.getRealPath("/") %>
+	
 </body>
 </html>

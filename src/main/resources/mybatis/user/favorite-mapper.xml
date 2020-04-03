@@ -25,7 +25,8 @@
 		(
 		#{email},
 		#{recnetFv},
-		SYSDATE
+		SYSDATE,
+		'Y'
 		)
 	]]>	
 	</insert>
@@ -54,14 +55,14 @@
 	<update id="updateRoomEx" parameterType="FavoriteDto">
 		UPDATE USERFAVORITE_TB SET
 		ROOM_EX='N'
-		WHERE RECENT_FV=#{recentFv} 
+		WHERE RECENT_FV=#{recentFv} AND NOT RECENT_FV IS NULL
 	</update>
 	
 	<!-- 찜한 방의 리스트를 출력하는 함수 -->
 	<select id="selectListDibs" resultMap="favoriteMap">
-		SELECT EMAIL, DIBS_FV, DATE_FV, ROOM_EX
+		SELECT DIBS_FV, DATE_FV
 		FROM USERFAVORITE_TB
-		WHERE EMAIL=#{email}
+		WHERE EMAIL=#{email} AND NOT DIBS_FV IS NULL
 		ORDER BY DATE_FV DESC
 	</select>
 	<!-- 최근 본 방을 30개까지 보여주는 함수 -->

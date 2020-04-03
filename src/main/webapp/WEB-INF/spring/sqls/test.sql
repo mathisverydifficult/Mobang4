@@ -256,9 +256,14 @@ SELECT * FROM USERFAVORITE_TB;
 SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
 		FROM (SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
 		FROM USERFAVORITE_TB
-		WHERE EMAIL='michaelhj@naver.com'
+		WHERE EMAIL='michaelhj@naver.com' AND NOT RECENT_FV IS NULL
 		ORDER BY DATE_FV DESC)
 		WHERE ROWNUM <= 30;
+	
+SELECT EMAIL,DIBS_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL='michaelhj@naver.com' AND NOT DIBS_FV IS NULL
+		ORDER BY DATE_FV DESC;
 	
 	
 DELETE FROM USERFAVORITE_TB WHERE EMAIL='michaelhj@naver.com';
@@ -334,7 +339,7 @@ INSERT INTO REVIEW_TB VALUES
 (
 	'michaelhj@naver.com',
 	'michaelhj@naver2.com',
-	'별로',
+	'이거 맞아? 너무 좋아~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
 	4.5,
 	SYSDATE
 );
