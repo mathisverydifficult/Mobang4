@@ -47,9 +47,9 @@ public class RoomBizImpl implements RoomBiz {
 		return dao.delete(no_rm);
 	}
 
-	@Override
-	public RoomDto insertcomplete(int no_rm) {
-		return dao.insertcomplete(no_rm);
-	}
+//	@Override
+//	public RoomDto insertcomplete(int no_rm) {
+//		return dao.insertcomplete(no_rm);
+//	}
 
 }

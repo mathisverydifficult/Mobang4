@@ -74,9 +74,18 @@ public class RoomController {
 	@RequestMapping(value = "/agent_roomcomplete.agent")
 	public ModelAndView roomComplete(ModelAndView mv, int no_rm) {
 		logger.info("mv를 사용해서 방올리기 완료페이지");
-		mv.addObject("dto", biz.insertcomplete(no_rm));
+		mv.addObject("dto", biz.selectOne(no_rm));
 		mv.setViewName("/agent/agent_roomcomplete");
 		
+		return mv;
+	}
+	
+	// 방 상세페이지
+	@RequestMapping(value = "/agent_roomdetail.agent")
+	public ModelAndView roomdetail(ModelAndView mv,int no_rm) {
+		logger.info("mv를 사용해서 방 상세페이지");
+		mv.addObject("dto", biz.selectOne(no_rm));
+		mv.setViewName("/agent/agent_roomdetail");
 		return mv;
 	}
 	
