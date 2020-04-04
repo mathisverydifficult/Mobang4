@@ -60,17 +60,17 @@ CREATE TABLE ROOM_TB
     ROOMIN_RM       DATE    	   NOT NULL, 
     CONTENT_RM      VARCHAR2(2000)    NOT NULL, 
     AIRCON_RM       VARCHAR2(10)    NULL, 
-    WASHER_RM       VARCHAR2(2)    NULL,
-    GASRANGE_RM		VARCHAR2(2)	   NULL,
-    INDUCTION_RM	VARCHAR2(2)	   NULL,
-    DESK_RM         VARCHAR2(2)    NULL, 
-    TV_RM           VARCHAR2(2)    NULL, 
-    REF_RM          VARCHAR2(2)    NULL, 
-    BED_RM          VARCHAR2(2)    NULL, 
-    SHOWHOUSE_RM    VARCHAR2(2)    NULL, 
-    CLOSET_RM       VARCHAR2(2)    NULL, 
-    MICROWAVE_RM    VARCHAR2(2)    NULL,
-    SINK_RM			VARCHAR2(2)	   NULL,
+    WASHER_RM       VARCHAR2(10)    NULL,
+    GASRANGE_RM		VARCHAR2(20)	   NULL,
+    INDUCTION_RM	VARCHAR2(10)	   NULL,
+    DESK_RM         VARCHAR2(10)    NULL, 
+    TV_RM           VARCHAR2(10)    NULL, 
+    REF_RM          VARCHAR2(10)    NULL, 
+    BED_RM          VARCHAR2(10)    NULL, 
+    SHOWHOUSE_RM    VARCHAR2(10)    NULL, 
+    CLOSET_RM       VARCHAR2(10)    NULL, 
+    MICROWAVE_RM    VARCHAR2(20)    NULL,
+    SINK_RM			VARCHAR2(10)	NULL,
     RENT_RM         VARCHAR2(10)    NOT NULL, 
     ROOMPRICE_RM    VARCHAR2(100)   NOT NULL, 
     EXPENSE_RM      VARCHAR2(50)   NOT NULL, 
@@ -85,29 +85,26 @@ CREATE TABLE ROOM_TB
     CONSTRAINT ROOM_TB_PK PRIMARY KEY (NO_RM)
 );
 
+SELECT * FROM ROOM_TB;
+
 INSERT INTO ROOM_TB VALUES
 (
-    1,
+     roomseq.nextval,
     'djkim1216@naver.com', 
-    '',
-    '김동주',
-    'Y',
     '이천에서 제일 싼집',
     'resources/user/img/test/sokcho.JPG',
     'Y',
     'Y',
     'Y',
-    'Y',
-    'Y',
     sysdate,
     '이천에서 제일 싼건 거짓말입니다. 비싸ㅛ', 
-    NULL,
-    NULL,
+    '에어컨',
+    '세탁기',
+    '가스레인지',
+    '인덕션',
     NULL,
     NULL,
     NULL, 
-    NULL,
-    NULL,
     NULL,
     NULL,
     NULL,
@@ -124,28 +121,24 @@ INSERT INTO ROOM_TB VALUES
     '15',
     '20', 
     'Y'
+
 );
 
 INSERT INTO ROOM_TB VALUES
 (
-    2,
+    roomseq.nextval,
     'djkim1216@naver.com', 
-    NULL,
-    '집이없어중개사',
-    'Y',
     '한강뷰',
     'FILEPATH+FILENAME',
-    'Y',
-    'Y',
     'Y',
     'Y',
     'Y',
     '20200331',
     '좋은집입니다', 
     NULL,
-    NULL,
-    NULL,
-    NULL,
+    '세탁기',
+    '가스레인지',
+    '책상',
     NULL, 
     NULL,
     NULL,
@@ -165,19 +158,15 @@ INSERT INTO ROOM_TB VALUES
     '4',
     '3', 
     'N'
+
 );
 
 INSERT INTO ROOM_TB VALUES
 (
-    3,
+    roomseq.nextval,
     'djkim1216@naver.com', 
-    '',
-    '김동주',
-    'N',
     '이천에서 원룸 최고!',
     'resources/user/img/favorite_1.png',
-    'Y',
-    'Y',
     'Y',
     'Y',
     'Y',
@@ -187,13 +176,13 @@ INSERT INTO ROOM_TB VALUES
     NULL,
     NULL,
     NULL,
-    NULL, 
+    'TV', 
+    '냉장고',
     NULL,
     NULL,
     NULL,
-    NULL,
-    NULL,
-    NULL,
+    '옷장',
+    '전자레인지',
     NULL,
     '전세',
     '1억2천만원',
@@ -210,31 +199,26 @@ INSERT INTO ROOM_TB VALUES
 
 INSERT INTO ROOM_TB VALUES
 (
-    4,
+    roomseq.nextval,
     'djkim1216@naver.com', 
-    '',
-    '김동주',
-    'N',
     '이천은 구데기입니다',
     'resources/user/img/favorite_2.png',
     'Y',
     'Y',
     'Y',
-    'Y',
-    'Y',
     sysdate,
     '모두가 떠나는 이시점', 
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL, 
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    '에어컨',
+    '세탁기',
+    '가스레인지',
+    '인덕션',
+    '책상', 
+    'TV',
+    '냉장고',
+    '침대',
+    '신발장',
+    '옷장',
+    '전자레인지',
     NULL,
     '전세',
     '1억2천만원',
@@ -251,15 +235,10 @@ INSERT INTO ROOM_TB VALUES
 
 INSERT INTO ROOM_TB VALUES
 (
-    5,
+    roomseq.nextval,
     'djkim1216@naver.com', 
-    '',
-    '김동주',
-    'N',
     '강남은 비싸다.',
     'resources/user/img/search.PNG',
-    'Y',
-    'Y',
     'Y',
     'Y',
     'Y',
@@ -267,15 +246,15 @@ INSERT INTO ROOM_TB VALUES
     '강남 오지고요 비싸고요 지리고요 짜증나고요', 
     NULL,
     NULL,
-    NULL,
-    NULL,
-    NULL, 
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    '가스레인지',
+    '인덕션',
+    '책상', 
+    'TV',
+    '냉장고',
+    '침대',
+    '신발장',
+    '옷장',
+    '전자레인지',
     NULL,
     '전세',
     '50억2천만원',
@@ -292,27 +271,22 @@ INSERT INTO ROOM_TB VALUES
 
 INSERT INTO ROOM_TB VALUES
 (
-    6,
+    roomseq.nextval,
     'djkim1216@naver.com', 
-    '',
-    '미래중개사',
-    'N',
     '좋은집',
     'resources/user/img/test/suntown.jpg',
     'Y',
     'Y',
     'Y',
-    'Y',
-    'Y',
     sysdate,
     '강남 오지고요 비싸고요 지리고요 짜증나고요', 
+    '에어컨',
     NULL,
-    NULL,
-    NULL,
-    NULL,
+    '가스레인지',
+    '인덕션',
     NULL, 
     NULL,
-    NULL,
+    '냉장고',
     NULL,
     NULL,
     NULL,
@@ -332,6 +306,8 @@ INSERT INTO ROOM_TB VALUES
 );
 
 SELECT * FROM room_tb;
+
+
 
 DROP TABLE REVIEW_TB;
 CREATE TABLE REVIEW_TB
@@ -399,12 +375,16 @@ CREATE TABLE AGENTJOIN_TB
 
 
 DROP TABLE USERFAVORITE_TB;
+
 CREATE TABLE USERFAVORITE_TB
-(
-    EMAIL        VARCHAR2    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
-    RECENT_FV    VARCHAR2    NULL REFERENCES ROOM_TB(NO_RM) ON DELETE NULL, 
-    DIBS_FV      VARCHAR2    NULL REFERENCES ROOM_TB(NO_RM) ON DELETE NULL  
+(				
+    EMAIL        VARCHAR2(300)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
+    RECENT_FV    NUMBER 	NULL REFERENCES ROOM_TB(NO_RM) ON DELETE SET NULL,   
+    DIBS_FV      NUMBER		NULL REFERENCES ROOM_TB(NO_RM) ON DELETE SET NULL,   
+    DATE_FV		 DATE,
+    ROOMEX		 VARCHAR2(10)
 );
+
 
 
 

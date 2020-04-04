@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +29,13 @@
 		<ul class="firstpara">
 			<li>
 				<p>
-					<span>원룸</span>
+					<span>${detail.roomtype_rm }</span>
 				</p>
 				<div class="myvalue">
-					<h1>
-						월세
-						2000
-						/40
-					</h1>
+					<h2>
+						${detail.rent_rm }
+						${detail.roomprice_rm }
+					</h2>
 					<span class="manwon">만원</span>
 				</div>
 			</li>
@@ -42,7 +43,7 @@
 				<p>전용면적</p>
 				<div class="myvalue">
 					<h1>
-						19.83㎡
+						${detail.roomsize_rm }㎡
 					</h1>
 				</div>
 			</li>
@@ -50,15 +51,15 @@
 				<p>관리비</p>
 				<div class="myvalue">
 					<h1>
-						5
+						${detail.expense_rm }
 					</h1>
 					<span class="manwon">만원</span>
 				</div>
 			</li>
 			<li class="phone" display: flex;>
 				<div>
-					<p>동주공인중개사</p>
-					<p>김동주</p>
+					<p>공인중개사이름</p>
+					<p>담당자이름</p>
 				</div>
 				<button>
 						연락처보기
@@ -67,7 +68,7 @@
 		</ul>
 	</div>
 	<div class="title">
-		<div style="display:inline-block"><h1>우리방을 소개합니다.</h1></div>
+		<div style="display:inline-block"><h1>${detail.title_rm }</h1></div>
 		
 		<div style="display:inline-block; float:right;">하트</div>
 	</div>
@@ -77,45 +78,47 @@
 				<li>
 					<p> · 해당층/건물층</p>
 					<div>
-						10층
+						${detail.floor_rm }
 						/
-						10층
+						${detail.floor2_rm }
 					</div>
 				</li>
 				<li>
 					<p> · 전용/계약면적</p>
 					<div>
-						45.94㎡
+						${detail.roomsize_rm }
+						/
+						${detail.roomsize2_rm }
 					</div>
 				</li>
 				<li>
 					<p> · 엘리베이터</p>
 					<div>
-						있음/없음
+						${detail.elevator_rm }
 					</div>
 				</li>
 				<li>
 					<p> · 주차장</p>
 					<div>
-						가능
+						${detail.parking_rm }
 					</div>
 				</li>
 				<li>
 					<p> · 반려동물</p>
 					<div>
-						불가능
+						${detail.animal_rm }
 					</div>
 				</li>
 				<li>
 					<p> · 베란다/발코니</p>
 					<div>
-						없음
+						${detail.veranda_rm }
 					</div>
 				</li>
 				<li>
 					<p> · 입주가능일</p>
 					<div>
-						2020.04.01
+						${detail.roomin_rm }
 					</div>
 				</li>
 				<li>
@@ -137,9 +140,68 @@
 	<div class="title">
 		<div style="display:inline-block"><h1>옵션</h1></div>
 	</div>
-	<div class="options">
-		<div>
-			
+	<div class="option">
+		<div class="options">
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/Aircon.jpg' />
+				</div>
+				<p>${detail.aircon_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/washer.jpg' />
+				</div>
+				<p>${detail.washer_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/gasrange.jpg' />
+				</div>
+				<p>${detail.gasrange_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/desk.jpg' />
+				</div>
+				<p>${detail.desk_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/tv.png' />
+				</div>
+				<p>${detail.tv_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/ref.jpg' />
+				</div>
+				<p>${detail.ref_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/bed.jpg' />
+				</div>
+				<p>${detail.bed_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/shoes.png' />
+				</div>
+				<p>${detail.showhouse_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/microwave.jpg' />
+				</div>
+				<p>${detail.microwave_rm }</p>
+			</div>
+			<div class="icon">
+				<div class="optionimg">
+					<img src='resources/user/img/icon/induction.jfif' />
+				</div>
+				<p>${detail.induction_rm }</p>
+			</div>
 		</div>
 	</div>
 	<div class="title">
@@ -151,7 +213,7 @@
 	
 	<div class="title">
 		<div style="display:inline-block"><h1>취향저격 룸메이트</h1></div>
-		<div style="display:inline-block; float:right;"><a>룸메이트 추천 페이지></a></div>
+		<div style="display:inline-block; float:right;"><a href="">룸메이트 추천 페이지></a></div>
 	</div>
 	<div class="roommate">
 		<div class="index"></div>
@@ -191,7 +253,7 @@
 	
 	var geocoder=new kakao.maps.services.Geocoder(); //주소 - 좌표 변환 객체 생성
 	
-	geocoder.addressSearch("경기도 이천시 창전동", function(result, status){	//address = "매물의 주소"
+		geocoder.addressSearch( "${detail.addr_rm}", function(result, status){	//address = "매물의 주소"
 		
 		//정상적으로 검색이 완료됐을 경우
 		if(status===kakao.maps.services.Status.OK){
@@ -212,7 +274,7 @@
 			'click',
 			function() {
 				//마커를 클릭하면 장소명이 인포 윈도우에 표출
-				infowindow.setContent('<div style="padding:5px; font-size:12px;">'+ roomname + '</div>');
+				infowindow.setContent('<div style="padding:4px; font-size:11px;">'+ '${detail.addr_rm}' + '</div>');
 				infowindow.open(map, marker);
 			});
 		

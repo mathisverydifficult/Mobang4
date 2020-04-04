@@ -10,9 +10,6 @@ public class SearchDto {
 	private Date dateSh;
 	
 	
-	
-	
-	
 	public SearchDto() {
 		super();
 	}

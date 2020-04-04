@@ -64,6 +64,7 @@ li {
 	width: 100%;
     margin-bottom: 30px;
     padding-inline-start: 0;
+    margin-left: 30px;
 }
 
 .detail>div>ul>li{
@@ -89,8 +90,7 @@ li {
 
 .options{
     position: relative;
-    padding-top: 100px;
-    padding-bottom: 120px;
+   	padding: 100px 80px;
     margin: 0px auto;
     border-top: 1px solid rgb(221, 221, 221);
 }
@@ -116,4 +116,29 @@ li {
     border: 1px solid rgb(221, 221, 221);
 }
 
+.icon{
+	float: left;
+    width: 162px;
+    height: 70px;
+    margin-bottom: 50px;
+}
 
+.option{
+	height: 400px;
+}
+
+.optionimg{
+	width: 70px;
+    height: 70px;
+    margin: 0px auto;
+}
+
+.optionimg>img{
+	width: 70px;
+    height: 70px;
+    margin: 0px auto;
+}
+
+.icon>p{
+	text-align: center;
+}

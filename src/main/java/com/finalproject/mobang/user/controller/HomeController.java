@@ -3,6 +3,8 @@ package com.finalproject.mobang.user.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.finalproject.mobang.user.biz.favoriteBiz;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
+import com.finalproject.mobang.user.dto.FavoriteDto;
 import com.finalproject.mobang.user.dto.roomsearchDto;
 
 /**
@@ -25,6 +28,9 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
+	private roomsearchDto roomdto;
+	private favoriteBiz favoritebiz;
+	private FavoriteDto favoritdto;
 	
 
 	@RequestMapping(value = "/")
@@ -70,10 +76,19 @@ public class HomeController {
 		
 		return "user/favorite_recent";
 	}
+	
 	@RequestMapping(value="/favorite_dibs.user")
-	public String favoritedibs(Model model) {
+	public int favoritedibs(HttpServletRequest request, FavoriteDto favoriteDto) {
 		
-		return "/user/favorite_dibs";
+		String id = (String) request.getSession().getAttribute("EMAIL");
+		
+		favoriteDto.setEmail(id);
+		
+		int res = 0;
+		
+		res = favoritebiz.insertDibs(favoriteDto);
+		
+		return res;
 	}
 	
 	@ResponseBody		//데이터 조회시 붙이는 annotation
@@ -86,10 +101,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/room_detail.user")
-	public String roomdetail(Model model) {
+	public String roomdetail(Model model, int myno) {
 		
 		
 		logger.info("select One");
+		
+		model.addAttribute("detail", roombiz.selectOne(myno));
 		
 		return "user/room_detail";
 	}

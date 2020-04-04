@@ -104,21 +104,6 @@
 				<div>
 					<div class="viewsection">
 						<div class="picturepart">
-							<c:forEach var="part" begin="0" end="3">
-								<div class="part">
-									<a href="">
-										<div class="picture">
-											<img src="resources/user/img/cat4.png">
-											<div class="favorite">
-												<img src="resources/user/img/favorite_1.png">
-											</div>
-										</div>
-										<p>
-											<a class="picturetitle" href="">고양이 키우기 가능</a>
-										<p>
-									</a>
-								</div>
-							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -146,8 +131,68 @@
 					<a>제휴문의</a>
 				</div>
 			</div>
-			<jsp:include page="/WEB-INF/views/user/footer.jsp" />
-		</div>
 		
+		</div>
+		<jsp:include page="/WEB-INF/views/user/footer.jsp" />	
+		
+	<script type="text/javascript">
+	$.ajax({
+		type: "GET", //요청 메소드 방식
+		url:"room_search.user",
+		dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+		data: {
+			keyword: keyword
+		},
+		success : function(result){
+			var list = new Array();
+			var html = "";
+			
+			for(var i=0; i<4; i++){
+				list[i] = result[i];
+				
+				html += "<div class='part' style='cursor:pointer;'>	"
+					+"<div class='favorite'>"
+					+"<img id='img1' src='resources/user/img/favorite_1.png' /></div>"
+					+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='picture'>"
+					+"<img src="+list[i].picture_rm+">"
+					+"</div>"
+				+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
+				+"<p class='explain'>"+list[i].addr_rm+"</p>"
+				+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
+				+"</div>"
+				
+				
+			}
+			$(".picturepart").html(html);
+			
+			$(".favorite").click(function(){
+				var favo = $(this).children();
+					if(favo.attr("src").indexOf("_2") > 0){
+						var test = favo.attr("src").replace("_2.png","_1.png");
+						favo.attr('src', test);
+					} else if(favo.attr("src").indexOf("_1") > 0){
+						var test = favo.attr("src").replace("_1.png","_2.png");
+						favo.attr('src', test);
+					}
+		   	});
+			
+		},
+		error : function(a, b, c){
+			alert(a + b + c);
+		}
+	});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
