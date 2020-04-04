@@ -16,6 +16,7 @@ import com.finalproject.mobang.common.biz.RoomBiz;
 import com.finalproject.mobang.common.dto.Criteria;
 import com.finalproject.mobang.common.dto.PageMaker;
 import com.finalproject.mobang.common.dto.RoomDto;
+import com.finalproject.mobang.common.utils.CurrentUserName;
 
 @Controller
 public class RoomController {
@@ -27,9 +28,11 @@ public class RoomController {
 	
 	// 매물관리 바로가기(매물 수,구매한 광고,방리스트)
 	@RequestMapping(value="/roommanage.agent",method = RequestMethod.GET)
-	public String roommanage(Model model,Criteria cri,String email) {
+	public String roommanage(Model model,Criteria cri) {
 		logger.info("select agent room list");
-		
+		String email = CurrentUserName.currentUserName();
+		//System.out.println(email);
+		logger.info(email);
 		model.addAttribute("list", biz.selectAgentList(cri,email));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="login">
+	
+	<resultMap type="loginDto" id="loginMap">
+		<result property="seq" column="SEQ"/>
+		<result property="eamil" column="EMAIL"/>
+		<result property="name" column="NAME"/>
+		<result property="pwd" column="PWD"/>
+		<result property="phone" column="PHONE"/>
+		<result property="authority" column="AUTHORITY"/>
+		<result property="userfile" column="USERFILE"/>
+		<result property="confirm" column="CONFIRM"/>
+		<result property="clean" column="CLEAN"/>
+		<result property="lifestyle" column="LIFESTYLE"/>
+		<result property="shower" column="SHOWER"/>
+		<result property="favorateage" column="FAVORATEAGE"/>
+		<result property="gender" column="GENDER"/>
+		<result property="animal" column="ANIMAL"/>
+		<result property="needs" column="NEDDS"/>
+		<result property="enabled" column="ENABLED"/>
+	</resultMap>
+	
+	
+	 
+	<insert id="userinsert" parameterType="LoginDto">
+		INSERT INTO USER_TB
+		VALUES(USER_SEQ.NEXTVAL, #{email}, #{name}, #{pwd}, #{phone}, 
+		'ROLE_USER', #{userfile,jdbcType=VARCHAR}, #{confirm,jdbcType=VARCHAR},
+		#{clean,jdbcType=VARCHAR}, #{lifestyle,jdbcType=VARCHAR}, #{shower,jdbcType=VARCHAR}, 
+		#{favorateage,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{animal,jdbcType=VARCHAR}, 
+		#{needs,jdbcType=VARCHAR}, '1')
+	</insert>
+	
+	
+	<!-- 
+	<insert id="userinsert" parameterType="LoginDto">
+		INSERT INTO USER_TB
+		VALUES(USER_SEQ.NEXTVAL, '99', '3', '4', '5',
+		'ROLE_USER', '', '',
+		'', '', '', 
+		'', '', '', 
+		'', '1')
+	</insert>
+	 --> 
+
+
+</mapper>

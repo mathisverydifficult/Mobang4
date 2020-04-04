@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +22,9 @@
 	<div class="container">
 		<h2><a class="mobang" href="#">모방</a>｜ 회원가입</h2>
 		<hr class="hr"/>
-		<form class="form-horizontal">
+		<form:form class="form-horizontal" enctype="multipart/form-data" modelAttribute="LoginDto" action="usersignup.all" method="post">
 			<div class="form-group">
+				<input type="hidden" path="random" id="random" value="77777" />
 				<label>이름</label>
 			    <div class="col-sm-13">
 					<input type="text" class="form-control" name="name" placeholder="이름을 입력하세요.">
@@ -30,15 +33,15 @@
 			<div class="form-group">
 				<label>이메일</label>
 				<div class="col-sm-13">
-					<input type="email" class="form-control" name="email" id="inputEmail3" placeholder="이메일을 입력하세요.">
-					<input class="send" type="button" value="전송">
+					<input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력하세요.">
+					<input class="send" type="button" id="emailBtn" value="전송">
 				</div>
 			</div>
 			<div class="form-group">
 				<label>인증번호</label>
 			    <div class="col-sm-13">
-					<input type="text" class="form-control" name="code" placeholder="인증번호를 입력하세요.">
-					<input class="email_confirm" type="button" value="확인">
+					<input type="text" class="form-control" id="code" name="code" placeholder="인증번호를 입력하세요.">
+					<input class="email_confirm" type="button" id="emailAuthBtn" value="확인">
 			    </div>
 			</div>
 			<div class="form-group">
@@ -174,7 +177,7 @@
 			<div class="button_group">
 				<input class="signup_btn" type="submit" value="회원가입">
 			</div>
-		</form>				
+		</form:form>				
 	</div>
 </body>
 </html>

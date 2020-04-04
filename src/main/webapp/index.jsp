@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="hello.do">hello</a>
+	<a href="index.all">hello</a>
 	
 	
 </body>

@@ -73,10 +73,6 @@ public class AgentController {
 		return "/agent/agent_premium_sales";
 	}
 	
-	@RequestMapping(value="/agent_mypage.agent")
-	public String mypage(Model model) {
-		return "/agent/agent_mypage";
-	}
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
 		model.addAttribute("dto", dto);
