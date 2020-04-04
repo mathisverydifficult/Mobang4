@@ -16,8 +16,8 @@
 
 <title>Insert title here</title>
 </head>
+<jsp:include page="/WEB-INF/views/user/header.jsp" />
 <body>
-<%@ include file="form/user_header.jsp" %>
 
 </body>
 </html>

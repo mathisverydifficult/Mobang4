@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+    uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +25,20 @@
 	<a href="agent_mypage.agent">마이페이지</a><br/>
 	<a href="agent_roommanage.agent">매물관리바로가기</a><br/>
 	
-	<a href="file.all">파일 업로드 기능</a>
+	<a href="file.all">파일 업로드 기능</a><br/>
 	
 	<a href="notice_list.admin">관리자 공지 페이지 들어가기</a>
 	
+	<br/>
+	<a href="logout.all">로그아웃</a><br/>
+	
+	
+	
+	
+	
+
+           
+
+
 </body>
 </html>

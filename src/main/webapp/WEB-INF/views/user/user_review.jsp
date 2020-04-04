@@ -2,71 +2,112 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="resources/user/css/user_review.css">
+<style type="text/css">
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <jsp:include page="/WEB-INF/views/user/header.jsp"/>
-
 <body>
 
-<div class="container" style="margin-bottom : 50px">
-	<div class="title">
-		<p class="word">My 리뷰</p>
-	</div>
-
-	<div class="secondpara">
-		<table class="table table-hover" border="1">
-		<col width="50"/>
-		<col width="800"/>
-		<col width="100"/>
-		<tr class="tabletitle">
-			<th>번호</th>
-			<th>내용</th>
-			<th>평가</th>
-		</tr>
-		<c:choose>
-			<c:when test="${empty list }">
-				<tr><td colspan="3">----------------작성된 글이 존재하지 않습니다--------------------</td></tr>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${list }" var="dto">
-					<tr>
-						<td>${dto.myno }</td>
-						<td>${dto.mycontent }</td>
-						<td>${dto.myname }</td>
-					</tr>
-					<div class="test" style=" background-image:url('${dto.mypath }')">됐냐?</div>
-					<div class="test" style=" background-image:url('resources/user/img/test/ex_hoban.jpg')">ㅎ2ㅎ2</div>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		<tr>
-	</table>
-		<div style="text-align:center">
-			<ul class="pagination">
-				<li>
-					<a href="#" aria-label="Previous"> 
-						<span aria-hidden="true">&laquo;</span>
-					</a>
-				</li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> 
-						<span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+<div class="jumbotron text-center" id="headblock" style="background-color:#33558B;">
+  <div>
+  	<h1 style="color: white;">My 리뷰</h1>
+  </div>
+  
 </div>
-<jsp:include page="/WEB-INF/views/user/footer.jsp" />
+
+<div class="container">
+
+	<table class="table table-bordered ">
+			<colgroup>
+				<col width="15%">
+				<col width="65%">
+				<col width="5%">
+				<col width="15%">
+			</colgroup>
+			<thead class="thead-light">
+				<tr>
+					<th>중개사</th>
+					<th>리뷰 내용</th>
+					<th>별점</th>
+					<th>날짜</th>
+				</tr>
+			</thead>
+			<tbody><!-- 나중에 db값 불러오기 -->
+			<c:choose>
+				<c:when test="${empty list }">
+					<tr class="table-danger">
+						<th colspan="4">===작성된 글이 존재하지 않습니다===</th>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<tr class="table-secondary">
+							<td>${dto.agemail }</td>
+							<td>${dto.rcontent }</td>
+							<td>${dto.star }</td>
+							<td><fmt:formatDate value="${dto.rdate }" pattern="yyyy.MM.dd"/></td>
+						<!-- 	<td><fmt:formatDate value="${dto.rdate }" pattern="yyyy.MM.dd"/></td>  -->
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			</tbody>
+	</table>
+
+	<ul class="pagination pagination-lg justify-content-center" id="paging">
+		<c:if test="${pageMaker.prev }">
+	    	<li class="page-item"><a class="page-link" href="review_list.user${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
+	    </c:if>
+	    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+	    	<li class="page-item"><a class="page-link" href="review_list.user${pageMaker.makeQuery(idx) }">${idx }</a></li>
+	    </c:forEach>
+	    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+	    	<li class="page-item"><a class="page-link" href="review_list.user${pageMaker.makeQuery(pageMaker.endPage+1) }">&raquo;</a></li>
+	    </c:if> 
+	</ul>
+	
+	
+	
+	
+	
+	
+</div>	
+<div class="container">
+
+	<h2>Simple Collapsible</h2>
+	
+	<c:forEach items="${list }" var="dto" varStatus="status"> <!-- forEach 객체마다 id 다르게 주는 방법 -->
+		
+		${dto.agemail } , ${dto.rcontent }, ${dto.star }, <fmt:formatDate value="${dto.rdate }" pattern="yyyy.MM.dd"/>,${status.count} <br/>
+		<button type="button" class="btn" data-toggle="collapse" data-target="#${status.count}">글 자세히 보기</button>
+		<div id="${status.count}" class="collapse">
+		  	<div class="form-group">
+			  <label for="comment">Comment:</label>
+			  <textarea class="form-control" rows="5" id="comment">${dto.rcontent }</textarea>
+			</div>	  	
+		</div>
+		<br/>
+	</c:forEach>	
+
+
+</div>		
+
+
+
+
 </body>
 </html>

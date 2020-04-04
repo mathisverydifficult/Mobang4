@@ -28,7 +28,6 @@ public class roomsearchBizImpl implements roomsearchBiz {
 
 	@Override
 	public roomsearchDto selectOne(int myno) {
-		// TODO Auto-generated method stub
 		return dao.selectOne(myno);
 	}
 

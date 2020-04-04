@@ -7,9 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
 import com.finalproject.mobang.common.biz.FileBiz;
@@ -71,7 +72,7 @@ public class CommonController {
 		try {
 			inputStream = file.getInputStream();
 			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "resources\\storage");
-			System.out.println("upload real path : "+path);
+			logger.info("upload real path : "+path);
 			
 			
 			File storage = new File(path);
@@ -134,6 +135,88 @@ public class CommonController {
 		
 	}
 	
+	@RequestMapping(value = "/requestupload.all")
+    public String requestupload2(MultipartHttpServletRequest mtfRequest, Model model) {
+        List<MultipartFile> fileList = mtfRequest.getFiles("file");
+        String src = mtfRequest.getParameter("src");
+        logger.info("src value : " + src);
+       
+        String path;
+     // 파일 저장하는 과정
+        InputStream inputStream = null;
+		OutputStream outputStream = null;
+		StringBuffer sb = new StringBuffer();
+		try {
+			path = WebUtils.getRealPath(mtfRequest.getSession().getServletContext(), "resources\\storage");
+			for (MultipartFile mf : fileList) {
+				
+				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+			    logger.info("원본 파일명 : "+originFileName);
+			    UUID uid = UUID.randomUUID();
+				String newFileName = uid+"_"+originFileName;
+				sb.append(newFileName+"//");
+				
+				logger.info("저장된 파일명 : "+newFileName);
+				inputStream = mf.getInputStream();
+				
+				File storage = new File(path);
+				if(!storage.exists()) {
+					storage.mkdir();
+				}
+				// 폴더에 파일을 만드는 것.
+				File newFile = new File(path+"\\"+newFileName);
+				if(!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				
+				outputStream = new FileOutputStream(newFile);
+				// 파일이 안읽어지면 확인할 용도
+				int read =0;
+				byte[] b = new byte[(int)mf.getSize()];
+				while((read=inputStream.read(b)) != -1) {
+					outputStream.write(b,0,read);
+				}
+				logger.info("파일 정상적으로 입력됨");
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				inputStream.close();
+				outputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String result = sb.toString();
+		model.addAttribute("filenames", result);
+		UploadFile fileObj = new UploadFile();
+		fileObj.setName(result);
+		fileObj.setContent(src);
+		
+		int res =0;
+		res=biz.insert(fileObj);
+		if(res>0) {
+			logger.info("글 작성 성공");
+			
+			// db에 저장된 정보 빼오기!
+			List<UploadFile> list = biz.selectList(src);
+			model.addAttribute("list",list);
+			
+			
+			return "/common/filedetail";
+		}
+		logger.info("글 작성 실패");
+		
+		
+
+		return  "/common/fileform";
+		
+    }
+	
 	@RequestMapping("/download.all")
 	@ResponseBody
 	public byte[] fileDownload(HttpServletRequest request, HttpServletResponse response, String name) {
@@ -161,5 +244,8 @@ public class CommonController {
 		// 바이트가 넘어옴... 이름을 설정해서 오기 때문에 파일을 다운받을 수 있게 됨
 	}
 	
+	
+
+
 	
 }

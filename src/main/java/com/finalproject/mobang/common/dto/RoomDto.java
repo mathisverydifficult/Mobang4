@@ -1,16 +1,17 @@
-package com.finalproject.mobang.agent.dto;
+package com.finalproject.mobang.common.dto;
 
-public class AgentRoomDto {
+import com.finalproject.mobang.agent.dto.AgentJoinDto;
+
+// test sql creat&insert 수정했어요
+public class RoomDto extends AgentJoinDto {
 	
 	private int no_rm;
 	private String email;
-	private String phone_rm;
-	private String agtname_rm;
-	private String plusyn_rm;
+//	private String phone_rm;
+//	private String agtname_rm;
+//	private String plusyn_rm;
 	private String title_rm;
 	private String picture_rm;
-	private String heat_rm;
-	private String builtin_rm;
 	private String animal_rm;
 	private String elevator_rm;
 	private String veranda_rm;
@@ -40,13 +41,43 @@ public class AgentRoomDto {
 	private String floor2_rm;
 	private String parking_rm;
 	
-	public AgentRoomDto() {
+	public RoomDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+// 인서트 결과 셀렉트원
+	public RoomDto(String rent_rm, String roomprice_rm, String roomtype_rm, String addr_rm, String addr_dt_rm,
+			String roomsize_rm, String roomsize2_rm) {
+		super();
+		this.rent_rm = rent_rm;
+		this.roomprice_rm = roomprice_rm;
+		this.roomtype_rm = roomtype_rm;
+		this.addr_rm = addr_rm;
+		this.addr_dt_rm = addr_dt_rm;
+		this.roomsize_rm = roomsize_rm;
+		this.roomsize2_rm = roomsize2_rm;
+	}
 
-	public AgentRoomDto(int no_rm, String email, String phone_rm, String agtname_rm, String plusyn_rm, String title_rm,
-			String picture_rm, String heat_rm, String builtin_rm, String animal_rm, String elevator_rm,
+
+// 중개사 리스트
+	public RoomDto(String title_rm, String picture_rm, String roomprice_rm, String expense_rm,
+			String roomtype_rm,String rent_rm, String roomsize_rm, String floor_rm) {
+		this.title_rm = title_rm;
+		this.picture_rm = picture_rm;
+		this.roomprice_rm = roomprice_rm;
+		this.expense_rm = expense_rm;
+		this.roomtype_rm = roomtype_rm;
+		this.rent_rm=rent_rm;
+		this.roomsize_rm = roomsize_rm;
+		this.floor_rm = floor_rm;
+	}
+
+
+
+	public RoomDto(int no_rm, String email, String title_rm,
+			String picture_rm,String animal_rm, String elevator_rm,
 			String veranda_rm, String roomin_rm, String content_rm, String aircon_rm, String washer_rm,
 			String gasrange_rm, String induction_rm, String desk_rm, String tv_rm, String ref_rm, String bed_rm,
 			String showhouse_rm, String closet_rm, String microwave_rm, String sink_rm, String rent_rm,
@@ -55,13 +86,8 @@ public class AgentRoomDto {
 		super();
 		this.no_rm = no_rm;
 		this.email = email;
-		this.phone_rm = phone_rm;
-		this.agtname_rm = agtname_rm;
-		this.plusyn_rm = plusyn_rm;
 		this.title_rm = title_rm;
 		this.picture_rm = picture_rm;
-		this.heat_rm = heat_rm;
-		this.builtin_rm = builtin_rm;
 		this.animal_rm = animal_rm;
 		this.elevator_rm = elevator_rm;
 		this.veranda_rm = veranda_rm;
@@ -107,30 +133,30 @@ public class AgentRoomDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPhone_rm() {
-		return phone_rm;
-	}
-
-	public void setPhone_rm(String phone_rm) {
-		this.phone_rm = phone_rm;
-	}
-
-	public String getAgtname_rm() {
-		return agtname_rm;
-	}
-
-	public void setAgtname_rm(String agtname_rm) {
-		this.agtname_rm = agtname_rm;
-	}
-
-	public String getPlusyn_rm() {
-		return plusyn_rm;
-	}
-
-	public void setPlusyn_rm(String plusyn_rm) {
-		this.plusyn_rm = plusyn_rm;
-	}
+//
+//	public String getPhone_rm() {
+//		return phone_rm;
+//	}
+//
+//	public void setPhone_rm(String phone_rm) {
+//		this.phone_rm = phone_rm;
+//	}
+//
+//	public String getAgtname_rm() {
+//		return agtname_rm;
+//	}
+//
+//	public void setAgtname_rm(String agtname_rm) {
+//		this.agtname_rm = agtname_rm;
+//	}
+//
+//	public String getPlusyn_rm() {
+//		return plusyn_rm;
+//	}
+//
+//	public void setPlusyn_rm(String plusyn_rm) {
+//		this.plusyn_rm = plusyn_rm;
+//	}
 
 	public String getTitle_rm() {
 		return title_rm;
@@ -148,21 +174,21 @@ public class AgentRoomDto {
 		this.picture_rm = picture_rm;
 	}
 
-	public String getHeat_rm() {
-		return heat_rm;
-	}
-
-	public void setHeat_rm(String heat_rm) {
-		this.heat_rm = heat_rm;
-	}
-
-	public String getBuiltin_rm() {
-		return builtin_rm;
-	}
-
-	public void setBuiltin_rm(String builtin_rm) {
-		this.builtin_rm = builtin_rm;
-	}
+//	public String getHeat_rm() {
+//		return heat_rm;
+//	}
+//
+//	public void setHeat_rm(String heat_rm) {
+//		this.heat_rm = heat_rm;
+//	}
+//
+//	public String getBuiltin_rm() {
+//		return builtin_rm;
+//	}
+//
+//	public void setBuiltin_rm(String builtin_rm) {
+//		this.builtin_rm = builtin_rm;
+//	}
 
 	public String getAnimal_rm() {
 		return animal_rm;
@@ -387,7 +413,6 @@ public class AgentRoomDto {
 	public void setSink_rm(String sink_rm) {
 		this.sink_rm = sink_rm;
 	}
-
 
 	
 }
