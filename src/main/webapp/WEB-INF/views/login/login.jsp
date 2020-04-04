@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <!-- bootstrap -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-signin-client_id" content="325091248005-pf5uu2ks9ra86akriht5nugkkb3e3kfk.apps.googleusercontent.com">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/login/css/login.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -14,6 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/login/js/login.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -43,9 +46,9 @@
 
 					<div class="button_group">
 						<input class="login_btn" type="submit" name="loginbtn" value="로그인">
-						<div class="sns" id="sns_naver">
-							<img src="resources/login/img/naver.png" class="img-rounded">
-							<input class="sns_btn" id="naver" type="button" value="네이버 로그인">
+						
+						<div class="sns" id="sns_google">
+							<div class="g-signin2" data-width="312px" data-height="43px" id="google" data-onsuccess="onSignIn"></div>
 						</div>
 						<div class="sns" id="sns_kakao">
 							<img src="resources/login/img/kakao.JPG" class="img-rounded">
@@ -57,8 +60,8 @@
 						<span>공인중개사라면?</span>
 					</div>
 					<div class="signup_click">
-						<a href="">이메일로 회원가입</a><br/>
-						<a href="">공인중개사 회원가입</a>
+						<a href='<c:url value="/usersignupform.all"/>'>이메일로 회원가입</a><br/>
+						<a href="<c:url value="/agent_home.agent"/>">공인중개사 회원가입</a>
 					</div>
 				</form>				
 			</div>
