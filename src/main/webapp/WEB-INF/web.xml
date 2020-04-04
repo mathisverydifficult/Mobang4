@@ -117,6 +117,7 @@ id="WebApp_ID" version="3.1">
     </filter-mapping>
     
     <!-- https 적용 -->
+<!--     
       <security-constraint> 
          <web-resource-collection> 
             <web-resource-name>my-secure-app</web-resource-name> 
@@ -127,6 +128,6 @@ id="WebApp_ID" version="3.1">
              <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
          </user-data-constraint> 
      </security-constraint> 
-
+ -->
 
 </web-app>
