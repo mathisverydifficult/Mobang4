@@ -149,6 +149,8 @@ public class RoomController {
 			logger.info(array[i]);
 		}
 		dto.setPicture_rm(result);
+		String email = CurrentUserName.currentUserName();
+		dto.setEmail(email); // 아이디를 받아와보자.
 		logger.info("dto.getPicture_rm"+ dto.getPicture_rm());
 		logger.info("dto.getTitle_rm"+dto.getTitle_rm());
 		logger.info("dto.getPicture_rm()"+dto.getPicture_rm());
