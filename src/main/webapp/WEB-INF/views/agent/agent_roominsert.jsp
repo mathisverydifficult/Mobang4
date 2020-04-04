@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@ function execDaumPostcode() {
             </div>
         </div>
     </section>
-			<form action="roominsertres.agent" method="post">
+			<form action="roominsertres.agent" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="missdla4929@naver.com" name="email"><!-- 나중에 session에 담긴 이메일값으로 변경 -->
     <section class = "map_container">
     	<div class = "container _00">
@@ -96,8 +97,8 @@ function execDaumPostcode() {
     <section class = "photo_container">
     	<div class = "container _01">
     		<p class = "title">사진등록</p>
+    		<input multiple="multiple" type="file" name="file" placeholder="파일선택 "/><br/>
     		<div class= "photo_wrap">
-	    		<div><input type="hidden" value="path" name="picture_rm"></div>
 	    		<div></div>
 	    		<div></div>
 	    		<div></div>

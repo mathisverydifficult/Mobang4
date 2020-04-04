@@ -83,6 +83,30 @@
     				<th>전용 / 계약면적</th>
     				<td>${dto.roomsize_rm }m2 / ${dto.roomsize2_rm }m2</td>
     			</tr>
+    			
+    			<c:choose>
+    				<c:when test="${empty imagelist }">
+    					<tr>
+    						<th>사진</th>
+    						<td>존재하는 파일이 없습니다.</td>
+    					</tr>
+    				</c:when>
+    				<c:otherwise>
+    					<tr>
+    						<th>사진존재함</th>
+    						<td>
+								<c:forEach items="${imagelist }" var="image">
+									<p><c:out value="${image}"/></p>
+									<p>${image }</p>
+									<img src="${image }">
+								</c:forEach>
+    						</td>
+    					</tr>
+    				</c:otherwise>
+    			</c:choose>
+    			
+    			
+    			
     		</table>
     		<div class="button">
     			<input type="button" value="확인" onclick="location.href='roommanage.agent?email=missdla4929@naver.com'">

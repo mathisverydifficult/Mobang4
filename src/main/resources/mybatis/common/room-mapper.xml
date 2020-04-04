@@ -18,12 +18,12 @@
 		ORDER BY NO_RM DESC
 	</select>
 	
-		<select id="listCount" resultType="int" parameterType="String">
-			<![CDATA[
-			SELECT COUNT(NO_RM)
-			FROM ROOM_TB
-			WHERE NO_RM > 0 AND EMAIL=#{email}
-			]]>
+	<select id="listCount" resultType="int" parameterType="String">
+		<![CDATA[
+		SELECT COUNT(NO_RM)
+		FROM ROOM_TB
+		WHERE NO_RM > 0 AND EMAIL=#{email}
+		]]>
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="roomDto">
@@ -73,15 +73,7 @@
 			</selectKey>
 	</insert>
 	
-	<select id="insertcomplete" parameterType="int" resultType="roomDto">
-		SELECT ADDR_RM,ADDR_DT_RM,ROOMPRICE_RM,RENT_RM,ROOMTYPE_RM,ROOMSIZE_RM,ROOMSIZE2_RM
-		FROM ROOM_TB
-		WHERE NO_RM=#{no_rm}
-	</select>
-	
-	<update id="">
-	
-	</update>
+
 	
 	<delete id="delete" parameterType="int">
   		DELETE FROM ROOM_TB WHERE NO_RM=#{no_rm}
