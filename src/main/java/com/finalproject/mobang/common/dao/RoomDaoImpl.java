@@ -111,7 +111,7 @@ public class RoomDaoImpl implements RoomDao {
 		RoomDto dto = null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"insertcomplete", no_rm);
+			dto=sqlSession.selectOne(NAMESPACE+"selectOne", no_rm);
 		} catch (Exception e) {
 			System.out.println("[DAO error] : insertcomplete");
 			e.printStackTrace();

@@ -204,6 +204,7 @@ public class CommonController {
 			
 			// db에 저장된 정보 빼오기!
 			List<UploadFile> list = biz.selectList(src);
+			 
 			model.addAttribute("list",list);
 			
 			
