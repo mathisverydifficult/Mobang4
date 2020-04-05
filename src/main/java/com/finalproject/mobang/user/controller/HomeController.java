@@ -3,16 +3,22 @@ package com.finalproject.mobang.user.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.finalproject.mobang.user.biz.FavoriteBiz;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
+import com.finalproject.mobang.user.dto.FavoriteDto;
 import com.finalproject.mobang.user.dto.roomsearchDto;
 
 /**
@@ -25,12 +31,14 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
+	private roomsearchDto roomdto;
+	private FavoriteBiz favoritebiz;
+	private FavoriteDto favoritdto;
 	
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
 		logger.info("home");
-
 		
 		return "user/user_home";
 	}
@@ -55,26 +63,11 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/index.all")
-	public String index() {
+	public String index(Model model) {
+		
 		return "index";
 	}
 
-	@RequestMapping(value="/roommate_recommand.user")
-	public String roommaterecommand(Model model) {
-		
-		return "/user/roommate_recommand";
-	}
-	
-	@RequestMapping(value="/favorite_recent.user")
-	public String favoriterencent(Model model) {
-		
-		return "user/favorite_recent";
-	}
-	@RequestMapping(value="/favorite_dibs.user")
-	public String favoritedibs(Model model) {
-		
-		return "/user/favorite_dibs";
-	}
 	
 	@ResponseBody		//데이터 조회시 붙이는 annotation
 	@RequestMapping(value="/room_search.user")
@@ -86,10 +79,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/room_detail.user")
-	public String roomdetail(Model model) {
+	public String roomdetail(Model model, int myno) {
 		
 		
 		logger.info("select One");
+		
+		model.addAttribute("detail", roombiz.selectOne(myno));
 		
 		return "user/room_detail";
 	}

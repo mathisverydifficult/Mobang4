@@ -1,7 +1,7 @@
 package com.finalproject.mobang.common.dto;
 
 import org.springframework.web.multipart.MultipartFile;
-// DB에 넣는 용도
+// DB에 넣는 용도뿐만 아니라 파일저장할 때도 사용함
 public class UploadFile {
 	private int seqQ;
 	private String name;
@@ -64,6 +64,9 @@ public class UploadFile {
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
+
+
+	
 	
 	
 	

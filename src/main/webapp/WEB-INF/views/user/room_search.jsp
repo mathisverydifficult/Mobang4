@@ -19,24 +19,11 @@
 	href="resources/user/css/room_search.css">
 <jsp:include page="/WEB-INF/views/user/header.jsp" />
 <script type="text/javascript">
-function favoriteclick(){
-	
-	$(".favorite").click(function(){
-		$(".favorite>img").each(function(){
-			if(this.src.indexOf("_2") > 0){
-				this.src=this.src.replace("_2.png","_1.png");
-			} else if(this.src.indexOf("_1") > 0){
-				this.src=this.src.replace("_1.png","_2.png");
-			}
-		});
-		
-	});
-}
+
 
 $(function(){
-	
+
 	$(".seperate").click(function(){
-		
 		if($(this).next().css("display")=="none" ){
 			$(".filterbox").hide();
 			var target = $(this).next();
@@ -265,24 +252,80 @@ $(function(){
 						list[i] = result[i];
 						
 						html += "<div class='room' style='cursor:pointer;'>	"
-							+"<a href=''> <div class='photo'>"
-							+"<img src="+list[i].mypath+">"
 							+"<div class='favorite'>"
-							+"<img id='img1' src='resources/user/img/favorite_1.png' onclick='favoriteclick()'/></div></div>"
-						+"<p class='explain' id='roomtitle'>"+list[i].myname+"</p>"
-						+"<p class='explain'>"+list[i].mytitle+"</p>"
-						+"<p class='explain'>"+list[i].myroomname+"</p>"
-						+"<p class='explain'>"+list[i].myaddress+"</a>"
+							+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_1.png' /></div>"
+							+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='photo'>"
+							+"<img src="+list[i].picture_rm+">"
+							+"</div>"
+						+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
+						+"<p class='explain'>"+list[i].addr_rm+"</p>"
+						+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
 						+"</div>"
-						myaddress(list[i].myaddress, list[i].myroomname);
+						myaddress(list[i].addr_rm, list[i].addr_dt_rm);
+						
+						
 					}
 					$(".leftpart").html(html);
+					
+					$(".favorite").click(function(){
+						var favo = $(this).children();
+							if(favo.attr("src").indexOf("_2") > 0){
+								var test = favo.attr("src").replace("_2.png","_1.png");
+								favo.attr('src', test);
+								var id = favo.attr('id');
+								favodelete(id);
+							} else if(favo.attr("src").indexOf("_1") > 0){
+								var test = favo.attr("src").replace("_1.png","_2.png");
+								favo.attr('src', test);
+								var id = favo.attr('id');
+ 								favorited(id);
+							}
+							
+				   	});
+					
 				},
 				error : function(a, b, c){
 					alert(a + b + c);
 				}
 			});
 		}
+		
+		function favodelete(id){
+			$.ajax({
+				type: "GET", //요청 메소드 방식
+				url:"dibs_delete.user",
+				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				data: {
+					dibsFv : id
+				
+				},
+				success : function(result){
+					alert(result);
+				},
+				error : function(a, b, c){
+					alert(a + b + c);
+				}
+			});
+		}
+		
+		function favorited(id){
+			$.ajax({
+				type: "GET", //요청 메소드 방식
+				url:"dibs_insert.user",
+				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				data: {
+					dibsFv : id
+				
+				},
+				success : function(result){
+					alert(result);
+				},
+				error : function(a, b, c){
+					alert(a + b + c);
+				}
+			});
+		}
+		
 
 		//주소로 좌표 검색
 		function myaddress(address, roomname){

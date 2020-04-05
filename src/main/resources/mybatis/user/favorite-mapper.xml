@@ -10,6 +10,7 @@
 		<result property="dateFv" column="DATE_FV"/>
 		<result property="roomEx" column="ROOM_EX"/>
 	</resultMap>
+	 
 <!-- 유저가 클릭했을 때 본 방을 DB에 추가하는 함수 -->
 <!-- 유저가 찜을 하면 DB에 추가하는 함수-->
 <!-- 찜한 방을 제거하는 함수 -->
@@ -25,22 +26,21 @@
 		(
 		#{email},
 		#{recnetFv},
-		SYSDATE
+		SYSDATE,
+		'Y'
 		)
 	]]>	
 	</insert>
 	
 	<!-- 유저가 찜을 하면 DB에 추가하는 함수-->
 	<insert id="insertDibs" parameterType="FavoriteDto"> 
-	<![CDATA[
 		INSERT INTO USERFAVORITE_TB (EMAIL, DIBS_FV, DATE_FV, ROOM_EX) VALUES
 		(
 		#{email},
 		#{dibsFv},
-		SYSDATE,
+		SYSDATE, 
 		'Y'
 		)
-	]]>	
 	</insert>
 	
 	
@@ -54,14 +54,14 @@
 	<update id="updateRoomEx" parameterType="FavoriteDto">
 		UPDATE USERFAVORITE_TB SET
 		ROOM_EX='N'
-		WHERE RECENT_FV=#{recentFv} 
+		WHERE RECENT_FV=#{recentFv} AND NOT RECENT_FV IS NULL
 	</update>
 	
 	<!-- 찜한 방의 리스트를 출력하는 함수 -->
 	<select id="selectListDibs" resultMap="favoriteMap">
-		SELECT EMAIL, DIBS_FV, DATE_FV, ROOM_EX
+		SELECT DIBS_FV, DATE_FV
 		FROM USERFAVORITE_TB
-		WHERE EMAIL=#{email}
+		WHERE EMAIL=#{email} AND NOT DIBS_FV IS NULL
 		ORDER BY DATE_FV DESC
 	</select>
 	<!-- 최근 본 방을 30개까지 보여주는 함수 -->
@@ -72,7 +72,7 @@
 		FROM USERFAVORITE_TB
 		WHERE EMAIL=#{email}
 		ORDER BY DATE_FV DESC)
-		WHERE ROWNUM <= 30;
+		WHERE ROWNUM <= 30
 	]]>		
 	</select>
 	
@@ -88,7 +88,7 @@
 	<!-- 본 방의 수를 출력하는 함수 -->
 	<select id="recentCount" resultType="int">
 	<![CDATA[
-		SELECT COUNT(RECENT_FV)
+		SELECT COUNT(email)
 		  FROM USERFAVORITE_TB
 		 WHERE EMAIL =#{email}
 	]]>

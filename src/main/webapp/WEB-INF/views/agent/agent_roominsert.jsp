@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@ function execDaumPostcode() {
             </div>
         </div>
     </section>
-			<form action="roominsertres.agent" method="post">
+			<form action="roominsertres.agent" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="missdla4929@naver.com" name="email"><!-- 나중에 session에 담긴 이메일값으로 변경 -->
     <section class = "map_container">
     	<div class = "container _00">
@@ -96,19 +97,69 @@ function execDaumPostcode() {
     <section class = "photo_container">
     	<div class = "container _01">
     		<p class = "title">사진등록</p>
+    		<input multiple="multiple" id ="gdsImgs" type="file" name="file" placeholder="파일선택 "/><br/>
     		<div class= "photo_wrap">
-	    		<div><input type="hidden" value="path" name="picture_rm"></div>
-	    		<div></div>
-	    		<div></div>
-	    		<div></div>
-	    		
-	    		<div></div>
-	    		<div></div>
-	    		<div></div>
-	    		<div></div>
+	    		<img id="img"/>
 	    	</div>
     	</div>
     </section>
+    
+    
+    <script>
+    // 파일 업로드 한  파일을 미리 보는 script
+    var sel_files =[];
+    
+    $(document).ready(function() {
+    	$("#gdsImgs").on("change", handleImgFileSelect);
+    });
+    
+    
+    function handleImgFileSelect(e) {
+    	
+    	sel_files =[];
+    	var files = e.target.files;
+    	var fileArr = Array.prototype.slice.call(files);
+    	
+    	var index=0;
+    	fileArr.forEach(function(f) {
+    		if(!f.type.match("image.*")) {
+    			alert("확장자는 이미지 확장자만 가능합니다.");
+    			return;
+    		}
+    		
+    		sel_files.push(f);
+    		
+    		var reader = new FileReader();
+    		reader.onload = function(e) {
+    			var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\""+
+    						"id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+    			$(".photo_wrap").append(html);
+    			index++;
+    		}
+    		reader.readAsDataURL(f);
+    	});
+    	
+    	
+    	
+    	
+    	
+    }
+    // 사진 클릭하면 삭제
+    function deleteImageAction(index) {
+    	console.log("index : "+index);
+    	sel_files.splice(index, 1);
+    	
+    	var img_id = "#img_id_"+index;
+    	$(img_id).remove();
+    	
+    	console.log(sel_files);
+    	
+    }
+    
+    
+	 
+	 </script>
+    
     <section class = "dt_container">
     	<div class = "container _02">
     		<p class = "title">상세정보</p>
@@ -160,20 +211,20 @@ function execDaumPostcode() {
     					<th>옵션</th>
     					<td>
     						<div>
-    							<input type = "checkbox" name = "aircon_rm" value = "Y"/><span>에어컨</span>
-    							<input type = "checkbox" name = "ref_rm" value = "Y"/><span>냉장고</span>
-    							<input type = "checkbox" name = "washer_rm" value = "Y"/><span>세탁기</span>
-    							<input type = "checkbox" name = "gasrange_rm" value = "Y"/><span>가스레인지</span>
-    							<input type = "checkbox" name = "induction_rm" value = "Y"/><span>인덕션</span>
-    							<input type = "checkbox" name = "microwave_rm" value = "Y"/><span>전자레인지</span>
+    							<input type = "checkbox" name = "aircon_rm" value = "에어컨"/><span>에어컨</span>
+    							<input type = "checkbox" name = "ref_rm" value = "냉장고"/><span>냉장고</span>
+    							<input type = "checkbox" name = "washer_rm" value = "세탁기"/><span>세탁기</span>
+    							<input type = "checkbox" name = "gasrange_rm" value = "가스레인지"/><span>가스레인지</span>
+    							<input type = "checkbox" name = "induction_rm" value = "인덕션"/><span>인덕션</span>
     						</div>
     						<div>
-    							<input type = "checkbox" name = "tv_rm" value = "Y"/><span>TV</span>
-    							<input type = "checkbox" name = "desk_rm" value = "Y"/><span>책상</span>
-    							<input type = "checkbox" name = "bed_rm" value = "Y"/><span>침대</span>
-    							<input type = "checkbox" name = "closet_rm" value = "Y"/><span>옷장</span>
-    							<input type = "checkbox" name = "showhouse_rm" value = "Y"/><span>신발장</span>
-    							<input type = "checkbox" name = "sink_rm" value = "Y"/><span>싱크대</span>
+    							<input type = "checkbox" name = "microwave_rm" value = "전자레인지"/><span>전자레인지</span>
+    							<input type = "checkbox" name = "tv_rm" value = "TV"/><span>TV</span>
+    							<input type = "checkbox" name = "desk_rm" value = "책상"/><span>책상</span>
+    							<input type = "checkbox" name = "bed_rm" value = "침대"/><span>침대</span>
+    							<input type = "checkbox" name = "closet_rm" value = "옷장"/><span>옷장</span>
+    							<input type = "checkbox" name = "showhouse_rm" value = "신발장"/><span>신발장</span>
+    							<!--<input type = "checkbox" name = "sink_rm" value = "싱크대"/><span>싱크대</span> -->
     						</div>
     					</td>
     				</tr>

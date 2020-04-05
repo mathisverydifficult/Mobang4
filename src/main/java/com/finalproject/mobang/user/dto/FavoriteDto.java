@@ -10,9 +10,6 @@ public class FavoriteDto {
 	private String roomEx;
 	
 	
-	
-	
-	
 	public FavoriteDto() {
 		super();
 	}

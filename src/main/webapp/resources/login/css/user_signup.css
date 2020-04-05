@@ -170,6 +170,10 @@ label.chk {
     padding-left: 39px;
 }
 
+#roomate{
+	display: none;
+}
+
 /*modal*/
 
 .modal-content {

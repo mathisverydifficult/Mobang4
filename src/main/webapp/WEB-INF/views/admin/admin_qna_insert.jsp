@@ -79,8 +79,7 @@ function validate() {
 			<br/>
 			<label>제목</label>
 			<input type="text" id="titleQ" name="titleQ"/> <br/>
-			
-								
+		
 			<label>내용</label><br/>
 			<textarea id="summernote" name="contentQ"></textarea>
 		    <script>

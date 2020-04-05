@@ -241,7 +241,6 @@ INSERT INTO ROOM_TB VALUES
     '월세',
     '500/30',
     '10',
-<<<<<<< HEAD
     '오피스텔',
     '경기도 고양시 덕양구 행신동 946',
     '햇빛마을',
@@ -269,16 +268,27 @@ CREATE TABLE USERFAVORITE_TB
 
 INSERT INTO USERFAVORITE_TB VALUES
 (
-	'michaelhj@naver1.com',
+	'michaelhj@naver.com',
 	1,
 	NULL,
 	SYSDATE,
 	'Y'
 );
 SELECT * FROM USERFAVORITE_TB;
-SELECT COUNT(RECENT_FV)
-		  FROM USERFAVORITE_TB
-		 WHERE EMAIL ='michaelhj@naver.com';
+
+SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
+		FROM (SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL='michaelhj@naver.com' AND NOT RECENT_FV IS NULL
+		ORDER BY DATE_FV DESC)
+		WHERE ROWNUM <= 30;
+	
+SELECT EMAIL,DIBS_FV, DATE_FV, ROOM_EX
+		FROM USERFAVORITE_TB
+		WHERE EMAIL='michaelhj@naver.com' AND NOT DIBS_FV IS NULL
+		ORDER BY DATE_FV DESC;
+	
+	
 DELETE FROM USERFAVORITE_TB WHERE EMAIL='michaelhj@naver.com';
 
 
@@ -317,6 +327,7 @@ SELECT SEQ_SH, EMAIL,
 	WHERE ROWNUM <= 5;	  
 
 DROP TABLE NOTICE_TB;
+DROP SEQUENCE SEQ_NT_SEQ;
 CREATE SEQUENCE SEQ_NT_SEQ;
 CREATE TABLE NOTICE_TB
 (
@@ -327,8 +338,14 @@ CREATE TABLE NOTICE_TB
     CONSTRAINT NOTICE_TB_PK PRIMARY KEY (SEQ_NT)
 );
 
-
-
+SELECT * FROM NOTICE_TB;
+INSERT INTO NOTICE_TB VALUES
+		(
+		SEQ_NT_SEQ.NEXTVAL,
+		'공지1',
+		'어떤 내용을 공지할까요',
+		SYSDATE
+		);
 
 -- reivew table
 DROP TABLE REVIEW_TB;
@@ -338,14 +355,14 @@ CREATE TABLE REVIEW_TB
     AGEMAIL     VARCHAR2(100)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
     RCONTENT    VARCHAR2(300)    NOT NULL,
     STAR        NUMBER    NOT NULL,
-    RDATE		DATE 	  NOT NULL,
-    CONSTRAINT REVIEW_TB_PK PRIMARY KEY (EMAIL,AGEMAIL)
+    RDATE		DATE 	  NOT NULL
 );
+--CONSTRAINT REVIEW_TB_PK PRIMARY KEY (EMAIL,AGEMAIL)
 INSERT INTO REVIEW_TB VALUES
 (
 	'michaelhj@naver.com',
 	'michaelhj@naver2.com',
-	'별로',
+	'이거 맞아? 너무 좋아~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
 	4.5,
 	SYSDATE
 );
@@ -354,9 +371,18 @@ SELECT * FROM REVIEW_TB;
 
 
 
+
+INSERT INTO USER_TB 
+VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '관리자', '{noop}1234', '010-0000-0000',
+'ROLE_ADMIN', '', '', '', '', '', '', '', '', '', '1');
+INSERT INTO USER_TB 
+VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver2.com', '관리자', '{noop}1234', '010-0000-0000',
+'ROLE_ADMIN', '', '', '', '', '', '', '', '', '', '1');
+
 		SELECT TITLE_RM,PICTURE_RM,PLUSYN_RM,ROOMTYPE_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM
 		FROM ROOM_TB
 		ORDER BY NO_RM DESC
+
 
 
 
@@ -369,6 +395,7 @@ DROP TABLE AGENTJOIN_TB;
 CREATE TABLE AGENTJOIN_TB
 (
     EMAIL             VARCHAR2(100)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
+    AGTNAME_AGT		  VARCHAR2(100)	  NOT NULL,
     MOBILE_AGT        VARCHAR2(20)    NOT NULL, 
     PHONE_AGT         VARCHAR2(20)    NOT NULL, 
     ADDR_AGT          VARCHAR2(100)   NOT NULL, 
@@ -386,7 +413,7 @@ CREATE TABLE AGENTJOIN_TB
 --    PLUSYN_RM       VARCHAR2(2)    NOT NULL,
 
 INSERT INTO AGENTJOIN_TB
-VALUES('missdla4929@naver.com', '010-0000-1010', '031-777-6666', '경기도 광주',
+VALUES('missdla4929@naver.com','도미솔중개소','010-0000-1010', '031-777-6666', '경기도 광주',
 '면허번호', '사업자등록번호', '면허번호경로', '사업자등록번호경로', '임미경','Y');
 
 
@@ -400,3 +427,40 @@ VALUES('missdla4929@naver.com', '010-0000-1010', '031-777-6666', '경기도 광�
 		                       ) MP
 		WHERE EMAIL='missdla4929@naver.com' AND RNUM BETWEEN 1 AND 2
 		ORDER BY NO_RM DESC
+		
+		
+SELECT B.AGTNAME_AGT,B.QUALNO_AGT,B.COMNO_AGT,B.ADDR_AGT,B.NAME_AGT,
+			   A.USERFILE,A.NAME,EMAIL,A.PHONE
+		FROM USER_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
+		WHERE EMAIL='missdla4929@naver.com';
+		
+		
+		
+		
+INSERT INTO ITEM_TB
+VALUES('일반','88000');
+INSERT INTO ITEM_TB
+VALUES('일반(오피스텔)','44000');
+INSERT INTO ITEM_TB
+VALUES('프리미엄(동)','142000');
+INSERT INTO ITEM_TB
+VALUES('프리미엄(역)','233000');
+INSERT INTO ITEM_TB
+VALUES('프리미엄(대학교)','130000');
+INSERT INTO ITEM_TB
+VALUES('플러스(정기권)','18000');
+INSERT INTO ITEM_TB
+VALUES('플러스(1일권)','1000');
+
+		SELECT NAME_IT,A.ADDR_PAY,A.STARTDATE_PAY,A.ENDDATE_PAY,B.PRICE_IT
+		FROM PAY_TB A JOIN ITEM_TB B USING(NAME_IT)
+		WHERE EMAIL='missdla4929@naver.com';
+
+INSERT INTO PAY_TB
+VALUES('일반','missdla4929@naver.com','',TO_CHAR(SYSDATE,'YYYY-MM-DD'),TO_CHAR(ADD_MONTHS(SYSDATE,+1),'YYYY-MM-DD'));
+INSERT INTO PAY_TB
+VALUES('프리미엄(동)','missdla4929@naver.com','역삼동',TO_CHAR(SYSDATE,'YYYY-MM-DD'),TO_CHAR(ADD_MONTHS(SYSDATE,+1),'YYYY-MM-DD'));
+INSERT INTO PAY_TB
+VALUES('프리미엄(역)','missdla4929@naver.com','역삼역',TO_CHAR(SYSDATE,'YYYY-MM-DD'),TO_CHAR(ADD_MONTHS(SYSDATE,+1),'YYYY-MM-DD'));
+
+SELECT * FROM PAY_TB
