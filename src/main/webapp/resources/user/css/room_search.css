@@ -35,6 +35,7 @@
 
 .smallfilter{
 	display:inline-block;
+	width:auto;
 }
 
 .seperate{
@@ -51,14 +52,7 @@
     cursor:pointer;
 }
 
-.favorite{
-	width:36px;
-	position: absolute;
-	top: 3px;
-	right: 7px;
-	z-index:1;
-	cursor:pointer;
-}
+
 
 .room{
 	margin-left:10px;
@@ -93,7 +87,7 @@
 .favorite{
 	width: 36px;
     height: 36px;
-    top: -152px;
+    top: 33px;
     z-index: 1;
     left: 131px;
     cursor: pointer;

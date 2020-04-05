@@ -1,1 +1,144 @@
 @charset "UTF-8";
+
+ul, li {
+	list-style: none;
+}
+
+li {
+	display: inline-block;
+}
+
+.top{
+	position:relative;
+}
+
+.firstpara {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	width: 100%;
+	padding-top: 35px;
+	margin-bottom: 35px;
+}
+
+.firstpara>li{
+	padding-right: 30px;
+	margin-left:30px;
+	border-right: 1px solid lightgray;
+}
+
+.myvalue{
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 37px;
+}
+
+.manwon{
+	top: 8px;
+    position: relative;
+}
+
+.phone{
+	display: flex;
+    align-items: center;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    flex: 1 1 0%;
+}
+
+.phone>div>p{
+	text-align: right;
+}
+
+.title{
+	border-bottom: 1px solid lightgray;
+}
+
+.detail>div{
+	width:100%;
+	position:relative;
+}
+
+.detail>div>ul{
+	width: 100%;
+    margin-bottom: 30px;
+    padding-inline-start: 0;
+    margin-left: 30px;
+}
+
+.detail>div>ul>li{
+	float: left;
+    width: 25%;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+.detail>div>ul>li>p{
+	float: left;
+    width: 100px;
+    color: rgb(136, 136, 136);
+    font-size: 14px;
+}
+
+.detail>ul>li>div{
+	float: left;
+    color: rgb(34, 34, 34);
+    font-size: 14px;
+}
+
+.options{
+    position: relative;
+   	padding: 100px 80px;
+    margin: 0px auto;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.location{
+	padding:100px;
+}
+
+.roommate{
+	margin-top:50px;
+}
+
+.thisagentroom{
+	margin-top:50px;
+}
+
+.index{
+	margin-left: 4%;
+	margin-bottom:5%;
+    float: left;
+    width: 20%;
+    height: 230px;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.icon{
+	float: left;
+    width: 162px;
+    height: 70px;
+    margin-bottom: 50px;
+}
+
+.option{
+	height: 400px;
+}
+
+.optionimg{
+	width: 70px;
+    height: 70px;
+    margin: 0px auto;
+}
+
+.optionimg>img{
+	width: 70px;
+    height: 70px;
+    margin: 0px auto;
+}
+
+.icon>p{
+	text-align: center;
+}

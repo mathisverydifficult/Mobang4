@@ -12,7 +12,8 @@
 	<a href="home.user">홈</a><br/>
 	<a href="roommate_recommand.user">추천받은 룸메이트</a><br/>
 	<a href="favorite_recent.user">최근 본 방</a><br/>
-	<a href="favorite_dibs.user">찜한 방</a><br>
+	<a href="favorite_dibs.user">찜한 방</a><br/>
+	<a href="room_detail.user">방 상세보기</a><br/>
 	<br/><br/><br/>
 	
 	<a href="admin_account.admin">관리자 유저관리</a><br/>

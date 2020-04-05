@@ -1,13 +1,17 @@
 package com.finalproject.mobang.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.mobang.user.biz.FavoriteBiz;
+import com.finalproject.mobang.user.dto.FavoriteDto;
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +36,40 @@ public class FavoriteController {
 		
 		return "user/favorite_recent";
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/dibs_insert.user")
+	public int favoritedibs(HttpServletRequest request, FavoriteDto favoriteDto) {
+		
+		
+		
+//		String id = (String) request.getSession().getAttribute("email");
+		
+		favoriteDto.setEmail("djkim1216@naver.com");
+		
+		int res = 0;
+		
+		res = biz.insertDibs(favoriteDto);
+		
+		return res;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/dibs_delete.user")
+	public int dibsdelete(HttpServletRequest request, FavoriteDto favoriteDto) {
+		
+		
+		
+//		String id = (String) request.getSession().getAttribute("email");
+		
+		favoriteDto.setEmail("djkim1216@naver.com");
+		
+		int res = 0;
+		
+		res = biz.deleteDibs(favoriteDto);
+		
+		return res;
 	}
 	
 	@RequestMapping(value="/favorite_dibs.user")
