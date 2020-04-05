@@ -136,51 +136,54 @@
 		<jsp:include page="/WEB-INF/views/user/footer.jsp" />	
 		
 	<script type="text/javascript">
-	$.ajax({
-		type: "GET", //요청 메소드 방식
-		url:"room_search.user",
-		dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
-		data: {
-			keyword: keyword
-		},
-		success : function(result){
-			var list = new Array();
-			var html = "";
+	$(document).ready(function(){
+		$.ajax({
+			type: "GET", //요청 메소드 방식
+			url:"diblist.user",
+			dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
 			
-			for(var i=0; i<4; i++){
-				list[i] = result[i];
+			success : function(result){
+				alert("success : "+result);
+				var list = new Array();
+				var html = "";
 				
-				html += "<div class='part' style='cursor:pointer;'>	"
-					+"<div class='favorite'>"
-					+"<img id='img1' src='resources/user/img/favorite_1.png' /></div>"
-					+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='picture'>"
-					+"<img src="+list[i].picture_rm+">"
+				for(var i=0; i<4; i++){
+					list[i] = result[i];
+					
+					html += "<div class='part' style='cursor:pointer;'>	"
+						+"<div class='favorite'>"
+						+"<img id='img1' src='resources/user/img/favorite_2.png' /></div>"
+						+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='picture'>"
+						+"<img src="+list[i].picture_rm+">"
+						+"</div>"
+					+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
+					+"<p class='explain'>"+list[i].addr_rm+"</p>"
+					+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
 					+"</div>"
-				+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
-				+"<p class='explain'>"+list[i].addr_rm+"</p>"
-				+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
-				+"</div>"
+					
+				}
+				$(".picturepart").html(html);
 				
+				$(".favorite").click(function(){
+					var favo = $(this).children();
+						if(favo.attr("src").indexOf("_2") > 0){
+							var test = favo.attr("src").replace("_2.png","_1.png");
+							favo.attr('src', test);
+						} else if(favo.attr("src").indexOf("_1") > 0){
+							var test = favo.attr("src").replace("_1.png","_2.png");
+							favo.attr('src', test);
+						}
+			   	});
 				
+			},
+			error : function(a, b, c){
+				alert("에러:"+a + b + c);
 			}
-			$(".picturepart").html(html);
-			
-			$(".favorite").click(function(){
-				var favo = $(this).children();
-					if(favo.attr("src").indexOf("_2") > 0){
-						var test = favo.attr("src").replace("_2.png","_1.png");
-						favo.attr('src', test);
-					} else if(favo.attr("src").indexOf("_1") > 0){
-						var test = favo.attr("src").replace("_1.png","_2.png");
-						favo.attr('src', test);
-					}
-		   	});
-			
-		},
-		error : function(a, b, c){
-			alert(a + b + c);
-		}
+		});
+	
+		
 	});
+	
 	</script>
 </body>
 </html>

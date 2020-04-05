@@ -34,6 +34,7 @@ public class roomsearchDto {
 	private String floor_rm;
 	private String floor2_rm;
 	private String parking_rm;
+	private int checkdib;
 	
 	public roomsearchDto() {}
 
@@ -42,7 +43,7 @@ public class roomsearchDto {
 			String washer_rm, String gasrange_rm, String induction_rm, String desk_rm, String tv_rm, String ref_rm,
 			String bed_rm, String showhouse_rm, String closet_rm, String microwave_rm, String sink_rm, String rent_rm,
 			String roomprice_rm, String expense_rm, String roomtype_rm, String addr_rm, String addr_dt_rm,
-			String roomsize_rm, String roomsize2_rm, String floor_rm, String floor2_rm, String parking_rm) {
+			String roomsize_rm, String roomsize2_rm, String floor_rm, String floor2_rm, String parking_rm, int checkdib) {
 		this.no_rm = no_rm;
 		this.email = email;
 		this.title_rm = title_rm;
@@ -75,6 +76,7 @@ public class roomsearchDto {
 		this.floor_rm = floor_rm;
 		this.floor2_rm = floor2_rm;
 		this.parking_rm = parking_rm;
+		this.checkdib = checkdib;
 	}
 
 	public int getNo_rm() {
@@ -331,6 +333,14 @@ public class roomsearchDto {
 
 	public void setParking_rm(String parking_rm) {
 		this.parking_rm = parking_rm;
+	}
+
+	public int getCheckdib() {
+		return checkdib;
+	}
+
+	public void setCheckdib(int checkdib) {
+		this.checkdib = checkdib;
 	}
 	
 
