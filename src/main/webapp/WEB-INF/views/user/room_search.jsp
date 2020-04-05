@@ -272,6 +272,8 @@ $(function(){
 							if(favo.attr("src").indexOf("_2") > 0){
 								var test = favo.attr("src").replace("_2.png","_1.png");
 								favo.attr('src', test);
+								var id = favo.attr('id');
+								favodelete(id);
 							} else if(favo.attr("src").indexOf("_1") > 0){
 								var test = favo.attr("src").replace("_1.png","_2.png");
 								favo.attr('src', test);
@@ -288,13 +290,32 @@ $(function(){
 			});
 		}
 		
-		function favorited(id){
+		function favodelete(id){
 			$.ajax({
 				type: "GET", //요청 메소드 방식
-				url:"favorite_dibs.user",
+				url:"dibs_delete.user",
 				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
 				data: {
 					dibsFv : id
+				
+				},
+				success : function(result){
+					alert(result);
+				},
+				error : function(a, b, c){
+					alert(a + b + c);
+				}
+			});
+		}
+		
+		function favorited(id){
+			$.ajax({
+				type: "GET", //요청 메소드 방식
+				url:"dibs_insert.user",
+				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				data: {
+					dibsFv : id
+				
 				},
 				success : function(result){
 					alert(result);

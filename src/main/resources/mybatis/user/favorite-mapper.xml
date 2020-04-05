@@ -10,6 +10,7 @@
 		<result property="dateFv" column="DATE_FV"/>
 		<result property="roomEx" column="ROOM_EX"/>
 	</resultMap>
+	 
 <!-- 유저가 클릭했을 때 본 방을 DB에 추가하는 함수 -->
 <!-- 유저가 찜을 하면 DB에 추가하는 함수-->
 <!-- 찜한 방을 제거하는 함수 -->
@@ -33,7 +34,6 @@
 	
 	<!-- 유저가 찜을 하면 DB에 추가하는 함수-->
 	<insert id="insertDibs" parameterType="FavoriteDto"> 
-	<![CDATA[
 		INSERT INTO USERFAVORITE_TB (EMAIL, DIBS_FV, DATE_FV, ROOM_EX) VALUES
 		(
 		#{email},
@@ -41,7 +41,6 @@
 		SYSDATE, 
 		'Y'
 		)
-	]]>	
 	</insert>
 	
 	

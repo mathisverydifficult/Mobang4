@@ -69,26 +69,6 @@ public class HomeController {
 	}
 
 	
-	@RequestMapping(value="/favorite_recent.user")
-	public String favoriterencent(Model model) {
-		
-		return "user/favorite_recent";
-	}
-	
-	@RequestMapping(value="/favorite_dibs.user")
-	public int favoritedibs(HttpServletRequest request, FavoriteDto favoriteDto) {
-		
-		String id = (String) request.getSession().getAttribute("EMAIL");
-		
-		favoriteDto.setEmail(id);
-		
-		int res = 0;
-		
-		res = favoritebiz.insertDibs(favoriteDto);
-		
-		return res;
-	}
-	
 	@ResponseBody		//데이터 조회시 붙이는 annotation
 	@RequestMapping(value="/room_search.user")
 	public List<roomsearchDto> roomsearch(Model model, String keyword) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
