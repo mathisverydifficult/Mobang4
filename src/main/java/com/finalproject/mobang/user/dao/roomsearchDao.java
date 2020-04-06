@@ -9,8 +9,8 @@ import com.finalproject.mobang.user.dto.roomsearchDto;
 public interface roomsearchDao {
 	String NAMESPACE = "roomsearch.";
 	
-	public List<roomsearchDto> dibList();
-	public List<roomsearchDto> selectsearchList(String keyword);
+	public List<roomsearchDto> dibList(String email);
+	public List<roomsearchDto> selectsearchList(String keyword, String email);
 	public roomsearchDto selectOne(int myno);
 	public int insert(roomsearchDto dto);
 	public int update(roomsearchDto dto);

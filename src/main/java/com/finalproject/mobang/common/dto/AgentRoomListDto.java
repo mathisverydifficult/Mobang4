@@ -3,6 +3,7 @@ package com.finalproject.mobang.common.dto;
 public class AgentRoomListDto {
 	
 //TITLE_RM,PICTURE_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,PLUSYN_AGT
+	private String no_rm;
 	private String title_rm;
 	private String picture_rm;
 	private String roomtype_rm;
@@ -14,9 +15,10 @@ public class AgentRoomListDto {
 	private String plusyn_agt;
 	
 	
-	public AgentRoomListDto(String title_rm, String picture_rm, String roomtype_rm, String rent_rm, String roomprice_rm,
+	public AgentRoomListDto(String no_rm,String title_rm, String picture_rm, String roomtype_rm, String rent_rm, String roomprice_rm,
 			String floor_rm, String roomsize_rm, String expense_rm, String plusyn_agt) {
 		super();
+		this.no_rm=no_rm;
 		this.title_rm = title_rm;
 		this.picture_rm = picture_rm;
 		this.roomtype_rm = roomtype_rm;
@@ -85,6 +87,13 @@ public class AgentRoomListDto {
 	public void setPlusyn_agt(String plusyn_agt) {
 		this.plusyn_agt = plusyn_agt;
 	}
+	public String getNo_rm() {
+		return no_rm;
+	}
+	public void setNo_rm(String no_rm) {
+		this.no_rm = no_rm;
+	}
+	
 	
 	
 

@@ -15,8 +15,8 @@
    			users-by-username-query="SELECT EMAIL, PWD, ENABLED FROM USER_TB WHERE EMAIL=?"
     		authorities-by-username-query="SELECT EMAIL, AUTHORITY FROM USER_TB WHERE EMAIL=?"
 		/>
-		
-		
+
+
 		<http pattern="/" security="none"/>
 		
 		

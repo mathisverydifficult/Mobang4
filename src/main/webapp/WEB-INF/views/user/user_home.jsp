@@ -10,16 +10,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/user/css/user_home.css">
 </head>
+
 <jsp:include page="/WEB-INF/views/user/header.jsp" />
 <body>
    <sec:authorize access="isAuthenticated()">
@@ -47,23 +50,8 @@
 			</div>
 			<div>
 				<div class="viewsection">
-					<div class="picturepart">
+					<div class="picturepart">		<!-- 추천방 리스트 뿌려지는 div -->
 
-						<c:forEach var="part" begin="0" end="3">
-							<div class="part">
-								<a href="">
-									<div class="picture">
-										<img src="resources/user/img/cat4.png">
-										<div class="favorite">
-												<img src="resources/user/img/favorite_1.png">
-										</div>
-									</div>
-								</a>
-								<p>
-									<a class="picturetitle" href="">비쌈</a>
-								<p>
-							</div>
-						</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -78,22 +66,8 @@
 
 			<div>
 				<div class="viewsection">
-					<div class="picturepart">
-						<c:forEach var="part" begin="0" end="3">
-							<div class="part">
-								<a href="#">
-									<div class="picture">
-										<img src="resources/user/img/cat4.png">
-										<div class="favorite">
-												<img src="resources/user/img/favorite_1.png">
-										</div>
-									</div>
-									<p>
-										<a class="picturetitle" href="#">고양이 키우기 가능</a>
-									</p>
-								</a>
-							</div>
-						</c:forEach>
+					<div class="picturepart" >		<!-- 최근본방 리스트 뿌려지는 div -->
+						
 					</div>
 				</div>
 			</div>
@@ -109,12 +83,15 @@
 				</div>
 				<div>
 					<div class="viewsection">
-						<div class="picturepart">
+						<div class="picturepart" id="favoritepart">		<!-- 찜한방 리스트 뿌려지는 div -->
+						<c:if test="${empty html}">
+							<p>해당 게시글이 없습니다. 마음에 드는 방을 찜해보세요.</p>
+						</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="fourpara">
+			<div class="fourpara">						<!-- 제일 하단 사이트맵 -->
 				<div class="sitemap">
 					<a>원룸</a><br/><br/>
 					<a>투 쓰리룸</a><br/><br/>
@@ -143,52 +120,92 @@
 		
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$.ajax({
-			type: "GET", //요청 메소드 방식
-			url:"diblist.user",
-			dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+		$.ajax({						//찜한방 리스트 가져오는 ajax
+			type: "GET", 
+			url:"diblist.user",				
+			dataType:"json",
 			
 			success : function(result){
-				alert("success : "+result);
 				var list = new Array();
 				var html = "";
 				
-				for(var i=0; i<4; i++){
+				for(var i=0; i<result.length; i++){
 					list[i] = result[i];
 					
 					html += "<div class='part' style='cursor:pointer;'>	"
 						+"<div class='favorite'>"
-						+"<img id='img1' src='resources/user/img/favorite_2.png' /></div>"
+						+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 1번이면 빈하트, 2번이면 빨간하트
 						+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='picture'>"
-						+"<img src="+list[i].picture_rm+">"
+						+"<img src="+list[i].picture_rm+">"								//이미지 경로
 						+"</div>"
-					+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
-					+"<p class='explain'>"+list[i].addr_rm+"</p>"
-					+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
+					+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"		//방제목
+					+"<p class='explain'>"+list[i].addr_rm+"</p>"						//방주소
+					+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"					//건물명
 					+"</div>"
 					
 				}
-				$(".picturepart").html(html);
+				$("#favoritepart").html(html);
 				
-				$(".favorite").click(function(){
-					var favo = $(this).children();
-						if(favo.attr("src").indexOf("_2") > 0){
-							var test = favo.attr("src").replace("_2.png","_1.png");
-							favo.attr('src', test);
-						} else if(favo.attr("src").indexOf("_1") > 0){
+				$(".favorite").click(function(){									//클릭 시 찜하기 기능 
+					var favo = $(this).children();									//img태그 하트
+						if(favo.attr("src").indexOf("_2") > 0){						//이미지 마지막 index가 _2일 경우
+							var test = favo.attr("src").replace("_2.png","_1.png");		//_1로 교체
+							favo.attr('src', test);						
+							var id = favo.attr('id');								//하트img의 id(방번호) 저장
+							favodelete(id);											//찜하기 삭제함수 호출
+						} else if(favo.attr("src").indexOf("_1") > 0){				
 							var test = favo.attr("src").replace("_1.png","_2.png");
 							favo.attr('src', test);
+							var id = favo.attr('id');
+							favorited(id);											//찜하기 함수 호출
 						}
+						
 			   	});
+				
+				function favodelete(id){		//찜한 방 취소
+					$.ajax({
+						type: "GET", 
+						url:"dibs_delete.user",
+						dataType:"json", 
+						data: {
+							dibsFv : id			// dibsFv - 방번호 보냄
+						},
+						success : function(result){
+							
+						},
+						error : function(a, b, c){
+							alert("삭제에러 : "+a + b + c);
+						}
+					});
+				}
+				
+				function favorited(id){			//찜한 방 insert
+					$.ajax({
+						type: "GET", 
+						url:"dibs_insert.user",
+						dataType:"json", 
+						data: {
+							dibsFv : id			// dibsFv - 방번호 보냄
+						
+						},
+						success : function(result){
+							
+						},
+						error : function(a, b, c){
+							alert("insert에러"+a + b + c);
+						}
+					});
+				}
 				
 			},
 			error : function(a, b, c){
 				alert("에러:"+a + b + c);
 			}
 		});
-	
 		
 	});
+	
+	
 	
 	</script>
 </body>

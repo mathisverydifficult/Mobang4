@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"resources":{"src/main/webapp/WEB-INF/spring/sqls/All.sql":{"default-schema":"KH","sql-editor-data-source-id":"oracle_thin-171251b5e09-af910b83781ccdf"},"src/main/webapp/WEB-INF/spring/sqls/admin.sql":{"default-schema":"KH","sql-editor-data-source-id":"oracle_thin-170fba8164b-1911d299c5c2a9b8"},"src/main/webapp/WEB-INF/spring/sqls/test.sql":{"default-schema":"KH","sql-editor-data-source-id":"oracle_thin-1711a0a522b-66849d27914c660e"}}}
+=======
+{"resources":{"src/main/webapp/WEB-INF/spring/sqls/All.sql":{"default-schema":"KH","sql-editor-data-source-id":"oracle_thin-1714e29a69e-1d7e7b2b26991d52"},"src/main/webapp/WEB-INF/spring/sqls/admin.sql":{"default-schema":"KH","sql-editor-data-source-id":"oracle_thin-170fba8164b-1911d299c5c2a9b8"},"src/main/webapp/WEB-INF/spring/sqls/test.sql":{"default-schema":"KH","sql-editor-data-source-id":"oracle_thin-1711a0a522b-66849d27914c660e"}}}
+>>>>>>> bce89f0709183a5b1e4a7a235d555e937ba8c05d
