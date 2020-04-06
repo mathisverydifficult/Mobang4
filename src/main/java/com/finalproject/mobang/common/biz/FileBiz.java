@@ -15,5 +15,6 @@ public interface FileBiz {
 	// 글에 포함되어 있는 값을 가져오는 것은 글번호로 불러오면 될듯.
 	public UploadFile selectone(String name);
 	
+	public List<UploadFile> selectList(String src);
 	
 }

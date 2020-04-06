@@ -9,7 +9,7 @@ import com.finalproject.mobang.user.dto.roomsearchDto;
 public interface roomsearchDao {
 	String NAMESPACE = "roomsearch.";
 	
-	public List<roomsearchDto> selectList();
+	public List<roomsearchDto> dibList();
 	public List<roomsearchDto> selectsearchList(String keyword);
 	public roomsearchDto selectOne(int myno);
 	public int insert(roomsearchDto dto);

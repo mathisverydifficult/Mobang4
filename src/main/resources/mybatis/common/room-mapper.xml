@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="room">
+
+	<!-- 중개사 리스트 출력 -->
+	<!-- parameterType="com.finalproject.mobang.common.dto.Criteria" -->
+	<!-- parameterType="com.finalproject.mobang.common.dto.RoomDto" -->
+	<select id="selectAgentList" parameterType="hashMap" resultType="com.finalproject.mobang.common.dto.AgentRoomListDto">
+		SELECT  TITLE_RM,PICTURE_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,PLUSYN_AGT
+		 FROM ( 
+		        SELECT A.NO_RM,A.TITLE_RM,A.PICTURE_RM,A.ROOMTYPE_RM,A.RENT_RM,A.ROOMPRICE_RM,A.FLOOR_RM,
+		        	   A.ROOMSIZE_RM,A.EXPENSE_RM,EMAIL,B.PLUSYN_AGT,
+		               ROW_NUMBER() OVER(ORDER BY NO_RM DESC) AS RNUM
+		         FROM ROOM_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
+		                       ) MP
+		WHERE EMAIL=#{email} AND RNUM BETWEEN #{rowStart} AND #{rowEnd} 
+		ORDER BY NO_RM DESC
+	</select>
+	
+	<select id="listCount" resultType="int" parameterType="String">
+		<![CDATA[
+		SELECT COUNT(NO_RM)
+		FROM ROOM_TB
+		WHERE NO_RM > 0 AND EMAIL=#{email}
+		]]>
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="roomDto">
+		SELECT *
+		FROM ROOM_TB
+		WHERE NO_RM=#{no_rm}
+	</select>
+	
+	<insert id="insert" parameterType="roomDto">
+		INSERT INTO ROOM_TB VALUES
+		(
+			ROOMSEQ.NEXTVAL,
+			#{email},
+			#{title_rm},
+			#{picture_rm},
+			#{animal_rm},
+			#{elevator_rm},
+			#{veranda_rm},
+			#{roomin_rm},
+			#{content_rm},
+			#{aircon_rm, jdbcType=VARCHAR},
+			#{washer_rm, jdbcType=VARCHAR},
+			#{gasrange_rm, jdbcType=VARCHAR},
+			#{induction_rm, jdbcType=VARCHAR},
+			#{desk_rm, jdbcType=VARCHAR},
+			#{tv_rm, jdbcType=VARCHAR},
+			#{ref_rm, jdbcType=VARCHAR},
+			#{bed_rm, jdbcType=VARCHAR},
+			#{showhouse_rm, jdbcType=VARCHAR},
+			#{closet_rm, jdbcType=VARCHAR},
+			#{microwave_rm, jdbcType=VARCHAR},
+			#{sink_rm, jdbcType=VARCHAR},
+			#{rent_rm},
+			#{roomprice_rm},
+			#{expense_rm},
+			#{roomtype_rm},
+			#{addr_rm},
+			#{addr_dt_rm},
+			#{roomsize_rm},
+			#{roomsize2_rm},
+			#{floor_rm},
+			#{floor2_rm},
+			#{parking_rm}
+		)
+			<selectKey keyProperty="no_rm" resultType="Integer" order="AFTER">
+				SELECT roomseq.currval FROM dual
+			</selectKey>
+	</insert>
+	
+
+	
+	<delete id="delete" parameterType="int">
+  		DELETE FROM ROOM_TB WHERE NO_RM=#{no_rm}
+	</delete>
+
+
+</mapper>

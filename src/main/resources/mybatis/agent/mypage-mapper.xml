@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="mypage">
+	
+	<!-- 계정관리에서 쓸 map -->
+	<resultMap type="agentAccountDto" id="accountMap">
+		<result property="agtname_agt"  column="AGTNAME_AGT" />
+		<result property="qualno_agt"  column="QUALNO_AGT" />
+		<result property="comno_agt"  column="COMNO_AGT" />
+		<result property="addr_agt"  column="ADDR_AGT" />
+		<result property="name_agt"  column="NAME_AGT" />
+		<result property="userfile" column="USERFILE"/>
+		<result property="name"  column="NAME" />
+		<result property="email"  column="EMAIL" />
+		<result property="phone"  column="PHONE" />
+	</resultMap>
+	
+	<!-- 상품관리에서 쓸 map -->
+	<resultMap type="agentProductDto" id="productMap">
+		<result property="name_it" column="NAME_IT"/>
+		<result property="addr_pay" column="ADDR_PAY"/>
+		<result property="startdate_pay" column="STARTDATE_PAY"/>
+		<result property="enddate_pay" column="ENDDATE_PAY"/>
+		<result property="price_it" column="PRICE_IT"/>
+	</resultMap>
+	
+	
+	<!-- 마이페이지 계정관리 -->
+	<!-- 프로필 경로 추가하기 -->
+	<select id="selectAccount" resultMap="accountMap" parameterType="String">
+		SELECT B.AGTNAME_AGT,B.QUALNO_AGT,B.COMNO_AGT,B.ADDR_AGT,B.NAME_AGT,
+			   A.USERFILE,A.NAME,EMAIL,A.PHONE
+		FROM USER_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
+		WHERE EMAIL=#{email}
+	</select>
+	
+	<!-- 마이페이지 상품관리 -->
+	<select id="productList" parameterType="String" resultMap="productMap">
+		SELECT NAME_IT, ADDR_PAY, STARTDATE_PAY, ENDDATE_PAY, PRICE_IT
+		FROM PAY_TB JOIN ITEM_TB USING(NAME_IT)
+		WHERE EMAIL=#{email}
+	</select>
+	
+
+</mapper>

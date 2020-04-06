@@ -17,8 +17,8 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	private roomsearchDao dao;
 	
 	@Override
-	public List<roomsearchDto> selectList() {
-		return dao.selectList();
+	public List<roomsearchDto> dibList() {
+		return dao.dibList();
 	}
 	
 	@Override
@@ -28,7 +28,6 @@ public class roomsearchBizImpl implements roomsearchBiz {
 
 	@Override
 	public roomsearchDto selectOne(int myno) {
-		// TODO Auto-generated method stub
 		return dao.selectOne(myno);
 	}
 

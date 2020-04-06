@@ -18,14 +18,24 @@
 
 
 <!-- 내가 작성했던 리뷰 리스트를 보는 기능 -->
-	<select id = "selectListReview" resultMap="reviewMap">
+	<select id = "selectListReview" resultMap="reviewMap" parameterType="com.finalproject.mobang.user.dto.Criteria">
 	<![CDATA[
 	SELECT AGEMAIL,
 		   RCONTENT,
-		   STAR
-	FROM REVIEW_TB
-	WHERE EMAIL=#{email}
-	ORDER BY RDATE DESC   
+		   STAR,
+		   RDATE
+	FROM (
+	
+			SELECT AGEMAIL,
+				   RCONTENT,
+				   STAR,
+				   RDATE,
+				   ROW_NUMBER() OVER(ORDER BY RDATE DESC) AS RNUM
+			FROM REVIEW_TB
+			WHERE EMAIL=#{loginemail}
+					) MP
+	WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+	ORDER BY RDATE DESC
 	]]>
 	</select>
 
@@ -35,7 +45,8 @@
 	<![CDATA[
 		SELECT EMAIL,
 			   RCONTENT,
-			   STAR
+			   STAR,
+			   RDATE
 		FROM REVIEW_TB
 		WHERE AGEMAIL=#{agemail}
 		ORDER BY RDATE DESC
@@ -66,10 +77,23 @@
 		]]>	
 	</delete>
 	
+	<!-- 사용자가 적은 리뷰의 총 갯수를 나타내는  -->
+	<select id="listCountUser" resultType="int">
+	<![CDATA[
+		SELECT COUNT(EMAIL)
+		FROM REVIEW_TB
+		 WHERE EMAIL=#{email}
+	]]>
+	</select>
 	
+	<!-- 중개인이 적힌 리뷰의 총 갯수를 나타내는  -->
+	<select id="listCountAgt" resultType="int">
+	<![CDATA[
+		SELECT COUNT(AGEMAIL)
+		  FROM REVIEW_TB
+		 WHERE AGEMAIL=#{agemail}
+	]]>
+	</select>
 	
-	
-	
-
 
 </mapper>
