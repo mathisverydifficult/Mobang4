@@ -117,15 +117,15 @@ id="WebApp_ID" version="3.1">
     </filter-mapping>
     
 <!--     https 적용 -->
-<!--       <security-constraint>  -->
+<!--       <security-constraint> -->
 <!--          <web-resource-collection>  -->
-<!--             <web-resource-name>my-secure-app</web-resource-name>  -->
+<!--             <web-resource-name>my-secure-app</web-resource-name> -->
 <!--              <url-pattern>/*</url-pattern> -->
 <!--          </web-resource-collection>  -->
  
-<!--          <user-data-constraint>  -->
-<!--              <transport-guarantee>CONFIDENTIAL</transport-guarantee>  -->
-<!--          </user-data-constraint>  -->
+<!--          <user-data-constraint> -->
+<!--              <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+<!--          </user-data-constraint> -->
 <!--      </security-constraint>  -->
 
 
