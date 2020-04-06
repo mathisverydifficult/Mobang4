@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	@Autowired
 	LoginBiz biz;
 
+	/* Email */
 	@Autowired
 	MailHandler mailService = new MailHandler();
 	
@@ -54,6 +57,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	@RequestMapping(value = "/usersignupform.all")
 	public String usersignupform(Locale locale, Model model) {
 		logger.info("usersignupform");
+		
 
 		return "login/user_signup";
 	}
@@ -116,6 +120,16 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		else {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
+	}
+	
+	@RequestMapping(value = "/google.all")
+	public String google(Locale locale, Model model) {
+		logger.info("google login");
+
+		String email = (String) model.getAttribute("email");
+		System.out.println(email);
+		
+		return "login/user_signup";
 	}
 
 }
