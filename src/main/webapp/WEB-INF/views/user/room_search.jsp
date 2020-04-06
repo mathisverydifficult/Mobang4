@@ -261,6 +261,8 @@ $(function(){
 						+"<p class='explain'>"+list[i].addr_rm+"</p>"
 						+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
 						+"</div>"
+						
+						
 						myaddress(list[i].addr_rm, list[i].addr_dt_rm);
 						
 						

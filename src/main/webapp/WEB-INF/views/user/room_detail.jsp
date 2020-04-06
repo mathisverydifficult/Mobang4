@@ -70,7 +70,9 @@
 	<div class="title">
 		<div style="display:inline-block"><h1>${detail.title_rm }</h1></div>
 		
-		<div style="display:inline-block; float:right;">하트</div>
+		<div style="display:inline-block; float:right;">
+			<img class="favorite" id=${detail.no_rm } src="resources/user/img/favorite_${detail.checkdib }.png" />
+		</div>
 	</div>
 	<div class="detail">
 		<div>
@@ -280,6 +282,57 @@
 		
 	})
 	
+	$(".favorite").click(function(){
+	
+		var favo = $(this);
+		if (favo.attr("src").indexOf("_2") > 0) {
+			var test = favo.attr("src").replace("_2.png", "_1.png");
+			favo.attr('src', test);
+			var id = favo.attr('id');
+			favodelete(id);
+		} else if (favo.attr("src").indexOf("_1") > 0) {
+			var test = favo.attr("src").replace("_1.png", "_2.png");
+			favo.attr('src', test);
+			var id = favo.attr('id');
+			favorited(id);
+		}
+
+	});
+
+	function favodelete(id) {
+		$.ajax({
+			type : "GET", //요청 메소드 방식
+			url : "dibs_delete.user",
+			dataType : "json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+			data : {
+				dibsFv : id
+			},
+			success : function(result) {
+
+			},
+			error : function(a, b, c) {
+				alert("삭제에러 : " + a + b + c);
+			}
+		});
+	}
+
+	function favorited(id) {
+		$.ajax({
+			type : "GET", //요청 메소드 방식
+			url : "dibs_insert.user",
+			dataType : "json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+			data : {
+				dibsFv : id
+
+			},
+			success : function(result) {
+
+			},
+			error : function(a, b, c) {
+				alert("insert에러" + a + b + c);
+			}
+		});
+	}
 </script>
 
 
