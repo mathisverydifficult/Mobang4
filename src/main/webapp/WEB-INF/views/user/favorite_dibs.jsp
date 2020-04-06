@@ -16,7 +16,12 @@
 	margin: 20px 1%;
 	float:left;
 }
-
+#menutitle {
+	font-size: 24px;
+}
+#menucontent {
+	margin: 5px;
+}
 </style>
   
 <style type="text/css">
@@ -44,13 +49,12 @@
 <div class="container">
 
 	<div class="page-header">
-	    	<h3 class="text-left">찜한 방</h3>
+	    <div class="row">
+	    	<div class="col-sm-6 text-left"><span id="menutitle">찜한 방</span></div>
+	    	<div class="col-sm-6 text-right"><span id="menucontent">총 ${count }개의 찜한 방이 있습니다.</span></div>
+	    </div>	
     </div>
     
-	<div class="d-flex justify-content-between mb-3">
-    	<div class="p-2">총 ${count }개의 찜한 방이 있습니다.</div>
-  	</div>
-	
 	<div>
 	<c:choose>
 		<c:when test="${empty list}">

@@ -32,6 +32,9 @@
 	color : white;
 }
 
+#headermenu {
+	margin-bottom: 1px;
+}
 
 
 </style>
@@ -42,7 +45,6 @@
 </style>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 
 
 
@@ -64,20 +66,23 @@
 <div class="container">
 
 	<div class="page-header">
-	    	<h3 class="text-left">최근 본 방</h3>
+		<div class="row">
+		  <div class="col-sm-4">
+		  	<c:choose>
+				<c:when test="${count ge 30}">
+					<div class="p-2">총 30개의 최근 본 방이 있습니다.</div>
+				</c:when>
+				<c:otherwise>
+					<div class="p-2">총 ${count }개의 최근 본 방이 있습니다.</div>
+				</c:otherwise>
+			</c:choose>	
+		  </div>
+		  <div class="col-sm-4 text-center"><span>최근 본 방</span></div>
+		  <div class="col-sm-4 text-right"><span>최근 본 방은 최대 30개까지 보여집니다.</span></div>
+		</div>
     </div>
     
-	<div class="d-flex justify-content-between mb-3">
-	<c:choose>
-		<c:when test="${count ge 30}">
-			<div class="p-2">총 30개의 최근 본 방이 있습니다.</div>
-		</c:when>
-		<c:otherwise>
-			<div class="p-2">총 ${count }개의 최근 본 방이 있습니다.</div>
-		</c:otherwise>
-	</c:choose>	
-    	<div class="p-2">최근 본 방은 최대 30개까지 보여집니다.</div>
-  	</div>
+	
 	
 	<div>
 	<c:choose>
@@ -107,7 +112,11 @@
 
 <div class="container">
 	<div class="page-header">
-    	<h3 class="text-center">관심있는 방이 같은 룸메이트</h3>
+		<div class="row">
+		  <div class="col-sm-4"></div>
+		  <div class="col-sm-4 text-center"><span>관심있는 방이 같은 룸메이트</span></div>
+		  <div class="col-sm-4 text-right"><span class="moerview">더보기</span></div>
+		</div>
     </div>
     <div>
     	<div class="card" style="width:23%">
