@@ -17,18 +17,18 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	private roomsearchDao dao;
 	
 	@Override
-	public List<roomsearchDto> dibList() {
-		return dao.dibList();
+	public List<roomsearchDto> dibList(String email) {
+		return dao.dibList(email);
 	}
 	
 	@Override
-	public List<roomsearchDto> selectsearchList(String keyword) {
-		return dao.selectsearchList(keyword);
+	public List<roomsearchDto> selectsearchList(String keyword, String email) {
+		return dao.selectsearchList(keyword, email);
 	}
 
 	@Override
-	public roomsearchDto selectOne(int myno) {
-		return dao.selectOne(myno);
+	public roomsearchDto selectOne(int myno, String email) {
+		return dao.selectOne(myno, email);
 	}
 
 	@Override

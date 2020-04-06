@@ -23,7 +23,7 @@
 
 $(function(){
 
-	$(".seperate").click(function(){
+	$(".seperate").click(function(){					//클릭한 필터 외에 나머지 필터 hide
 		if($(this).next().css("display")=="none" ){
 			$(".filterbox").hide();
 			var target = $(this).next();
@@ -201,7 +201,7 @@ $(function(){
 
 	<script type="text/javascript">
 	
-		$(document).ready(function(){
+		$(document).ready(function(){		//검색체크
 			
 			var keyword = "${keyword}";
 			document.getElementById('keyword').value = keyword;
@@ -238,9 +238,9 @@ $(function(){
 // 			})
 			
 			$.ajax({
-				type: "GET", //요청 메소드 방식
-				url:"room_search.user",
-				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				type: "GET", 
+				url:"room_search.user",		//검색어가 있을경우 검색 리스트만, 없을 경우 전체 리스트 출력
+				dataType:"json", 
 				data: {
 					keyword: keyword
 				},
@@ -253,7 +253,7 @@ $(function(){
 						
 						html += "<div class='room' style='cursor:pointer;'>	"
 							+"<div class='favorite'>"
-							+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"
+							+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 찜한방 일경우 2, 아닐경우 1
 							+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='photo'>"
 							+"<img src="+list[i].picture_rm+">"
 							+"</div>"
@@ -263,24 +263,24 @@ $(function(){
 						+"</div>"
 						
 						
-						myaddress(list[i].addr_rm, list[i].addr_dt_rm);
+						myaddress(list[i].addr_rm, list[i].addr_dt_rm);		//주소에 따른 좌표 출력함수
 						
 						
 					}
-					$(".leftpart").html(html);
+					$(".leftpart").html(html);		//가져온 리스트 화면에 출력
 					
 					$(".favorite").click(function(){
 						var favo = $(this).children();
 							if(favo.attr("src").indexOf("_2") > 0){
-								var test = favo.attr("src").replace("_2.png","_1.png");
+								var test = favo.attr("src").replace("_2.png","_1.png");		//찜한방(_2) 클릭시 (_1)교체
 								favo.attr('src', test);
-								var id = favo.attr('id');
-								favodelete(id);
+								var id = favo.attr('id');							//id에 방번호 저장
+								favodelete(id);										//삭제함수 호출 (찜한방리스트에서 삭제)
 							} else if(favo.attr("src").indexOf("_1") > 0){
-								var test = favo.attr("src").replace("_1.png","_2.png");
+								var test = favo.attr("src").replace("_1.png","_2.png");		
 								favo.attr('src', test);
 								var id = favo.attr('id');
- 								favorited(id);
+ 								favorited(id);					//찜하기 함수 호출 (insert)
 							}
 							
 				   	});
@@ -292,11 +292,11 @@ $(function(){
 			});
 		}
 		
-		function favodelete(id){
+		function favodelete(id){		//찜한방 삭제
 			$.ajax({
-				type: "GET", //요청 메소드 방식
+				type: "GET", 
 				url:"dibs_delete.user",
-				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				dataType:"json", 
 				data: {
 					dibsFv : id
 				
@@ -310,11 +310,11 @@ $(function(){
 			});
 		}
 		
-		function favorited(id){
+		function favorited(id){			//찜하기 insert
 			$.ajax({
-				type: "GET", //요청 메소드 방식
+				type: "GET", 
 				url:"dibs_insert.user",
-				dataType:"json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+				dataType:"json", 
 				data: {
 					dibsFv : id
 				
@@ -335,7 +335,7 @@ $(function(){
 				
 				//정상적으로 검색이 완료됐을 경우
 				if(status===kakao.maps.services.Status.OK){
-					var coords=new kakao.maps.LatLng(result[0].y, result[0].x);
+					var coords=new kakao.maps.LatLng(result[0].y, result[0].x);		//coords에 경도 위도 저장
 					yy = result[0].x;
 					xx = result[0].y;
 					

@@ -282,28 +282,29 @@
 		
 	})
 	
+	// 찜하기 기능
 	$(".favorite").click(function(){
 	
 		var favo = $(this);
-		if (favo.attr("src").indexOf("_2") > 0) {
-			var test = favo.attr("src").replace("_2.png", "_1.png");
-			favo.attr('src', test);
-			var id = favo.attr('id');
-			favodelete(id);
+		if (favo.attr("src").indexOf("_2") > 0) {						//찜한 방일 경우
+			var test = favo.attr("src").replace("_2.png", "_1.png");	//이미지를 빈하트(_1)로 교체 
+			favo.attr('src', test);				
+			var id = favo.attr('id');									//방 번호 id에저장
+			favodelete(id);												//찜하기 삭제함수 호출
 		} else if (favo.attr("src").indexOf("_1") > 0) {
-			var test = favo.attr("src").replace("_1.png", "_2.png");
-			favo.attr('src', test);
+			var test = favo.attr("src").replace("_1.png", "_2.png");	//빨간하트(_2)로 교체
+			favo.attr('src', test);										
 			var id = favo.attr('id');
-			favorited(id);
+			favorited(id);												//찜하기 함수 호출
 		}
 
 	});
 
-	function favodelete(id) {
+	function favodelete(id) {		//찜한방 삭제
 		$.ajax({
-			type : "GET", //요청 메소드 방식
+			type : "GET", 
 			url : "dibs_delete.user",
-			dataType : "json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+			dataType : "json", 
 			data : {
 				dibsFv : id
 			},
@@ -316,11 +317,11 @@
 		});
 	}
 
-	function favorited(id) {
+	function favorited(id) {		//찜한방 추가
 		$.ajax({
-			type : "GET", //요청 메소드 방식
+			type : "GET",
 			url : "dibs_insert.user",
-			dataType : "json", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+			dataType : "json",
 			data : {
 				dibsFv : id
 

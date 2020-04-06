@@ -1,6 +1,7 @@
 package com.finalproject.mobang.user.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,11 +19,11 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<roomsearchDto> dibList() {
+	public List<roomsearchDto> dibList(String email) {		//찜한 방 리스트만
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		try {
-			list=sqlSession.selectList(NAMESPACE+"dibList");
+			list=sqlSession.selectList(NAMESPACE+"dibList", email);
 		} catch(Exception e) {
 			System.out.println("[error] : selectList");
 			e.printStackTrace();
@@ -32,11 +33,16 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	}
 	
 	@Override
-	public List<roomsearchDto> selectsearchList(String keyword) {
+	public List<roomsearchDto> selectsearchList(String keyword, String email) {	//keyword null이면 전체출력
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("keyword", keyword);
+		map.put("email", email);
+		
 		try {
-			list=sqlSession.selectList(NAMESPACE+"selectsearchList",keyword);
+			list=sqlSession.selectList(NAMESPACE+"selectsearchList",map);
 		} catch(Exception e) {
 			System.out.println("[error] : selectList");
 			e.printStackTrace();
@@ -46,12 +52,16 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	}
 
 	@Override
-	public roomsearchDto selectOne(int myno) {
+	public roomsearchDto selectOne(int myno, String email) {		//방 상세보기
 		
 		roomsearchDto dto = new roomsearchDto();
 		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("myno", myno);
+		map.put("email", email);
+		
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectOne", myno);
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne", map);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();

@@ -314,39 +314,31 @@ INSERT INTO ROOM_TB VALUES
 SELECT * FROM room_tb;
 SELECT * FROM USERFAVORITE_TB;
 
-	select no_rm, title_rm,picture_rm,animal_rm,elevator_rm,veranda_rm,
-	roomin_rm, content_rm,aircon_rm, washer_rm, gasrange_rm, induction_rm,
-	desk_rm, tv_rm, ref_rm, bed_rm, showhouse_rm, closet_rm, microwave_rm, sink_rm,
-	rent_rm, roomprice_rm, expense_rm, roomtype_rm, addr_rm, addr_dt_rm, roomsize_rm,
-	roomsize2_rm, floor_rm, floor2_rm, parking_rm,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
-	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	from ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV) 
-	where no_rm='3';
+DELETE FROM USERFAVORITE_TB;
 
-select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
-	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV);
-
-SELECT A.*,
-CASE WHEN B.DIBS_FV IS NULL THEN 1
-	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV) 
-ORDER BY NO_RM;
-
-
-select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+  	select no_rm, title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
   	from(
   	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
   	CASE WHEN B.DIBS_FV IS NULL THEN 1
 	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV)) 
-	where checkdib = 2;
+	ON(b.email='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV))
+	WHERE checkdib='2';
+
+	
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(A.NO_RM = B.DIBS_FV);
+
+select no_rm, email, title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+  	from(
+  	select no_rm, a.EMAIL,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(a.EMAIL = 'user@naver.com' AND A.NO_RM = B.DIBS_FV));
 
 DROP TABLE REVIEW_TB;
 CREATE TABLE REVIEW_TB

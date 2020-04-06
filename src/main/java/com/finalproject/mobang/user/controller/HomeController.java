@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.finalproject.mobang.user.biz.FavoriteBiz;
+import com.finalproject.mobang.common.utils.CurrentUserName;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
 import com.finalproject.mobang.user.dto.roomsearchDto;
@@ -31,10 +31,7 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
-	private roomsearchDto roomdto;
-	private FavoriteBiz favoritebiz;
-	private FavoriteDto favoritdto;
-	
+	private FavoriteDto favoriteDto;
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
@@ -43,29 +40,32 @@ public class HomeController {
 		return "user/user_home";
 	}
 	
-	@ResponseBody
+	@ResponseBody															//ajax 통신으로 페이지 이동이 아닌 값만 가져올 경우 @ResponseBody
 	@RequestMapping(value = "/diblist.user")
-	public List<roomsearchDto> diblist(Locale locale, Model model) {
+	public List<roomsearchDto> diblist() {
 		
-		List<roomsearchDto>test = roombiz.dibList();
+		logger.info(CurrentUserName.currentUserName());
 		
-		return test;
+		String email = CurrentUserName.currentUserName();
+		
+		List<roomsearchDto>test = roombiz.dibList(email);					//찜한방리스트만 (checkdib = 2)
+		
+		return test;														//리턴타입이 String이 아니므로 페이지 이동(->View Resolver)이 아닌 값만 보냄
 	}
 	
 	@RequestMapping(value = "/home.user")
-	public String mainhome(Locale locale, Model model) {
+	public String mainhome(Locale locale, Model model, String email) {
 		logger.info("home");
 		
-		model.addAttribute("list", roombiz.dibList());
+		model.addAttribute("list", roombiz.dibList(email));
 		
 		return "user/user_home";
 	}
 	
 	@RequestMapping(value="/homesearch.user")
 	public String homesearch(Model model, String keyword) {
-		//String keyword = (String) model.getAttribute("keyword");
 		
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("keyword", keyword);							//keyword : 검색어
 		
 		return "user/room_search";
 	}
@@ -78,11 +78,13 @@ public class HomeController {
 	}
 
 	
-	@ResponseBody		//데이터 조회시 붙이는 annotation
+	@ResponseBody															//데이터 조회시 붙이는 annotation
 	@RequestMapping(value="/room_search.user")
 	public List<roomsearchDto> roomsearch(Model model, String keyword) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
 		
-		List<roomsearchDto> test = roombiz.selectsearchList(keyword);
+		String email = CurrentUserName.currentUserName();
+		
+		List<roomsearchDto> test = roombiz.selectsearchList(keyword, email);
 		
 		return test;
 	}
@@ -90,10 +92,11 @@ public class HomeController {
 	@RequestMapping(value="/room_detail.user")
 	public String roomdetail(Model model, int myno) {
 		
-		
 		logger.info("select One");
 		
-		model.addAttribute("detail", roombiz.selectOne(myno));
+		String email = CurrentUserName.currentUserName();
+	
+		model.addAttribute("detail", roombiz.selectOne(myno, email));
 		
 		return "user/room_detail";
 	}
