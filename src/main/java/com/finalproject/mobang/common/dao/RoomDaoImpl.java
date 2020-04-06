@@ -60,9 +60,16 @@ public class RoomDaoImpl implements RoomDao {
 
 	@Override
 	public RoomDto selectOne(int no_rm) {
+		RoomDto dto = null;
 		
+		try {
+			dto=sqlSession.selectOne(NAMESPACE+"selectOne", no_rm);
+		} catch (Exception e) {
+			System.out.println("[DAO error] : selectOne");
+			e.printStackTrace();
+		}
 		
-		return null;
+		return dto;
 	}
 	
 	
@@ -83,13 +90,22 @@ public class RoomDaoImpl implements RoomDao {
 		
 		return no_rm;
 	}
-
+	
+	// 방 수정
 	@Override
 	public int update(RoomDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res=0;
+		
+		try {
+			res=sqlSession.update(NAMESPACE+"update", dto);
+		} catch (Exception e) {
+			System.out.println("[DAO error] : update");
+			e.printStackTrace();
+		}
+		return res;
 	}
-
+	
+	// 방 삭제
 	@Override
 	public int delete(int no_rm) {
 		int res=0;
@@ -106,18 +122,18 @@ public class RoomDaoImpl implements RoomDao {
 	
 	
 	// insert후 selectone
-	@Override
-	public RoomDto insertcomplete(int no_rm) {
-		RoomDto dto = null;
-		
-		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne", no_rm);
-		} catch (Exception e) {
-			System.out.println("[DAO error] : insertcomplete");
-			e.printStackTrace();
-		}
-		
-		return dto;
-	}
+//	@Override
+//	public RoomDto insertcomplete(int no_rm) {
+//		RoomDto dto = null;
+//		
+//		try {
+//			dto=sqlSession.selectOne(NAMESPACE+"insertcomplete", no_rm);
+//		} catch (Exception e) {
+//			System.out.println("[DAO error] : insertcomplete");
+//			e.printStackTrace();
+//		}
+//		
+//		return dto;
+//	}
 
 }
