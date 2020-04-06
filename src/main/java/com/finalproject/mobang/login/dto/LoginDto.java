@@ -8,18 +8,36 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-
+	
+@Component
 public class LoginDto {
 	
 	private String seq;
-	private String email;							//user email
+
+	@SuppressWarnings("deprecation")
+	@NotNull @Email(message = "이메일 형식이 아닙니다.")
+	private String email;	//user email
+	
+	@NotNull @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "영문 숫자 조합으로 6자리 이상 20자리 이하로 비밀번호를 만들어주세요.")
 	private String pwd;								//user pwd
+
+	@NotNull @Pattern(regexp = "^[가-힣]{2,6}$", message = "이름은 한글 2~6자리로 입력해주세요.")
 	private String name;							//user name
+	
+	@NotNull @Pattern(regexp = "^(01[1|6|7|8|9|0])-(\\d{3,4})-(\\d{4})$", message = "폰 번호 형식이 아닙니다.")
 	private String phone;
+	
 	private String authority;
 	private String userfile;
 	private String confirm;
@@ -31,6 +49,7 @@ public class LoginDto {
 	private String animal;
 	private String needs;
 	private String enabled;
+	private String roommate;
 	
 	public LoginDto() {
 		super();
@@ -38,7 +57,7 @@ public class LoginDto {
 	
 	public LoginDto(String seq, String email, String pwd, String name, String phone, String authority, String userfile,
 			String confirm, String clean, String lifestyle, String shower, String favorateage, String gender,
-			String animal, String needs, String enabled) {
+			String animal, String needs, String enabled, String roommate) {
 		super();
 		this.seq = seq;
 		this.email = email;
@@ -56,6 +75,7 @@ public class LoginDto {
 		this.animal = animal;
 		this.needs = needs;
 		this.enabled = enabled;
+		this.roommate = roommate;
 	}
 
 	public String getSeq() {
@@ -213,4 +233,14 @@ public class LoginDto {
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
 	}
+
+	public String getRoommate() {
+		return roommate;
+	}
+
+	public void setRoommate(String roommate) {
+		this.roommate = roommate;
+	}
+	
+	
 }

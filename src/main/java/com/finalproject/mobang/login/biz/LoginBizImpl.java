@@ -15,5 +15,11 @@ public class LoginBizImpl implements LoginBiz{
 	public int userInsert(LoginDto dto) {
 		return dao.userInsert(dto);	
 	}
+
+	@Override
+	public int agentInsert(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return dao.agentInsert(dto);
+	}
 }
 

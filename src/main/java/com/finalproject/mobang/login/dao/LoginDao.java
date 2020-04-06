@@ -7,4 +7,5 @@ public interface LoginDao {
 	String NAMESPACE = "login.";
 	
 	public int userInsert(LoginDto dto);
+	public int agentInsert(LoginDto dto);
 }

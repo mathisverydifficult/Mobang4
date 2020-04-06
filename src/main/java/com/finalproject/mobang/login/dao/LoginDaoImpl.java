@@ -16,26 +16,25 @@ public class LoginDaoImpl implements LoginDao{
 	public int userInsert(LoginDto dto) {
 		int res = 0;
 		
-		System.out.println("뭐야" + 
-		"이름 : " + dto.getName() + 
-		" 이메일 : " + dto.getEmail() +
-		" 비번 : " + dto.getPwd() + 
-		" 폰번 : " + dto.getPhone() +
-		" 권한 : " + dto.getAuthority() +
-		" 파일 : " + dto.getUserfile() +
-		" 확인 : " + dto.getConfirm() +
-		" 청결 : " + dto.getClean() +
-		" 생활 : " + dto.getLifestyle() +
-		" 동물 : " + dto.getAnimal() +
-		" 지켜줘 : " + dto.getNeeds()
-				);
-		
 		try {
-			System.out.println("???");
 			res = sqlSession.insert(NAMESPACE+"userinsert", dto);
-			System.out.println("돼??");
 		} catch (Exception e) {
 			System.out.println("[ERROR] : insert user");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int agentInsert(LoginDto dto) {
+		int res = 0;
+		
+		System.out.println(dto.getEmail() + "  " + dto.getName() + "  " + dto.getPwd() + "  " + dto.getPhone());
+		try {
+			res = sqlSession.insert(NAMESPACE+"agentinsert", dto);
+		} catch (Exception e) {
+			System.out.println("[ERROR] : agent user");
 			e.printStackTrace();
 		}
 		

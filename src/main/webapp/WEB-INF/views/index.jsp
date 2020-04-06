@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec"
     uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,15 @@
 	<a href="notice_list.admin">관리자 공지 페이지 들어가기</a>
 	
 	<br/>
-	<a href="logout.all">로그아웃</a><br/>
 	
+	<a href="#" onclick="document.getElementById('logout-form').submit();">Sign out</a>
+	<form id="logout-form" action="<c:url value='/logout.all'/>" method="post">
+	   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+	</form>
+	
+
+
+
 	
 	
 	

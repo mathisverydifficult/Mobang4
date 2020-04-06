@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,8 @@ import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +38,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	
 	@Autowired
 	LoginBiz biz;
-
+	
 	/* Email */
 	@Autowired
 	MailHandler mailService = new MailHandler();
@@ -58,20 +61,83 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	public String usersignupform(Locale locale, Model model) {
 		logger.info("usersignupform");
 		
-
+		model.addAttribute("loginDto", new LoginDto());
+		
 		return "login/user_signup";
 	}
 	
 	@RequestMapping(value = "/usersignup.all")
-	public String usersignup(Model model, LoginDto dto) {
+	public String usersignup(Model model, @ModelAttribute("loginDto")@Valid LoginDto loginDto, BindingResult result,
+			RedirectAttributes rttr) {
 		logger.info("usersignup");
-		int res = biz.userInsert(dto);
 		
-		if(res > 0) {
-			return "login/login";
-		} else {
+		model.addAttribute("dto", new LoginDto());
+		
+		if(result.hasErrors()) {
 			return "login/user_signup";
+		} else {
+			
+			if(loginDto.getRoommate() != null) {
+				loginDto.setPwd("{noop}"+loginDto.getPwd());
+				
+				int res = biz.userInsert(loginDto);
+				
+				if(res > 0) {
+					return "login/login";
+				} else {
+					return "login/user_signup";
+				}
+			} else {
+				loginDto.setPwd("{noop}"+loginDto.getPwd());
+				loginDto.setClean("");
+				loginDto.setLifestyle("");
+				loginDto.setShower("");
+				loginDto.setFavorateage("");
+				loginDto.setGender("");
+				loginDto.setAnimal("");
+				loginDto.setNeeds("");
+				
+				int res = biz.userInsert(loginDto);
+				
+				if(res > 0) {
+					return "login/login";
+				} else {
+					return "login/user_signup";
+				}
+			}
 		}
+		
+	}
+	
+	@RequestMapping(value = "/agentsignupform.all")
+	public String agentsignupform(Locale locale, Model model) {
+		logger.info("agentsignupform");
+		
+		model.addAttribute("loginDto", new LoginDto());
+		
+		return "login/agent_signup";
+	}
+	
+	@RequestMapping(value = "/agentsignup.all")
+	public String agentsignup(Model model, @ModelAttribute("loginDto")@Valid LoginDto loginDto, BindingResult result,
+			RedirectAttributes rttr) {
+		logger.info("agentsignup");
+		
+		model.addAttribute("dto", new LoginDto());
+		
+		if(result.hasErrors()) {
+			return "login/agent_signup";
+		} else {
+			loginDto.setPwd("{noop}"+loginDto.getPwd());
+			int res = biz.agentInsert(loginDto);
+				
+			if(res > 0) {
+				return "login/login";
+			} else {
+				return "login/agent_signup";
+			}
+		}
+		
 	}
 	
 	@RequestMapping(value="/email")
@@ -122,14 +188,6 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		}
 	}
 	
-	@RequestMapping(value = "/google.all")
-	public String google(Locale locale, Model model) {
-		logger.info("google login");
 
-		String email = (String) model.getAttribute("email");
-		System.out.println(email);
-		
-		return "login/user_signup";
-	}
-
+	
 }

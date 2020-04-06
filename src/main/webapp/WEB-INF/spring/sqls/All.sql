@@ -43,12 +43,23 @@ INSERT INTO USER_TB
 VALUES(USER_SEQ.NEXTVAL, 'user@naver.com', '세입자', '{noop}1234', '010-0000-0002',
 'ROLE_USER', '', '', '', '', '', '', '', '', '', '1');
 
+INSERT INTO USER_TB
+		VALUES(USER_SEQ.NEXTVAL, 'dwiano@naver.com', 'qqq', '1111', '2561489', 
+		'ROLE_MEMBER', '123', '',
+		'', '', '', 
+		'', '', '', 
+		'', '1')
+
 UPDATE USER_TB SET AUTHORITY = 'ROLE_MEMBER' WHERE SEQ = 2; 
 
 DELETE FROM USER_TB
 WHERE EMAIL='missdla4929@naver.com';
 
+DELETE FROM USER_TB
+WHERE EMAIL='hyerin03158@gmail.com';
+
 SELECT * FROM USER_TB;
+
 
 
 DROP TABLE ROOM_TB;

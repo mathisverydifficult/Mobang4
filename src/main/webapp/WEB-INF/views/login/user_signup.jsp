@@ -21,73 +21,91 @@
 	String email = (String) request.getParameter("email");
 	String name = (String) request.getParameter("name");
 	
-	
 %>
 <body>
 	<div class="container">
 		<h2><a class="mobang" href="#">모방</a>｜ 회원가입</h2>
 		<hr class="hr"/>
-		<form:form class="form-horizontal" enctype="multipart/form-data" modelAttribute="LoginDto" action="usersignup.all" method="post">
+		<form:form class="form-horizontal"  enctype="multipart/form-data" modelAttribute="loginDto" action="usersignup.all" method="post">
 			<div class="form-group">
 				<input type="hidden" path="random" id="random" value="77777" />
 				<label>이름</label>
 			    <div class="col-sm-13">
 			    <c:choose>
-			    	<c:when test="${null ne name || name != ''}">
+			    	<c:when test="${!empty param.name || param.name != 'null'}">
 			    		<input type="text" class="form-control" id="name" name="name" value="<%=name %>">
+			    		<%System.out.println("있"+name); %>
 			    	</c:when>
 			    	<c:otherwise>
 			    		<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요.">
+			    		<%System.out.println("없"+name); %>
 			    	</c:otherwise>
 			    </c:choose>
-					
+				<form:errors path="name" cssClass="errormsg" />
 			    </div>
 			</div>
 			<div class="form-group">
 				<label>이메일</label>
 				<div class="col-sm-13">
-				    <c:choose>
-				    	<c:when test="${null ne email || email != ''}">
-				    		<input type="email" class="form-control" name="email" id="email" value="<%=email %>">
-				    	</c:when>
-				    	<c:otherwise>
-				    		<input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력하세요.">
-				    	</c:otherwise>
-				    </c:choose>
-					
-					<input class="send" type="button" id="emailBtn" value="전송">
+					<div class="input-group">
+						<c:choose>
+							<c:when test="${!empty param.email}">
+								<form:input path="email" cssClass="form-control" name="email" id="email" value="<%=email %>"/>
+								<%System.out.println("있이"+email); %>
+							</c:when>
+							<c:otherwise>
+								<form:input path="email" cssClass="form-control" name="email" id="email" placeholder="이메일을 입력하세요."/>
+								<%System.out.println("없이"+email); %>
+						    </c:otherwise>
+						</c:choose>
+						<span class="input-group-btn">
+							<button class="btn btn-default" id="emailBtn" type="button">전송</button>
+					    </span>
+				    </div><!-- /input-group -->
+					<form:errors path="email" cssClass="errormsg" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label>인증번호</label>
 			    <div class="col-sm-13">
-					<input type="text" class="form-control" id="code" name="code" placeholder="인증번호를 입력하세요.">
-					<input class="email_confirm" type="button" id="emailAuthBtn" value="확인">
+			    	<div class="input-group">
+						<input type="text" class="form-control" id="code" name="code" placeholder="인증번호를 입력하세요.">
+						<span class="input-group-btn">
+								<button class="btn btn-default" id="email_confirm" type="button">확인</button>
+						</span>
+					</div>
 			    </div>
 			</div>
 			<div class="form-group">
 			    <div class="col-sm-13">
 			    	<label for="inputPassword">비밀번호</label>
-					<input type="password" class="form-control" name="pwd" placeholder="비밀번호를 입력하세요.">
+					<form:password path="pwd" cssClass="form-control" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요."/>
+					<form:errors path="pwd" cssClass="errormsg" />
 			    </div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword">비밀번호 확인</label>
 			    <div class="col-sm-13">
-					<input type="password" class="form-control" name="pwd_confirm"  placeholder="비밀번호를 입력하세요.">
+			    	<div class="input-group">
+						<form:password path="pwd" cssClass="form-control" name="pwd_confirm" id="pwd_confirm" placeholder="비밀번호를 입력하세요."/>
+						<span class="input-group-btn">
+								<button class="btn btn-default" id="pwd_button" type="button">확인</button>
+						</span>
+					</div>
 			    </div>
 			</div>
 			<div class="form-group">
 				<label>휴대폰 번호</label>
 			    <div class="col-sm-9">
-					<input type="tel" class="form-control" name="phone" placeholder="핸드폰 번호를  입력하세요.">
+					<form:input path="phone" cssClass="form-control" name="phone" placeholder="핸드폰 번호를  입력하세요."/>
+					<form:errors path="phone" cssClass="errormsg" />
 			    </div>
-			    <div class="custom-control custom-checkbox col-sm-5" id="request_roomate">
-						<input type="checkbox" id="request_checkbox" name="requestRoomate" class="custom-control-input">
-						<label class="custom-control-label" for="request_checkbox">룸메이트 신청하기😊</label>
+			    <div class="custom-control custom-checkbox col-sm-5" id="request_roommate">
+						<input type="checkbox" id="roommate" name="roommate" value="roommate" class="custom-control-input">
+						<label class="custom-control-label" for="roommate">룸메이트 신청하기😊</label>
 				</div>
 			</div>
-			<div id="roomate">
+			<div id="roommate_div">
 				<div class="form-group">
 					<label class="room_label">청결도</label>
 				   	<div class="d-flex justify-content-center my-4">	
@@ -196,7 +214,7 @@
 				</div>
 			</div>
 			<div class="button_group">
-				<input class="signup_btn" type="submit" value="회원가입">
+				<input class="btn btn-default" type="submit" id="signup_btn" value="회원가입">
 			</div>
 		</form:form>				
 	</div>

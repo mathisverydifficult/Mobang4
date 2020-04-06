@@ -5,6 +5,9 @@
 
 $(function(){
 
+	$("#pwd_button").attr("disabled",true);	
+	$("#signup_btn").attr("disabled",true);	
+	
 	/*
 	이메일 인증 버튼 클릭시 발생하는 이벤트
 	*/
@@ -32,7 +35,7 @@ $(function(){
 /*
 이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
 */
-	$(document).on("click", "#emailAuthBtn", function(){
+	$(document).on("click", "#email_confirm", function(){
 		$.ajax({
 			type:"get",
 			url:"emailAuth.all",
@@ -40,6 +43,8 @@ $(function(){
 			success:function(data){
 				if(data=="complete"){
 					alert("인증이 완료되었습니다.");
+					$("#pwd_button").attr("disabled",false);
+					$("#pwd_button").css("background-color","#33558b");
 				}else if(data == "false"){
 					alert("인증번호를 잘못 입력하셨습니다.")
 				}
@@ -49,15 +54,28 @@ $(function(){
 			}
 		});
 	});
+	
 		
-	$(document).on("click", "#request_checkbox", function(){
-		if($("#roomate").css("display") == "none"){
-			$("#roomate").show();
-		}else{
-			$("#roomate").hide();
+	//비밀번호 확인 버튼
+	$(document).on("click", "#pwd_button", function() {
+		if($("#pwd").val != null || $("#pwd").val() != ''){
+			if($("#pwd").val() === $("#pwd_confirm").val()){
+				$("#signup_btn").attr("disabled",false);
+				$("#signup_btn").css("background-color","#33558b");
+			} else{
+				alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+			}
 		}
 	});
 		
+	//룸메이트 신청 클릭시 
+	$(document).on("click", "#roommate", function(){
+		if($("#roommate_div").css("display") == "none"){
+			$("#roommate_div").show();
+		}else{
+			$("#roommate_div").hide();
+		}
+	});
 	
 });
 
