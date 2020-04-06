@@ -38,8 +38,7 @@ public class RoomBizImpl implements RoomBiz {
 
 	@Override
 	public int update(RoomDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(dto);
 	}
 
 	@Override

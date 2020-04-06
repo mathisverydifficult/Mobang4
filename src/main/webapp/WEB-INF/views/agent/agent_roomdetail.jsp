@@ -17,11 +17,15 @@
 <style type="text/css">
 /* 전체 div */
 .roomdetailwrap{width: 100%; min-height:100vh;}
-
-.top{position:relative; width: 1200px; height: 500px; padding-top:100px;
+.top{position:relative; width: 1200px; padding-top:100px;
 	margin-left: auto; margin-right: auto; margin: 0px auto;}
 .roomdetailwrap .top>span{color:rgb(136, 136, 136); display: block; margin: 20px 10px 10px 10px; font-size: 20px;
-	padding-left: 10px; border-left: 2px solid rgb(51, 85, 139);}	
+	padding-left: 10px; border-left: 2px solid rgb(51, 85, 139);}
+.roomdetailwrap .detail{width:1200px; padding-top:30px; margin-left: auto; margin-right: auto;}	
+.roodedtailwrap .photo{width:1200px; padding-top:30px; margin-left: auto; margin-right: auto;}
+.button{padding: 24px 0; margin: 0 -32px; border-top: 1px solid #f4f2ef; text-align: center; background: #f9f9f9;}
+.button>input{background-color: rgba(51, 85, 139,0.85); color: white; font-size: 15px; padding: 11px 25px; cursor: pointer;}
+.button>input:hover{background-color: rgb(51, 85, 139);}
 
 .firstpara {
    display: flex;
@@ -260,10 +264,12 @@
       <div>사진</div>
       <div>사진</div>
    </div>
-   <div class="title">
-      <div style="display:inline-block"><h1>옵션</h1></div>
+   <div class="contentwrap">
+   	<div class="title">${dto.title_rm }</div>
+   	<div class="content">${dto.content_rm }</div>
    </div>
    <div class="option">
+      <div style="display:inline-block">옵션</div>
       <div class="options">
          <div class="icon">
             <div class="optionimg">
@@ -327,13 +333,12 @@
          </div>
       </div>
    </div>
-   <div class="title">
-      <div style="display:inline-block"><h1>위치 및 시설</h1></div>
-   </div>
-   <div class="location">
-      <div id="map" style="height: 500px;"></div>
-   </div>
-   
+
+	<div class="button">
+		<input type="button" value="목록" onclick="location.href='roommanage.agent'">
+		<input type="button" value="수정" onclick="location.href='agent_roomupdate.agent?no_rm=${dto.no_rm}'">
+		<input type="button" value="삭제" onclick="location.href='agent_roomdelete.agent?no_rm=${dto.no_rm}'">
+	</div>
 </div>
 
 <%@ include file="form/agent_footer.jsp" %>

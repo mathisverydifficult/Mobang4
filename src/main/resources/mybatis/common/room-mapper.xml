@@ -73,8 +73,40 @@
 			</selectKey>
 	</insert>
 	
-	<update id="">
-	
+	<update id="update" parameterType="roomDto">
+		UPDATE ROOM_TB
+		SET
+			TITLE_RM=#{title_rm},
+			PICTURE_RM=#{picture_rm},
+			ANIMAL_RM=#{animal_rm},
+			ELEVATOR_RM=#{elevator_rm},
+			VERANDA_RM=#{veranda_rm},
+			ROOMIN_RM=#{roomin_rm},
+			CONTENT_RM=#{content_rm},
+			AIRCON_RM=#{aircon_rm, jdbcType=VARCHAR},
+			WASHER_RM=#{washer_rm, jdbcType=VARCHAR},
+			GASRANGE_RM=#{gasrange_rm, jdbcType=VARCHAR},
+			INDUCTION_RM=#{induction_rm, jdbcType=VARCHAR},
+			DESK_RM=#{desk_rm, jdbcType=VARCHAR},
+			TV_RM=#{tv_rm, jdbcType=VARCHAR},
+			REF_RM=#{ref_rm, jdbcType=VARCHAR},
+			BED_RM=#{bed_rm, jdbcType=VARCHAR},
+			SHOWHOUSE_RM=#{showhouse_rm, jdbcType=VARCHAR},
+			CLOSET_RM=#{closet_rm, jdbcType=VARCHAR},
+			MICROWAVE_RM=#{microwave_rm, jdbcType=VARCHAR},
+			SINK_RM=#{sink_rm, jdbcType=VARCHAR},
+			RENT_RM=#{rent_rm},
+			ROOMPRICE_RM=#{roomprice_rm},
+			EXPENSE_RM=#{expense_rm},
+			ROOMTYPE_RM=#{roomtype_rm},
+			ADDR_RM=#{addr_rm},
+			ADDR_DT_RM=#{addr_dt_rm},
+			ROOMSIZE_RM=#{roomsize_rm},
+			ROOMSIZE2_RM=#{roomsize2_rm},
+			FLOOR_RM=#{floor_rm},
+			FLOOR2_RM=#{floor2_rm},
+			PARKING_RM=#{parking_rm}
+		WHERE NO_RM=#{no_rm}
 	</update>
 	
 	<delete id="delete" parameterType="int">

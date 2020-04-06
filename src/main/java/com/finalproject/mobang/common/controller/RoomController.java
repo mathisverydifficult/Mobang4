@@ -48,13 +48,13 @@ public class RoomController {
 		return "/agent/agent_roommanage";
 	}
 	
-	// 방올리기
+	// 방올리기 페이지이동
 	@RequestMapping(value="/agent_roominsert.agent")
 	public String roominsert() {
 		return "/agent/agent_roominsert";
 	}
 	
-	
+	// 방올리기 res
 	@RequestMapping(value="/roominsertres.agent", method={RequestMethod.POST, RequestMethod.GET})
 	public String roominsertres(RedirectAttributes redirect,RoomDto dto) {
 		logger.info("방 insert result 컨트롤러");
@@ -88,6 +88,46 @@ public class RoomController {
 		mv.setViewName("/agent/agent_roomdetail");
 		return mv;
 	}
+	
+	// 방 수정하기
+	@RequestMapping(value="/agent_roomupdate.agent")
+	public ModelAndView roomupdate(ModelAndView mv,int no_rm) {
+		logger.info("update form컨트롤러");
+		mv.addObject("updatedto", biz.selectOne(no_rm));
+		mv.setViewName("/agent/agent_roomupdateform");
+		
+		return mv;
+	}
+	
+	// 방 수정 res
+	@RequestMapping(value="/agent_roomupdateres.agent", method={RequestMethod.POST, RequestMethod.GET})
+	public String updateRes(Model model,RoomDto dto) {
+		logger.info("updateres controller");
+		int res=biz.update(dto);
+		if(res>0) {
+			return "redirect:agent_roomdetail.agent?no_rm="+dto.getNo_rm();
+		}else {
+			return "redirect:agent_roomupdate.agent?myno="+dto.getNo_rm();
+		}
+		
+	}
+	
+	
+	// 방 삭제
+	@RequestMapping("/agent_roomdelete.agent")
+	public ModelAndView roomdelete(ModelAndView mv,int no_rm) {
+		logger.info("roomdelete controller");
+		
+		int res=biz.delete(no_rm);
+		if(res>0) {
+			mv.setViewName("redirect:/roommanage.agent");
+		}else {
+			mv.setViewName("redirect:/agent_roomdetail.agent?no_rm="+no_rm);
+		}
+		
+		return mv;
+	}
+	
 	
 	
 }

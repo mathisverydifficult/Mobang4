@@ -90,13 +90,22 @@ public class RoomDaoImpl implements RoomDao {
 		
 		return no_rm;
 	}
-
+	
+	// 방 수정
 	@Override
 	public int update(RoomDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res=0;
+		
+		try {
+			res=sqlSession.update(NAMESPACE+"update", dto);
+		} catch (Exception e) {
+			System.out.println("[DAO error] : update");
+			e.printStackTrace();
+		}
+		return res;
 	}
-
+	
+	// 방 삭제
 	@Override
 	public int delete(int no_rm) {
 		int res=0;
