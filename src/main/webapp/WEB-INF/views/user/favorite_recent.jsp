@@ -125,7 +125,7 @@
 		<div class="row">
 		  <div class="col-sm-4"></div>
 		  <div class="col-sm-4 text-center"><h3>관심있는 방이 같은 룸메이트</h3></div>
-		  <div class="col-sm-4 text-right"><a class="menucontent">더보기</a></div>
+		  <div class="col-sm-4 text-right"><a class="menucontent" href="">더보기</a></div>
 		</div>
     </div>
     <div>
