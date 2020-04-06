@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class FavoriteDto {
 	private String email;
-	private int recentFv;
-	private int dibsFv;
-	private Date dateFv;
+	private int recentFv;	//최근본방
+	private int dibsFv;		//찜하기
+	private Date dateFv;	
 	private String roomEx;
 	
 	
