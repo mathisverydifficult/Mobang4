@@ -255,7 +255,7 @@ $(function(){
 							+"<div class='favorite'>"
 							+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 찜한방 일경우 2, 아닐경우 1
 							+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='photo'>"
-							+"<img src="+list[i].picture_rm+">"
+							+"<img src="+list[i].picture_rm.split("/_/")[0]+">"
 							+"</div>"
 						+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
 						+"<p class='explain'>"+list[i].addr_rm+"</p>"

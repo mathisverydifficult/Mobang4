@@ -27,8 +27,8 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	}
 
 	@Override
-	public roomsearchDto selectOne(int myno, String email) {
-		return dao.selectOne(myno, email);
+	public roomsearchDto selectOne(int myno) {
+		return dao.selectOne(myno);
 	}
 
 	@Override

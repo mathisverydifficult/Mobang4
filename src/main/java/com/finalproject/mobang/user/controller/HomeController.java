@@ -95,8 +95,10 @@ public class HomeController {
 		logger.info("select One");
 		
 		String email = CurrentUserName.currentUserName();
+		
+		logger.info(email);
 	
-		model.addAttribute("detail", roombiz.selectOne(myno, email));
+		model.addAttribute("detail", roombiz.selectOne(myno));
 		
 		return "user/room_detail";
 	}

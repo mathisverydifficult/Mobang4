@@ -52,16 +52,12 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	}
 
 	@Override
-	public roomsearchDto selectOne(int myno, String email) {		//방 상세보기
+	public roomsearchDto selectOne(int myno) {		//방 상세보기
 		
 		roomsearchDto dto = new roomsearchDto();
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("myno", myno);
-		map.put("email", email);
-		
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectOne", map);
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne", myno);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();

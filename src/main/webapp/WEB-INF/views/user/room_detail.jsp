@@ -19,6 +19,7 @@
 	
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8ded785b631dc1b3efa28d959d4d6d5&libraries=services"></script>
+
 	
 <link rel="stylesheet" type="text/css" href="resources/user/css/room_detail.css">
 <jsp:include page="/WEB-INF/views/user/header.jsp"/>
@@ -56,7 +57,7 @@
 					<span class="manwon">만원</span>
 				</div>
 			</li>
-			<li class="phone" display: flex;>
+			<li class="phone" style="display: flex;">
 				<div>
 					<p>공인중개사이름</p>
 					<p>담당자이름</p>
@@ -71,7 +72,7 @@
 		<div style="display:inline-block"><h1>${detail.title_rm }</h1></div>
 		
 		<div style="display:inline-block; float:right;">
-			<img class="favorite" id=${detail.no_rm } src="resources/user/img/favorite_${detail.checkdib }.png" />
+			<img class="favorite" id=${detail.no_rm } src="resources/user/img/favorite_1.png" />
 		</div>
 	</div>
 	<div class="detail">
@@ -279,61 +280,60 @@
 				infowindow.setContent('<div style="padding:4px; font-size:11px;">'+ '${detail.addr_rm}' + '</div>');
 				infowindow.open(map, marker);
 			});
+		});
+	
+		// 찜하기 기능
+		$(".favorite").click(function(){
 		
-	})
-	
-	// 찜하기 기능
-	$(".favorite").click(function(){
-	
-		var favo = $(this);
-		if (favo.attr("src").indexOf("_2") > 0) {						//찜한 방일 경우
-			var test = favo.attr("src").replace("_2.png", "_1.png");	//이미지를 빈하트(_1)로 교체 
-			favo.attr('src', test);				
-			var id = favo.attr('id');									//방 번호 id에저장
-			favodelete(id);												//찜하기 삭제함수 호출
-		} else if (favo.attr("src").indexOf("_1") > 0) {
-			var test = favo.attr("src").replace("_1.png", "_2.png");	//빨간하트(_2)로 교체
-			favo.attr('src', test);										
-			var id = favo.attr('id');
-			favorited(id);												//찜하기 함수 호출
-		}
-
-	});
-
-	function favodelete(id) {		//찜한방 삭제
-		$.ajax({
-			type : "GET", 
-			url : "dibs_delete.user",
-			dataType : "json", 
-			data : {
-				dibsFv : id
-			},
-			success : function(result) {
-
-			},
-			error : function(a, b, c) {
-				alert("삭제에러 : " + a + b + c);
+			var favo = $(this);
+			if (favo.attr("src").indexOf("_2") > 0) {						//찜한 방일 경우
+				var test = favo.attr("src").replace("_2.png", "_1.png");	//이미지를 빈하트(_1)로 교체 
+				favo.attr('src', test);				
+				var id = favo.attr('id');									//방 번호 id에저장
+// 				favodelete(id);												//찜하기 삭제함수 호출
+			} else if (favo.attr("src").indexOf("_1") > 0) {
+				var test = favo.attr("src").replace("_1.png", "_2.png");	//빨간하트(_2)로 교체
+				favo.attr('src', test);										
+				var id = favo.attr('id');
+//				favorited(id);												//찜하기 함수 호출
 			}
+
 		});
-	}
 
-	function favorited(id) {		//찜한방 추가
-		$.ajax({
-			type : "GET",
-			url : "dibs_insert.user",
-			dataType : "json",
-			data : {
-				dibsFv : id
+// 		function favodelete(id) {		//찜한방 삭제
+// 			$.ajax({
+// 				type : "GET", 
+// 				url : "dibs_delete.user",
+// 				dataType : "json", 
+// 				data : {
+// 					dibsFv : id
+// 				},
+// 				success : function(result) {
 
-			},
-			success : function(result) {
+// 				},
+// 				error : function(a, b, c) {
+// 					alert("삭제에러 : " + a + b + c);
+// 				}
+// 			});
+// 		}
 
-			},
-			error : function(a, b, c) {
-				alert("insert에러" + a + b + c);
-			}
-		});
-	}
+// 		function favorited(id) {		//찜한방 추가
+// 			$.ajax({
+// 				type : "GET",
+// 				url : "dibs_insert.user",
+// 				dataType : "json",
+// 				data : {
+// 					dibsFv : id
+
+// 				},
+// 				success : function(result) {
+
+// 				},
+// 				error : function(a, b, c) {
+// 					alert("insert에러" + a + b + c);
+// 				}
+// 			});
+// 		}
 </script>
 
 
