@@ -312,8 +312,31 @@ INSERT INTO ROOM_TB VALUES
 );
 
 SELECT * FROM room_tb;
+SELECT * FROM USERFAVORITE_TB;
 
 
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV); 
+
+SELECT A.*,
+CASE WHEN B.DIBS_FV IS NULL THEN 1
+	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV) 
+ORDER BY NO_RM;
+
+
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+  	from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV)) 
+	where checkdib = 2;
 
 DROP TABLE REVIEW_TB;
 CREATE TABLE REVIEW_TB
