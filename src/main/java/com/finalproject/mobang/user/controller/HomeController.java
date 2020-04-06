@@ -43,11 +43,20 @@ public class HomeController {
 		return "user/user_home";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/diblist.user")
+	public List<roomsearchDto> diblist(Locale locale, Model model) {
+		
+		List<roomsearchDto>test = roombiz.dibList();
+		
+		return test;
+	}
 	
 	@RequestMapping(value = "/home.user")
 	public String mainhome(Locale locale, Model model) {
 		logger.info("home");
-
+		
+		model.addAttribute("list", roombiz.dibList());
 		
 		return "user/user_home";
 	}
@@ -94,8 +103,6 @@ public class HomeController {
 		
 		
 		logger.info("select list");
-		
-		model.addAttribute("list", roombiz.selectList());
 		
 		return "user/user_review";
 	}

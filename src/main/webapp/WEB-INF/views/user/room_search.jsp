@@ -253,7 +253,7 @@ $(function(){
 						
 						html += "<div class='room' style='cursor:pointer;'>	"
 							+"<div class='favorite'>"
-							+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_1.png' /></div>"
+							+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"
 							+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='photo'>"
 							+"<img src="+list[i].picture_rm+">"
 							+"</div>"
@@ -300,7 +300,7 @@ $(function(){
 				
 				},
 				success : function(result){
-					alert(result);
+					
 				},
 				error : function(a, b, c){
 					alert(a + b + c);
@@ -318,7 +318,7 @@ $(function(){
 				
 				},
 				success : function(result){
-					alert(result);
+					
 				},
 				error : function(a, b, c){
 					alert(a + b + c);

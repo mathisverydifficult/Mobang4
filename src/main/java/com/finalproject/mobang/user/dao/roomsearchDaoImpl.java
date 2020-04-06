@@ -18,11 +18,11 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<roomsearchDto> selectList() {
+	public List<roomsearchDto> dibList() {
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		try {
-			list=sqlSession.selectList(NAMESPACE+"selectList");
+			list=sqlSession.selectList(NAMESPACE+"dibList");
 		} catch(Exception e) {
 			System.out.println("[error] : selectList");
 			e.printStackTrace();
