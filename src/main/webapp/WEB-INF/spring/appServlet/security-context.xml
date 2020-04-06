@@ -16,7 +16,6 @@
     		authorities-by-username-query="SELECT EMAIL, AUTHORITY FROM USER_TB WHERE EMAIL=?"
 		/>
 		
-		<http pattern="/*.all" security="none"/>
 		<http pattern="/" security="none"/>
 		
 		

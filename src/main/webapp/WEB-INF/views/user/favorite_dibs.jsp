@@ -20,8 +20,24 @@
 	font-size: 24px;
 }
 #menucontent {
-	margin: 5px;
+	display:inline-block;
+	margin-top: 15px;
+	
 }
+
+<!-- 관심 목록 	밑에 있는 tag 꾸미기 -->
+
+.styleroomattention{
+	color : white;
+	margin: 20px 20px;
+}
+.styleroomattention:link{
+	color : white;
+}
+.styleroomattention:visited{
+	color : white;
+}
+
 </style>
   
 <style type="text/css">
