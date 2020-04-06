@@ -20,7 +20,8 @@
 <%
 	String email = (String) request.getParameter("email");
 	String name = (String) request.getParameter("name");
-	System.out.println(email);
+	
+	
 %>
 <body>
 	<div class="container">
@@ -32,8 +33,8 @@
 				<label>이름</label>
 			    <div class="col-sm-13">
 			    <c:choose>
-			    	<c:when test="${not empty name}">
-			    		<input type="text" class="form-control" id="name" name="name" value="<%=name %>" placeholder="이름을 입력하세요.">
+			    	<c:when test="${null ne name || name != ''}">
+			    		<input type="text" class="form-control" id="name" name="name" value="<%=name %>">
 			    	</c:when>
 			    	<c:otherwise>
 			    		<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요.">
@@ -46,8 +47,8 @@
 				<label>이메일</label>
 				<div class="col-sm-13">
 				    <c:choose>
-				    	<c:when test="${not empty name}">
-				    		<input type="email" class="form-control" name="email" id="email" value="<%=email %>" placeholder="이메일을 입력하세요.">
+				    	<c:when test="${null ne email || email != ''}">
+				    		<input type="email" class="form-control" name="email" id="email" value="<%=email %>">
 				    	</c:when>
 				    	<c:otherwise>
 				    		<input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력하세요.">
