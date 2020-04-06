@@ -3,29 +3,66 @@
 <mapper namespace = "roomsearch">
   
   <resultMap type="roomsearchDto" id="roomsearchMap">
-  	<result property="myno" column="NO_RM"/>
-  	<result property="myname" column="AGTNAME_RM"/>
-  	<result property="mytitle" column="TITLE_RM"/>
-  	<result property="mycontent" column="CONTENT_RM"/>
-  	<result property="mypath" column="PICTURE_RM"/>
-  	<result property="mypremium" column="PLUSYN_RM"/>
-  	<result property="myaddress" column="ADDR_RM"/>
-  	<result property="myroomname" column="ADDR_DT_RM"/>
-  	<result property="myrent" column="RENT_RM"/>
-  	<result property="myroomtype" column="ROOMTYPE_RM"/>
+  	<result property="no_rm" column="NO_RM"/>
+  	<result property="email" column="EMAIL"/>
+  	<result property="title_rm" column="TITLE_RM"/>
+  	<result property="picture_rm" column="PICTURE_RM"/>
+  	<result property="animal_rm" column="ANIMAL_RM"/>
+  	<result property="elevator_rm" column="ELEVATOR_RM"/>
+  	<result property="veranda_rm" column="VERANDA_RM"/>
+  	<result property="roomin_rm" column="ROOMIN_RM"/>
+  	<result property="content_rm" column="CONTENT_RM"/>
+  	<result property="aircon_rm" column="AIRCON_RM"/>
+  	<result property="washer_rm" column="WASHER_RM"/>
+  	<result property="gasrange_rm" column="GASRANGE_RM"/>
+  	<result property="induction_rm" column="INDUCTION_RM"/>
+  	<result property="desk_rm" column="DESK_RM"/>
+  	<result property="tv_rm" column="TV_RM"/>
+  	<result property="ref_rm" column="REF_RM"/>
+  	<result property="bed_rm" column="BED_RM"/>
+  	<result property="showhouse_rm" column="SHOWHOUSE_RM"/>
+  	<result property="closet_rm" column="CLOSET_RM"/>
+  	<result property="microwave_rm" column="MICROWAVE_RM"/>
+  	<result property="sink_rm" column="SINK_RM"/>
+  	<result property="rent_rm" column="RENT_RM"/>
+  	<result property="roomprice_rm" column="ROOMPRICE_RM"/>
+  	<result property="expense_rm" column="EXPENSE_RM"/>
+  	<result property="roomtype_rm" column="ROOMTYPE_RM"/>
+  	<result property="addr_rm" column="ADDR_RM"/>
+  	<result property="addr_dt_rm" column="ADDR_DT_RM"/>
+  	<result property="roomsize_rm" column="ROOMSIZE_RM"/>
+  	<result property="roomsize2_rm" column="ROOMSIZE2_RM"/>
+  	<result property="floor_rm" column="FLOOR_RM"/>
+  	<result property="floor2_rm" column="FLOOR2_RM"/>
+  	<result property="parking_rm" column="PARKING_RM"/>
+  	
   </resultMap>
+
   
-  <select id="selectList" resultMap="roomsearchMap">
-  	select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm from room_tb
+  <select id="dibList" resultMap="roomsearchMap">
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+  	from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV)) 
+	where checkdib = 2
   </select>
   
   <select id="selectsearchList" resultMap="roomsearchMap" parameterType="string">
-  	select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm from room_tb
+  	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm,  
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	 FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	 ON(A.EMAIL = B.EMAIL AND A.NO_RM = B.DIBS_FV)
   	<if test="keyword != null and keyword !='' ">
   		where addr_rm like '%${keyword}%'
   	</if>
-  	
   </select>
   
+  <select id="selectOne" resultMap="roomsearchMap" parameterType="int">
+  	select * from room_tb where no_rm=#{no_rm}
+  </select>
   
 </mapper>

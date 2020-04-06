@@ -5,15 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- bootstrap -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+
+<!-- bootstrap 
+<meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+<meta name="google-signin-client_id" content="325091248005-pf5uu2ks9ra86akriht5nugkkb3e3kfk.apps.googleusercontent.com">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/login/css/login.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <script type="text/javascript" src="resources/login/js/login.js"></script>
+
 </head>
 
 <body>
@@ -25,6 +35,7 @@
 				<hr class="hr"/>
 				<form name="loginfrm" action="<c:url value='/home.user'/>" method="post">
 					 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
+					 <input name="name" type="hidden" value="">
 					<div class="form-group">
 						<label>이메일</label> <input type="email" class="form-control" name="email" placeholder="이메일을 입력하세요.">
 					</div>
@@ -43,13 +54,15 @@
 
 					<div class="button_group">
 						<input class="login_btn" type="submit" name="loginbtn" value="로그인">
-						<div class="sns" id="sns_naver">
-							<img src="resources/login/img/naver.png" class="img-rounded">
-							<input class="sns_btn" id="naver" type="button" value="네이버 로그인">
+						
+						<div class="sns" id="sns_google">
+							<div class="g-signin2" data-width="312px" data-height="43px" id="google" data-onsuccess="onSignIn"></div>
 						</div>
-						<div class="sns" id="sns_kakao">
-							<img src="resources/login/img/kakao.JPG" class="img-rounded">
-							<input class="sns_btn" id="kakao" type="button" value="카카오톡 로그인">
+						<div class="sns" >
+							<!-- <img src="resources/login/img/kakao.JPG" class="img-rounded">
+							<input class="sns_btn" id="kakao" type="button" value="카카오톡 로그인"> -->
+							<a id="kakao-login-btn"></a>
+							<a href="http://developers.kakao.com/logout"></a>
 						</div>
 					</div >
 					<div class="signup">
@@ -57,8 +70,8 @@
 						<span>공인중개사라면?</span>
 					</div>
 					<div class="signup_click">
-						<a href="">이메일로 회원가입</a><br/>
-						<a href="">공인중개사 회원가입</a>
+						<a href='<c:url value="/usersignupform.all"/>'>이메일로 회원가입</a><br/>
+						<a href="<c:url value="/agent_home.agent"/>">공인중개사 회원가입</a>
 					</div>
 				</form>				
 			</div>
@@ -66,7 +79,33 @@
 		</div>
 	</div>
 	
-	
+	<!-- kakao button 아래에 js가 있어야 한다 -->
+	<script type="text/javascript">
+		Kakao.init('3f25e036bbefcfbf095df1ef5f01914d');
+		
+		 Kakao.Auth.createLoginButton({
+			    container: '#kakao-login-btn',
+			    success: function(authObj) {
+			    	Kakao.API.request({
+                        url: '/v2/user/me',
+                        success: function(res) {
+	                        console.log(res);
+	                         
+	                        var email = res.kakao_account.email;   //유저의 이메일
+	                        console.log(email);
+	                         
+	               		  	location.href="/mobang/usersignupform.all?email="+email;
+                        },
+                        fail: function(error) {
+                         alert(JSON.stringify(error));
+                        }
+                       });
+			    },
+			    fail: function(err) {
+			      alert(JSON.stringify(err))
+			    },
+		 })
+	</script>
 
 	<!-- Modal -->
 	<div class="modal fade" id="pwfind_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

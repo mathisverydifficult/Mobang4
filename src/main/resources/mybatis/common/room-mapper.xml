@@ -18,12 +18,12 @@
 		ORDER BY NO_RM DESC
 	</select>
 	
-		<select id="listCount" resultType="int" parameterType="String">
-			<![CDATA[
-			SELECT COUNT(NO_RM)
-			FROM ROOM_TB
-			WHERE NO_RM > 0 AND EMAIL=#{email}
-			]]>
+	<select id="listCount" resultType="int" parameterType="String">
+		<![CDATA[
+		SELECT COUNT(NO_RM)
+		FROM ROOM_TB
+		WHERE NO_RM > 0 AND EMAIL=#{email}
+		]]>
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="roomDto">
@@ -108,6 +108,7 @@
 			PARKING_RM=#{parking_rm}
 		WHERE NO_RM=#{no_rm}
 	</update>
+
 	
 	<delete id="delete" parameterType="int">
   		DELETE FROM ROOM_TB WHERE NO_RM=#{no_rm}

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
+
+	<settings>            
+     <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+    
 	<typeAliases>
 		<typeAlias type="com.finalproject.mobang.admin.dto.AccountBoardDto" alias="accountBoardDto"/>
 		<typeAlias type="com.finalproject.mobang.admin.dto.QnaBoardDto" alias="qnaBoardDto"/>
@@ -10,6 +15,7 @@
 		<typeAlias type="com.finalproject.mobang.user.dto.FavoriteDto" alias="favoriteDto"/>
 		<typeAlias type="com.finalproject.mobang.user.dto.SearchDto" alias="searchDto"/>
 		<typeAlias type="com.finalproject.mobang.common.dto.UploadFile" alias="uploadFile"/>
+		<typeAlias type="com.finalproject.mobang.login.dto.LoginDto" alias="loginDto"/>
 		<typeAlias type="com.finalproject.mobang.common.dto.RoomDto" alias="roomDto"/>
 		<typeAlias type="com.finalproject.mobang.agent.dto.AgentAccountDto" alias="agentAccountDto"/>
 		<typeAlias type="com.finalproject.mobang.agent.dto.AgentProductDto" alias="agentProductDto"/>
@@ -25,7 +31,10 @@
 		<mapper resource="/mybatis/user/favorite-mapper.xml"/>
 		<mapper resource="/mybatis/user/review-mapper.xml"/>
 		<mapper resource="/mybatis/user/search-mapper.xml"/>
+		<mapper resource="/mybatis/login/login-mapper.xml"/>
 		<mapper resource="/mybatis/common/room-mapper.xml"/>
 		<mapper resource="/mybatis/agent/mypage-mapper.xml"/>
 	</mappers>
+	
+
 </configuration>

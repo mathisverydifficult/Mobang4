@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@ function execDaumPostcode() {
             </div>
         </div>
     </section>
-			<form action="roominsertres.agent" method="post">
+			<form action="roominsertres.agent" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="missdla4929@naver.com" name="email"><!-- 나중에 session에 담긴 이메일값으로 변경 -->
     <section class = "map_container">
     	<div class = "container _00">
@@ -96,19 +97,69 @@ function execDaumPostcode() {
     <section class = "photo_container">
     	<div class = "container _01">
     		<p class = "title">사진등록</p>
+    		<input multiple="multiple" id ="gdsImgs" type="file" name="file" placeholder="파일선택 "/><br/>
     		<div class= "photo_wrap">
-	    		<div><input type="hidden" value="path" name="picture_rm"></div>
-	    		<div></div>
-	    		<div></div>
-	    		<div></div>
-	    		
-	    		<div></div>
-	    		<div></div>
-	    		<div></div>
-	    		<div></div>
+	    		<img id="img"/>
 	    	</div>
     	</div>
     </section>
+    
+    
+    <script>
+    // 파일 업로드 한  파일을 미리 보는 script
+    var sel_files =[];
+    
+    $(document).ready(function() {
+    	$("#gdsImgs").on("change", handleImgFileSelect);
+    });
+    
+    
+    function handleImgFileSelect(e) {
+    	
+    	sel_files =[];
+    	var files = e.target.files;
+    	var fileArr = Array.prototype.slice.call(files);
+    	
+    	var index=0;
+    	fileArr.forEach(function(f) {
+    		if(!f.type.match("image.*")) {
+    			alert("확장자는 이미지 확장자만 가능합니다.");
+    			return;
+    		}
+    		
+    		sel_files.push(f);
+    		
+    		var reader = new FileReader();
+    		reader.onload = function(e) {
+    			var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\""+
+    						"id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+    			$(".photo_wrap").append(html);
+    			index++;
+    		}
+    		reader.readAsDataURL(f);
+    	});
+    	
+    	
+    	
+    	
+    	
+    }
+    // 사진 클릭하면 삭제
+    function deleteImageAction(index) {
+    	console.log("index : "+index);
+    	sel_files.splice(index, 1);
+    	
+    	var img_id = "#img_id_"+index;
+    	$(img_id).remove();
+    	
+    	console.log(sel_files);
+    	
+    }
+    
+    
+	 
+	 </script>
+    
     <section class = "dt_container">
     	<div class = "container _02">
     		<p class = "title">상세정보</p>
