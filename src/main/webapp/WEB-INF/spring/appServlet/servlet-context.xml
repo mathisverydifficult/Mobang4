@@ -31,8 +31,7 @@
 	 <beans:constructor-arg value="E:\finalwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MobangFinal\storage\" />
 	</beans:bean>
  -->	
-	<!-- 일반 파일 업로드 경로 -->
-	
+	<!-- 일반 파일 업로드 경로 -->	
 	
 		
 </beans:beans>

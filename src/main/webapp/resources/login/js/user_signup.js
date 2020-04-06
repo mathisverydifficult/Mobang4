@@ -2,7 +2,9 @@
  * 
  */
 
+
 $(function(){
+
 	/*
 	이메일 인증 버튼 클릭시 발생하는 이벤트
 	*/
@@ -47,4 +49,16 @@ $(function(){
 			}
 		});
 	});
+		
+	$(document).on("click", "#request_checkbox", function(){
+		if($("#roomate").css("display") == "none"){
+			$("#roomate").show();
+		}else{
+			$("#roomate").hide();
+		}
+	});
+		
+	
 });
+
+

@@ -33,6 +33,15 @@
 		#{needs,jdbcType=VARCHAR}, '1')
 	</insert>
 	
+	<insert id="agentinsert" parameterType="LoginDto">
+		INSERT INTO USER_TB
+		VALUES(USER_SEQ.NEXTVAL, #{email}, #{name}, #{pwd}, #{phone}, 
+		'ROLE_MEMBER', #{userfile,jdbcType=VARCHAR}, #{confirm,jdbcType=VARCHAR},
+		'', '', '', 
+		'', '', '', 
+		'', '1')
+	</insert>
+	
 	
 	<!-- 
 	<insert id="userinsert" parameterType="LoginDto">

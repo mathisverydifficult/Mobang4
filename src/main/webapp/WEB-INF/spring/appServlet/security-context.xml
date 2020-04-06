@@ -16,7 +16,9 @@
     		authorities-by-username-query="SELECT EMAIL, AUTHORITY FROM USER_TB WHERE EMAIL=?"
 		/>
 		
+		<http pattern="/*.all" security="none"/>
 		<http pattern="/" security="none"/>
+		
 		
 		<http auto-config="true" use-expressions="true">
 			<intercept-url pattern="/*.user" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>

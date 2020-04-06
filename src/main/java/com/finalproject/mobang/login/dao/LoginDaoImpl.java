@@ -26,7 +26,9 @@ public class LoginDaoImpl implements LoginDao{
 		" 확인 : " + dto.getConfirm() +
 		" 청결 : " + dto.getClean() +
 		" 생활 : " + dto.getLifestyle() +
-		" 동물 : " + dto.getAnimal());
+		" 동물 : " + dto.getAnimal() +
+		" 지켜줘 : " + dto.getNeeds()
+				);
 		
 		try {
 			System.out.println("???");
