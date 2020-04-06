@@ -42,5 +42,8 @@
 		WHERE EMAIL=#{email}
 	</select>
 	
+	<!-- 마이페이지 리뷰/문의관리  -->
+	
+	
 
 </mapper>
