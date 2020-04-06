@@ -44,7 +44,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "home.user")
+	@RequestMapping(value = "/home.user")
 	public String mainhome(Locale locale, Model model) {
 		logger.info("home");
 

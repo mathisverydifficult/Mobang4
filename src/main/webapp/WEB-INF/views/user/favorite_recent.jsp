@@ -19,6 +19,21 @@
 .inform{
 	
 }
+<!-- 관심 목록 	밑에 있는 tag 꾸미기 -->
+
+.styleroomattention{
+	color : white;
+	margin: 20px 20px;
+}
+.styleroomattention:link{
+	color : white;
+}
+.styleroomattention:visited{
+	color : white;
+}
+
+
+
 </style>
   
 <style type="text/css">
@@ -53,7 +68,14 @@
     </div>
     
 	<div class="d-flex justify-content-between mb-3">
-    	<div class="p-2">총 ${count }개의 최근 본 방이 있습니다.</div>
+	<c:choose>
+		<c:when test="${count ge 30}">
+			<div class="p-2">총 30개의 최근 본 방이 있습니다.</div>
+		</c:when>
+		<c:otherwise>
+			<div class="p-2">총 ${count }개의 최근 본 방이 있습니다.</div>
+		</c:otherwise>
+	</c:choose>	
     	<div class="p-2">최근 본 방은 최대 30개까지 보여집니다.</div>
   	</div>
 	
@@ -91,8 +113,11 @@
     	<div class="card" style="width:23%">
 		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
 		    <div class="card-body">
-			    <h4 class="card-title">${dto.email }</h4>
+		    	
+		    
+			    <h4 class="card-title">방제목</h4>
 			    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+			    <a href="#" class="btn btn-primary">프로필보기</a>
 		    </div>
 		</div>
     </div>  
