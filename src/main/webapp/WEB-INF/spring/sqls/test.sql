@@ -484,3 +484,30 @@ INSERT INTO FILEUPLOAD VALUES(1,'DK.PNG','안녕');
 		
 
 
+
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+  	from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='admin@naver.com' AND A.NO_RM = B.DIBS_FV)) 
+	where checkdib = 2;		
+		
+	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
+	from(
+	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='admin@naver.com' AND A.NO_RM = B.DIBS_FV))
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
+	
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='admin@naver.com' AND A.NO_RM = B.DIBS_FV);
+
+SELECT * FROM ROOM_TB;

@@ -13,20 +13,15 @@
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="resources/admin/css/reset.css">
 <style type="text/css">
 
 th, td {
     border: 1px solid #444444;
   }
-  
-  
 </style>
 
 
 <script type="text/javascript">
-
 
 function validate() {
 	
@@ -50,14 +45,19 @@ function validate() {
     
    
 }
-
-
 </script>
 
 
 <title>Insert title here</title>
 </head>
+<jsp:include page="/WEB-INF/views/admin/form/header.jsp" />
 <body>
+
+<div class="jumbotron text-center" id="headblock" style="background-color:#33558B;">
+  <div>
+  	<h1 style="color: white;">공지사항</h1>
+  </div>
+</div>
 
 
 
@@ -78,11 +78,17 @@ function validate() {
 		        height: 400
 		      });
 		    </script>
+			
+			
+		    <script>
+		      $('#summernote').summernote({
+		        tabsize: 2,
+		        height: 400
+		      });
+		    </script>
 		
 			
-			<br/><br/>
-			<br/><br/>
-			<br/><br/> 
+			
 		
 			<input type="submit" value="글작성"/>
 			<input type="button" value="취소" onclick="location.href='notice_list.admin'"/><br/>
@@ -105,7 +111,5 @@ function validate() {
 
 
 <%@ include file="form/admin_footer.jsp" %>
-
-
 </body>
 </html>

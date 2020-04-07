@@ -1,4 +1,6 @@
-package com.finalproject.mobang.user.controller;
+	package com.finalproject.mobang.user.controller;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,8 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.finalproject.mobang.common.utils.CurrentUserName;
 import com.finalproject.mobang.user.biz.FavoriteBiz;
+import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
+import com.finalproject.mobang.user.dto.roomsearchDto;
 
 /**
  * Handles requests for the application home page.
@@ -23,64 +28,76 @@ public class FavoriteController {
 	
 	@Autowired
 	private FavoriteBiz biz;
+	@Autowired
+	private roomsearchBiz roombiz;
 	
 	@RequestMapping(value="/favorite_recent.user")
 	public String UserRecent(Model model) {
 		logger.info("사용자가 최근에 본 방");
 		
-		String email = "michaelhj@naver.com";
-		
-		model.addAttribute("list", biz.selectListRecent(email));
-		
-		model.addAttribute("count",biz.recentCount(email));
+		String email;
+		try {
+			email = CurrentUserName.currentUserName();
+			model.addAttribute("list", biz.selectListRecent(email));
+			model.addAttribute("count",biz.recentCount(email));
+		} catch (Exception e) {
+			logger.info("로그인이 필요합니다.");
+			e.printStackTrace();
+			return "login/login";
+		}
 		
 		return "user/favorite_recent";
 		
 	}
 	
-	@ResponseBody
+	@ResponseBody								//값만 이동시 ResponseBody
 	@RequestMapping(value="/dibs_insert.user")
-	public int favoritedibs(HttpServletRequest request, FavoriteDto favoriteDto) {
+	public int favoritedibs(FavoriteDto favoriteDto) {
 		
 		
-		
-//		String id = (String) request.getSession().getAttribute("email");
-		
-		favoriteDto.setEmail("djkim1216@naver.com");
+		favoriteDto.setEmail(CurrentUserName.currentUserName());
 		
 		int res = 0;
 		
 		res = biz.insertDibs(favoriteDto);
 		
-		return res;
+		return res;			//리턴타입 String아니므로 페이지 이동이 아닌 값만 보냄
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/dibs_delete.user")
-	public int dibsdelete(HttpServletRequest request, FavoriteDto favoriteDto) {
+	public int dibsdelete(FavoriteDto favoriteDto) {
 		
-		
-		
-//		String id = (String) request.getSession().getAttribute("email");
-		
-		favoriteDto.setEmail("djkim1216@naver.com");
+		favoriteDto.setEmail(CurrentUserName.currentUserName());
 		
 		int res = 0;
 		
 		res = biz.deleteDibs(favoriteDto);
 		
-		return res;
+		return res;			//리턴타입 String아니므로 페이지 이동이 아닌 값만 보냄
 	}
 	
 	@RequestMapping(value="/favorite_dibs.user")
 	public String UserDibs(Model model) {
 		logger.info("사용자가 최근에 찜한 방");
 		
-		String email = "michaelhj@naver.com";
 		
-		model.addAttribute("list", biz.selectListDibs(email));
-		
-		model.addAttribute("count",biz.dibsCount(email));
+		try {
+			String email = CurrentUserName.currentUserName();
+			logger.info("email : "+ email);
+			List<roomsearchDto> list = roombiz.dibList(email);
+			list.size();
+			for(int i=0; i<list.size(); i++) {
+				logger.info(list.get(i).getPicture_rm());
+			}
+			
+			model.addAttribute("list", roombiz.dibList(email));
+			
+			model.addAttribute("count",biz.dibsCount(email));
+		} catch (Exception e) {
+			logger.info("이메일이 없거나 객체에 값을 못담음");
+			e.printStackTrace();
+		}
 		
 		return "user/favorite_dibs";
 	}

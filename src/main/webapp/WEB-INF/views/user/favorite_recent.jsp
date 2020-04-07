@@ -32,9 +32,6 @@
 	color : white;
 }
 
-#headermenu {
-	margin-bottom: 1px;
-}
 
 <!-- 사진 위 간이 제목 css -->
 
@@ -68,8 +65,10 @@
   	<h1 style="color: white;">관심목록</h1>
   </div>
   <div class="row">
-  	<div><a class="styleroomattention" href="favorite_recent.user" style="font-size: 30px;">최근 본 방</a></div>
-  	<div><a class="styleroomattention" href="favorite_dibs.user" style="font-size: 30px;">찜한 방</a></div>
+  	<div class="col-sm-3"></div>
+  	<div class="col-sm-3 text-left" ><a class="styleroomattention" href="favorite_recent.user" style="font-size: 30px; text-decoration: underline">최근 본 방</a></div>
+  	<div class="col-sm-3 text-right"><a class="styleroomattention" href="favorite_dibs.user" style="font-size: 30px;">찜한 방</a></div>
+  	<div class="col-sm-3"></div>
   </div>
 </div>
 
