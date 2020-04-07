@@ -61,21 +61,29 @@
 			<div>
 				<div class="viewsection">
 					<div class="picturepart" id="recentpart">		<!-- 최근본방 리스트 뿌려지는 div -->
-						<c:forEach items="${recentlist }" var="recent" begin="0" end="3" >
-							<div class=part style="cursor:pointer;">
-								<div class=favorite>
-									<img id=${recent.no_rm } src= "resources/user/img/favorite_${recent.checkdib }.png"/>
-								</div>
+					<c:choose>
+						<c:when test="${empty recentlist}">
+							<div class="explain">최근 본 방이 없습니다</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${recentlist }" var="recent" begin="0" end="3" >
+								<div class= "part" style="cursor:pointer;">
+									<div class="favorite">
+										<img id="${recent.no_rm }" src= "resources/user/img/favorite_${recent.checkdib }.png"/>
+									</div>
 									<a href="room_detail.user?myno=${recent.no_rm }"> 
-										<div class='picture'>
+										<div class="picture">
 											<img src="${recent.picture_rm }">
 										</div>
-										<p class=explain id=roomtitle>recent.title_rm</p>
-										<p class=explain>recent.addr_rm</p>	
-										<p class=explain>recent.addr_dt_rm</p>
+										<p class="explain" id="roomtitle">${recent.title_rm}</p>
+										<p class="explain">${recent.addr_rm}</p>	
+										<p class="explain">${recent.addr_dt_rm}</p>
 									</a>	
-							</div>
-						</c:forEach>
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+						
 					</div>
 				</div>
 			</div>
@@ -92,9 +100,14 @@
 				<div>
 					<div class="viewsection">
 						<div class="picturepart" id="favoritepart">		<!-- 찜한방 리스트 뿌려지는 div -->
-						<c:if test="${empty list}">
-							<p>해당 게시글이 없습니다. 마음에 드는 방을 찜해보세요.</p>
-						</c:if>
+						<c:choose>
+							<c:when test="${not empty list }">
+								
+							</c:when>
+							<c:otherwise>
+								<div class="explain">해당 게시글이 없습니다. 마음에 드는 방을 찜해보세요.</div>
+							</c:otherwise>
+						</c:choose>
 						</div>
 					</div>
 				</div>

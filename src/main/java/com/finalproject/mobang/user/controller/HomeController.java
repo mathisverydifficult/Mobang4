@@ -33,6 +33,7 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
+	@Autowired
 	private FavoriteBiz favoritebiz;
 	
 
@@ -57,8 +58,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/home.user")
-	public String mainhome(Locale locale, Model model, String email) {
+	public String mainhome(Locale locale, Model model) {
 		logger.info("home");
+		
+		String email = CurrentUserName.currentUserName();
 		
 		model.addAttribute("recentlist", roombiz.recentList(email));
 		
@@ -102,6 +105,13 @@ public class HomeController {
 		String email = CurrentUserName.currentUserName();
 		
 		logger.info(email);
+		
+		FavoriteDto dto = new FavoriteDto();
+	      dto.setEmail(email);
+	      dto.setRecentFv(myno);
+	      dto.setRoomEx("Y");
+	      logger.info("최근 본 방 추가");
+	      favoritebiz.insertRecent(dto);
 	
 		model.addAttribute("detail", roombiz.selectOne(myno));
 		

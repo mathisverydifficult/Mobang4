@@ -60,10 +60,9 @@
   	CASE WHEN B.DIBS_FV IS NULL THEN 1
 	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV))
+	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV))
 	WHERE recent IS NOT NULL
-	ORDER BY recent DESC
-	
+	ORDER BY recent DESC 
   </select>
   
   <!-- 검색했을 경우 keyword 검색, 검색을 안했으면 전체 List 출력 -->
@@ -74,7 +73,7 @@
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
 	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV)
   	<if test="keyword != null and keyword !='' ">
-  		where addr_rm like '%${keyword}%'
+  		where addr_rm like '%${keyword}%' OR addr_dt_rm LIKE '%${keyword}%' OR title_rm like'%${keyword}%'
   	</if>
   </select>
   

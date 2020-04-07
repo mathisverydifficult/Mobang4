@@ -448,7 +448,39 @@ CREATE TABLE USERFAVORITE_TB
     ROOM_EX		 VARCHAR2(2) NOT NULL
 );
 
-SELECT * FROM USERFAVORITE_TB;
+SELECT * FROM USERFAVORITE_TB WHERE email='djkim1216@naver.com';
+
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
+  	from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV)) BB
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
+
+
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
+from(
+SELECT DISTINCT NO_RM  
+from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV)) BB
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
+
+
+select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm,  
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='user@naver.com' AND A.NO_RM = B.DIBS_FV)
+  		where addr_rm like '%KH%' OR addr_dt_rm LIKE '%KH%' OR title_rm like'%KH%';
+
 
 
 DROP TABLE SEARCH_TB;

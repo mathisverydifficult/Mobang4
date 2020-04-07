@@ -25,7 +25,7 @@
 		INSERT INTO USERFAVORITE_TB (EMAIL, RECENT_FV, DATE_FV, ROOM_EX) VALUES
 		(
 		#{email},
-		#{recnetFv},
+		#{recentFv},
 		SYSDATE,
 		'Y'
 		)
