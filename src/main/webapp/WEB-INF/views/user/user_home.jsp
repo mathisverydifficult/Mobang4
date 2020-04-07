@@ -31,7 +31,7 @@
 				  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
 				  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
 				</svg>
-				<form action="homesearch.user" method="get">
+				<form action="homesearch.all" method="get">
 					<input type="text" name="keyword" class="searchbar"> 
 					<input id="roombtn" class="btn btn-primary" type="submit" value="방찾기">
 				</form>
@@ -100,20 +100,9 @@
 				<div>
 					<div class="viewsection">
 						<div class="picturepart" id="favoritepart">		<!-- 찜한방 리스트 뿌려지는 div -->
-<<<<<<< HEAD
-						<c:choose>
-							<c:when test="${not empty list }">
-								
-							</c:when>
-							<c:otherwise>
-								<div class="explain">해당 게시글이 없습니다. 마음에 드는 방을 찜해보세요.</div>
-							</c:otherwise>
-						</c:choose>
-=======
 						<c:if test="${empty html}">
 							<p>해당 게시글이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요.</p>
 						</c:if>
->>>>>>> 947d257786e3ad37a29e787b70bed16960e6d489
 						</div>
 					</div>
 				</div>

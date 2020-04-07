@@ -32,7 +32,9 @@ $(function(){
 		} else $(this).next().hide();
 		
 	});
+	
 });
+
 
 </script>
 
@@ -42,7 +44,6 @@ $(function(){
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8ded785b631dc1b3efa28d959d4d6d5&libraries=services"></script>
 
 	<div class="container">
-		<form action="">
 			<div class="searchheader">
 				<div class="keyword">
 					<a>
@@ -64,21 +65,21 @@ $(function(){
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name=multi_room_type" type="checkbox" value="원룸" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">원룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name=multi_room_type" type="checkbox" value="투·쓰리룸" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">투·쓰리룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name=multi_room_type" type="checkbox" value="오피스텔" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">오피스텔</span>
 									</label>
@@ -98,21 +99,21 @@ $(function(){
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name=multi_room_type" type="checkbox" value="월세" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">월세</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name=multi_room_type" type="checkbox" value="전세" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">전세</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name=multi_room_type" type="checkbox" value="매매" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">매매</span>
 									</label>
@@ -157,9 +158,6 @@ $(function(){
 				</div>
 
 			</div>
-
-		</form>
-
 
 		<div class="row" style="margin-bottom: 50px;">
 			<div class="col-sm-6">

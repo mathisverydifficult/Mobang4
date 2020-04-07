@@ -53,26 +53,21 @@
 	ORDER BY recent DESC
   </select>
   
-  <!-- 최근 본 리스트 출력 -->
-  <select id="recentList" resultMap="roomsearchMap" parameterType="string">
-  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
-  	from(
-  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
-	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV))
-	WHERE recent IS NOT NULL
-	ORDER BY recent DESC 
-  </select>
-  
   <!-- 검색했을 경우 keyword 검색, 검색을 안했으면 전체 List 출력 -->
   <select id="selectsearchList" resultMap="roomsearchMap" parameterType="hashMap">
-  	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm,  
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+  	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+  <choose>	 
+  	<when test="email !=null and email !='' ">
+  	, CASE WHEN B.DIBS_FV IS NULL THEN 1
 	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
 	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV)
+	</when>
+	<otherwise>
+	FROM ROOM_TB
+	</otherwise>
+  </choose>
+	
   	<if test="keyword != null and keyword !='' ">
   		where addr_rm like '%${keyword}%' OR addr_dt_rm LIKE '%${keyword}%' OR title_rm like'%${keyword}%'
   	</if>
