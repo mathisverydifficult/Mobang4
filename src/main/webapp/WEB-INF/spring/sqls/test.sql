@@ -190,7 +190,7 @@ INSERT INTO ROOM_TB VALUES(5,'djkim1216@naver.com',null,'김동주', 'N','강남
 
 DELETE FROM room_tb WHERE no_rm=1;
 
-select no_rm,agtname_rm,title_rm,picture_rm,plusyn_rm,addr_rm, addr_dt_rm from room_tb;
+select no_rm,title_rm,picture_rm,addr_rm, addr_dt_rm from room_tb;
 
 INSERT INTO ROOM_TB VALUES
 (
