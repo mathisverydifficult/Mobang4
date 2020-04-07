@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="pay">
+
+	<resultMap type="agentAccountDto" id="accountMap">
+		<result property="agtname_agt"  column="AGTNAME_AGT" />
+		<result property="qualno_agt"  column="QUALNO_AGT" />
+		<result property="comno_agt"  column="COMNO_AGT" />
+		<result property="addr_agt"  column="ADDR_AGT" />
+		<result property="name_agt"  column="NAME_AGT" />
+		<result property="userfile" column="USERFILE"/>
+		<result property="name"  column="NAME" />
+		<result property="email"  column="EMAIL" />
+		<result property="phone"  column="PHONE" />
+	</resultMap>
+	
+	<select id="selectAccount" resultMap="accountMap" parameterType="String">
+		SELECT B.AGTNAME_AGT,B.QUALNO_AGT,B.COMNO_AGT,B.ADDR_AGT,B.NAME_AGT,
+			   A.USERFILE,A.NAME,EMAIL,A.PHONE
+		FROM USER_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
+		WHERE EMAIL=#{email}
+	</select>
+	
+</mapper>

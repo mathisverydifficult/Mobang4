@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.mobang.admin.controller.AdminController;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
+import com.finalproject.mobang.agent.biz.AgentPayBiz;
+import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentItemDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
 import com.finalproject.mobang.agent.dto.AgentPayDto;
 import com.finalproject.mobang.agent.dto.Criteria;
 import com.finalproject.mobang.agent.dto.PageMaker;
+import com.finalproject.mobang.common.utils.CurrentUserName;
 
 @Controller
 public class AgentController {
@@ -23,6 +26,8 @@ public class AgentController {
 	
 	@Autowired
 	private AgentNoticeBiz biz;
+	private AgentPayBiz userbiz;
+	
 	
 	@RequestMapping(value="/agent_home.agent")
 	public String adminUser(Model model) {
@@ -63,24 +68,24 @@ public class AgentController {
 		return "/agent/agent_fnq";
 	}
 	
-	@RequestMapping(value ="/agent_sales.agent")
+	@RequestMapping(value ="/agent_sales.all")
 	public String sales(Model model) {
 		return "/agent/agent_sales";
 	}
 	
-	@RequestMapping(value="/agent_premium.agent")
+	@RequestMapping(value="/agent_premium.all")
 	public String premiumsale(Model model) {
 		return "/agent/agent_premium_sales";
 	}
 	
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
+		String email = CurrentUserName.currentUserName();
+		AgentAccountDto accountdto = userbiz.selectAccount(email);
+		model.addAttribute("account", accountdto);
+		logger.info("pay value"+accountdto);
 		model.addAttribute("dto", dto);
-		return "/agent/agent_pay";
-	}
-	@RequestMapping(value = "/agent_pay2.agent")
-	public String agentPay2(Model model) {
-		return "/agent/agent_pay2";
+		return "redirect:/agent/agent_pay";
 	}
 	
 	@RequestMapping(value = "/agent_sales_complete.agent")
