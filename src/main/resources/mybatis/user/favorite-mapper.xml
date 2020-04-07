@@ -3,7 +3,7 @@
 <!-- 유저별 찜한 방이나 봤던 방을 저장하고 불러오는 함수들을 정하는 MAPPER -->
 <mapper namespace="favorite">
 	
-	<resultMap type="FavoriteDto" id="favoriteMap">
+	<resultMap type="FavoriteDto" id="favoriteMap" >
 		<result property="email" column="EMIAL"/>
 		<result property="recentFv" column="RECENT_FV"/>
 		<result property="dibsFv" column="DIBS_FV"/>

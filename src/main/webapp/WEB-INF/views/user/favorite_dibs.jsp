@@ -40,10 +40,7 @@
 
 </style>
   
-<style type="text/css">
 
-
-</style>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -57,8 +54,10 @@
   	<h1 style="color: white;">관심목록</h1>
   </div>
   <div class="row">
-  	<div><a class="styleroomattention" href="favorite_recent.user" style="font-size: 30px;">최근 본 방</a></div>
-  	<div><a class="styleroomattention" href="favorite_dibs.user" style="font-size: 30px;">찜한 방</a></div>
+  	<div class="col-sm-3"></div>
+  	<div class="col-sm-3 text-left" ><a class="styleroomattention" href="favorite_recent.user" style="font-size: 30px;">최근 본 방</a></div>
+  	<div class="col-sm-3 text-right"><a class="styleroomattention" href="favorite_dibs.user" style="font-size: 30px; text-decoration: underline">찜한 방</a></div>
+  	<div class="col-sm-3"></div>
   </div>
 </div>
 
@@ -79,10 +78,14 @@
 		<c:otherwise>
 			<c:forEach items="${list }" var="dto" varStatus="status">
 				<div class="card" style="width:23%">
-				    <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
+					<div class="favorite">
+					</div>	
+					<div class="picture">
+						 <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
+					</div>
 				    <div class="card-body">
 					    <h4 class="card-title">${dto.email }</h4>
-					    <p class="card-text">${dto.divFv }, ${status.count}</p>
+					    <p class="card-text">${dto.dibsFv }, ${status.count}</p>
 				    </div>
 				</div>
 			</c:forEach>
