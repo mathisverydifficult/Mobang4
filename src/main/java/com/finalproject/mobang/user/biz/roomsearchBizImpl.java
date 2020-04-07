@@ -46,4 +46,9 @@ public class roomsearchBizImpl implements roomsearchBiz {
 		return dao.delete(myno);
 	}
 
+	@Override
+	public List<roomsearchDto> recentList(String email) {
+		return dao.recentList(email);
+	}
+
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.mobang.common.utils.CurrentUserName;
+import com.finalproject.mobang.user.biz.FavoriteBiz;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
 import com.finalproject.mobang.user.dto.roomsearchDto;
@@ -31,8 +32,10 @@ public class HomeController {
 	
 	@Autowired
 	private roomsearchBiz roombiz;
-	private FavoriteDto favoriteDto;
-
+	@Autowired
+	private FavoriteBiz favoritebiz;
+	
+	
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
 		logger.info("home");
@@ -53,7 +56,7 @@ public class HomeController {
 		return test;														//리턴타입이 String이 아니므로 페이지 이동(->View Resolver)이 아닌 값만 보냄
 	}
 	
-	@RequestMapping(value = "/home.user")
+	@RequestMapping(value = "/home.all")
 	public String mainhome(Locale locale, Model model, String email) {
 		logger.info("home");
 		
@@ -62,7 +65,7 @@ public class HomeController {
 		return "user/user_home";
 	}
 	
-	@RequestMapping(value="/homesearch.user")
+	@RequestMapping(value="/homesearch.all")
 	public String homesearch(Model model, String keyword) {
 		
 		model.addAttribute("keyword", keyword);							//keyword : 검색어
@@ -79,7 +82,7 @@ public class HomeController {
 
 	
 	@ResponseBody															//데이터 조회시 붙이는 annotation
-	@RequestMapping(value="/room_search.user")
+	@RequestMapping(value="/room_search.all")
 	public List<roomsearchDto> roomsearch(Model model, String keyword) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
 		
 		String email = CurrentUserName.currentUserName();
@@ -89,18 +92,34 @@ public class HomeController {
 		return test;
 	}
 	
-	@RequestMapping(value="/room_detail.user")
+	@RequestMapping(value="/room_detail.all")
 	public String roomdetail(Model model, int myno) {
 		
 		logger.info("select One");
 		
-		String email = CurrentUserName.currentUserName();
+		try {
+			String email = CurrentUserName.currentUserName();
+			
+			logger.info(email);
+			
+			FavoriteDto dto = new FavoriteDto();
+			dto.setEmail(email);
+			dto.setRecentFv(myno);
+			dto.setRoomEx("Y");
+			logger.info("최근 본 방 추가");
+			favoritebiz.insertRecent(dto);
+		} catch (Exception e) {
+			logger.info("로그인 안해서 안됨 본 방에 추가 안됨");
+			e.printStackTrace();
+		} 
 		
-		logger.info(email);
-	
 		model.addAttribute("detail", roombiz.selectOne(myno));
 		
 		return "user/room_detail";
+		
+		
+		
+		
 	}
 	
 	@RequestMapping(value="/review.user")

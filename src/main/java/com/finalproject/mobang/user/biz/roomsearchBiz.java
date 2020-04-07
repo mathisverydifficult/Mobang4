@@ -12,4 +12,5 @@ public interface roomsearchBiz {
 	public int insert(roomsearchDto dto);
 	public int update(roomsearchDto dto);
 	public int delete(int myno);
+	public List<roomsearchDto> recentList(String email);
 }
