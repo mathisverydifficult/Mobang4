@@ -136,6 +136,8 @@
       			</div>
     		</div>
  		 </div>
+ 		 <a href="/mobang/userupdateform.all">user</a>
+ 		 <a href="/mobang/agentupdateform.all">agent</a>
 	</div>
 </body>
 </html>
