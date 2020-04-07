@@ -200,6 +200,7 @@ $(function(){
 <jsp:include page="/WEB-INF/views/user/footer.jsp" />
 
 	<script type="text/javascript">
+
 	
 		$(document).ready(function(){		//검색체크
 			

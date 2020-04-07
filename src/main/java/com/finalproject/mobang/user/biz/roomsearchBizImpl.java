@@ -22,6 +22,11 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	}
 	
 	@Override
+	public List<roomsearchDto> recentList(String email) {
+		return dao.recentList(email);
+	}
+	
+	@Override
 	public List<roomsearchDto> selectsearchList(String keyword, String email) {
 		return dao.selectsearchList(keyword, email);
 	}

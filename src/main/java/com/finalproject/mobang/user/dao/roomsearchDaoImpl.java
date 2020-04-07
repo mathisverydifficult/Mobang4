@@ -33,6 +33,22 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	}
 	
 	@Override
+	public List<roomsearchDto> recentList(String email) {		//최근 본 리스트만
+		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
+		
+		try {
+			list=sqlSession.selectList(NAMESPACE+"recentList", email);
+		} catch(Exception e) {
+			System.out.println("[error] : selectList");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
+	
+	@Override
 	public List<roomsearchDto> selectsearchList(String keyword, String email) {	//keyword null이면 전체출력
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		

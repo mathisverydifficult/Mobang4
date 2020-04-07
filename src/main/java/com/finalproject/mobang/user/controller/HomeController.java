@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.mobang.common.utils.CurrentUserName;
+import com.finalproject.mobang.user.biz.FavoriteBiz;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
 import com.finalproject.mobang.user.dto.roomsearchDto;
@@ -29,9 +30,11 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
 	@Autowired
 	private roomsearchBiz roombiz;
-	private FavoriteDto favoriteDto;
+	private FavoriteBiz favoritebiz;
+	
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
@@ -56,6 +59,8 @@ public class HomeController {
 	@RequestMapping(value = "/home.user")
 	public String mainhome(Locale locale, Model model, String email) {
 		logger.info("home");
+		
+		model.addAttribute("recentlist", roombiz.recentList(email));
 		
 		model.addAttribute("list", roombiz.dibList(email));
 		
