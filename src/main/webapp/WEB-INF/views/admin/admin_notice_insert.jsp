@@ -18,13 +18,10 @@
 th, td {
     border: 1px solid #444444;
   }
-  
-  
 </style>
 
 
 <script type="text/javascript">
-
 
 function validate() {
 	
@@ -48,8 +45,6 @@ function validate() {
     
    
 }
-
-
 </script>
 
 
@@ -77,7 +72,6 @@ function validate() {
 								
 			<label>내용</label><br/>
 			<textarea id="summernote" name="content_nt"></textarea>
-			<textarea id="summernote" name="contentQ"></textarea>
 		    <script>
 		      $('#summernote').summernote({
 		        tabsize: 2,

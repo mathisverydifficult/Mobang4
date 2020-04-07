@@ -76,6 +76,11 @@
 	]]>		
 	</select>
 	
+	
+	
+	
+	
+	
 	<!-- 찜한 방의 수를 출력하는 함수 -->
 	<select id="dibsCount" resultType="int">
 	<![CDATA[

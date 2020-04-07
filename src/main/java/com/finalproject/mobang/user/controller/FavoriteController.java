@@ -1,5 +1,7 @@
 	package com.finalproject.mobang.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.mobang.common.utils.CurrentUserName;
 import com.finalproject.mobang.user.biz.FavoriteBiz;
+import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
+import com.finalproject.mobang.user.dto.roomsearchDto;
 
 /**
  * Handles requests for the application home page.
@@ -24,6 +28,8 @@ public class FavoriteController {
 	
 	@Autowired
 	private FavoriteBiz biz;
+	@Autowired
+	private roomsearchBiz roombiz;
 	
 	@RequestMapping(value="/favorite_recent.user")
 	public String UserRecent(Model model) {
@@ -75,11 +81,23 @@ public class FavoriteController {
 	public String UserDibs(Model model) {
 		logger.info("사용자가 최근에 찜한 방");
 		
-		String email = "michaelhj@naver.com";
 		
-		model.addAttribute("list", biz.selectListDibs(email));
-		
-		model.addAttribute("count",biz.dibsCount(email));
+		try {
+			String email = CurrentUserName.currentUserName();
+			logger.info("email : "+ email);
+			List<roomsearchDto> list = roombiz.dibList(email);
+			list.size();
+			for(int i=0; i<list.size(); i++) {
+				logger.info(list.get(i).getPicture_rm());
+			}
+			
+			model.addAttribute("list", roombiz.dibList(email));
+			
+			model.addAttribute("count",biz.dibsCount(email));
+		} catch (Exception e) {
+			logger.info("이메일이 없거나 객체에 값을 못담음");
+			e.printStackTrace();
+		}
 		
 		return "user/favorite_dibs";
 	}
