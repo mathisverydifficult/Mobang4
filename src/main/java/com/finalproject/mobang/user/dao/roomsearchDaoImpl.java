@@ -25,7 +25,7 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		try {
 			list=sqlSession.selectList(NAMESPACE+"dibList", email);
 		} catch(Exception e) {
-			System.out.println("[error] : selectList");
+			System.out.println("[error] : selectdibsList");
 			e.printStackTrace();
 		}
 		
@@ -34,12 +34,13 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	
 	@Override
 	public List<roomsearchDto> recentList(String email) {		//최근 본 리스트만
+
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"recentList", email);
 		} catch(Exception e) {
-			System.out.println("[error] : selectList");
+			System.out.println("[error] : selectrecentList");
 			e.printStackTrace();
 		}
 		

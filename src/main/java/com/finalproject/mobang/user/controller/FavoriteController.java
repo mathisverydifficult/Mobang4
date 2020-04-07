@@ -1,5 +1,6 @@
 	package com.finalproject.mobang.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.mobang.common.utils.CurrentUserName;
+import com.finalproject.mobang.common.utils.FileListMaker;
 import com.finalproject.mobang.user.biz.FavoriteBiz;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
@@ -35,16 +37,23 @@ public class FavoriteController {
 	public String UserRecent(Model model) {
 		logger.info("사용자가 최근에 본 방");
 		
-		String email;
 		try {
-			email = CurrentUserName.currentUserName();
-			model.addAttribute("list", biz.selectListRecent(email));
+			String email = CurrentUserName.currentUserName();
+			logger.info("email : "+ email);
+			List<roomsearchDto> list = roombiz.recentList(email);
+			list.size();
+			for(int i=0; i<list.size(); i++) {
+				logger.info(list.get(i).getPicture_rm());
+			}
+			
+			model.addAttribute("list", roombiz.recentList(email));
+			
 			model.addAttribute("count",biz.recentCount(email));
 		} catch (Exception e) {
-			logger.info("로그인이 필요합니다.");
+			logger.info("이메일이 없거나 객체에 값을 못담음");
 			e.printStackTrace();
-			return "login/login";
 		}
+		
 		
 		return "user/favorite_recent";
 		
@@ -86,13 +95,14 @@ public class FavoriteController {
 			String email = CurrentUserName.currentUserName();
 			logger.info("email : "+ email);
 			List<roomsearchDto> list = roombiz.dibList(email);
-			list.size();
-			for(int i=0; i<list.size(); i++) {
-				logger.info(list.get(i).getPicture_rm());
+			List<String> imagelist = new ArrayList<String>();
+			for(int i =0; i<list.size(); i++) {
+				logger.info("imagepath : " + list.get(i).getPicture_rm().split("/_/")[0]);
+				imagelist.add(list.get(i).getPicture_rm().split("/_/")[0]);
 			}
 			
+			model.addAttribute("imagelist",imagelist);
 			model.addAttribute("list", roombiz.dibList(email));
-			
 			model.addAttribute("count",biz.dibsCount(email));
 		} catch (Exception e) {
 			logger.info("이메일이 없거나 객체에 값을 못담음");

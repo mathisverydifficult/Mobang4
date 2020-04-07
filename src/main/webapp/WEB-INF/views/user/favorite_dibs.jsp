@@ -63,6 +63,8 @@
 <script type="text/javascript">
 $(function(){
 	
+	
+	
 	$(".favorite").click(function(){									//클릭 시 찜하기 기능 
 		var favo = $(this).children();									//img태그 하트
 			if(favo.attr('src').indexOf('_2') > 0){						//이미지 마지막 index가 _2일 경우
@@ -95,7 +97,7 @@ $(function(){
 			}
 		});
 	};
-			
+		
 	function favorited(id){			//찜한 방 insert
 		$.ajax({
 			type: "GET", 
@@ -113,7 +115,7 @@ $(function(){
 			}
 		});
 	};
-		
+	
 	
 	
 });
@@ -154,17 +156,29 @@ $(function(){
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${list }" var="dto" varStatus="status">
-				<div class="card" style="width:23%">
+				<div class="card" style="width:23%; height: 300px; ">
 					<div class="favorite">
 						<img id="${dto.no_rm }" src='resources/user/img/favorite_${dto.checkdib}.png' />
-					</div>	
+						
+					</div>
+					<a href="room_detail.user?myno=${dto.no_rm }">	
 					<div class="picture">
-						 <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
+						<c:choose>
+							<c:when test="${empty imagelist[status.count]}">
+								<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="${imagelist[status.count]}" alt="Card image" style="width:100%; height:150px;">
+							</c:otherwise>
+						</c:choose>
+						 
 					</div>
 				    <div class="card-body">
 					    <h4 class="card-title">${dto.title_rm }</h4>
 					    <p class="card-text">${dto.content_rm }, ${status.count}</p>
+				    	
 				    </div>
+				    </a>
 				</div>
 			</c:forEach>
 		</c:otherwise>

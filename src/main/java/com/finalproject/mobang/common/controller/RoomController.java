@@ -28,6 +28,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.finalproject.mobang.agent.controller.AgentController;
 import com.finalproject.mobang.common.biz.RoomBiz;
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
 import com.finalproject.mobang.common.dto.Criteria;
 import com.finalproject.mobang.common.dto.PageMaker;
 import com.finalproject.mobang.common.dto.RoomDto;
@@ -50,7 +51,17 @@ public class RoomController {
 		String email = CurrentUserName.currentUserName();
 		//System.out.println(email);
 		logger.info(email);
-		model.addAttribute("list", biz.selectAgentList(cri,email));
+		List<AgentRoomListDto> list = biz.selectAgentList(cri,email);
+		List<String> imagelist = new ArrayList<String>();
+		for(int i=0;i<list.size();i++) {
+			imagelist.add(list.get(i).getPicture_rm());
+		}
+		List<String> filelist = new ArrayList<String>();
+		for(int i=0;i<imagelist.size();i++) {
+			filelist.add(imagelist.get(i).split("/_/")[0]);
+		}
+		model.addAttribute("filelist", filelist);
+		model.addAttribute("list", list);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(biz.listCount(email));

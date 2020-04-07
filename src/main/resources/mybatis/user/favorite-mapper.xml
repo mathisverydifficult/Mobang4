@@ -77,10 +77,6 @@
 	</select>
 	
 	
-	
-	
-	
-	
 	<!-- 찜한 방의 수를 출력하는 함수 -->
 	<select id="dibsCount" resultType="int">
 	<![CDATA[
@@ -93,7 +89,7 @@
 	<!-- 본 방의 수를 출력하는 함수 -->
 	<select id="recentCount" resultType="int">
 	<![CDATA[
-		SELECT COUNT(email)
+		SELECT COUNT(RECENT_FV)
 		  FROM USERFAVORITE_TB
 		 WHERE EMAIL =#{email}
 	]]>
