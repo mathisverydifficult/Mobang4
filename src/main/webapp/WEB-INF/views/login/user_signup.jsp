@@ -32,8 +32,8 @@
 				<label>이름</label>
 			    <div class="col-sm-13">
 			    <c:choose>
-			    	<c:when test="${!empty param.name || param.name != 'null'}">
-			    		<input type="text" class="form-control" id="name" name="name" value="<%=name %>">
+			    	<c:when test="${null ne name || name != ''}">
+			    		<form:input path="name" cssClass="form-control" name="name" id="name" value="<%=name %>"/>
 			    		<%System.out.println("있"+name); %>
 			    	</c:when>
 			    	<c:otherwise>
@@ -49,7 +49,7 @@
 				<div class="col-sm-13">
 					<div class="input-group">
 						<c:choose>
-							<c:when test="${!empty param.email}">
+							<c:when test="${null ne email || email != ''}">
 								<form:input path="email" cssClass="form-control" name="email" id="email" value="<%=email %>"/>
 								<%System.out.println("있이"+email); %>
 							</c:when>
@@ -87,7 +87,7 @@
 				<label for="inputPassword">비밀번호 확인</label>
 			    <div class="col-sm-13">
 			    	<div class="input-group">
-						<form:password path="pwd" cssClass="form-control" name="pwd_confirm" id="pwd_confirm" placeholder="비밀번호를 입력하세요."/>
+						<form:password path="" cssClass="form-control" name="pwd_confirm" id="pwd_confirm" placeholder="비밀번호를 입력하세요."/>
 						<span class="input-group-btn">
 								<button class="btn btn-default" id="pwd_button" type="button">확인</button>
 						</span>
@@ -154,18 +154,18 @@
 				<div class="row">
 					<!-- Group of default radios - option 1 -->
 					<div class="custom-control custom-radio col-sm-4">
-					  	<input type="radio" class="custom-control-input" id="age_10" value="19-24" name="age" checked>
+					  	<input type="radio" class="custom-control-input" id="age_10" value="19-24" name="favoriteage" checked>
 					  	<label class="custom-control-label" for="age_10">19-24</label>
 					</div>
 					
 					<!-- Group of default radios - option 2 -->
 					<div class="custom-control custom-radio col-sm-4">
-						  <input type="radio" class="custom-control-input" id="age_20" value="25-29" name="age" >
+						  <input type="radio" class="custom-control-input" id="age_20" value="25-29" name="favoriteage" >
 						  <label class="custom-control-label" for="age_20">25-29</label>
 					</div>
 					
 					<div class="custom-control custom-radio col-sm-4">
-						  <input type="radio" class="custom-control-input" id="age_all" value="상관없음" name="age" >
+						  <input type="radio" class="custom-control-input" id="age_all" value="상관없음" name="favoriteage" >
 						  <label class="custom-control-label" for="age_all">상관없음</label>
 					</div>
 				</div>

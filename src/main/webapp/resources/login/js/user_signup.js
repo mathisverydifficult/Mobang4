@@ -55,10 +55,10 @@ $(function(){
 		});
 	});
 	
-		
+
 	//비밀번호 확인 버튼
 	$(document).on("click", "#pwd_button", function() {
-		if($("#pwd").val != null || $("#pwd").val() != ''){
+		if($("#pwd").val() != null || $("#pwd").val().trim() != ''){
 			if($("#pwd").val() === $("#pwd_confirm").val()){
 				$("#signup_btn").attr("disabled",false);
 				$("#signup_btn").css("background-color","#33558b");

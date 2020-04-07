@@ -26,7 +26,7 @@
 				<input type="hidden" path="random" id="random" value="77777" />
 				<label>이름</label>
 			    <div class="col-sm-13">
-			    		<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요.">
+			    		<form:input path="name" cssClass="form-control" name="name" id="name" value="${name }"/>
 			    		<form:errors path="name" cssClass="errormsg" />
 			    </div>
 			</div>
@@ -51,7 +51,7 @@
 			<div class="form-group">
 				<label>휴대폰 번호</label>
 			    <div class="col-sm-13">
-					<form:input path="phone" cssClass="form-control" name="phone" placeholder="핸드폰 번호를  입력하세요."/>
+					<form:input path="phone" cssClass="form-control" name="phone" value="${phone }"/>
 					<form:errors path="phone" cssClass="errormsg" />
 			    </div>				
 				<div class="form-group">

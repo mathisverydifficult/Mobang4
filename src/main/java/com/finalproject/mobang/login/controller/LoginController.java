@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
@@ -73,12 +76,18 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		model.addAttribute("dto", new LoginDto());
 		
+		System.out.println(loginDto.getRoommate());
+		
 		if(result.hasErrors()) {
 			return "login/user_signup";
 		} else {
 			
 			if(loginDto.getRoommate() != null) {
+				System.out.println(loginDto.getPwd());
+				
 				loginDto.setPwd("{noop}"+loginDto.getPwd());
+				
+				System.out.println(loginDto.getPwd());
 				
 				int res = biz.userInsert(loginDto);
 				
@@ -88,14 +97,18 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 					return "login/user_signup";
 				}
 			} else {
+				System.out.println(loginDto.getPwd());
+				
 				loginDto.setPwd("{noop}"+loginDto.getPwd());
 				loginDto.setClean("");
 				loginDto.setLifestyle("");
 				loginDto.setShower("");
-				loginDto.setFavorateage("");
+				loginDto.setFavoriteage("");
 				loginDto.setGender("");
 				loginDto.setAnimal("");
 				loginDto.setNeeds("");
+				
+				System.out.println(loginDto.getPwd());
 				
 				int res = biz.userInsert(loginDto);
 				
@@ -137,7 +150,71 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 				return "login/agent_signup";
 			}
 		}
+	}
+	
+	@RequestMapping(value = "/userupdateform.all")
+	public String userupdateform(Locale locale, Model model) {
+		logger.info("userupdateform");
 		
+		LoginDto dto = biz.selectUser(currentUserName());
+		
+		model.addAttribute("loginDto", dto);
+		
+		System.out.println(dto.getEmail());
+		
+		
+		return "login/user_update";
+	}
+	
+	@RequestMapping(value = "/userupdate.all")
+	public String userupdate(Model model, @ModelAttribute("loginDto")@Valid LoginDto loginDto, BindingResult result,
+			RedirectAttributes rttr) {
+		logger.info("userupdate");	
+		
+		System.out.println("userupdate : "+ loginDto);
+		
+		if(result.hasErrors()) {
+			return "login/user_update";
+		} else {
+			loginDto.setPwd("{noop}"+loginDto.getPwd());
+
+			System.out.println("controller : "+ loginDto);
+			int res = biz.userUpdate(loginDto);
+				
+			if(res > 0) {
+				return "index";
+			} else {
+				return "login/user_update";
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/agentupdateform.all")
+	public String agentupdateform(Locale locale, Model model) {
+		logger.info("agentupdateform");
+		
+		model.addAttribute("loginDto", biz.selectUser(currentUserName()));
+		
+		return "login/agent_update";
+	}
+	
+	@RequestMapping(value = "/agentupdate.all")
+	public String agentupdate(Model model, @ModelAttribute("loginDto")@Valid LoginDto loginDto, BindingResult result,
+			RedirectAttributes rttr) {
+		logger.info("agentupdate");
+		
+		if(result.hasErrors()) {
+			return "login/agent_update";
+		} else {
+			loginDto.setPwd("{noop}"+loginDto.getPwd());
+			int res = biz.agentUpdate(loginDto);
+				
+			if(res > 0) {
+				return "/";
+			} else {
+				return "login/agent_update";
+			}
+		}
 	}
 	
 	@RequestMapping(value="/email")
@@ -188,6 +265,11 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		}
 	}
 	
-
+	public static String currentUserName() { 
+	      Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+	      User user = (User) authentication.getPrincipal();
+	      
+	      return user.getUsername(); 
+	}
 	
 }

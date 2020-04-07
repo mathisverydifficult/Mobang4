@@ -77,6 +77,7 @@
 			</div>
 			<div class="col-xs-6 col-md-4"></div>
 		</div>
+		
 	</div>
 	
 	<!-- kakao button 아래에 js가 있어야 한다 -->
@@ -136,8 +137,6 @@
       			</div>
     		</div>
  		 </div>
- 		 <a href="/mobang/userupdateform.all">user</a>
- 		 <a href="/mobang/agentupdateform.all">agent</a>
-	</div>
+ 	</div>
 </body>
 </html>

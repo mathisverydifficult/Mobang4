@@ -33,10 +33,18 @@
 	
 	<br/>
 	
+	<br/>
+	
+	<a href="/mobang/userupdateform.all">회원정보수정</a> <br/>
+ 	<a href="/mobang/agentupdateform.all">공인중개사 회원정보수정</a>
+	
+	<br/>
+	
 	<a href="#" onclick="document.getElementById('logout-form').submit();">Sign out</a>
 	<form id="logout-form" action="<c:url value='/logout.all'/>" method="post">
 	   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	</form>
+	
 	
 
 

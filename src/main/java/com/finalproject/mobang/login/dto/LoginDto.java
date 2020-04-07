@@ -44,7 +44,7 @@ public class LoginDto {
 	private String clean;
 	private String lifestyle;
 	private String shower;
-	private String favorateage;
+	private String favoriteage;
 	private String gender;
 	private String animal;
 	private String needs;
@@ -56,7 +56,7 @@ public class LoginDto {
 	}
 	
 	public LoginDto(String seq, String email, String pwd, String name, String phone, String authority, String userfile,
-			String confirm, String clean, String lifestyle, String shower, String favorateage, String gender,
+			String confirm, String clean, String lifestyle, String shower, String favoriteage, String gender,
 			String animal, String needs, String enabled, String roommate) {
 		super();
 		this.seq = seq;
@@ -70,7 +70,7 @@ public class LoginDto {
 		this.clean = clean;
 		this.lifestyle = lifestyle;
 		this.shower = shower;
-		this.favorateage = favorateage;
+		this.favoriteage = favoriteage;
 		this.gender = gender;
 		this.animal = animal;
 		this.needs = needs;
@@ -185,13 +185,13 @@ public class LoginDto {
 	}
 
 
-	public String getFavorateage() {
-		return favorateage;
+	public String getFavoriteage() {
+		return favoriteage;
 	}
 
 
-	public void setFavorateage(String favorateage) {
-		this.favorateage = favorateage;
+	public void setFavoriteage(String favoriteage) {
+		this.favoriteage = favoriteage;
 	}
 
 
@@ -241,6 +241,16 @@ public class LoginDto {
 	public void setRoommate(String roommate) {
 		this.roommate = roommate;
 	}
+
+	@Override
+	public String toString() {
+		return "LoginDto [seq=" + seq + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone
+				+ ", authority=" + authority + ", userfile=" + userfile + ", confirm=" + confirm + ", clean=" + clean
+				+ ", lifestyle=" + lifestyle + ", shower=" + shower + ", favoriteage=" + favoriteage + ", gender="
+				+ gender + ", animal=" + animal + ", needs=" + needs + ", enabled=" + enabled + ", roommate=" + roommate
+				+ "]";
+	}
+	
 	
 	
 }

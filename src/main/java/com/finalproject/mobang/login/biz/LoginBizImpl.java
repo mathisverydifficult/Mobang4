@@ -21,5 +21,29 @@ public class LoginBizImpl implements LoginBiz{
 		// TODO Auto-generated method stub
 		return dao.agentInsert(dto);
 	}
+
+	@Override
+	public LoginDto selectUser(String email) {
+		// TODO Auto-generated method stub
+		return dao.selectUser(email);
+	}
+
+	@Override
+	public int userUpdate(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return dao.userUpdate(dto);
+	}
+
+	@Override
+	public int agentUpdate(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return dao.agentUpdate(dto);
+	}
+
+	@Override
+	public int updatePwd(String email) {
+		// TODO Auto-generated method stub
+		return dao.updatePwd(email);
+	}
 }
 
