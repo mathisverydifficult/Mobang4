@@ -47,7 +47,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
-						<div class="roomlist" onclick="">
+						<div class="roomlist" onclick="location.href='agent_roomdetail.agent?no_rm=${dto.no_rm}'">
 							<div class="picture"><img src="resources/agent/img/sampleroom.jpg"> </div>
 							<c:if test="${dto.plusyn_agt eq 'Y' }"><span>플러스+</span><br></c:if>
 							<span>${dto.roomtype_rm }</span><br>

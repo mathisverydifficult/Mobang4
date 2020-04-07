@@ -44,38 +44,31 @@ public class FavoriteController {
 		
 	}
 	
-	@ResponseBody
+	@ResponseBody								//값만 이동시 ResponseBody
 	@RequestMapping(value="/dibs_insert.user")
-	public int favoritedibs(HttpServletRequest request, FavoriteDto favoriteDto) {
+	public int favoritedibs(FavoriteDto favoriteDto) {
 		
 		
-		
-//		String id = (String) request.getSession().getAttribute("email");
-		
-		favoriteDto.setEmail("djkim1216@naver.com");
+		favoriteDto.setEmail(CurrentUserName.currentUserName());
 		
 		int res = 0;
 		
 		res = biz.insertDibs(favoriteDto);
 		
-		return res;
+		return res;			//리턴타입 String아니므로 페이지 이동이 아닌 값만 보냄
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/dibs_delete.user")
-	public int dibsdelete(HttpServletRequest request, FavoriteDto favoriteDto) {
+	public int dibsdelete(FavoriteDto favoriteDto) {
 		
-		
-		
-//		String id = (String) request.getSession().getAttribute("email");
-		
-		favoriteDto.setEmail("djkim1216@naver.com");
+		favoriteDto.setEmail(CurrentUserName.currentUserName());
 		
 		int res = 0;
 		
 		res = biz.deleteDibs(favoriteDto);
 		
-		return res;
+		return res;			//리턴타입 String아니므로 페이지 이동이 아닌 값만 보냄
 	}
 	
 	@RequestMapping(value="/favorite_dibs.user")
