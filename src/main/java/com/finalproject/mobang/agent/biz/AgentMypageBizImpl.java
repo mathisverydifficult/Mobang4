@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.finalproject.mobang.agent.dao.AgentMypageDao;
 import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentProductDto;
+import com.finalproject.mobang.agent.dto.AgentReviewDto;
 
 @Service
 public class AgentMypageBizImpl implements AgentMypageBiz {
@@ -23,6 +24,16 @@ public class AgentMypageBizImpl implements AgentMypageBiz {
 	@Override
 	public  List<AgentProductDto> selectProductList(String email) {
 		return dao.selectProductList(email);
+	}
+
+	@Override
+	public List<AgentReviewDto> selectReviewList(String agemail) {
+		return dao.selectReviewList(agemail);
+	}
+
+	@Override
+	public List<AgentReviewDto> selectQnaList(String email) {
+		return dao.selectQnaList(email);
 	}
 
 }

@@ -23,7 +23,7 @@
 						<fmt:formatDate value="${dto.date_nt }" pattern="yyyy년 MM월 dd일"/>
 					</p>
 				</div>
-			<input type="hidden" id="board_no" value="">
+			<input type="hidden" id="board_no" value="${dto.seq_nt }">
 			<div class="text">
 				<p>${dto.content_nt }</p>
 				<button onclick="location.href='noticelist.agent?page=${cri.page}&perPageNum=${cri.perPageNum }'">목록</button>

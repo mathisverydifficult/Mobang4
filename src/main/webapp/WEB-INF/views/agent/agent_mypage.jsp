@@ -3,6 +3,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,7 +164,36 @@ $(document).ready(function(){
 		<!-- 리뷰/문의 관리 -->
 		<article class="review">
 			<span>리뷰 내역</span>
+				<c:choose>
+					<c:when test="${empty reviewlist }">
+						<div class="noreview">
+							리뷰가 없습니다
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${reviewlist }" var="review">
+							<div class="reviewlist">
+								<span class="rcontent">${review.rcontent }</span><span class="star"><c:forEach begin="0" end="${review.star-1}" >★</c:forEach></span>${review.star }<br>
+								<span>${review.email }  </span><span><fmt:formatDate value="${review.rdate }" pattern="yyyy년 MM월 dd일"/></span>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			<span>1:1 문의 내역</span>
+				<c:choose>
+					<c:when test="${empty qnalist }">
+						<div class="noreview">
+							문의 내역이 없습니다.
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${qnalist }" var="qna">
+							<div class="qnalist">
+								<span>${qna.title_q }</span>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 		
 		</article>
 	</div>

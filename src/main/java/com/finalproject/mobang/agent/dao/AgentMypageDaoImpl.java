@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentProductDto;
+import com.finalproject.mobang.agent.dto.AgentReviewDto;
 
 @Repository
 public class AgentMypageDaoImpl implements AgentMypageDao {
@@ -30,13 +31,14 @@ public class AgentMypageDaoImpl implements AgentMypageDao {
 		
 		return dto;
 	}
-
+	
+	// 상품관리
 	@Override
 	public  List<AgentProductDto> selectProductList(String email) {
 		
 		List<AgentProductDto> list = new ArrayList<AgentProductDto>();
 		
-		System.out.println("dao email : " + email);
+		//System.out.println("dao email : " + email);
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"productList", email);
@@ -45,6 +47,44 @@ public class AgentMypageDaoImpl implements AgentMypageDao {
 			e.printStackTrace();
 		}
 		
+		
+		return list;
+	}
+	
+	// 리뷰관리
+	@Override
+	public List<AgentReviewDto> selectReviewList(String agemail) {
+		
+		List<AgentReviewDto> list = new ArrayList<AgentReviewDto>();
+		
+		System.out.println("dao 리뷰관리 email : "+agemail);
+		try {
+			list=sqlSession.selectList(NAMESPACE+"reviewList", agemail);
+		} catch (Exception e) {
+			System.out.println("[dao error] : 마이페이지 리뷰관리");
+			e.printStackTrace();
+		}
+		
+		System.out.println(list);
+		
+		return list;
+	}
+	
+	// 문의 관리
+	@Override
+	public List<AgentReviewDto> selectQnaList(String email) {
+		
+		List<AgentReviewDto> list = new ArrayList<AgentReviewDto>();
+		
+		System.out.println("dao 문의관리 email : "+email);
+		try {
+			list=sqlSession.selectList(NAMESPACE+"qnaList", email);
+		} catch (Exception e) {
+			System.out.println("[dao error] : 마이페이지 문의관리");
+			e.printStackTrace();
+		}
+		
+		System.out.println(list);
 		
 		return list;
 	}

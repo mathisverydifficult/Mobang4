@@ -511,3 +511,13 @@ select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtyp
 	ON(B.EMAIL='admin@naver.com' AND A.NO_RM = B.DIBS_FV);
 
 SELECT * FROM ROOM_TB;
+
+SELECT A.EMAIL,A.AGEMAIL,A.RCONTENT,A.RDATE,A.STAR,
+		B.TITLET_Q,B.TITLE_Q,B.CONTENT_Q,B.DATE_Q
+FROM REVIEW_TB A, QNA_TB B
+WHERE A.AGEMAIL=B.EMAIL AND A.AGEMAIL='missdla4929@naver.com'
+
+INSERT INTO REVIEW_TB VALUES('user@naver.com','missdla4929@naver.com','친절하고 좋아요','5',SYSDATE);
+INSERT INTO QNA_TB VALUES(1,1,1,'회원정보/계정관리','비밀번호를 바꾸고싶어요','ㅈㄱㄴ','missdla4929@naver.com',SYSDATE)
+SELECT * FROM REVIEW_TB
+SELECT * FROM 

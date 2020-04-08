@@ -41,4 +41,11 @@
     
     /* 리뷰 문의관리 */
  .mypagewrap .review{display: none;}
-    
+ .mypagewrap .noreview{text-align: center; font-size: 25px;}
+ .mypagewrap .reviewlist{border-top: 1px solid #727272; border-bottom: 1px solid #727272; padding: 10px;}
+ .mypagewrap .rcontent{font-size: 15px; color: black; margin-right: 10px;}
+ .mypagewrap .star{font-size: 15px; color: red; margin-right: 5px;}
+   
+   
+   
+   
