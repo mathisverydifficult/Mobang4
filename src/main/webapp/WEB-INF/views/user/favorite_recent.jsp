@@ -179,13 +179,24 @@ $(function(){
 					<div class="favorite">
 						<img id="${dto.no_rm }" src='resources/user/img/favorite_${dto.checkdib}.png' />
 					</div>	
+					<a href="room_detail.all?myno=${dto.no_rm }">	
 					<div class="picture">
-						 <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
+						<c:choose>
+							<c:when test="${empty imagelist}">
+								<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="${imagelist[status.index]}" alt="Card image" style="width:100%; height:150px;">
+							</c:otherwise>
+						</c:choose>
+						 
 					</div>
 				    <div class="card-body">
 					    <h4 class="card-title">${dto.title_rm }</h4>
-					    <p class="card-text">${dto.content_rm }, ${status.count}</p>
+					    <p class="card-text">${dto.content_rm }</p>
+				    	
 				    </div>
+				    </a>
 				</div>
 			</c:forEach>
 		</c:otherwise>
@@ -214,7 +225,7 @@ $(function(){
 		    	
 		    
 			    <h4 class="card-title">방제목</h4>
-			    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+			    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 			    <a href="#" class="btn btn-primary">프로필보기</a>
 		    </div>
 		</div>
@@ -232,7 +243,7 @@ $(function(){
 		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
 		    <div class="card-body">
 			    <h4 class="card-title">${dto.email }</h4>
-			    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+			    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 		    </div>
 		</div>
     </div>  

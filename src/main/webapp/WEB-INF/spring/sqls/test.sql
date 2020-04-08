@@ -551,14 +551,142 @@ select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtyp
 	where checkdib = 2
 	ORDER BY recent DESC;  
 	
-  
-  
-  
-  select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
-  	from(
-  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
+     from(
+     select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+     CASE WHEN B.DIBS_FV IS NULL THEN 1
 	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV)) 
-	where checkdib = 2;
+	ON(B.EMAIL='admin@naver.com' AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV)) 
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
+
+
+SELECT tb.EMAIL
+
+-- 아이디 검색했을 때 CHECKDIB 구분해주는 것
+SELECT tb.EMAIL, RECENT_FV, DIBS_FV,
+CASE 
+WHEN DIBS_FV IS NOT NULL THEN 2 
+WHEN RECENT_FV IN 
+(SELECT DISTINCT DIBS_FV
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND DIBS_FV IN
+(SELECT DISTINCT RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL)) THEN 2
+WHEN DIBS_FV IS NULL THEN 1
+END AS CHECKDIB
+,DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+FROM USERFAVORITE_TB tb LEFT OUTER JOIN ROOM_TB rt ON RECENT_FV=NO_RM OR DIBS_FV=NO_RM 
+WHERE tb.EMAIL='admin@naver.com' 
+ORDER BY DATE_FV DESC;
+
+SELECT tb.EMAIL, RECENT_FV, DIBS_FV, CHECKDIB, DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm
+FROM(
+
+
+SELECT tb.EMAIL, RECENT_FV, DIBS_FV,
+CASE 
+WHEN DIBS_FV IS NOT NULL THEN 2 
+WHEN RECENT_FV IN 
+(SELECT DISTINCT DIBS_FV
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND DIBS_FV IN
+(SELECT DISTINCT RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL)) THEN 2
+WHEN DIBS_FV IS NULL THEN 1
+END AS CHECKDIB
+,DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+FROM USERFAVORITE_TB tb LEFT OUTER JOIN ROOM_TB rt ON RECENT_FV=NO_RM OR DIBS_FV=NO_RM 
+WHERE tb.EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL
+ORDER BY DATE_FV DESC;  
+
+SELECT * FROM 
+(SELECT tb.EMAIL, RECENT_FV, DIBS_FV,
+CASE 
+WHEN DIBS_FV IS NOT NULL THEN 2 
+WHEN RECENT_FV IN 
+(SELECT DISTINCT DIBS_FV
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND DIBS_FV IN
+(SELECT DISTINCT RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL)) THEN 2
+WHEN DIBS_FV IS NULL THEN 1
+END AS CHECKDIB
+,DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+FROM USERFAVORITE_TB tb LEFT OUTER JOIN ROOM_TB rt ON RECENT_FV=NO_RM OR DIBS_FV=NO_RM 
+WHERE tb.EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL
+ORDER BY DATE_FV DESC) 
+WHERE ROWID IN(SELECT MAX(ROWID) FROM 
+()
+GROUP BY RECENT_FV);
+
+SELECT EMAIL, RECENT_FV, DIBS_FV,CHECKDIB, DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm
+FROM(
+SELECT ROW_NUMBER() OVER(PARTITION BY RECENT_FV ORDER BY DATE_FV DESC) AS RNUM,
+EMAIL, RECENT_FV, DIBS_FV,CHECKDIB, DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+FROM(
+SELECT tb.EMAIL AS EMAIL, RECENT_FV, DIBS_FV,
+CASE WHEN DIBS_FV IS NOT NULL THEN 2 
+WHEN RECENT_FV IN 
+(SELECT DISTINCT DIBS_FV
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND DIBS_FV IN
+(SELECT DISTINCT RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL)) THEN 2
+WHEN DIBS_FV IS NULL THEN 1
+END AS CHECKDIB
+,DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+FROM USERFAVORITE_TB tb LEFT OUTER JOIN ROOM_TB rt ON RECENT_FV=NO_RM OR DIBS_FV=NO_RM 
+WHERE tb.EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL
+ORDER BY DATE_FV DESC))
+WHERE RNUM=1
+ORDER BY DATE_FV DESC;
+
+SELECT COUNT (RECENT_FV)
+FROM(
+SELECT DISTINCT EMAIL, RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL);
+
+
+
+SELECT * FROM ROOM_TB;
+
+
+-- 
+SELECT DISTINCT DIBS_FV
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND DIBS_FV IN
+(SELECT DISTINCT RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL)
+;
+
+
+SELECT DISTINCT RECENT_FV 
+FROM USERFAVORITE_TB
+WHERE EMAIL='admin@naver.com' AND RECENT_FV IS NOT NULL;
+
+SELECT * FROM USERFAVORITE_TB WHERE EMAIL='admin@naver.com';
+
+
+
+SELECT  NO_RM,TITLE_RM,PICTURE_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,PLUSYN_AGT
+		 FROM ( 
+		        SELECT A.NO_RM,A.TITLE_RM,A.PICTURE_RM,A.ROOMTYPE_RM,A.RENT_RM,A.ROOMPRICE_RM,A.FLOOR_RM,
+		        	   A.ROOMSIZE_RM,A.EXPENSE_RM,EMAIL,B.PLUSYN_AGT,
+		               ROW_NUMBER() OVER(ORDER BY NO_RM DESC) AS RNUM
+		         FROM ROOM_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
+		                       ) MP
+		WHERE EMAIL='missdla4929@naver.com'
+		ORDER BY NO_RM DESC;
+
+	
+
+	
+	

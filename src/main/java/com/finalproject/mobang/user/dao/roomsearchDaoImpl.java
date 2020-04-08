@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
+import com.finalproject.mobang.common.dto.Criteria;
 import com.finalproject.mobang.user.dto.roomsearchDto;
 
 
@@ -125,5 +127,21 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		
 		return res;
 	}
+	
+	// 방 상세보기에서 공인중개사가 등록한 다른 방을 검색하는 list
+	@Override
+	public List<AgentRoomListDto> selectAgentList(String email) {
+		List<AgentRoomListDto> list = new ArrayList<AgentRoomListDto>();
+		
+		try {	// art+shift+z
+			list = sqlSession.selectList(NAMESPACE+ "selectAgentList",email);
+		} catch (Exception e) {
+			System.out.println("[DAO error] : selectAgentList");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
 	
 }

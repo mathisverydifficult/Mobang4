@@ -41,18 +41,20 @@ public class FavoriteController {
 			String email = CurrentUserName.currentUserName();
 			logger.info("email : "+ email);
 			List<roomsearchDto> list = roombiz.recentList(email);
-			list.size();
-			for(int i=0; i<list.size(); i++) {
-				logger.info(list.get(i).getPicture_rm());
+			List<String> imagelist = new ArrayList<String>();
+			for(int i =0; i<list.size(); i++) {
+				logger.info("imagepath : " + list.get(i).getPicture_rm().split("/_/")[0]);
+				imagelist.add(list.get(i).getPicture_rm().split("/_/")[0]);
 			}
 			
+			model.addAttribute("imagelist",imagelist);
 			model.addAttribute("list", roombiz.recentList(email));
-			
 			model.addAttribute("count",biz.recentCount(email));
 		} catch (Exception e) {
 			logger.info("이메일이 없거나 객체에 값을 못담음");
 			e.printStackTrace();
 		}
+
 		
 		
 		return "user/favorite_recent";

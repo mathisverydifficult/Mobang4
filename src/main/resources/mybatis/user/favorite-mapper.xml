@@ -89,9 +89,11 @@
 	<!-- 본 방의 수를 출력하는 함수 -->
 	<select id="recentCount" resultType="int">
 	<![CDATA[
-		SELECT COUNT(RECENT_FV)
-		  FROM USERFAVORITE_TB
-		 WHERE EMAIL =#{email}
+		SELECT COUNT (RECENT_FV)
+		FROM(
+		SELECT DISTINCT EMAIL, RECENT_FV 
+		FROM USERFAVORITE_TB
+		WHERE EMAIL=#{email} AND RECENT_FV IS NOT NULL)
 	]]>
 	</select>
 	
