@@ -16,13 +16,10 @@
 	
 	<div class="agenthead">
 		<div class="headleft">
-<<<<<<< HEAD
 			<a style="" href="agent_home.all"><h1>모방 | 공인중개사</h1></a>
 			<a href="home.user"><div class="h2">모방 사이트></div></a>
-=======
 			<a style="" href="agent_home.agent"><h1>모방 | 공인중개사</h1></a>
 			<a href="home.all"><div class="h2">모방 사이트></div></a>
->>>>>>> 241088ac57cc0e91f96544afac706ba65e93165d
 		</div>
 		<div class="headright">
 			<ul>
