@@ -73,9 +73,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	}
 	
 	@RequestMapping(value = "/pwdfind.all")
-	public String pwdfind(Locale locale, Model model, String email, String pwd, 
-			@ModelAttribute("loginDto")@Valid LoginDto loginDto, BindingResult result,
-			RedirectAttributes rttr) {
+	public String pwdfind(Locale locale, Model model, String email, String pwd) {
 		logger.info("pwd find");
 		
 		System.out.println(email + "  " + pwd);
@@ -85,16 +83,12 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		int res = 0;
 		
-		if(result.hasErrors()) {
+		res = biz.updatePwd(map);
+		
+		if(res > 0) {
 			return "login/login";
 		} else {
-			res = biz.updatePwd(map);
-			
-			if(res > 0) {
-				return "login/login";
-			} else {
-				return "index";
-			}
+			return "index";
 		}
 	}
 	

@@ -109,10 +109,9 @@
 	</script>
 
 	<!-- Modal -->
-	<form:form class="form-horizontal" enctype="multipart/form-data" modelAttribute="loginDto" action="pwdfind.all" method="post">
+	<form:form class="form-horizontal" enctype="multipart/form-data" action="pwdfind.all" method="post">
 		<div class="modal fade" id="pwfind_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  		<input type="hidden" path="random" id="random" value="77777" />
-	  		<input type="hidden" name="fail" id="fail" value="${param.fail }" />
 	  		<div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content">
 	      			<div class="modal-header">
@@ -123,12 +122,11 @@
 	       				 <div class="form-group" id="modal_email">
 							<label>이메일</label> 
 							<div class="input-group">
-								<form:input path="email" class="form-control" name="email" id="inputEmail" placeholder="이메일을 입력하세요."/>
+								<input class="form-control" name="email" id="inputEmail" placeholder="이메일을 입력하세요."/>
 								<span class="input-group-btn">
 										<button class="btn btn-default" id="emailBtn" type="button">전송</button>
 								</span>
 							</div>
-							<small><form:errors path="email" cssClass="errormsg" /></small>
 							<label>인증번호</label>
 							<div class="input-group">
 								<input type="text" class="form-control" name="code" id="code" placeholder="인증번호를 입력하세요."/>
@@ -139,11 +137,10 @@
 						</div>
 						<div class="form-group" id="modal_pwd">
 							<label for="exampleInputEmail1">비밀번호</label> 
-							<form:input path="pwd" type="password"  class="form-control" id="pwd_find" name="pwd" placeholder="비밀번호를 입력하세요."/>
+							<input type="password"  class="form-control" id="pwd_find" name="pwd" placeholder="비밀번호를 입력하세요."/>
 							<label>비밀번호 확인</label> 
 							<input type="password" class="form-control" name="pwfindpwdconfirm" id="pwd_confirm" placeholder="비밀번호를 입력하세요.">
 						</div>
-						<small><form:errors path="pwd" cssClass="errormsg" /></small>
 	     			 </div>
 	      			<div class="modal-footer">
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>

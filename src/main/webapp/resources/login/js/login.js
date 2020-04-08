@@ -44,7 +44,6 @@ $(function () {
 	*/
 	$(document).on("click", "#emailBtn", function(){
 		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
-		alert($("#inputEmail").val());
 		$.ajax({
 			type:"get",
 			url : "createEmailCheck.all",
