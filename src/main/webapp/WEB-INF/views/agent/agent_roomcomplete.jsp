@@ -22,6 +22,7 @@
     .button>input{margin:10px; background-color: rgba(51, 85, 139,0.85); color: white; font-size: 15px; padding: 11px 25px; cursor: pointer; }
 	.button>input:hover{background-color: rgb(51, 85, 139);}
    
+   .completewrap img {width: 200px; height: 200px; float: left; margin-left: 50px; margin-bottom: 50px;}
     .container {
         width: 1200px;
         margin: 0 auto; /*block요소를 가운데로 오게 해준다.*/
@@ -96,8 +97,8 @@
     						<th>사진존재함</th>
     						<td>
 								<c:forEach items="${imagelist }" var="image">
-									<p><c:out value="${image}"/></p>
-									<p>${image }</p>
+				<!-- 					<p><c:out value="${image}"/></p>
+									<p>${image }</p>	 -->
 									<img src="${image }">
 								</c:forEach>
     						</td>

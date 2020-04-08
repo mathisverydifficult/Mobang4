@@ -99,7 +99,6 @@ function execDaumPostcode() {
     		<p class = "title">사진등록</p>
     		<input multiple="multiple" id ="gdsImgs" type="file" name="file" placeholder="파일선택 "/><br/>
     		<div class= "photo_wrap">
-	    		<img id="img"/>
 	    	</div>
     	</div>
     </section>

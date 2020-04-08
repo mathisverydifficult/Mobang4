@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.finalproject.mobang.admin.controller.AdminController;
 import com.finalproject.mobang.agent.biz.AgentMypageBiz;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
+<<<<<<< HEAD
+=======
+import com.finalproject.mobang.agent.biz.AgentPayBiz;
+>>>>>>> 4c8dd1ee7913cc7029d0ebb58c1616c709058a0e
 import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentItemDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
@@ -26,6 +30,8 @@ public class AgentController {
 	
 	@Autowired
 	private AgentNoticeBiz biz;
+	private AgentPayBiz userbiz;
+	
 	
 	@Autowired
 	private AgentMypageBiz userbiz;
@@ -69,18 +75,19 @@ public class AgentController {
 		return "/agent/agent_fnq";
 	}
 	
-	@RequestMapping(value ="/agent_sales.agent")
+	@RequestMapping(value ="/agent_sales.all")
 	public String sales(Model model) {
 		return "/agent/agent_sales";
 	}
 	
-	@RequestMapping(value="/agent_premium.agent")
+	@RequestMapping(value="/agent_premium.all")
 	public String premiumsale(Model model) {
 		return "/agent/agent_premium_sales";
 	}
 	
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
+<<<<<<< HEAD
 
 		String email = CurrentUserName.currentUserName();
 		AgentAccountDto accountdto = userbiz.selectAccount(email);
@@ -88,6 +95,16 @@ public class AgentController {
 		model.addAttribute("dto", dto);
 		return "/agent/agent_pay";
 	}
+=======
+		String email = CurrentUserName.currentUserName();
+		AgentAccountDto accountdto = userbiz.selectAccount(email);
+		model.addAttribute("account", accountdto);
+		logger.info("pay value"+accountdto);
+		model.addAttribute("dto", dto);
+		return "redirect:/agent/agent_pay";
+	}
+	
+>>>>>>> 4c8dd1ee7913cc7029d0ebb58c1616c709058a0e
 	@RequestMapping(value = "/agent_sales_complete.agent")
 	public String agentSalesComplete(Model model) {
 		

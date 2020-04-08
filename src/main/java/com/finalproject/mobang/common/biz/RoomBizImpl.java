@@ -38,8 +38,7 @@ public class RoomBizImpl implements RoomBiz {
 
 	@Override
 	public int update(RoomDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(dto);
 	}
 
 	@Override
@@ -47,9 +46,9 @@ public class RoomBizImpl implements RoomBiz {
 		return dao.delete(no_rm);
 	}
 
-	@Override
-	public RoomDto insertcomplete(int no_rm) {
-		return dao.insertcomplete(no_rm);
-	}
+//	@Override
+//	public RoomDto insertcomplete(int no_rm) {
+//		return dao.insertcomplete(no_rm);
+//	}
 
 }

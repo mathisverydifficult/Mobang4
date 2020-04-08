@@ -36,6 +36,16 @@
 	margin-bottom: 1px;
 }
 
+<!-- 사진 위 간이 제목 css -->
+
+.menutitle {
+	font-size: 24px;
+}
+.menucontent {
+	display:inline-block;
+	margin-top: 35px;
+	
+}
 
 </style>
   
@@ -70,15 +80,15 @@
 		  <div class="col-sm-4">
 		  	<c:choose>
 				<c:when test="${count ge 30}">
-					<div class="p-2">총 30개의 최근 본 방이 있습니다.</div>
+					<div class="p-2"><span class="menucontent">총 30개의 최근 본 방이 있습니다.</span></div>
 				</c:when>
 				<c:otherwise>
-					<div class="p-2">총 ${count }개의 최근 본 방이 있습니다.</div>
+					<div class="p-2"><span class="menucontent">총 ${count }개의 최근 본 방이 있습니다.</span></div>
 				</c:otherwise>
 			</c:choose>	
 		  </div>
-		  <div class="col-sm-4 text-center"><span>최근 본 방</span></div>
-		  <div class="col-sm-4 text-right"><span>최근 본 방은 최대 30개까지 보여집니다.</span></div>
+		  <div class="col-sm-4 text-center"><h3>최근 본 방</h3></div>
+		  <div class="col-sm-4 text-right"><span class="menucontent">최근 본 방은 최대 30개까지 보여집니다.</span></div>
 		</div>
     </div>
     
@@ -114,8 +124,8 @@
 	<div class="page-header">
 		<div class="row">
 		  <div class="col-sm-4"></div>
-		  <div class="col-sm-4 text-center"><span>관심있는 방이 같은 룸메이트</span></div>
-		  <div class="col-sm-4 text-right"><span class="moerview">더보기</span></div>
+		  <div class="col-sm-4 text-center"><h3>관심있는 방이 같은 룸메이트</h3></div>
+		  <div class="col-sm-4 text-right"><a class="menucontent" href="">더보기</a></div>
 		</div>
     </div>
     <div>
