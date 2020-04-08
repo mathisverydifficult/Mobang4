@@ -31,6 +31,12 @@ public class AgentMypageController {
 		// 상품관리
 		model.addAttribute("productlist", biz.selectProductList(email));
 		
+		// 리뷰관리
+		model.addAttribute("reviewlist", biz.selectReviewList(email));
+		
+		// 문의관리
+		model.addAttribute("qnalist", biz.selectQnaList(email));
+		
 		return "/agent/agent_mypage";
 	}
 
@@ -43,6 +49,12 @@ public class AgentMypageController {
 		
 		// 상품관리
 		model.addAttribute("productlist", biz.selectProductList(email));
+		
+		// 리뷰관리
+		model.addAttribute("reviewlist", biz.selectReviewList(email));
+		
+		// 문의관리
+		model.addAttribute("qnalist", biz.selectQnaList(email));
 		
 		return "/agent/agent_mypage";
 	}

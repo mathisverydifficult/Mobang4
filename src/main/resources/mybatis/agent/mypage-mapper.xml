@@ -25,6 +25,19 @@
 		<result property="price_it" column="PRICE_IT"/>
 	</resultMap>
 	
+	<!-- 리뷰관리에서 쓸 map -->
+	<resultMap type="agentReviewDto" id="reviewMap">
+		<result property="email" column="EMAIL"/>
+		<result property="agemail" column="AGEMAIL"/>
+		<result property="rcontent" column="RCONTENT"/>
+		<result property="star" column="STAR"/>
+		<result property="rdate" column="RDATE"/>
+		<result property="titlet_q" column="TITLET_Q"/>
+		<result property="title_q" column="TITLE_Q"/>
+		<result property="content_q" column="CONTENT_Q"/>
+		<result property="date_q" column="DATE_Q"/>
+	</resultMap>
+	
 	
 	<!-- 마이페이지 계정관리 -->
 	<!-- 프로필 경로 추가하기 -->
@@ -43,7 +56,18 @@
 	</select>
 	
 	<!-- 마이페이지 리뷰/문의관리  -->
-	
+	<select id="reviewJoinList" parameterType="String" resultMap="reviewMap" >
+		SELECT A.EMAIL,A.AGEMAIL,A.RCONTENT,A.RDATE,A.STAR,
+			   B.TITLET_Q,B.TITLE_Q,B.CONTENT_Q,B.DATE_Q
+		FROM REVIEW_TB A, QNA_TB B
+		WHERE A.AGEMAIL=B.EMAIL AND A.AGEMAIL=#{agemail}
+	</select>
+	<select id="reviewList" parameterType="String" resultMap="reviewMap">
+		SELECT * FROM REVIEW_TB WHERE AGEMAIL=#{agemail}
+	</select>
+	<select id="qnaList" parameterType="String" resultMap="reviewMap">
+		SELECT EMAIL,TITLET_Q,TITLE_Q,CONTENT_Q,DATE_Q FROM QNA_TB WHERE EMAIL=#{email}
+	</select>
 	
 
 </mapper>
