@@ -8,7 +8,7 @@ import com.finalproject.mobang.user.dto.roomsearchDto;
 public interface roomsearchBiz {
 	
 	public List<roomsearchDto> dibList(String email);
-	public List<roomsearchDto> selectsearchList(String keyword, String email);
+	public List<roomsearchDto> selectsearchList(String keyword, String email, List<String> roomArray, List<String> rentArray);
 	public roomsearchDto selectOne(int myno);
 	public int insert(roomsearchDto dto);
 	public int update(roomsearchDto dto);
