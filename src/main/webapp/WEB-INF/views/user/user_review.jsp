@@ -92,8 +92,8 @@
 	
 	<c:forEach items="${list }" var="dto" varStatus="status"> <!-- forEach 객체마다 id 다르게 주는 방법 -->
 		
-		${dto.agemail } , ${dto.rcontent }, ${dto.star }, <fmt:formatDate value="${dto.rdate }" pattern="yyyy.MM.dd"/>,${status.count} <br/>
-		<button type="button" class="btn" data-toggle="collapse" data-target="#${status.count}">글 자세히 보기</button>
+		${dto.agemail } , ${dto.rcontent }, ${dto.star }, <fmt:formatDate value="${dto.rdate }" pattern="yyyy.MM.dd"/>,${status.index} <br/>
+		<button type="button" class="btn" data-toggle="collapse" data-target="${status.index}">글 자세히 보기</button>
 		<div id="${status.count}" class="collapse">
 		  	<div class="form-group">
 			  <label for="comment">Comment:</label>

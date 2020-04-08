@@ -11,6 +11,29 @@
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
 <link rel="stylesheet" type="text/css" href="resources/agent/css/agent_roommanage.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+//	var imagelist = [];
+//	<c:forEach items="${list }" var="dto">
+//	imagelist.push("${dto.picture_rm}");
+//	</c:forEach>
+//	alert(imagelist);
+//	var filelist = []; //imagelist.split('/_/');
+//	for(var i=0;i<imagelist.length;i++){
+		//alert(imagelist[i]);
+		//alert(imagelist[i].split('/_/')[0]);
+//		filelist.push(imagelist[i].split('/_/')[0]);
+//	}
+	
+	//alert(filelist);
+//	for(var i=0;i<filelist.length;i++){
+//		var index = "#"+i;
+//		alert(filelist[i]);
+//		$(index).attr('src',filelist[i]);
+//	}
+
+});
+</script>
 </head>
 <body>
 <%@ include file="form/agent_header2.jsp" %>
@@ -46,9 +69,13 @@
 					</div>
 				</c:when>
 				<c:otherwise>
+					<c:forEach items="${filelist }" var="img">
+						<div class="roomlist" onclick="">
+							<div class="picture"><img src="${img}"></div>
+						</div>
+					</c:forEach>
 					<c:forEach items="${list }" var="dto">
 						<div class="roomlist" onclick="location.href='agent_roomdetail.agent?no_rm=${dto.no_rm}'">
-							<div class="picture"><img src="resources/agent/img/sampleroom.jpg"> </div>
 							<c:if test="${dto.plusyn_agt eq 'Y' }"><span>플러스+</span><br></c:if>
 							<span>${dto.roomtype_rm }</span><br>
 							<span class="price">${dto.rent_rm }</span> <span class="price">${dto.roomprice_rm }</span><br>

@@ -42,18 +42,15 @@
   
   <!-- 찜한 방 리스트만 출력 (checkdib = 2) -->
   <select id="dibList" resultMap="roomsearchMap" parameterType="string">
-  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
   	from(
-  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
   	CASE WHEN B.DIBS_FV IS NULL THEN 1
 	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	
 	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV)) 
-	
 	where checkdib = 2
-	
+	ORDER BY recent DESC
   </select>
   
   <!-- 검색했을 경우 keyword 검색, 검색을 안했으면 전체 List 출력 -->
@@ -61,10 +58,8 @@
   	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm,  
   	CASE WHEN B.DIBS_FV IS NULL THEN 1
 	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	 
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
 	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV)
-	
   	<if test="keyword != null and keyword !='' ">
   		where addr_rm like '%${keyword}%'
   	</if>
@@ -72,7 +67,7 @@
   
   <!-- 방 상세보기 -->
   <select id="selectOne" resultMap="roomsearchMap" parameterType="Integer">
-  	select no_rm, title_rm,picture_rm,animal_rm,elevator_rm,veranda_rm,
+  	select email,no_rm, title_rm,picture_rm,animal_rm,elevator_rm,veranda_rm,
 	roomin_rm, content_rm,aircon_rm, washer_rm, gasrange_rm, induction_rm,
 	desk_rm, tv_rm, ref_rm, bed_rm, showhouse_rm, closet_rm, microwave_rm, sink_rm,
 	rent_rm, roomprice_rm, expense_rm, roomtype_rm, addr_rm, addr_dt_rm, roomsize_rm,
@@ -80,5 +75,50 @@
 	FROM ROOM_TB 
 	WHERE no_rm=#{no_rm}
   </select>
+  
+  
+ 	<!-- 최근 본 리스트 출력 -->
+	<select id="recentList" resultMap="roomsearchMap" parameterType="string">
+		SELECT EMAIL, RECENT_FV, DIBS_FV,CHECKDIB, DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm
+		FROM(
+		SELECT ROW_NUMBER() OVER(PARTITION BY RECENT_FV ORDER BY DATE_FV DESC) AS RNUM,
+		EMAIL, RECENT_FV, DIBS_FV,CHECKDIB, DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+		FROM(
+		SELECT tb.EMAIL AS EMAIL, RECENT_FV, DIBS_FV,
+		CASE WHEN DIBS_FV IS NOT NULL THEN 2 
+		WHEN RECENT_FV IN 
+		(SELECT DISTINCT DIBS_FV
+		FROM USERFAVORITE_TB
+		WHERE EMAIL=#{email} AND DIBS_FV IN
+		(SELECT DISTINCT RECENT_FV 
+		FROM USERFAVORITE_TB
+		WHERE EMAIL=#{email} AND RECENT_FV IS NOT NULL)) THEN 2
+		WHEN DIBS_FV IS NULL THEN 1
+		END AS CHECKDIB
+		,DATE_FV ,ROOM_EX, no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+		FROM USERFAVORITE_TB tb LEFT OUTER JOIN ROOM_TB rt ON RECENT_FV=NO_RM OR DIBS_FV=NO_RM 
+		WHERE tb.EMAIL=#{email} AND RECENT_FV IS NOT NULL
+		ORDER BY DATE_FV DESC))
+		WHERE RNUM=1
+		ORDER BY DATE_FV DESC
+  </select>
+  
+  
+  <!-- 중개사가 올린 방 리스트 출력  -->
+	<select id="selectAgentList" parameterType="String" resultType="com.finalproject.mobang.common.dto.AgentRoomListDto">
+		SELECT  NO_RM,TITLE_RM,PICTURE_RM,ROOMTYPE_RM,RENT_RM,ROOMPRICE_RM,FLOOR_RM,ROOMSIZE_RM,EXPENSE_RM,PLUSYN_AGT
+		 FROM ( 
+		        SELECT A.NO_RM,A.TITLE_RM,A.PICTURE_RM,A.ROOMTYPE_RM,A.RENT_RM,A.ROOMPRICE_RM,A.FLOOR_RM,
+		        	   A.ROOMSIZE_RM,A.EXPENSE_RM,EMAIL,B.PLUSYN_AGT,
+		               ROW_NUMBER() OVER(ORDER BY NO_RM DESC) AS RNUM
+		         FROM ROOM_TB A JOIN AGENTJOIN_TB B USING(EMAIL)
+		                       ) MP
+		WHERE EMAIL=#{email}
+		ORDER BY NO_RM DESC
+	</select>
+  
+  
+  
+  
   
 </mapper>

@@ -96,7 +96,7 @@
 				    <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
 				    <div class="card-body">
 					    <h4 class="card-title">${dto.email }</h4>
-					    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+					    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 				    </div>
 				</div>
 			</c:forEach>
@@ -125,7 +125,7 @@
 				    <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
 				    <div class="card-body">
 					    <h4 class="card-title">${dto.email }</h4>
-					    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+					    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 				    </div>
 				</div>
 			</c:forEach>
@@ -153,7 +153,7 @@
 				    <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
 				    <div class="card-body">
 					    <h4 class="card-title">${dto.email }</h4>
-					    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+					    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 				    </div>
 				</div>
 			</c:forEach>

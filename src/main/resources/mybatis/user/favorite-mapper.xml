@@ -3,7 +3,7 @@
 <!-- 유저별 찜한 방이나 봤던 방을 저장하고 불러오는 함수들을 정하는 MAPPER -->
 <mapper namespace="favorite">
 	
-	<resultMap type="FavoriteDto" id="favoriteMap">
+	<resultMap type="FavoriteDto" id="favoriteMap" >
 		<result property="email" column="EMIAL"/>
 		<result property="recentFv" column="RECENT_FV"/>
 		<result property="dibsFv" column="DIBS_FV"/>
@@ -25,7 +25,7 @@
 		INSERT INTO USERFAVORITE_TB (EMAIL, RECENT_FV, DATE_FV, ROOM_EX) VALUES
 		(
 		#{email},
-		#{recnetFv},
+		#{recentFv},
 		SYSDATE,
 		'Y'
 		)
@@ -76,6 +76,7 @@
 	]]>		
 	</select>
 	
+	
 	<!-- 찜한 방의 수를 출력하는 함수 -->
 	<select id="dibsCount" resultType="int">
 	<![CDATA[
@@ -88,9 +89,11 @@
 	<!-- 본 방의 수를 출력하는 함수 -->
 	<select id="recentCount" resultType="int">
 	<![CDATA[
-		SELECT COUNT(email)
-		  FROM USERFAVORITE_TB
-		 WHERE EMAIL =#{email}
+		SELECT COUNT (RECENT_FV)
+		FROM(
+		SELECT DISTINCT EMAIL, RECENT_FV 
+		FROM USERFAVORITE_TB
+		WHERE EMAIL=#{email} AND RECENT_FV IS NOT NULL)
 	]]>
 	</select>
 	

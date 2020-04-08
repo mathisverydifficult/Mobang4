@@ -39,14 +39,18 @@ function favodelete(id){		//찜한 방 취소
 	<div class="container">
 		<header class="headerbox">
 			<div class="left">
+<<<<<<< HEAD
 				<a href="home.user" class="myhome">모방</a> <a href="agent_home.all"
+=======
+				<a href="home.all" class="myhome">모방</a> <a href="agent_home.agent"
+>>>>>>> 241088ac57cc0e91f96544afac706ba65e93165d
 					class="aa">모방중개사 사이트></a>
 			</div>
 			<div>
 				<div class="right">
 					<div class="right1">
 						<a href="review_list.user">로그인되면 리뷰로 갈 것</a> 
-						<a href="homesearch.user" class="aa">방찾기</a> 
+						<a href="homesearch.all" class="aa">방찾기</a> 
 						<a href="favorite_recent.user" class="aa">관심목록</a> 
 							<a href="" class="aa">알림</a>
 					</div>
