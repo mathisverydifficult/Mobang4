@@ -56,35 +56,40 @@ div#main {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(51, 85, 139, 0.6);
 }
 
-.send {
+#emailBtn {
+    background-color: #33558b;
+    color: white;
+    border: none;
+    border-radius: 0px 4px 4px 0px;
+    width: 70px;
+    height: 38px;
+    font-size: 18px;
+}
+
+#email_confirm {
     background-color: #33558b;
     color: white;
     box-shadow: none;
     border: none;
-    border-radius: 3px;
-    width: 95px;
+    border-radius: 0px 4px 4px 0px;
+    width: 70px;
     height: 38px;
-    position: absolute;
-    top: 286px;
-    left: 1363px;
     font-size: 18px;
 }
 
-.email_confirm {
-    background-color: #33558b;
+#pwd_button {
+    background-color: #808080;
     color: white;
     box-shadow: none;
     border: none;
-    border-radius: 3px;
-    width: 95px;
+    border-radius: 0px 4px 4px 0px;
+    width: 70px;
     height: 38px;
-    position: absolute;
-    top: 398px;
-    left: 1363px;
     font-size: 18px;
 }
 
-.signup_btn{
+
+#signup_btn{
 	display: inline-block;
     width: 100%;
     height: calc(1.5em + .75rem + 4px);
@@ -93,7 +98,7 @@ div#main {
     font-weight: 400;
     line-height: 1.5;
     color: white;
-    background-color: #33558b;
+    background-color: #808080;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
@@ -101,7 +106,7 @@ div#main {
     font-size: 18px;
 }
 
-div#request_roomate {
+div#request_roommate {
     position: relative;
     left: 600px;
     top: -45px;
@@ -147,9 +152,10 @@ input#slider11 {
     top: 889px;
 }
 
-label.room_label {
-    font-weight: 600;
-}
+/*div#file {
+    position: absolute;
+    top: 67%;
+}*/
 
 label.chk {
     margin-top: 1rem;
@@ -170,8 +176,13 @@ label.chk {
     padding-left: 39px;
 }
 
-#roomate{
+#roommate_div{
 	display: none;
+	margin-top: 13%;
+}
+
+.errormsg{
+	color: red;
 }
 
 /*modal*/

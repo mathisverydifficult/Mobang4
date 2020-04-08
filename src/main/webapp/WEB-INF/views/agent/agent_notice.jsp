@@ -69,14 +69,14 @@
 			<div class="pagination">
 					<ul>
 					<c:if test="${pageMaker.prev }">
-				    	<li class="arrow"><a href="noticelist.agent${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
+				    	<li class="arrow"><a href="noticelist.all${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
 				    </c:if>
 				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				    	<li><a href="noticelist.agent${pageMaker.makeQuery(idx) }">${idx }</a></li>
+				    	<li><a href="noticelist.all${pageMaker.makeQuery(idx) }">${idx }</a></li>
 				    </c:forEach>
 				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				    <li class="arrow">
-				      <a href="noticelist.agent${pageMaker.makeQuery(pageMaker.endPage+1) }">
+				      <a href="noticelist.all${pageMaker.makeQuery(pageMaker.endPage+1) }">
 				        &raquo;
 				      </a>
 				    </li>

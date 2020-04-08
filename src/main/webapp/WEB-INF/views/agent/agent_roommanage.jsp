@@ -69,13 +69,9 @@ $(document).ready(function() {
 					</div>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${filelist }" var="img">
-						<div class="roomlist" onclick="">
-							<div class="picture"><img src="${img}"></div>
-						</div>
-					</c:forEach>
-					<c:forEach items="${list }" var="dto">
+					<c:forEach items="${list }" var="dto" varStatus="status">
 						<div class="roomlist" onclick="location.href='agent_roomdetail.agent?no_rm=${dto.no_rm}'">
+							<div class="picture"><img src="${filelist[status.index]}"></div>
 							<c:if test="${dto.plusyn_agt eq 'Y' }"><span>플러스+</span><br></c:if>
 							<span>${dto.roomtype_rm }</span><br>
 							<span class="price">${dto.rent_rm }</span> <span class="price">${dto.roomprice_rm }</span><br>

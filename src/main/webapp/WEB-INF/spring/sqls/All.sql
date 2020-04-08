@@ -22,6 +22,8 @@ CREATE TABLE USER_TB(
 	CONSTRAINT USER_TB_PK PRIMARY KEY (EMAIL)
 );
 
+ALTER TABLE USER_TB ADD ROOMMATE VARCHAR2(100);
+
 SELECT * FROM USER_TB;
 
 INSERT INTO USER_TB 
@@ -43,6 +45,13 @@ INSERT INTO USER_TB
 VALUES(USER_SEQ.NEXTVAL, 'user@naver.com', '세입자', '{noop}1234', '010-0000-0002',
 'ROLE_USER', '', '', '', '', '', '', '', '', '', '1');
 
+INSERT INTO USER_TB
+		VALUES(USER_SEQ.NEXTVAL, 'dwiano@naver.com', 'qqq', '1111', '2561489', 
+		'ROLE_MEMBER', '123', '',
+		'', '', '', 
+		'', '', '', 
+		'', '1')
+
 INSERT INTO USER_TB 
 VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '세입자', '{noop}1234', '010-0000-1234',
 'ROLE_USER', '', '', '', '', '', '', '', '', '', '1');
@@ -52,12 +61,16 @@ VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '세입자', '{noop}1234', '010-
 	FROM ROOM_TB
   	where addr_rm like '%이천%' OR addr_dt_rm LIKE '%이천%' OR title_rm like '%이천%';
 
-UPDATE USER_TB SET AUTHORITY = 'ROLE_MEMBER' WHERE SEQ = 2; 
+UPDATE USER_TB SET PWD = '{noop}1234' WHERE SEQ = 3; 
 
 DELETE FROM USER_TB
 WHERE EMAIL='missdla4929@naver.com';
 
+DELETE FROM USER_TB
+WHERE EMAIL='hyerin03158@gmail.com';
+
 SELECT * FROM USER_TB;
+
 
 
 DROP TABLE ROOM_TB;
@@ -357,8 +370,8 @@ DROP TABLE REVIEW_TB;
 CREATE TABLE REVIEW_TB
 (
     EMAIL       VARCHAR2(300)    NOT NULL, 
-    AGEMAIL     VARCHAR2(100)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
-    RCONTENT    VARCHAR2(300)    NOT NULL,
+    AGEMAIL     VARCHAR2(300)    NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
+    RCONTENT    VARCHAR2(3000)    NOT NULL,
     STAR        NUMBER    NOT NULL,
     RDATE		DATE 	  NOT NULL
 );
@@ -524,7 +537,7 @@ CREATE TABLE QNA_TB
     GROUPSEQ_Q    NUMBER            NOT NULL, 
     ORDER_Q       NUMBER            NOT NULL, 
     TITLET_Q      VARCHAR2(40)      NOT NULL, 
-    TITLE_Q       VARCHAR2(5)       NOT NULL, 
+    TITLE_Q       VARCHAR2(500)       NOT NULL, 
     CONTENT_Q     VARCHAR2(1000)    NOT NULL, 
     EMAIL         VARCHAR2(300)     NOT NULL REFERENCES USER_TB(EMAIL) ON DELETE CASCADE, 
     DATE_Q        DATE              NOT NULL,

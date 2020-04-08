@@ -199,7 +199,27 @@ label {
     margin-bottom: .5rem;
 }
 
-.email_confirm {
+button#emailBtn {
+    height: 38px;
+    width: 50px;
+    background-color: #33558b;
+    color: white;
+    border-radius: 0px 4px 4px 0px;
+}
+
+button#email_confirm {
+	height: 38px;
+    width: 50px;
+    background-color: #33558b;
+    color: white;
+    border-radius: 0px 4px 4px 0px;
+}
+
+.input-group {
+    margin-bottom: 9%;
+}
+
+.emailBtn {
     background-color: #33558b;
     color: white;
     box-shadow: none;
@@ -220,4 +240,7 @@ input#pwd_find {
     margin-bottom: 10%;
 }
 
+.errormsg{
+	color : red;
+}
 

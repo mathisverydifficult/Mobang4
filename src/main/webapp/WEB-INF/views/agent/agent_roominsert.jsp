@@ -86,9 +86,9 @@ function execDaumPostcode() {
 				<div class="location">
 					<input type="text" id="postcode" placeholder="우편번호" readonly="readonly">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br> 
-					<input type="text" id="roadAddress" placeholder="도로명주소" readonly="readonly" name="addr_rm"> 
+					<input type="text" id="roadAddress" placeholder="도로명주소" readonly="readonly" name="addr_rm" required="required"> 
 					<input type="text" id="jibunAddress" placeholder="지번주소">
-					<input type="text" id="detailAddress" placeholder="상세주소" name="addr_dt_rm">
+					<input type="text" id="detailAddress" placeholder="상세주소" name="addr_dt_rm" required="required">
 					<input type="text" id="extraAddress" placeholder="참고항목" readonly="readonly">
 					<span id="guide" style="color: #999; display: none"></span><br> 
 				</div>
@@ -168,7 +168,7 @@ function execDaumPostcode() {
     					<th>계약형태</th>
     					<td>
     						<div>
-    							<input type = "radio" name= "rent_rm" checked="checked" value = "월세"/><span>월세</span>
+    							<input type = "radio" name= "rent_rm" checked="checked" value = "월세" required="required"/><span>월세</span>
     							<input type = "radio" name= "rent_rm" value = "전세"/><span>전세</span>
     							<input type = "radio" name= "rent_rm" value = "매매"/><span>매매</span>
     						</div>
@@ -176,7 +176,7 @@ function execDaumPostcode() {
     				</tr>
     				<tr>	
     					<th>보증금/월세</th>
-    					<td><input type = "text" name = "roomprice_rm" placeholder="금액을 입력해주세요."/><span>만원</span><span class="remark">※무보증일 경우 0/월세를 입력, 월세가 없을시 보증금/0을 입력하세요.</span></td>
+    					<td><input type = "text" name = "roomprice_rm" placeholder="금액을 입력해주세요." required="required"/><span>만원</span><span class="remark">※무보증일 경우 0/월세를 입력, 월세가 없을시 보증금/0을 입력하세요.</span></td>
     				</tr>
     				<tr>	
     					<th>방구조</th>
@@ -192,18 +192,18 @@ function execDaumPostcode() {
     				</tr>
     				<tr>	
     					<th>관리비</th>
-    					<td><input type = "text" name = "expense_rm" placeholder="금액을 입력해주세요."/><span>만원</span><span class="remark">※ 없을시엔 0 입력.</span></td>
+    					<td><input type = "text" name = "expense_rm" placeholder="금액을 입력해주세요." required="required"/><span>만원</span><span class="remark">※ 없을시엔 0 입력.</span></td>
     				</tr>
     				<tr>	
     					<th>크기</th>
-    					<td><span>전용 면적 : </span><input type = "text" name = "roomsize_rm"/><span>㎡ </span><br/>
-    						<span>계약 면적 : </span><input type = "text" name = "roomsize2_rm"/><span>㎡</span><br/>
+    					<td><span>전용 면적 : </span><input type = "text" name = "roomsize_rm" required="required"/><span>㎡ </span><br/>
+    						<span>계약 면적 : </span><input type = "text" name = "roomsize2_rm" required="required"/><span>㎡</span><br/>
     					</td>
     				</tr>
     				<tr>
     					<th>층수</th>
     					<td>
-    						<span>해당 층 수 : </span><input type = "text" name = "floor_rm"/><span> / 건물 층 수 : </span><input type = "text" name = "floor2_rm">
+    						<span>해당 층 수 : </span><input type = "text" name = "floor_rm" required="required"/><span> / 건물 층 수 : </span><input type = "text" name = "floor2_rm" required="required">
     					</td>
     				</tr>
     				<tr>
@@ -267,15 +267,15 @@ function execDaumPostcode() {
     				</tr>
     				<tr>
     					<th>입주가능일</th>
-    					<td><input type = "date" name = "roomin_rm"/></td>
+    					<td><input type = "date" name = "roomin_rm" required="required"/></td>
     				</tr>
     				<tr>
     					<th>제목</th>
-    					<td><input type = "text" name = "title_rm" class="content"/></td>
+    					<td><input type = "text" name = "title_rm" class="content" required="required"/></td>
     				</tr>
     				<tr>
     					<th>상세설명</th>
-    					<td><textarea rows="20" cols="60" name = "content_rm"></textarea></td>
+    					<td><textarea rows="20" cols="60" name = "content_rm" required="required"></textarea></td>
     				</tr>
     			</table>
     			<div class="button">

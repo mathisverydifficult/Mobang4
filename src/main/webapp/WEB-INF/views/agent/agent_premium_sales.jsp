@@ -212,7 +212,7 @@ button{
 			<div class = "customer_view">
 				<h1>궁금한 부분이 있으신가요?</h1>
 				<p>광고 상품 및 이용에 대한 문의는 언제든지 고객센터에 문의해주세요.</p>
-				<a href="agent_fnq.agent">고객센터 바로가기</a>
+				<a href="agent_fnq.all">고객센터 바로가기</a>
 			</div>
 		</div>
 	</section>

@@ -259,7 +259,7 @@ input{
                     </div>
                     <div>
                         <h1>142,000원</h1>
-                        <button class = "item_prem_buy" onclick="location.href = 'agent_premium_sales.agent'">자세히 보기</button>
+                        <button class = "item_prem_buy" onclick="location.href = 'agent_premium_sales.all'">자세히 보기</button>
                     </div>
                 </li>
                 <li class = "sales_item sales_item_pri">
@@ -269,7 +269,7 @@ input{
                     </div>
                     <div>
                         <h1>233,000원</h1>
-                        <button class = "item_prem_buy" onclick="location.href = 'agent_premium_sales.agent'">자세히 보기</button>
+                        <button class = "item_prem_buy" onclick="location.href = 'agent_premium_sales.all'">자세히 보기</button>
                     </div>
                 </li>
                 <li class = "sales_item sales_item_pri">
@@ -279,7 +279,7 @@ input{
                     </div>
                     <div>
                         <h1>130,000원</h1>
-                        <button class = "item_prem_buy" onclick="location.href = 'agent_premium_sales.agent'">자세히 보기</button>
+                        <button class = "item_prem_buy" onclick="location.href = 'agent_premium_sales.all'">자세히 보기</button>
                     </div>
                 </li>
            </ul>

@@ -19,6 +19,7 @@
 		<typeAlias type="com.finalproject.mobang.common.dto.RoomDto" alias="roomDto"/>
 		<typeAlias type="com.finalproject.mobang.agent.dto.AgentAccountDto" alias="agentAccountDto"/>
 		<typeAlias type="com.finalproject.mobang.agent.dto.AgentProductDto" alias="agentProductDto"/>
+		<typeAlias type="com.finalproject.mobang.agent.dto.AgentReviewDto" alias="agentReviewDto"/>
 	</typeAliases>
 	
 	<!-- resource : src/main/resources부터 검색 -->
