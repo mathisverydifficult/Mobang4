@@ -71,7 +71,7 @@
 					</div>
 					<div class="signup_click">
 						<a href='<c:url value="/usersignupform.all"/>'>이메일로 회원가입</a><br/>
-						<a href="<c:url value="/agent_home.agent"/>">공인중개사 회원가입</a>
+						<a href="<c:url value="/agent_home.all"/>">공인중개사 회원가입</a>
 					</div>
 				</form>				
 			</div>
