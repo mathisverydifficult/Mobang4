@@ -1,22 +1,20 @@
 package com.finalproject.mobang.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
 import com.finalproject.mobang.common.utils.CurrentUserName;
+import com.finalproject.mobang.common.utils.FileListMaker;
 import com.finalproject.mobang.user.biz.FavoriteBiz;
 import com.finalproject.mobang.user.biz.roomsearchBiz;
 import com.finalproject.mobang.user.dto.FavoriteDto;
@@ -116,9 +114,40 @@ public class HomeController {
 		} catch (Exception e) {
 			logger.info("로그인 안해서 안됨 본 방에 추가 안됨");
 			e.printStackTrace();
-		} 
-	
-		model.addAttribute("detail", roombiz.selectOne(myno));
+			
+			
+			
+			
+		}
+
+		roomsearchDto dto = roombiz.selectOne(myno);
+		String st = dto.getPicture_rm();
+		List<String> imagelist = FileListMaker.fileListMaker(st);
+		for (int i=0; i<imagelist.size(); i++) {
+			logger.info("사진 파일이름들  "+i+"번째 : "+imagelist.get(i));
+		}
+		logger.info("이 방을 올린 사람 이메일 : "+dto.getEmail());
+		
+		List<AgentRoomListDto> list = roombiz.selectAgentList(dto.getEmail());
+		for(int i=0; i<list.size(); i++) {
+			logger.info("부동산 중개사들의 파일묭 : "+list.get(i).getPicture_rm());
+		}
+		
+		
+		List<String> agentimglist = new ArrayList<String>();
+		for(int i=0; i<list.size(); i++) {
+			logger.info("부동산 이미지 " +i +"번째 파일명 : "+
+			FileListMaker.fileListMaker(list.get(i).getPicture_rm()).get(0)
+			);
+			agentimglist.add(FileListMaker.fileListMaker(list.get(i).getPicture_rm()).get(0));
+		}
+		model.addAttribute("agentlist",list);
+		model.addAttribute("agentimglist",agentimglist);
+		
+		
+		
+		model.addAttribute("imagelist",imagelist);
+		model.addAttribute("detail", dto);
 		
 		return "user/room_detail";
 		
