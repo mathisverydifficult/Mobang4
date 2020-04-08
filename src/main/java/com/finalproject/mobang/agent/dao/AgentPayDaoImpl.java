@@ -2,9 +2,11 @@ package com.finalproject.mobang.agent.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.finalproject.mobang.agent.dto.AgentAccountDto;
 
+@Repository
 public class AgentPayDaoImpl implements AgentPayDao{
 
 	@Autowired

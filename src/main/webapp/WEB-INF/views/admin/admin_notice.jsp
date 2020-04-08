@@ -87,7 +87,7 @@ $(document).ready(function() {
 				<div class="pagination">
 						<ul>
 						<c:if test="${pageMaker.prev }">
-					    	<li class="arrow"><a href="noticelist.agent${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
+					    	<li class="arrow"><a href="noticelist.all${pageMaker.makeQuery(pageMaker.startPage-1) }">&laquo;</a></li>
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 					    	<li><a href="notice_list.admin${pageMaker.makeQuery(idx) }">${idx }</a></li>

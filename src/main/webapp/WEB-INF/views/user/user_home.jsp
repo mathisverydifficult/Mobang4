@@ -93,7 +93,7 @@
 					<a>아파트</a>
 				</div>
 				<div class="sitemap">
-					<a href="agent_home.agent">공인중개사</a><br/><br/>
+					<a href="agent_home.all">공인중개사</a><br/><br/>
 					<a>중개사 회원가입</a><br/><br/><br/><br/>
 				</div>
 				<div class="sitemap">

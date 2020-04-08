@@ -16,23 +16,23 @@
 	
 	<div class="agenthead">
 		<div class="headleft">
-			<a style=""href="agent_home.agent"><h1>모방 | 공인중개사</h1></a>
+			<a style=""href="agent_home.all"><h1>모방 | 공인중개사</h1></a>
 			<a href="home.user"><div class="h2">모방 사이트></div></a>
 		</div>
 		<div class="headright" style="padding-right: 10px;">
 			<ul>
 				<li class="first"><a href="#">광고상품 소개</a>
 					<article class="adsubmenu">
-						<a href="agent_sales.agent"><div class="submenu">일반 상품</div></a>
-						<a href="agent_premium.agent"><div class="submenu">역/동 상품</div></a>
-						<a href="agent_premium.agent"><div class="submenu">대학교 상품</div></a>
-						<a href="agent_sales.agent"><div class="submenu">플러스 상품</div></a>
+						<a href="agent_sales.all"><div class="submenu">일반 상품</div></a>
+						<a href="agent_premium_sales.all"><div class="submenu">역/동 상품</div></a>
+						<a href="agent_premium_sales.all"><div class="submenu">대학교 상품</div></a>
+						<a href="agent_sales.all"><div class="submenu">플러스 상품</div></a>
 					</article>
 				</li>
 				<li class="first"><a href="#">고객센터</a>
 					<article class="scsubmenu">
-						<a href="noticelist.agent"><div class="submenu">공지사항</div></a>
-						<a href="fnq.agent"><div class="submenu">문의사항</div></a>
+						<a href="noticelist.all"><div class="submenu">공지사항</div></a>
+						<a href="fnq.all"><div class="submenu">문의사항</div></a>
 					</article>
 				</li>
 				<li style="margin-right: 15px;">

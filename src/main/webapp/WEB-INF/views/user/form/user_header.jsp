@@ -18,7 +18,7 @@
 	<div class="agenthead">
 		<div class="headleft">
 			<a style="" href="home.user"><h1>모방 | 메인</h1></a>
-			<a href="agent_home.agent"><div class="h2">모방 중개사></div></a>
+			<a href="agent_home.all"><div class="h2">모방 중개사></div></a>
 		</div>
 		<div class="headright">
 			<ul>

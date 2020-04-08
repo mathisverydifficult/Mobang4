@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.finalproject.mobang.admin.controller.AdminController;
 import com.finalproject.mobang.agent.biz.AgentMypageBiz;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
-<<<<<<< HEAD
-=======
 import com.finalproject.mobang.agent.biz.AgentPayBiz;
->>>>>>> 4c8dd1ee7913cc7029d0ebb58c1616c709058a0e
 import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentItemDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
@@ -30,19 +27,17 @@ public class AgentController {
 	
 	@Autowired
 	private AgentNoticeBiz biz;
+	@Autowired
 	private AgentPayBiz userbiz;
 	
 	
-	@Autowired
-	private AgentMypageBiz userbiz;
-	
-	@RequestMapping(value="/agent_home.agent")
+	@RequestMapping(value="/agent_home.all")
 	public String adminUser(Model model) {
 		return "/agent/agent_home";
 	}
 	
 	// 공지사항 목록 조회
-	@RequestMapping(value="/noticelist.agent", method = RequestMethod.GET)
+	@RequestMapping(value="/noticelist.all", method = RequestMethod.GET)
 	public String noticeList(Model model,Criteria cri) {
 		logger.info("select notice list");
 		System.out.println(cri);
@@ -69,7 +64,7 @@ public class AgentController {
 		return "/agent/agent_notice_selectone";
 	}
 	
-	@RequestMapping(value="/fnq.agent")
+	@RequestMapping(value="/fnq.all")
 	public String fnq(Model model) {
 		
 		return "/agent/agent_fnq";
@@ -80,31 +75,22 @@ public class AgentController {
 		return "/agent/agent_sales";
 	}
 	
-	@RequestMapping(value="/agent_premium.all")
+	@RequestMapping(value="/agent_premium_sales.all")
 	public String premiumsale(Model model) {
 		return "/agent/agent_premium_sales";
 	}
 	
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
-<<<<<<< HEAD
-
 		String email = CurrentUserName.currentUserName();
+		logger.info(email);
 		AgentAccountDto accountdto = userbiz.selectAccount(email);
 		model.addAttribute("account", accountdto);
+		logger.info("pay value? "+accountdto);
 		model.addAttribute("dto", dto);
 		return "/agent/agent_pay";
 	}
-=======
-		String email = CurrentUserName.currentUserName();
-		AgentAccountDto accountdto = userbiz.selectAccount(email);
-		model.addAttribute("account", accountdto);
-		logger.info("pay value"+accountdto);
-		model.addAttribute("dto", dto);
-		return "redirect:/agent/agent_pay";
-	}
 	
->>>>>>> 4c8dd1ee7913cc7029d0ebb58c1616c709058a0e
 	@RequestMapping(value = "/agent_sales_complete.agent")
 	public String agentSalesComplete(Model model) {
 		
