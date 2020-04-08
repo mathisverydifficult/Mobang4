@@ -1,1 +1,206 @@
-@charset "UTF-8";
+
+body{
+	background-color: #e9ecef;
+}
+
+.container {
+    background-color: white;
+    padding: 2% 8%;
+    box-sizing: border-box;
+}
+
+.col-sm-9 {
+    padding: 0;
+}
+
+a.delete {
+    color: black;
+}
+
+div#delete_header {
+    float: right;
+    font-size: 18px;
+    margin-top: 4%;
+}
+
+#header{
+	border-bottom: 1.5px solid rgba(0,0,0,1.5);
+    height: 70px;
+}
+
+div#mobang_header {
+    width: 70%;
+    float: left;
+}
+
+.mobang {
+    font-size: 37px;
+}
+
+#mobang {
+    color: #33558b;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1.5px solid rgba(0,0,0,1.5);
+}
+
+
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: 18px;
+    margin-top: 5%;
+}
+
+form.form-horizontal {
+    margin-top: 5%;
+}
+
+div#main {
+    padding: 3%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 1.0rem;
+    margin-top: 1.5rem;
+}
+
+.form-control:focus {
+  border-color: #33558b;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(51, 85, 139, 0.6);
+}
+
+
+
+#pwd_button {
+    background-color: #33558b;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 0px 4px 4px 0px;
+    width: 70px;
+    height: 38px;
+    font-size: 18px;
+}
+
+
+#update_btn{
+	display: inline-block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 4px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-color: #808080;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin-top: 10%;
+    font-size: 18px;
+}
+
+div#request_roommate {
+    position: relative;
+    left: 600px;
+    top: -45px;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+    background-color: #33558b;
+    border-radius: 50%;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::after {
+    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e);
+    background-color: #33558b;
+    border-radius: 50%;
+}
+
+.custom-control {
+    padding-left: 2.5rem;
+}
+
+/*roomate*/
+/*slider*/
+
+input#clean {
+    -webkit-appearance: none;
+    width: 96%;
+    height: 10px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-right: 4%;
+}
+
+#number_span {
+    color: #33558b;
+    font-size: 25px;
+    padding-bottom: -3%;
+    position: absolute;
+    left: 1435px;
+    top: 889px;
+}
+
+label.room_label {
+    font-weight: 600;
+}
+
+label.chk {
+    margin-top: 1rem;
+}
+
+#derty{
+	margin-top: 0;
+}
+
+#clean{
+	margin-top: 0;
+}
+
+.col-md-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    padding-left: 39px;
+}
+
+#roommate_div{
+	display: none;
+}
+
+.errormsg{
+	color: red;
+}
+
+/*modal*/
+
+.modal-content {
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+#modal_form{
+	margin-top: 0.5rem;
+}
+
+.btn{
+	flex: 1;
+	padding: 0;
+}
+
+

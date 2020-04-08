@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-
 <script type="text/javascript" src="resources/login/js/login.js"></script>
 
 </head>
@@ -71,12 +71,13 @@
 					</div>
 					<div class="signup_click">
 						<a href='<c:url value="/usersignupform.all"/>'>이메일로 회원가입</a><br/>
-						<a href="<c:url value="/agent_home.all"/>">공인중개사 회원가입</a>
+						<a href="<c:url value="/agentsignupform.all"/>">공인중개사 회원가입</a>
 					</div>
 				</form>				
 			</div>
 			<div class="col-xs-6 col-md-4"></div>
 		</div>
+		
 	</div>
 	
 	<!-- kakao button 아래에 js가 있어야 한다 -->
@@ -108,34 +109,46 @@
 	</script>
 
 	<!-- Modal -->
-	<div class="modal fade" id="pwfind_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-      			<div class="modal-header">
-        			<h4 class="modal-title" id="myModalLabel">비밀번호 찾기</h4>
-        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-     			 </div>
-     			 <div class="modal-body">
-       				 <div class="form-group" id="modal_email">
-						<label>이메일</label> 
-						<input type="email" class="form-control" id="inputEmail" name="pwfindemail" placeholder="이메일을 입력하세요.">
-						<input type="button" class="email_confirm" value="전송">
-						<label>인증번호</label> 
-						<input type="text" class="form-control" name="code" placeholder="인증번호를 입력하세요.">
-					</div>
-					<div class="form-group" id="modal_pwd">
-						<label for="exampleInputEmail1">비밀번호</label> 
-						<input type="email" class="form-control" id="pwd_find" name="pwfindpwd" placeholder="비밀번호를 입력하세요.">
-						<label>비밀번호 확인</label> 
-						<input type="text" class="form-control" name="pwfindpwdconfirm" placeholder="비밀번호를 입력하세요.">
-					</div>
-     			 </div>
-      			<div class="modal-footer">
-        			<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-        			<button type="button" class="btn btn-default" id="ok" data-dismiss="modal">확인</button>
-      			</div>
-    		</div>
- 		 </div>
-	</div>
+	<form:form class="form-horizontal" enctype="multipart/form-data" action="pwdfind.all" method="post">
+		<div class="modal fade" id="pwfind_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  		<input type="hidden" path="random" id="random" value="77777" />
+	  		<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+	      			<div class="modal-header">
+	        			<h4 class="modal-title" id="myModalLabel">비밀번호 찾기</h4>
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	     			 </div>
+	     			 <div class="modal-body">
+	       				 <div class="form-group" id="modal_email">
+							<label>이메일</label> 
+							<div class="input-group">
+								<input class="form-control" name="email" id="inputEmail" placeholder="이메일을 입력하세요."/>
+								<span class="input-group-btn">
+										<button class="btn btn-default" id="emailBtn" type="button">전송</button>
+								</span>
+							</div>
+							<label>인증번호</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="code" id="code" placeholder="인증번호를 입력하세요."/>
+								<span class="input-group-btn">
+										<button class="btn btn-default" id="email_confirm" type="button">확인</button>
+								</span>
+							</div> 
+						</div>
+						<div class="form-group" id="modal_pwd">
+							<label for="exampleInputEmail1">비밀번호</label> 
+							<input type="password"  class="form-control" id="pwd_find" name="pwd" placeholder="비밀번호를 입력하세요."/>
+							<label>비밀번호 확인</label> 
+							<input type="password" class="form-control" name="pwfindpwdconfirm" id="pwd_confirm" placeholder="비밀번호를 입력하세요.">
+						</div>
+	     			 </div>
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	        			<input type="submit" class="btn btn-default" id="ok"  value="확인"/>
+	      			</div>
+	    		</div>
+	 		 </div>
+	 	</div>
+	 </form:form>
 </body>
 </html>

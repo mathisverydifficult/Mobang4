@@ -5,7 +5,7 @@
 	
 	<resultMap type="loginDto" id="loginMap">
 		<result property="seq" column="SEQ"/>
-		<result property="eamil" column="EMAIL"/>
+		<result property="email" column="EMAIL"/>
 		<result property="name" column="NAME"/>
 		<result property="pwd" column="PWD"/>
 		<result property="phone" column="PHONE"/>
@@ -15,22 +15,28 @@
 		<result property="clean" column="CLEAN"/>
 		<result property="lifestyle" column="LIFESTYLE"/>
 		<result property="shower" column="SHOWER"/>
-		<result property="favorateage" column="FAVORATEAGE"/>
+		<result property="favoriteage" column="FAVORITEAGE"/>
 		<result property="gender" column="GENDER"/>
 		<result property="animal" column="ANIMAL"/>
-		<result property="needs" column="NEDDS"/>
+		<result property="needs" column="NEEDS"/>
 		<result property="enabled" column="ENABLED"/>
+		<result property="roommate" column="ROOMMATE"/>
 	</resultMap>
 	
-	
+	<select id="selectuser" parameterType="String" resultMap="loginMap">
+		SELECT 
+			*
+		FROM USER_TB
+		WHERE EMAIL = #{email} 
+	</select>
 	 
 	<insert id="userinsert" parameterType="LoginDto">
 		INSERT INTO USER_TB
 		VALUES(USER_SEQ.NEXTVAL, #{email}, #{name}, #{pwd}, #{phone}, 
 		'ROLE_USER', #{userfile,jdbcType=VARCHAR}, #{confirm,jdbcType=VARCHAR},
 		#{clean,jdbcType=VARCHAR}, #{lifestyle,jdbcType=VARCHAR}, #{shower,jdbcType=VARCHAR}, 
-		#{favorateage,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{animal,jdbcType=VARCHAR}, 
-		#{needs,jdbcType=VARCHAR}, '1')
+		#{favoriteage,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{animal,jdbcType=VARCHAR}, 
+		#{needs,jdbcType=VARCHAR}, '1', #{roommate,jdbcType=VARCHAR} )
 	</insert>
 	
 	<insert id="agentinsert" parameterType="LoginDto">
@@ -39,20 +45,28 @@
 		'ROLE_MEMBER', #{userfile,jdbcType=VARCHAR}, #{confirm,jdbcType=VARCHAR},
 		'', '', '', 
 		'', '', '', 
-		'', '1')
+		'', '1', '')
 	</insert>
+	 
+	<update id="userupdate" parameterType="LoginDto">
+		UPDATE USER_TB 
+		SET NAME = #{name}, PWD = #{pwd}, PHONE = #{phone}, USERFILE = #{userfile},
+		CLEAN = #{clean}, LIFESTYLE = #{lifestyle} , SHOWER = #{shower},
+		FAVORITEAGE = #{favoriteage}, GENDER = #{gender}, ANIMAL = #{animal}, NEEDS = #{needs},
+		ROOMMATE = #{roommate}
+		WHERE EMAIL = #{email}
+	</update>
 	
+	<update id="agentupdate" parameterType="LoginDto">
+		UPDATE USER_TB 
+		SET NAME = #{name}, PWD = #{pwd}, PHONE = #{phone}, USERFILE = #{userfile}
+		WHERE EMAIL = #{email}
+	</update>
+	 
+	<update id="updatepwd" parameterType="map">
+		UPDATE USER_TB 
+		SET PWD = #{pwd} 
+		WHERE EMAIL = #{email}
+	</update>
 	
-	<!-- 
-	<insert id="userinsert" parameterType="LoginDto">
-		INSERT INTO USER_TB
-		VALUES(USER_SEQ.NEXTVAL, '99', '3', '4', '5',
-		'ROLE_USER', '', '',
-		'', '', '', 
-		'', '', '', 
-		'', '1')
-	</insert>
-	 --> 
-
-
 </mapper>
