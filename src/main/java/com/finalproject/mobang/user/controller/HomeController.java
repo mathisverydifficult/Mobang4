@@ -33,14 +33,14 @@ public class HomeController {
 	private roomsearchBiz roombiz;
 	@Autowired
 	private FavoriteBiz favoritebiz;
-	
+
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
 		logger.info("home");
 		
-		return "user/user_home";
+		return "redirect:home.all";
 	}
-	
+
 //	@ResponseBody															//ajax 통신으로 페이지 이동이 아닌 값만 가져올 경우 @ResponseBody
 //	@RequestMapping(value = "/diblist.user")
 //	public List<roomsearchDto> diblist() {
