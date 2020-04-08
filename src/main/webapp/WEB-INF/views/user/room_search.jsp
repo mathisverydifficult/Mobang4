@@ -29,6 +29,7 @@ $(function(){
 			var target = $(this).next();
 			target.show();
 			
+// 			filterSearch();
 		} else $(this).next().hide();
 		
 	});
@@ -55,8 +56,8 @@ $(function(){
 				</div>
 				<div class="filter">
 					<div class="smallfilter" id="roomtype">
-						<div class="seperate">
-							<span></span>
+						<div class="seperate" id="roomtypeText">
+						
 						</div>
 						<div class="filterbox">
 							<h1>
@@ -65,21 +66,28 @@ $(function(){
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name="multi_room_type" type="checkbox" value="원룸" class="checkbox_check" checked>
+										<input name="multi_room_type" type="checkbox" value="원룸" class="checkbox_check" onclick="javascript:chkClick();">
 										<span class="CheckBox"></span>
 										<span class="checktext">원룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name="multi_room_type" type="checkbox" value="투룸" class="checkbox_check" checked>
+										<input name="multi_room_type" type="checkbox" value="투룸" class="checkbox_check" onclick="javascript:chkClick();">
 										<span class="CheckBox"></span>
 										<span class="checktext">투룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name="multi_room_type" type="checkbox" value="오피스텔" class="checkbox_check" checked>
+										<input name="multi_room_type" type="checkbox" value="쓰리룸" class="checkbox_check" onclick="javascript:chkClick();">
+										<span class="CheckBox"></span>
+										<span class="checktext">쓰리룸</span>
+									</label>
+								</li>
+								<li>
+									<label class="roomlabel">
+										<input name="multi_room_type" type="checkbox" value="오피스텔" class="checkbox_check" onclick="javascript:chkClick();">
 										<span class="CheckBox"></span>
 										<span class="checktext">오피스텔</span>
 									</label>
@@ -88,9 +96,9 @@ $(function(){
 							</h1>
 						</div> 
 					</div>
-					<div class="smallfilter" id="rent">
-						<div class="seperate">
-							<span></span>
+					<div class="smallfilter">
+						<div class="seperate" id="rentText">
+							
 						</div>
 						<div class="filterbox">
 							<h1>
@@ -99,21 +107,21 @@ $(function(){
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name="rent_type" type="checkbox" value="월세" class="checkbox_check" checked>
+										<input name="rent_type" type="checkbox" value="월세" class="checkbox_check" onclick="javascript:chkClick();">
 										<span class="CheckBox"></span>
 										<span class="checktext">월세</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name="rent_type" type="checkbox" value="전세" class="checkbox_check" checked>
+										<input name="rent_type" type="checkbox" value="전세" class="checkbox_check" onclick="javascript:chkClick();">
 										<span class="CheckBox"></span>
 										<span class="checktext">전세</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name="rent_type" type="checkbox" value="매매" class="checkbox_check" checked>
+										<input name="rent_type" type="checkbox" value="매매" class="checkbox_check" onclick="javascript:chkClick();">
 										<span class="CheckBox"></span>
 										<span class="checktext">매매</span>
 									</label>
@@ -192,6 +200,31 @@ $(function(){
 
 	
 		$(document).ready(function(){		//검색체크
+			$(".checkbox_check").prop('checked', true);
+			
+// 			$(".checkbox_check").change(function(){
+				
+// 				var array = [];
+				
+// 		        if( $(this).prop('checked')){
+		        	
+// 		        	for(var i=0; i<$(this).prop('checked'); i++){
+// 		        		var value = $(this).val();
+// 		        		array.push(value);
+// 		        		 $("#roomtype").find(".seperate").html("<span>"+array[i]+"</span>");
+// 		        	}
+// 		        }else{
+// 		            array.pop(value);
+// 		        }
+		        
+// 		        console.log(array);
+		        
+// // 		        for(var i=0; i<array; i++){
+// // 		           
+// // 		            console.log(array);
+// // 		        }
+// 		    });
+		
 			
 			var keyword = "${keyword}";
 			document.getElementById('keyword').value = keyword;
@@ -205,7 +238,7 @@ $(function(){
 // 				}
 // 			}
 			
-			searchPlace();
+			chkClick();
 		});
 		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 		var infowindow = new kakao.maps.InfoWindow({
@@ -227,26 +260,65 @@ $(function(){
 		var map = new kakao.maps.Map(container, options); //지도 생성
 		
 		var geocoder=new kakao.maps.services.Geocoder(); //주소 - 좌표 변환 객체 생성
+		
+		function chkClick() {
+			var roomTy = document.getElementsByName("multi_room_type").length;
+ 			var str = "";
+ 			var str2 = "";
+ 			
+
+ 			for(var i =0; i< roomTy; i++){
+ 				if(document.getElementsByName("multi_room_type")[i].checked==true){
+ 					str += document.getElementsByName("multi_room_type")[i].value +" ";
+ 				}
+ 			}
+ 			$("#roomtypeText").text(str);
+ 			
+ 			var rentTy = document.getElementsByName("rent_type").length;
+ 			
+ 			for(var i =0; i<rentTy; i++){
+ 				if(document.getElementsByName("rent_type")[i].checked==true){
+ 					str2 += document.getElementsByName("rent_type")[i].value +" ";
+ 				}
+ 			}
+ 			$("#rentText").text(str2);
+ 			
+ 			searchPlace();
+		}
+		
 
 		function searchPlace(){
  			var keyword = document.getElementById('keyword').value;
  			
-//  			var roomTy = document.getElementsByName("multi_room_type").length;
+ 			var roomTy = document.getElementsByName("multi_room_type").length;
  			
-//  			var roomArray = [];
+ 			var roomArray = "";
  			
-//  			for(var i =0; i< roomTy; i++){
-//  				if(document.getElementsByName("multi_room_type")[i].checked==true){
-//  					roomArray.push(document.getElementsByName("multi_room_type")[i].value);
-//  				}
-//  			}
-			
+ 			for(var i =0; i< roomTy; i++){
+ 				if(document.getElementsByName("multi_room_type")[i].checked==true){
+					var str = document.getElementsByName("multi_room_type")[i].value;
+					roomArray += str +",";
+ 				}
+ 			}
+ 			
+ 			var rentTy = document.getElementsByName("rent_type").length;
+ 			
+ 			var rentArray = "";
+ 			for(var i =0; i< rentTy; i++){
+ 				if(document.getElementsByName("rent_type")[i].checked==true){
+					var str = document.getElementsByName("rent_type")[i].value;
+					rentArray += str +",";
+ 				}
+ 			}
+ 			
 			$.ajax({
 				type: "GET", 
 				url:"room_search.all",		//검색어가 있을경우 검색 리스트만, 없을 경우 전체 리스트 출력
 				dataType:"json", 
 				data: {
-					keyword : keyword
+					keyword : keyword,
+					roomArray : roomArray,
+					rentArray : rentArray
 				},
 				success : function(result){
 					var list = new Array();
@@ -262,8 +334,8 @@ $(function(){
 							+"<img src="+list[i].picture_rm.split("/_/")[0]+">"
 							+"</div>"
 						+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
-						+"<p class='explain'>"+list[i].addr_rm+"</p>"
-						+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"
+						+"<p class='explain'>"+list[i].roomtype_rm+"</p>"
+						+"<p class='explain'>"+list[i].rent_rm+"</p></a>"
 						+"</div>"
 						
 						

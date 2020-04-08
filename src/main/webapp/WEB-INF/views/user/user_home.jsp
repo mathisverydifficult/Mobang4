@@ -81,8 +81,9 @@
 										<div class="picture">
 											<img src="${recent.picture_rm }">
 										</div>
+										<p class="explain">${recent.rent_rm}</p>
 										<p class="explain" id="roomtitle">${recent.title_rm}</p>
-										<p class="explain">${recent.addr_rm}</p>	
+										<p class="explain">${recent.roomtype_rm}</p>	
 										<p class="explain">${recent.addr_dt_rm}</p>
 									</a>	
 								</div>
@@ -120,8 +121,9 @@
 										<div class="picture">
 											<img src="${dib.picture_rm }">
 										</div>
+										<p class="explain">${dib.rent_rm}</p>
 										<p class="explain" id="roomtitle">${dib.title_rm}</p>
-										<p class="explain">${dib.addr_rm}</p>	
+										<p class="explain">${dib.roomtype_rm}</p>	
 										<p class="explain">${dib.addr_dt_rm}</p>
 									</a>	
 								</div>

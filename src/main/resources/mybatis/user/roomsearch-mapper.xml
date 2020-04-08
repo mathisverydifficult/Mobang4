@@ -62,9 +62,24 @@
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
 	ON(B.EMAIL=#{email} AND A.NO_RM = B.DIBS_FV)
 	</if>
-  	<if test="keyword != null and keyword !='' ">
-  		where addr_rm like '%${keyword}%' OR addr_dt_rm LIKE '%${keyword}%' OR title_rm like '%${keyword}%'
-  	</if>
+  	<where>
+   <if test="keyword != null and keyword !='' ">
+      AND (addr_rm like '%${keyword}%' OR addr_dt_rm LIKE '%${keyword}%' OR title_rm like '%${keyword}%')
+   </if>
+   <if test="roomArray != null and roomArray !='' ">
+  	  AND roomtype_rm in
+   		<foreach collection="roomArray" item="roomtype" index="index" separator="," open="(" close=")">
+     	 	#{roomtype}
+     	 </foreach>
+   </if>
+   <if test="rentArray != null and rentArray !='' ">
+  	  AND rent_rm in
+   		<foreach collection="rentArray" item="rent" index="index" separator="," open="(" close=")">
+     	 	#{rent}
+     	 </foreach>
+   </if>
+</where>
+  		
   </select>
   
   <!-- 방 상세보기 -->

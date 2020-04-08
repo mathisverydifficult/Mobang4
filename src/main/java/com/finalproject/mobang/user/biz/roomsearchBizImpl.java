@@ -23,8 +23,8 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	}
 	
 	@Override
-	public List<roomsearchDto> selectsearchList(String keyword, String email) {
-		return dao.selectsearchList(keyword, email);
+	public List<roomsearchDto> selectsearchList(String keyword, String email, List<String> roomArray, List<String> rentArray) {
+		return dao.selectsearchList(keyword, email, roomArray, rentArray);
 	}
 
 	@Override
