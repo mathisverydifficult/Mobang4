@@ -2,6 +2,7 @@ package com.finalproject.mobang.user.biz;
 
 import java.util.List;
 
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
 import com.finalproject.mobang.user.dto.roomsearchDto;
 
 public interface roomsearchBiz {
@@ -12,4 +13,6 @@ public interface roomsearchBiz {
 	public int insert(roomsearchDto dto);
 	public int update(roomsearchDto dto);
 	public int delete(int myno);
+	public List<roomsearchDto> recentList(String email);
+	public List<AgentRoomListDto> selectAgentList(String email);
 }

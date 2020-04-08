@@ -12,10 +12,12 @@
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="resources/user/css/favorite_recent.css">
 <style type="text/css">
+
 .card{
 	margin: 20px 1%;
 	float:left;
 }
+
 .inform{
 	
 }
@@ -44,6 +46,21 @@
 	
 }
 
+.favorite{
+	width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 3px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.favorite>img{
+	width:36px;
+	height:36px;
+	margin-left:210px;
+}
+
 </style>
   
 <style type="text/css">
@@ -52,7 +69,65 @@
 </style>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$(".favorite").click(function(){									//클릭 시 찜하기 기능 
+		var favo = $(this).children();									//img태그 하트
+			if(favo.attr('src').indexOf('_2') > 0){						//이미지 마지막 index가 _2일 경우
+				var test = favo.attr("src").replace('_2.png','_1.png');		//_1로 교체
+				favo.attr('src', test);						
+				var id = favo.attr('id');								//하트img의 id(방번호) 저장
+				favodelete(id);											//찜하기 삭제함수 호출
+			} else if(favo.attr('src').indexOf('_1') > 0){				
+				var test = favo.attr('src').replace('_1.png','_2.png');
+				favo.attr('src', test);
+				var id = favo.attr('id');
+				favorited(id);											//찜하기 함수 호출
+			}
+			
+   	});
+			
+	function favodelete(id){		//찜한 방 취소
+		$.ajax({
+			type: "GET", 
+			url:"dibs_delete.user",
+			dataType:"json", 
+			data: {
+				dibsFv : id			// dibsFv - 방번호 보냄
+			},
+			success : function(result){
+				
+			},
+			error : function(a, b, c){
+				alert("삭제에러 : "+a + b + c);
+			}
+		});
+	};
+			
+	function favorited(id){			//찜한 방 insert
+		$.ajax({
+			type: "GET", 
+			url:"dibs_insert.user",
+			dataType:"json", 
+			data: {
+				dibsFv : id			// dibsFv - 방번호 보냄
+			
+			},
+			success : function(result){
+				
+			},
+			error : function(a, b, c){
+				alert("insert에러"+a + b + c);
+			}
+		});
+	};
+		
+	
+	
+});
 
+</script>
 
 
 <title>Insert title here</title>
@@ -100,12 +175,28 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${list }" var="dto" varStatus="status">
-				<div class="card" style="width:23%">
-				    <img class="card-img-top" src="resources/user/img/cat4.png" alt="Card image" style="width:100%">
+				<div class="card" style="width:23%; height: 300px;">
+					<div class="favorite">
+						<img id="${dto.no_rm }" src='resources/user/img/favorite_${dto.checkdib}.png' />
+					</div>	
+					<a href="room_detail.all?myno=${dto.no_rm }">	
+					<div class="picture">
+						<c:choose>
+							<c:when test="${empty imagelist}">
+								<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="${imagelist[status.index]}" alt="Card image" style="width:100%; height:150px;">
+							</c:otherwise>
+						</c:choose>
+						 
+					</div>
 				    <div class="card-body">
-					    <h4 class="card-title">${dto.email }</h4>
-					    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+					    <h4 class="card-title">${dto.title_rm }</h4>
+					    <p class="card-text">${dto.content_rm }</p>
+				    	
 				    </div>
+				    </a>
 				</div>
 			</c:forEach>
 		</c:otherwise>
@@ -134,7 +225,7 @@
 		    	
 		    
 			    <h4 class="card-title">방제목</h4>
-			    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+			    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 			    <a href="#" class="btn btn-primary">프로필보기</a>
 		    </div>
 		</div>
@@ -152,7 +243,7 @@
 		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
 		    <div class="card-body">
 			    <h4 class="card-title">${dto.email }</h4>
-			    <p class="card-text">${dto.recentFv }, ${status.count}</p>
+			    <p class="card-text">${dto.recentFv }, ${status.index}</p>
 		    </div>
 		</div>
     </div>  
