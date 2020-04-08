@@ -196,8 +196,8 @@ $(function(){
 			var keyword = "${keyword}";
 			document.getElementById('keyword').value = keyword;
 			
-			var roomTy = "${roomTy}";
-			document.getElementsByName("multi_room_type").length = roomTy;
+// 			var roomTy = "${roomTy}";
+// 			document.getElementsByName("multi_room_type").length = roomTy;
 // 			var roomtype = document.getElementByName("multi_room_type").length;
 // 			for(var i=0; i<roomtype; i++){
 // 				if(document.getElementByName("multi_room_type")[i].checked==true){
@@ -231,42 +231,22 @@ $(function(){
 		function searchPlace(){
  			var keyword = document.getElementById('keyword').value;
  			
- 			var roomTy = document.getElementsByName("multi_room_type").length;
- 			
- 			var roomArray = [];
- 			
- 			for(var i =0; i< roomTy; i++){
- 				if(document.getElementsByName("multi_room_type")[i].checked==true){
- 					roomArray.push(document.getElementsByName("multi_room_type")[i].value);
- 				}
- 			}
+//  			var roomTy = document.getElementsByName("multi_room_type").length;
  			
 //  			var roomArray = [];
-// 			$('input[name="multi_room_type"]:checked').each(function(i){
-// 				roomArray.push($(this).val());
-// 			});
-// 			for(var i=0; i<roomArray; i++){
-// 				console.log(document.getElementsByName("multi_room_type")[i].value);
-// 			}
-// 			var roomtype = document.getElementByName("multi_room_type").length;
-// 			for(var i=0; i<roomtype; i++){
-// 				if(document.getElementByName("multi_room_type")[i].checked==true){
-// 					console.log(document.getElementByName("multi_room_type")[i].value);
-// 				}
-// 			}
-
-// 			var objParam = {
-// 					"keyword"	: keyword,
-// 					"roomArray"	: roomArray
-// 			};
+ 			
+//  			for(var i =0; i< roomTy; i++){
+//  				if(document.getElementsByName("multi_room_type")[i].checked==true){
+//  					roomArray.push(document.getElementsByName("multi_room_type")[i].value);
+//  				}
+//  			}
 			
 			$.ajax({
 				type: "GET", 
 				url:"room_search.all",		//검색어가 있을경우 검색 리스트만, 없을 경우 전체 리스트 출력
 				dataType:"json", 
 				data: {
-					keyword = keyword,
-					roomArray = roomArray
+					keyword : keyword
 				},
 				success : function(result){
 					var list = new Array();

@@ -47,7 +47,10 @@ INSERT INTO USER_TB
 VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '세입자', '{noop}1234', '010-0000-1234',
 'ROLE_USER', '', '', '', '', '', '', '', '', '', '1');
 
-
+  
+	select *
+	FROM ROOM_TB
+  	where addr_rm like '%이천%' OR addr_dt_rm LIKE '%이천%' OR title_rm like '%이천%';
 
 UPDATE USER_TB SET AUTHORITY = 'ROLE_MEMBER' WHERE SEQ = 2; 
 
