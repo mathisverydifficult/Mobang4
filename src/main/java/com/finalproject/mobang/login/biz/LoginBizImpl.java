@@ -1,5 +1,7 @@
 package com.finalproject.mobang.login.biz;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +39,14 @@ public class LoginBizImpl implements LoginBiz{
 	@Override
 	public int agentUpdate(LoginDto dto) {
 		// TODO Auto-generated method stub
+		System.out.println("biz"+dto);
 		return dao.agentUpdate(dto);
 	}
 
 	@Override
-	public int updatePwd(String email) {
+	public int updatePwd(Map<String, String> map) {
 		// TODO Auto-generated method stub
-		return dao.updatePwd(email);
+		return dao.updatePwd(map);
 	}
 }
 

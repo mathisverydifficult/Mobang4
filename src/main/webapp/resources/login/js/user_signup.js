@@ -13,6 +13,7 @@ $(function(){
 	*/
 		$(document).on("click", "#emailBtn", function(){
 		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
+		
 		$.ajax({
 			type:"get",
 			url : "createEmailCheck.all",
@@ -57,16 +58,16 @@ $(function(){
 	
 
 	//비밀번호 확인 버튼
-	$(document).on("click", "#pwd_button", function() {
-		if($("#pwd").val() != null || $("#pwd").val().trim() != ''){
-			if($("#pwd").val() === $("#pwd_confirm").val()){
-				$("#signup_btn").attr("disabled",false);
-				$("#signup_btn").css("background-color","#33558b");
-			} else{
-				alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+		$(document).on("click", "#pwd_button", function() {
+			if($("#pwd").val() != null || $("#pwd").val().trim() != ''){
+				if($("#pwd").val() === $("#pwd_confirm").val()){
+					$("#signup_btn").attr("disabled",false);
+					$("#signup_btn").css("background-color","#33558b");
+				} else{
+					alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+				}
 			}
-		}
-	});
+		});
 		
 	//룸메이트 신청 클릭시 
 	$(document).on("click", "#roommate", function(){
@@ -77,6 +78,35 @@ $(function(){
 		}
 	});
 	
+	/*$(function userfile(){
+		var userfile = document.getElementById('userfile').files[0]
+		var formData = new FormData();
+
+		formData.append("userfile", $("input[name=userfile]")[0].files[0]);
+		
+		console.log($("input[name=userfile]")[0].files[0]);
+		
+		for (var key of formData.keys()) {
+			  console.log(key);
+		}
+		for (var value of formData.values()) {
+			  console.log(value);
+		}
+
+
+		
+		$.ajax({
+			url: '/mobang/usersignup.all',
+			data: formData,
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(data){
+				alert("EE"); 
+			} 
+		}); 
+
+	});*/
 });
 
 

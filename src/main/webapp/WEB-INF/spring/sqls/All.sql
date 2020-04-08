@@ -58,7 +58,7 @@ VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '세입자', '{noop}1234', '010-
 
 
 
-UPDATE USER_TB SET AUTHORITY = 'ROLE_MEMBER' WHERE SEQ = 2; 
+UPDATE USER_TB SET PWD = '{noop}1234' WHERE SEQ = 3; 
 
 DELETE FROM USER_TB
 WHERE EMAIL='missdla4929@naver.com';

@@ -19,9 +19,16 @@
 </head>
 <body>
 	<div class="container">
-		<h2><a class="mobang" href="#">모방</a>｜ 회원정보 수정</h2>
-		<hr class="hr"/>
-		<form:form class="form-horizontal"  enctype="multipart/form-data" modelAttribute="loginDto" action="userupdate.all" method="post">
+		<div id="header">
+			<div id="mobang_header">
+				<a id="mobang" class="mobang" href="#">모방</a> <span class="mobang">｜ 회원정보 수정	</span>
+			</div>
+			<div id="delete_header">
+				<small><a class="delete" href="userdelete.user">회원탈퇴</a></small>
+			</div>
+		</div>
+
+		<form:form class="form-horizontal"  enctype="multipart/form-data" modelAttribute="loginDto" action="userupdate.user" method="post">
 			<form:input path="email" type="hidden" id="email"/>
 			<form:input path="lifestyle" type="hidden" id="lifestyle"/>
 			<form:input path="shower" type="hidden"  id="shower" />
@@ -62,8 +69,8 @@
 					<form:errors path="phone" cssClass="errormsg" />
 			    </div>
 			    <div class="custom-control custom-checkbox col-sm-5" id="request_roommate">
-						<input type="checkbox" id="roommate_bnt" name="roommate" value="roommate" class="custom-control-input">
-						<label class="custom-control-label" for="roommate">룸메이트 신청하기😊</label>
+						<input type="checkbox" id="roommate_btn" name="roommate" value="roommate" class="custom-control-input">
+						<label class="custom-control-label" for="roommate_btn">룸메이트 신청하기😊</label>
 				</div>
 			</div>
 			<div id="roommate_div">

@@ -152,9 +152,10 @@ input#slider11 {
     top: 889px;
 }
 
-label.room_label {
-    font-weight: 600;
-}
+/*div#file {
+    position: absolute;
+    top: 67%;
+}*/
 
 label.chk {
     margin-top: 1rem;
@@ -177,6 +178,7 @@ label.chk {
 
 #roommate_div{
 	display: none;
+	margin-top: 13%;
 }
 
 .errormsg{

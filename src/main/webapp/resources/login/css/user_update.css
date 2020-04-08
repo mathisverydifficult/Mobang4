@@ -13,7 +13,31 @@ body{
     padding: 0;
 }
 
+a.delete {
+    color: black;
+}
+
+div#delete_header {
+    float: right;
+    font-size: 18px;
+    margin-top: 4%;
+}
+
+#header{
+	border-bottom: 1.5px solid rgba(0,0,0,1.5);
+    height: 70px;
+}
+
+div#mobang_header {
+    width: 70%;
+    float: left;
+}
+
 .mobang {
+    font-size: 37px;
+}
+
+#mobang {
     color: #33558b;
     text-decoration: none;
     background-color: transparent;
@@ -110,7 +134,7 @@ div#request_roommate {
 /*roomate*/
 /*slider*/
 
-input#slider11 {
+input#clean {
     -webkit-appearance: none;
     width: 96%;
     height: 10px;

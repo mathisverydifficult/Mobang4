@@ -35,8 +35,8 @@
 	
 	<br/>
 	
-	<a href="/mobang/userupdateform.all">회원정보수정</a> <br/>
- 	<a href="/mobang/agentupdateform.all">공인중개사 회원정보수정</a>
+	<a href="/mobang/userupdateform.user">회원정보수정</a> <br/>
+ 	<a href="/mobang/agentupdateform.agent">공인중개사 회원정보수정</a>
 	
 	<br/>
 	

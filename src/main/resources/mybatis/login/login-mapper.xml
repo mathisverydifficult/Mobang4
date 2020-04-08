@@ -63,7 +63,7 @@
 		WHERE EMAIL = #{email}
 	</update>
 	 
-	<update id="updatepwd" parameterType="LoginDto">
+	<update id="updatepwd" parameterType="map">
 		UPDATE USER_TB 
 		SET PWD = #{pwd} 
 		WHERE EMAIL = #{email}

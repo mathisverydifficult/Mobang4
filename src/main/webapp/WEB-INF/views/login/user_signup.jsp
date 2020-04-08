@@ -20,25 +20,22 @@
 <%
 	String email = (String) request.getParameter("email");
 	String name = (String) request.getParameter("name");
-	
 %>
 <body>
 	<div class="container">
 		<h2><a class="mobang" href="#">모방</a>｜ 회원가입</h2>
 		<hr class="hr"/>
-		<form:form class="form-horizontal"  enctype="multipart/form-data" modelAttribute="loginDto" action="usersignup.all" method="post">
+		<form:form class="form-horizontal" onsubmit="return userfile();"  enctype="multipart/form-data" modelAttribute="loginDto" action="usersignup.all" method="post">
 			<div class="form-group">
 				<input type="hidden" path="random" id="random" value="77777" />
 				<label>이름</label>
 			    <div class="col-sm-13">
 			    <c:choose>
-			    	<c:when test="${null ne name || name != ''}">
+			    	<c:when test="${!empty name || name ne null || name != ''}">
 			    		<form:input path="name" cssClass="form-control" name="name" id="name" value="<%=name %>"/>
-			    		<%System.out.println("있"+name); %>
 			    	</c:when>
 			    	<c:otherwise>
 			    		<input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요.">
-			    		<%System.out.println("없"+name); %>
 			    	</c:otherwise>
 			    </c:choose>
 				<form:errors path="name" cssClass="errormsg" />
@@ -49,13 +46,11 @@
 				<div class="col-sm-13">
 					<div class="input-group">
 						<c:choose>
-							<c:when test="${null ne email || email != ''}">
+							<c:when test="${!empty email || email ne null || email != ''}">
 								<form:input path="email" cssClass="form-control" name="email" id="email" value="<%=email %>"/>
-								<%System.out.println("있이"+email); %>
 							</c:when>
 							<c:otherwise>
 								<form:input path="email" cssClass="form-control" name="email" id="email" placeholder="이메일을 입력하세요."/>
-								<%System.out.println("없이"+email); %>
 						    </c:otherwise>
 						</c:choose>
 						<span class="input-group-btn">
@@ -198,7 +193,11 @@
 					</div>
 				</div>
 				<div>
-					
+				<div class="form-group" id="file">
+					<label class="room_label">범죄이력 증명서</label>
+				    <div class = "col-sm-13">
+			    		<input multiple="multiple" id ="userfile" type="file" name="multiuserfile" placeholder="파일선택 "/><br/>
+			    	</div>
 				</div>
 				<div class="form-group">
 					<label class="room_label">지켜줬음 해</label>
@@ -206,17 +205,18 @@
 						<textarea class="form-control" name="needs" rows="3"></textarea>
 				    </div>
 				</div>
-				<div class="form-group">
-					<label class="room_label">범죄이력 증명서</label>
-				    <div class="col-sm-13">
-						<input type="text" class="form-control" placeholder="파일 업로드 넣어야함!">
-				    </div>
 				</div>
 			</div>
 			<div class="button_group">
 				<input class="btn btn-default" type="submit" id="signup_btn" value="회원가입">
 			</div>
-		</form:form>				
+		</form:form>		
+		<form id="ajaxform" enctype="multipart/form-data" method="post">
+			
+		</form>	
+		
+		
+		
 	</div>
 </body>
 </html>

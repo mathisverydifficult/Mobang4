@@ -1,5 +1,7 @@
 package com.finalproject.mobang.login.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -81,7 +83,7 @@ public class LoginDaoImpl implements LoginDao{
 	public int agentUpdate(LoginDto dto) {
 		int res = 0;
 		
-		System.out.println(dto.getEmail() + "  " + dto.getName() + "  " + dto.getPwd() + "  " + dto.getPhone());
+		System.out.println("daogentupdate"+dto);
 		try {
 			res = sqlSession.insert(NAMESPACE+"agentupdate", dto);
 		} catch (Exception e) {
@@ -93,11 +95,11 @@ public class LoginDaoImpl implements LoginDao{
 	}
 
 	@Override
-	public int updatePwd(String email) {
+	public int updatePwd(Map<String, String> map) {
 		int res = 0;
 		
 		try {
-			res = sqlSession.insert(NAMESPACE+"updatepwd", email);
+			res = sqlSession.insert(NAMESPACE+"updatepwd", map);
 		} catch (Exception e) {
 			System.out.println("[ERROR] : update pwd");
 			e.printStackTrace();

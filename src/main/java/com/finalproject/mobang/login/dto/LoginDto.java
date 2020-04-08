@@ -19,6 +19,7 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.web.multipart.MultipartFile;
 	
 @Component
 public class LoginDto {
@@ -26,7 +27,7 @@ public class LoginDto {
 	private String seq;
 
 	@SuppressWarnings("deprecation")
-	@NotNull @Email(message = "이메일 형식이 아닙니다.")
+	@NotNull
 	private String email;	//user email
 	
 	@NotNull @Pattern(regexp="^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "영문 숫자 조합으로 6자리 이상 20자리 이하로 비밀번호를 만들어주세요.")
@@ -50,6 +51,7 @@ public class LoginDto {
 	private String needs;
 	private String enabled;
 	private String roommate;
+	private MultipartFile multiuserfile;
 	
 	public LoginDto() {
 		super();
@@ -76,6 +78,30 @@ public class LoginDto {
 		this.needs = needs;
 		this.enabled = enabled;
 		this.roommate = roommate;
+	}
+
+	public LoginDto(String seq, String email, String pwd, String name, String phone, String authority, String userfile,
+			String confirm, String clean, String lifestyle, String shower, String favoriteage, String gender,
+			String animal, String needs, String enabled, String roommate, MultipartFile multiuserfile) {
+		super();
+		this.seq = seq;
+		this.email = email;
+		this.pwd = pwd;
+		this.name = name;
+		this.phone = phone;
+		this.authority = authority;
+		this.userfile = userfile;
+		this.confirm = confirm;
+		this.clean = clean;
+		this.lifestyle = lifestyle;
+		this.shower = shower;
+		this.favoriteage = favoriteage;
+		this.gender = gender;
+		this.animal = animal;
+		this.needs = needs;
+		this.enabled = enabled;
+		this.roommate = roommate;
+		this.multiuserfile = multiuserfile;
 	}
 
 	public String getSeq() {
@@ -242,13 +268,21 @@ public class LoginDto {
 		this.roommate = roommate;
 	}
 
+	public MultipartFile getMultiuserfile() {
+		return multiuserfile;
+	}
+
+	public void setMultiuserfile(MultipartFile multiuserfile) {
+		this.multiuserfile = multiuserfile;
+	}
+
 	@Override
 	public String toString() {
 		return "LoginDto [seq=" + seq + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone
 				+ ", authority=" + authority + ", userfile=" + userfile + ", confirm=" + confirm + ", clean=" + clean
 				+ ", lifestyle=" + lifestyle + ", shower=" + shower + ", favoriteage=" + favoriteage + ", gender="
 				+ gender + ", animal=" + animal + ", needs=" + needs + ", enabled=" + enabled + ", roommate=" + roommate
-				+ "]";
+				+ ", multiuserfile=" + multiuserfile + "]";
 	}
 	
 	
