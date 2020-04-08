@@ -97,7 +97,8 @@ li {
 
 .options{
     position: relative;
-   	padding: 100px 80px;
+    height: 100%;
+    padding: 140px 100px;
     margin: 0px auto;
     border-top: 1px solid rgb(221, 221, 221);
 }

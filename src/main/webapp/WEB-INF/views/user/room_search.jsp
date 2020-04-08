@@ -32,7 +32,9 @@ $(function(){
 		} else $(this).next().hide();
 		
 	});
+	
 });
+
 
 </script>
 
@@ -42,7 +44,6 @@ $(function(){
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8ded785b631dc1b3efa28d959d4d6d5&libraries=services"></script>
 
 	<div class="container">
-		<form action="">
 			<div class="searchheader">
 				<div class="keyword">
 					<a>
@@ -55,7 +56,7 @@ $(function(){
 				<div class="filter">
 					<div class="smallfilter" id="roomtype">
 						<div class="seperate">
-							<span>원룸, 투·쓰리룸, 오피스텔</span>
+							<span></span>
 						</div>
 						<div class="filterbox">
 							<h1>
@@ -64,21 +65,21 @@ $(function(){
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name="multi_room_type" type="checkbox" value="원룸" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">원룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name="multi_room_type" type="checkbox" value="투룸" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
-										<span class="checktext">투·쓰리룸</span>
+										<span class="checktext">투룸</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name="multi_room_type" type="checkbox" value="오피스텔" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">오피스텔</span>
 									</label>
@@ -89,7 +90,7 @@ $(function(){
 					</div>
 					<div class="smallfilter" id="rent">
 						<div class="seperate">
-							<span>월세, 전세, 매매</span>
+							<span></span>
 						</div>
 						<div class="filterbox">
 							<h1>
@@ -98,21 +99,21 @@ $(function(){
 							<ul>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name="rent_type" type="checkbox" value="월세" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">월세</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name="rent_type" type="checkbox" value="전세" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">전세</span>
 									</label>
 								</li>
 								<li>
 									<label class="roomlabel">
-										<input name=multi_room_type" type="checkbox" class="checkbox_check" checked>
+										<input name="rent_type" type="checkbox" value="매매" class="checkbox_check" checked>
 										<span class="CheckBox"></span>
 										<span class="checktext">매매</span>
 									</label>
@@ -126,10 +127,7 @@ $(function(){
 							<span>가격대</span>
 						</div>
 						<div class="filterbox">
-							<h1>
-							매물종류
-							
-							</h1>
+							<h1>가격대</h1>
 						</div> 
 					</div>
 					<div class="smallfilter" id="manageprice">
@@ -137,10 +135,7 @@ $(function(){
 							<span>관리비</span>
 						</div>
 						<div class="filterbox">
-							<h1>
-							매물종류
-							
-							</h1>
+							<h1>관리비</h1>
 						</div>
 					</div>
 					<div class="smallfilter" id="roomsize">
@@ -148,18 +143,12 @@ $(function(){
 							<span>방크기</span>
 						</div>
 						<div class="filterbox">
-							<h1>
-							매물종류
-							
-							</h1>
+							<h1>방 크기</h1>
 						</div>
 					</div>
 				</div>
 
 			</div>
-
-		</form>
-
 
 		<div class="row" style="margin-bottom: 50px;">
 			<div class="col-sm-6">
@@ -200,13 +189,23 @@ $(function(){
 <jsp:include page="/WEB-INF/views/user/footer.jsp" />
 
 	<script type="text/javascript">
+
 	
 		$(document).ready(function(){		//검색체크
 			
 			var keyword = "${keyword}";
 			document.getElementById('keyword').value = keyword;
-			searchPlace();
 			
+// 			var roomTy = "${roomTy}";
+// 			document.getElementsByName("multi_room_type").length = roomTy;
+// 			var roomtype = document.getElementByName("multi_room_type").length;
+// 			for(var i=0; i<roomtype; i++){
+// 				if(document.getElementByName("multi_room_type")[i].checked==true){
+// 					console.log(document.getElementByName("multi_room_type")[i].value);
+// 				}
+// 			}
+			
+			searchPlace();
 		});
 		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 		var infowindow = new kakao.maps.InfoWindow({
@@ -232,17 +231,22 @@ $(function(){
 		function searchPlace(){
  			var keyword = document.getElementById('keyword').value;
  			
-// 			$("#roomtype>.checkbox_check:checked").each(function(){
-// 				var roomtype = $(this).val();
-// 				alert("벨류값확인:" + roomtype);
-// 			})
+//  			var roomTy = document.getElementsByName("multi_room_type").length;
+ 			
+//  			var roomArray = [];
+ 			
+//  			for(var i =0; i< roomTy; i++){
+//  				if(document.getElementsByName("multi_room_type")[i].checked==true){
+//  					roomArray.push(document.getElementsByName("multi_room_type")[i].value);
+//  				}
+//  			}
 			
 			$.ajax({
 				type: "GET", 
 				url:"room_search.all",		//검색어가 있을경우 검색 리스트만, 없을 경우 전체 리스트 출력
 				dataType:"json", 
 				data: {
-					keyword: keyword
+					keyword : keyword
 				},
 				success : function(result){
 					var list = new Array();
@@ -287,7 +291,7 @@ $(function(){
 					
 				},
 				error : function(a, b, c){
-					alert(a + b + c);
+					alert("Ajax에러:"+a + b + c);
 				}
 			});
 		}

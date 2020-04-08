@@ -35,7 +35,8 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	}
 	
 	@Override
-	public List<roomsearchDto> recentList(String email) {		//찜한 방 리스트만
+	public List<roomsearchDto> recentList(String email) {		//최근 본 리스트만
+
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		try {
@@ -47,7 +48,6 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		
 		return list;
 	}
-
 	
 	
 	
