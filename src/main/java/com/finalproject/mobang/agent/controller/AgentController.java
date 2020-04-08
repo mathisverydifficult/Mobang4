@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.mobang.admin.controller.AdminController;
+import com.finalproject.mobang.agent.biz.AgentMypageBiz;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
+import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentItemDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
 import com.finalproject.mobang.agent.dto.AgentPayDto;
 import com.finalproject.mobang.agent.dto.Criteria;
 import com.finalproject.mobang.agent.dto.PageMaker;
+import com.finalproject.mobang.common.utils.CurrentUserName;
 
 @Controller
 public class AgentController {
@@ -23,6 +26,9 @@ public class AgentController {
 	
 	@Autowired
 	private AgentNoticeBiz biz;
+	
+	@Autowired
+	private AgentMypageBiz userbiz;
 	
 	@RequestMapping(value="/agent_home.agent")
 	public String adminUser(Model model) {
@@ -75,14 +81,13 @@ public class AgentController {
 	
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
+
+		String email = CurrentUserName.currentUserName();
+		AgentAccountDto accountdto = userbiz.selectAccount(email);
+		model.addAttribute("account", accountdto);
 		model.addAttribute("dto", dto);
 		return "/agent/agent_pay";
 	}
-	@RequestMapping(value = "/agent_pay2.agent")
-	public String agentPay2(Model model) {
-		return "/agent/agent_pay2";
-	}
-	
 	@RequestMapping(value = "/agent_sales_complete.agent")
 	public String agentSalesComplete(Model model) {
 		
