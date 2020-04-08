@@ -187,11 +187,26 @@ $(document).ready(function(){
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${qnalist }" var="qna">
 							<div class="qnalist">
-								<span>${qna.title_q }</span>
+					<!--		<div class="first">
+								<div>분류</div>
+								<div>제목</div>
+								<div>날짜</div>
+				</div> -->
+								<ul>
+									<c:forEach items="${qnalist }" var="qna">
+										<li class="article">
+											<div class="aco_li">
+												<span class="title">${qna.titlet_q }</span><a class="trigger">Q. ${qna.title_q }</a>
+												<span class="date"><fmt:formatDate value="${qna.date_q }" pattern="yyyy년 MM월 dd일"/></span>
+											</div>
+											<div class="aco_view" style="display: none;">
+												<p>${qna.content_q }</p>
+											</div>											
+										</li>
+									</c:forEach>
+								</ul>
 							</div>
-						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 		

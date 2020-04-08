@@ -39,13 +39,35 @@
 .product .productlist table thead tr{border-bottom: 1px solid rgb(51, 85, 139);}
 .product .productlist table tbody tr {border-top: 1px solid #f4f2ef; height: 60px;}
     
-    /* 리뷰 문의관리 */
+    /* 리뷰 리뷰관리 */
  .mypagewrap .review{display: none;}
  .mypagewrap .noreview{text-align: center; font-size: 25px;}
  .mypagewrap .reviewlist{border-top: 1px solid #727272; border-bottom: 1px solid #727272; padding: 10px;}
  .mypagewrap .rcontent{font-size: 15px; color: black; margin-right: 10px;}
  .mypagewrap .star{font-size: 15px; color: red; margin-right: 5px;}
-   
+ 
+     /* 리뷰 문의관리 */
+     .qnalist{position:relative; width: 1200px; padding-bottom: 25px;margin-left: auto; margin-right: auto; margin: 0px auto; padding-top: 25px;}
+/*
+.qnalist .first{width: 1040px; height: 55px; border-top: 1px solid rgb(51, 85, 139); border-bottom: 1px solid rgb(51, 85, 139);
+				margin-left: auto; margin-right: auto; margin: 0px auto;}
+.qnalist .first div:first-child{display: inline-block; width: 25%; height: 55px; color:rgb(51, 85, 139); font-size: 18px; line-height: 3; text-align: center;}
+.qnalist .first div:nth-child(2){display: inline-block; width: 300px; height: 55px;  color:rgb(51, 85, 139); font-size: 18px; line-height: 3; padding-left: 170px;}
+.qnalist .first div:last-child{display: inline-block; width: 25%; height: 55px; color:rgb(51, 85, 139); font-size: 18px; line-height: 3; text-align: center;}
+     
+ 	.qnalist ul {width: 1040px; margin: 0; padding: 0; border-bottom: 1px solid rgb(51, 85, 139); margin-left: auto; margin-right: auto; margin: 0px auto;}	
+	.qnalist .aco_li {position: relative; margin: 0; border-top: 1px solid #ddd; font-size: 15px; }
+	.qnalist .hide .aco_li .title{padding: 14px 150px 14px 75px; background: none; line-height: 22px; float: left; width: 130px;}
+	.qnalist .hide .aco_li a.trigger {padding: 14px 350px 14px 30px; background: none; line-height: 22px; float: left;}
+	
+	.qnalist .aco_li .title{padding: 14px 150px 14px 75px; background: none; line-height: 22px; float: left; width: 130px;}
+	.qnalist .aco_li a.trigger {display: block; padding: 14px 30px 14px 30px; background: rgba(51, 85, 139,0.1); text-align: left; line-height: 22px;}
+	.qnalist .aco_li:hover {/*background: #f9f9f9; background: rgba(51, 85, 139,0.1); }
+	.aco_li .date{width: 120px; float: right;}
+	.qnalist .aco_view>p{padding: 40px 68px; font-size: 15px;}
+ */ 
+ .qnalist ul{font-size: 15px;}
+ .qnalist span{padding: 15px;}
    
    
    
