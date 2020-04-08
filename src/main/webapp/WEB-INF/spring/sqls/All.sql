@@ -113,6 +113,16 @@ CREATE TABLE ROOM_TB
     CONSTRAINT ROOM_TB_PK PRIMARY KEY (NO_RM)
 );
 
+	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+  	,CASE WHEN B.DIBS_FV IS NULL THEN 1
+	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV)
+  	where (addr_rm LIKE '%이천%' OR addr_dt_rm LIKE '%이천%' OR title_rm LIKE '%이천%')
+  	AND roomtype_rm in('원룸');
+  	
+
+
 SELECT * FROM ROOM_TB;
 
 INSERT INTO ROOM_TB VALUES
