@@ -23,21 +23,21 @@
 			<ul>
 				<li class="first"><a href="#">광고상품 소개</a>
 					<article class="adsubmenu">
-						<a href="agent_sales.agent"><div class="submenu">일반 상품</div></a>
-						<a href="agent_premium.agent"><div class="submenu">역/동 상품</div></a>
-						<a href="agent_premium.agent"><div class="submenu">대학교 상품</div></a>
-						<a href="agent_sales.agent"><div class="submenu">플러스 상품</div></a>
+						<a href="agent_sales.all"><div class="submenu">일반 상품</div></a>
+						<a href="agent_premium_sales.all"><div class="submenu">역/동 상품</div></a>
+						<a href="agent_premium_sales.all"><div class="submenu">대학교 상품</div></a>
+						<a href="agent_sales.all"><div class="submenu">플러스 상품</div></a>
 					</article>
 				</li>
 				<li class="first"><a href="#">고객센터</a>
 					<article class="scsubmenu">
-						<a href="noticelist.agent"><div class="submenu">공지사항</div></a>
-						<a href="fnq.agent"><div class="submenu">문의사항</div></a>
+						<a href="noticelist.all"><div class="submenu">공지사항</div></a>
+						<a href="fnq.all"><div class="submenu">문의사항</div></a>
 					</article>
 				</li>
 				<li class="second" style="margin-left: 25px;">
 					<a href="#">로그인</a>
-					<a href="#">회원가입</a>
+					<a href="usersignupform.all">회원가입</a>
 				</li>
 				<li>
 					<a href="roommanage.agent"><div class="button">매물관리 바로가기</div></a>

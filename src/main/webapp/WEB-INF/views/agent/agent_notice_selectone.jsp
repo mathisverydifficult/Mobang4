@@ -26,7 +26,7 @@
 			<input type="hidden" id="board_no" value="${dto.seq_nt }">
 			<div class="text">
 				<p>${dto.content_nt }</p>
-				<button onclick="location.href='noticelist.agent?page=${cri.page}&perPageNum=${cri.perPageNum }'">목록</button>
+				<button onclick="location.href='noticelist.all?page=${cri.page}&perPageNum=${cri.perPageNum }'">목록</button>
 			</div>
 		</div>
 

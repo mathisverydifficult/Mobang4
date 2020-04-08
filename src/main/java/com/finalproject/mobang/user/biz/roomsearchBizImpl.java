@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalproject.mobang.common.dto.AgentRoomListDto;
 import com.finalproject.mobang.user.dao.roomsearchDao;
 import com.finalproject.mobang.user.dto.roomsearchDto;
 
@@ -44,6 +45,16 @@ public class roomsearchBizImpl implements roomsearchBiz {
 	@Override
 	public int delete(int myno) {
 		return dao.delete(myno);
+	}
+
+	@Override
+	public List<roomsearchDto> recentList(String email) {
+		return dao.recentList(email);
+	}
+
+	@Override
+	public List<AgentRoomListDto> selectAgentList(String email) {
+		return dao.selectAgentList(email);
 	}
 
 }

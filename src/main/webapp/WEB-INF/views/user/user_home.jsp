@@ -79,7 +79,7 @@
 					<div class="viewsection">
 						<div class="picturepart" id="favoritepart">		<!-- 찜한방 리스트 뿌려지는 div -->
 						<c:if test="${empty html}">
-							<p>해당 게시글이 없습니다. 마음에 드는 방을 찜해보세요.</p>
+							<p>해당 게시글이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요.</p>
 						</c:if>
 						</div>
 					</div>
@@ -93,7 +93,7 @@
 					<a>아파트</a>
 				</div>
 				<div class="sitemap">
-					<a href="agent_home.agent">공인중개사</a><br/><br/>
+					<a href="agent_home.all">공인중개사</a><br/><br/>
 					<a>중개사 회원가입</a><br/><br/><br/><br/>
 				</div>
 				<div class="sitemap">
@@ -126,11 +126,12 @@
 				for(var i=0; i<result.length; i++){
 					list[i] = result[i];
 					
+					
 					html += "<div class='part' style='cursor:pointer;'>	"
 						+"<div class='favorite'>"
 						+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 1번이면 빈하트, 2번이면 빨간하트
-						+"<a href='room_detail.user?myno="+list[i].no_rm+"'> <div class='picture'>"
-						+"<img src="+list[i].picture_rm+">"								//이미지 경로
+						+"<a href='room_detail.all?myno="+list[i].no_rm+"'> <div class='picture'>"
+						+"<img src="+list[i].picture_rm.split("/_/")[0]+">"								//이미지 경로
 						+"</div>"
 					+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"		//방제목
 					+"<p class='explain'>"+list[i].addr_rm+"</p>"						//방주소

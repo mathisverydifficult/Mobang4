@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,7 @@
 <script type="text/javascript">
 	var name_it = ${dto.name_it};
 	var price_it = ${dto.price_it};
+	var email = ${account.email};
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp29158322'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	
@@ -20,7 +23,7 @@
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : name_it,
 	    amount : price_it,
-	    buyer_email : 'iamport@siot.do',
+	    buyer_email : email,
 	    buyer_name : '구매자이름',
 	    buyer_tel : '010-1234-5678',
 	    buyer_addr : '서울특별시 강남구 삼성동',
@@ -44,6 +47,5 @@
 </script>
 </head>
 <body>
-
 </body>
 </html>

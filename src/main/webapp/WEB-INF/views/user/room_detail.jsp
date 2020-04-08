@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/user/css/room_detail.css">
+	
+<style type="text/css">
+
+.card{
+	margin: 20px 1%;
+	float:left;
+}
+
+</style>	
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -21,7 +33,7 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8ded785b631dc1b3efa28d959d4d6d5&libraries=services"></script>
 
 	
-<link rel="stylesheet" type="text/css" href="resources/user/css/room_detail.css">
+
 <jsp:include page="/WEB-INF/views/user/header.jsp"/>
 </head>
 <body>
@@ -133,12 +145,21 @@
 			</ul>
 		</div>
 	</div>
-	<div class="photo">
-		<div>사진</div>
-		<div>사진</div>
-		<div>사진</div>
-		<div>사진</div>
-		<div>사진</div>
+	<div class="container">
+		<c:choose>
+			<c:when test="${empty imagelist }">
+				<div>사진이 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+				<div class="row">
+				<c:forEach items="${imagelist }" var="image">
+					<div class="card" style="width:23%; height: 300px;">
+						<img src='${image }' style="width:100%; height:280px;"/>
+					</div>
+				</c:forEach>
+				</div>
+			</c:otherwise>		
+		</c:choose>
 	</div>
 	<div class="title">
 		<div style="display:inline-block"><h1>옵션</h1></div>
@@ -228,12 +249,35 @@
 		<div style="display:inline-block"><h1>이 공인중개사의 다른 방</h1></div>
 	</div>
 	<div class="thisagentroom">
-		<div class="index">
-			
-		</div>
-		<div class="index"></div>
-		<div class="index"></div>
-		<div class="index"></div>
+	<c:choose>
+		<c:when test="${empty agentlist}">
+			<div class="p-2 border">중개사가 올린 방이 더 이상 없습니다.</div>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${agentlist }" var="dto" varStatus="status">
+				<div class="card" style="width:23%; height: 300px; ">
+					<a href="room_detail.all?myno=${dto.no_rm }">	
+					<div class="picture">
+						<c:choose>
+							<c:when test="${empty agentimglist[status.index]}">
+								<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="${agentimglist[status.index]}" alt="Card image" style="width:100%; height:150px;">
+							</c:otherwise>
+						</c:choose>
+						 
+					</div>
+				    <div class="card-body">
+					    <h4 class="card-title">${dto.title_rm }</h4>
+					    <p class="card-text">${dto.roomtype_rm }</p>
+				    	
+				    </div>
+				    </a>
+				</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 	</div>
 </div>
 
