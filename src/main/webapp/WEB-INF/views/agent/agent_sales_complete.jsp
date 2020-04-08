@@ -56,7 +56,7 @@ ul,li,ol{
 		</div>
 		<div class="bottom">
 			<div>
-				<a href = "agent_home.agent">메인페이지로</a>
+				<a href = "agent_home.all">메인페이지로</a>
 				<a href = "agent_mypage.agent">구매상품 확인</a>
 			</div>
 		</div>

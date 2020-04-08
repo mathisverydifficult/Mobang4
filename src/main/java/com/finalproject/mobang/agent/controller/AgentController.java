@@ -5,17 +5,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.mobang.admin.controller.AdminController;
+import com.finalproject.mobang.agent.biz.AgentMypageBiz;
 import com.finalproject.mobang.agent.biz.AgentNoticeBiz;
+import com.finalproject.mobang.agent.biz.AgentPayBiz;
+import com.finalproject.mobang.agent.dto.AgentAccountDto;
 import com.finalproject.mobang.agent.dto.AgentItemDto;
 import com.finalproject.mobang.agent.dto.AgentNoticeDto;
 import com.finalproject.mobang.agent.dto.AgentPayDto;
 import com.finalproject.mobang.agent.dto.Criteria;
 import com.finalproject.mobang.agent.dto.PageMaker;
+import com.finalproject.mobang.common.utils.CurrentUserName;
 
 @Controller
 public class AgentController {
@@ -23,24 +28,27 @@ public class AgentController {
 	
 	@Autowired
 	private AgentNoticeBiz biz;
+	@Autowired
+	private AgentPayBiz userbiz;
 	
-	@RequestMapping(value="/agent_home.agent")
+	
+	@RequestMapping(value="/agent_home.all")
 	public String adminUser(Model model) {
 		return "/agent/agent_home";
 	}
 	
 	// 공지사항 목록 조회
-	@RequestMapping(value="/noticelist.agent", method = RequestMethod.GET)
+	@RequestMapping(value="/noticelist.all", method = RequestMethod.GET)
 	public String noticeList(Model model,Criteria cri) {
 		logger.info("select notice list");
-		System.out.println(cri);
-		System.out.println(cri.getRowStart());
+		
 		model.addAttribute("list", biz.selectList(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(biz.listCount());
 		
+		model.addAttribute("cri", cri);
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "/agent/agent_notice";
@@ -48,39 +56,42 @@ public class AgentController {
 	
 	// 공지사항 selectOne
 	@RequestMapping(value="/selectone.agent",method = RequestMethod.GET)
-	public String noticeSelectOne(Model model,int seq_nt) {
+	public String noticeSelectOne(Model model,int seq_nt,@ModelAttribute("cri") Criteria cri) {
 		logger.info("notice - selectOne");
 		
 		AgentNoticeDto dto = biz.selectOne(seq_nt);
 		model.addAttribute("dto", dto);
+		model.addAttribute("cri", cri);
+		
 		
 		return "/agent/agent_notice_selectone";
 	}
 	
-	@RequestMapping(value="/fnq.agent")
+	@RequestMapping(value="/fnq.all")
 	public String fnq(Model model) {
 		
 		return "/agent/agent_fnq";
 	}
 	
-	@RequestMapping(value ="/agent_sales.agent")
+	@RequestMapping(value ="/agent_sales.all")
 	public String sales(Model model) {
 		return "/agent/agent_sales";
 	}
 	
-	@RequestMapping(value="/agent_premium.agent")
+	@RequestMapping(value="/agent_premium_sales.all")
 	public String premiumsale(Model model) {
 		return "/agent/agent_premium_sales";
 	}
 	
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
+		String email = CurrentUserName.currentUserName();
+		logger.info(email);
+		AgentAccountDto accountdto = userbiz.selectAccount(email);
+		model.addAttribute("account", accountdto);
+		logger.info("pay value? "+accountdto);
 		model.addAttribute("dto", dto);
 		return "/agent/agent_pay";
-	}
-	@RequestMapping(value = "/agent_pay2.agent")
-	public String agentPay2(Model model) {
-		return "/agent/agent_pay2";
 	}
 	
 	@RequestMapping(value = "/agent_sales_complete.agent")

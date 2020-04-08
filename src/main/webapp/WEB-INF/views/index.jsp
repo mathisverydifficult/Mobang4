@@ -23,7 +23,7 @@
 	
 	
 	<br/>
-	<a href="agent_home.agent">중개사 홈</a><br/>
+	<a href="agent_home.all">중개사 홈</a><br/>
 	<a href="agent_mypage.agent">마이페이지</a><br/>
 	<a href="agent_roommanage.agent">매물관리바로가기</a><br/>
 	
