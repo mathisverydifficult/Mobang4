@@ -188,40 +188,11 @@ $(function(){
 	
 	
 </div>
-
-<div class="container">
-	<div class="page-header">
-    	<h3 class="text-center">관심있는 방이 같은 룸메이트</h3>
-    </div>
-    <div>
-    	<div class="card" style="width:23%">
-		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
-		    <div class="card-body">
-			    <h4 class="card-title"></h4>
-			    <p class="card-text"></p>
-		    </div>
-		</div>
-    </div>  
-</div>
-
-
-
-<div class="container">
-	<div class="page-header">
-    	<h3 class="text-center">신규로 등록한 룸메이트</h3>
-    </div>
-    <div>
-    	<div class="card" style="width:23%">
-		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
-		    <div class="card-body">
-			    <h4 class="card-title"></h4>
-			    <p class="card-text"></p>
-		    </div>
-		</div>
-    </div>  
-</div>
-
-
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
 
 
 <%@ include file="form/user_footer.jsp" %>

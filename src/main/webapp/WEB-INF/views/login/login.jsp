@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="col-xs-6 col-md-4"></div>
 			<div class="col-xs-6 col-md-4" id="main">
-				<h2><a class="mobang" href="#">모방</a>｜ 로그인</h2>
+				<h2><a class="mobang" href="home.all">모방</a>｜ 로그인</h2>
 				<hr class="hr"/>
 				<form name="loginfrm" action="<c:url value='/home.user'/>" method="post">
 					 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">

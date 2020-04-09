@@ -203,52 +203,12 @@ $(function(){
 	</c:choose>
 	</div>
 	
-	
-	
-	
-	
-	
 </div>
-
-<div class="container">
-	<div class="page-header">
-		<div class="row">
-		  <div class="col-sm-4"></div>
-		  <div class="col-sm-4 text-center"><h3>관심있는 방이 같은 룸메이트</h3></div>
-		  <div class="col-sm-4 text-right"><a class="menucontent" href="">더보기</a></div>
-		</div>
-    </div>
-    <div>
-    	<div class="card" style="width:23%">
-		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
-		    <div class="card-body">
-		    	
-		    
-			    <h4 class="card-title">방제목</h4>
-			    <p class="card-text">${dto.recentFv }, ${status.index}</p>
-			    <a href="#" class="btn btn-primary">프로필보기</a>
-		    </div>
-		</div>
-    </div>  
-</div>
-
-
-
-<div class="container">
-	<div class="page-header">
-    	<h3 class="text-center">신규로 등록한 룸메이트</h3>
-    </div>
-    <div>
-    	<div class="card" style="width:23%">
-		    <img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%">
-		    <div class="card-body">
-			    <h4 class="card-title">${dto.email }</h4>
-			    <p class="card-text">${dto.recentFv }, ${status.index}</p>
-		    </div>
-		</div>
-    </div>  
-</div>
-
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
 
 
 <%@ include file="form/user_footer.jsp" %>

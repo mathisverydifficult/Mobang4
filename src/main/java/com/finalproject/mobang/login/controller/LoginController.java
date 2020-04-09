@@ -54,7 +54,7 @@ import com.finalproject.mobang.user.controller.HomeController;
 @Controller
 public class LoginController {
 
-private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	LoginBiz biz;

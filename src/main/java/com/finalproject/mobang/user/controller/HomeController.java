@@ -40,7 +40,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
-		logger.info("home");
+		logger.info("homecontroller - home");
 		
 		return "redirect:home.all";
 	}
@@ -60,18 +60,15 @@ public class HomeController {
 	
 
 	@RequestMapping(value = "/home.all")
-	public String mainhome(Locale locale, Model model, String email) {
+	public String mainhome(Model model, String email) {
 		logger.info("home");
 		
 		try {
 			email = CurrentUserName.currentUserName();
-			
 			model.addAttribute("recentlist", roombiz.recentList(email));
-			
 			model.addAttribute("diblist", roombiz.dibList(email));
 			
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
 		

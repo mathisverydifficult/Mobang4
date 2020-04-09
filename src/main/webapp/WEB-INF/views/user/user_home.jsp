@@ -10,6 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+.card{
+	margin: 20px 1%;
+	float:left;
+}
+
+</style>	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -25,10 +32,6 @@
 
 <jsp:include page="/WEB-INF/views/user/header.jsp" />
 <body>
-   <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="user_id" />
-                    <div id="user_id">안녕하세요. ${user_id }</div>
-    </sec:authorize>
 	<div class="container">
 		<div class="title">
 			<p class="word">어디 살래요?</p>
@@ -51,12 +54,64 @@
 			<div>
 				<div class="viewsection">
 					<div class="picturepart">		<!-- 추천방 리스트 뿌려지는 div -->
-
+						<div class="row">
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							
+							
+							
+							
+							
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="secondpara">
+		<div class="secondpara">	
 			<div class="titleline">
 				<span style="font-size: 30px;">최근 본 방</span> 
 				<span style="float:right; margin-top:20px; font-size:18px;">
@@ -69,7 +124,7 @@
 					<div class="picturepart" id="recentpart">		<!-- 최근본방 리스트 뿌려지는 div -->
 					<c:choose>
 						<c:when test="${empty recentlist}">
-							<div class="explain">최근 본 방이 없습니다</div>
+							<div class="explain">최근 본 방이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요. ${recentlist }</div>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${recentlist }" var="recent" begin="0" end="3" >
@@ -77,7 +132,7 @@
 									<div class="favorite">
 										<img id="${recent.no_rm }" src= "resources/user/img/favorite_${recent.checkdib }.png"/>
 									</div>
-									<a href="room_detail.user?myno=${recent.no_rm }"> 
+									<a href="room_detail.all?myno=${recent.no_rm }"> 
 										<div class="picture">
 											<img src="${recent.picture_rm }">
 										</div>
@@ -109,7 +164,7 @@
 						<div class="picturepart" id="favoritepart">		<!-- 찜한방 리스트 뿌려지는 div -->
 						<c:choose>
 						<c:when test="${empty diblist}">
-							<div class="explain">해당 게시글이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요.</div>
+							<div class="explain">로그인 후 마음에 드는 방을 찜해보세요.</div>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${diblist }" var="dib" begin="0" end="3" >
@@ -117,7 +172,7 @@
 									<div class="favorite">
 										<img id="${dib.no_rm }" src= "resources/user/img/favorite_${dib.checkdib }.png"/>
 									</div>
-									<a href="room_detail.user?myno=${dib.no_rm }"> 
+									<a href="room_detail.all?myno=${dib.no_rm }"> 
 										<div class="picture">
 											<img src="${dib.picture_rm }">
 										</div>
@@ -143,7 +198,7 @@
 				</div>
 				<div class="sitemap">
 					<a href="agent_home.all">공인중개사</a><br/><br/>
-					<a>중개사 회원가입</a><br/><br/><br/><br/>
+					<a href="agentsignupform.all">중개사 회원가입</a><br/><br/><br/><br/>
 				</div>
 				<div class="sitemap">
 					<a>고객지원</a><br/><br/>
