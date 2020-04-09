@@ -166,66 +166,86 @@
 	</div>
 	<div class="option">
 		<div class="options">
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/Aircon.jpg' />
+			<c:if test="${not empty detail.aircon_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/Aircon.jpg' />
+					</div>
+					<p>${detail.aircon_rm }</p>
 				</div>
-				<p>${detail.aircon_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/washer.jpg' />
+			</c:if>
+			<c:if test="${not empty detail.washer_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/washer.jpg' />
+					</div>
+					<p>${detail.washer_rm }</p>
 				</div>
-				<p>${detail.washer_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/gasrange.jpg' />
+			</c:if>
+			<c:if test="${not empty detail.gasrange_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/gasrange.jpg' />
+					</div>
+					<p>${detail.gasrange_rm }</p>
 				</div>
-				<p>${detail.gasrange_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/desk.jpg' />
+			</c:if>
+			<c:if test="${not empty detail.desk_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/desk.jpg' />
+					</div>
+					<p>${detail.desk_rm }</p>
 				</div>
-				<p>${detail.desk_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/tv.png' />
+			</c:if>
+			<c:if test="${not empty detail.tv_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/tv.png' />
+					</div>
+					<p>${detail.tv_rm }</p>
 				</div>
-				<p>${detail.tv_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/ref.jpg' />
+			</c:if>
+			<c:if test="${not empty detail.ref_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/ref.jpg' />
+					</div>
+					<p>${detail.ref_rm }</p>
 				</div>
-				<p>${detail.ref_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/bed.jpg' />
+			</c:if>
+			<c:if test="${not empty detail.bed_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/bed.jpg' />
+					</div>
+					<p>${detail.bed_rm }</p>
 				</div>
-				<p>${detail.bed_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/shoes.png' />
+			</c:if>
+			<c:if test="${not empty detail.showhouse_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/shoes.png' />
+					</div>
+					<p>${detail.showhouse_rm }</p>
 				</div>
-				<p>${detail.showhouse_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/microwave.jpg' />
+			</c:if>
+			<c:if test="${not empty detail.microwave_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/microwave.jpg' />
+					</div>
+					<p>${detail.microwave_rm }</p>
 				</div>
-				<p>${detail.microwave_rm }</p>
-			</div>
-			<div class="icon">
-				<div class="optionimg">
-					<img src='resources/user/img/icon/induction.jfif' />
+			</c:if>
+			<c:if test="${not empty detail.induction_rm}">
+				<div class="icon">
+					<div class="optionimg">
+						<img src='resources/user/img/icon/induction.jfif' />
+					</div>
+					<p>${detail.induction_rm }</p>
 				</div>
-				<p>${detail.induction_rm }</p>
-			</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="title">
@@ -236,22 +256,16 @@
 	</div>
 	
 	<div class="title">
-		<div style="display:inline-block"><h1>취향저격 룸메이트</h1></div>
-		<div style="display:inline-block; float:right;"><a href="">룸메이트 추천 페이지></a></div>
-	</div>
-	<div class="roommate">
-		<div class="index"></div>
-		<div class="index"></div>
-		<div class="index"></div>
-		<div class="index"></div>
-	</div>
-	<div class="title">
 		<div style="display:inline-block"><h1>이 공인중개사의 다른 방</h1></div>
 	</div>
 	<div class="thisagentroom">
 	<c:choose>
 		<c:when test="${empty agentlist}">
 			<div class="p-2 border">중개사가 올린 방이 더 이상 없습니다.</div>
+			<br/><br/>
+			<br/><br/>
+			<br/><br/>
+			<br/><br/>
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${agentlist }" var="dto" varStatus="status">

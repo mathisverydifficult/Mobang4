@@ -10,6 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+.card{
+	margin: 20px 1%;
+	float:left;
+}
+
+</style>	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -25,10 +32,6 @@
 
 <jsp:include page="/WEB-INF/views/user/header.jsp" />
 <body>
-   <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username" var="user_id" />
-                    <div id="user_id">안녕하세요. ${user_id }</div>
-    </sec:authorize>
 	<div class="container">
 		<div class="title">
 			<p class="word">어디 살래요?</p>
@@ -37,7 +40,7 @@
 				  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
 				  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
 				</svg>
-				<form action="homesearch.user" method="get">
+				<form action="homesearch.all" method="get">
 					<input type="text" name="keyword" class="searchbar"> 
 					<input id="roombtn" class="btn btn-primary" type="submit" value="방찾기">
 				</form>
@@ -51,12 +54,64 @@
 			<div>
 				<div class="viewsection">
 					<div class="picturepart">		<!-- 추천방 리스트 뿌려지는 div -->
-
+						<div class="row">
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							<div class="card" style="width:23%; height: 300px;">
+								<a href="">	
+								<div class="picture">
+									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
+								</div>
+							    <div class="card-body">
+								    <h4 class="card-title">낭만있는 원룸</h4>
+								    <p class="card-text">꼭 오세요</p>
+							    </div>
+							    </a>
+							</div>
+							
+							
+							
+							
+							
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="secondpara">
+		<div class="secondpara">	
 			<div class="titleline">
 				<span style="font-size: 30px;">최근 본 방</span> 
 				<span style="float:right; margin-top:20px; font-size:18px;">
@@ -66,13 +121,36 @@
 
 			<div>
 				<div class="viewsection">
-					<div class="picturepart" >		<!-- 최근본방 리스트 뿌려지는 div -->
+					<div class="picturepart" id="recentpart">		<!-- 최근본방 리스트 뿌려지는 div -->
+					<c:choose>
+						<c:when test="${empty recentlist}">
+							<div class="explain">최근 본 방이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요. ${recentlist }</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${recentlist }" var="recent" begin="0" end="3" >
+								<div class= "part" style="cursor:pointer;">
+									<div class="favorite">
+										<img id="${recent.no_rm }" src= "resources/user/img/favorite_${recent.checkdib }.png"/>
+									</div>
+									<a href="room_detail.all?myno=${recent.no_rm }"> 
+										<div class="picture">
+											<img src="${recent.picture_rm }">
+										</div>
+										<p class="explain">${recent.rent_rm}</p>
+										<p class="explain" id="roomtitle">${recent.title_rm}</p>
+										<p class="explain">${recent.roomtype_rm}</p>	
+										<p class="explain">${recent.addr_dt_rm}</p>
+									</a>	
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 						
 					</div>
 				</div>
 			</div>
 			</div>
-			
+							
 			
 			<div class="thirdpara">
 				<div class="titleline">
@@ -84,9 +162,29 @@
 				<div>
 					<div class="viewsection">
 						<div class="picturepart" id="favoritepart">		<!-- 찜한방 리스트 뿌려지는 div -->
-						<c:if test="${empty html}">
-							<p>해당 게시글이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요.</p>
-						</c:if>
+						<c:choose>
+						<c:when test="${empty diblist}">
+							<div class="explain">로그인 후 마음에 드는 방을 찜해보세요.</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${diblist }" var="dib" begin="0" end="3" >
+								<div class= "part" style="cursor:pointer;">
+									<div class="favorite">
+										<img id="${dib.no_rm }" src= "resources/user/img/favorite_${dib.checkdib }.png"/>
+									</div>
+									<a href="room_detail.all?myno=${dib.no_rm }"> 
+										<div class="picture">
+											<img src="${dib.picture_rm }">
+										</div>
+										<p class="explain">${dib.rent_rm}</p>
+										<p class="explain" id="roomtitle">${dib.title_rm}</p>
+										<p class="explain">${dib.roomtype_rm}</p>	
+										<p class="explain">${dib.addr_dt_rm}</p>
+									</a>	
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 						</div>
 					</div>
 				</div>
@@ -100,7 +198,7 @@
 				</div>
 				<div class="sitemap">
 					<a href="agent_home.all">공인중개사</a><br/><br/>
-					<a>중개사 회원가입</a><br/><br/><br/><br/>
+					<a href="agentsignupform.all">중개사 회원가입</a><br/><br/><br/><br/>
 				</div>
 				<div class="sitemap">
 					<a>고객지원</a><br/><br/>
@@ -119,34 +217,34 @@
 		<jsp:include page="/WEB-INF/views/user/footer.jsp" />	
 		
 	<script type="text/javascript">
-	$(document).ready(function(){
-		$.ajax({						//찜한방 리스트 가져오는 ajax
-			type: "GET", 
-			url:"diblist.user",				
-			dataType:"json",
+// 	$(document).ready(function(){
+// 		$.ajax({						//찜한방 리스트 가져오는 ajax
+// 			type: "GET", 
+// 			url:"diblist.user",				
+// 			dataType:"json",
 			
-			success : function(result){
-				var list = new Array();
-				var html = "";
+// 			success : function(result){
+// 				var list = new Array();
+// 				var html = "";
 				
-				for(var i=0; i<result.length; i++){
-					list[i] = result[i];
+// 				for(var i=0; i<result.length; i++){
+// 					list[i] = result[i];
 					
 					
-					html += "<div class='part' style='cursor:pointer;'>	"
-						+"<div class='favorite'>"
-						+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 1번이면 빈하트, 2번이면 빨간하트
-						+"<a href='room_detail.all?myno="+list[i].no_rm+"'> <div class='picture'>"
-						+"<img src="+list[i].picture_rm.split("/_/")[0]+">"								//이미지 경로
-						+"</div>"
-					+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"		//방제목
-					+"<p class='explain'>"+list[i].addr_rm+"</p>"						//방주소
-					+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"					//건물명
-					+"</div>"
+// 					html += "<div class='part' style='cursor:pointer;'>	"
+// 						+"<div class='favorite'>"
+// 						+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 1번이면 빈하트, 2번이면 빨간하트
+// 						+"<a href='room_detail.all?myno="+list[i].no_rm+"'> <div class='picture'>"
+// 						+"<img src="+list[i].picture_rm.split("/_/")[0]+">"								//이미지 경로
+// 						+"</div>"
+// 					+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"		//방제목
+// 					+"<p class='explain'>"+list[i].addr_rm+"</p>"						//방주소
+// 					+"<p class='explain'>"+list[i].addr_dt_rm+"</a>"					//건물명
+// 					+"</div>"
 					
-				}
-				$("#favoritepart").html(html);
-				
+// 				}
+// 				$("#favoritepart").html(html);
+			$(function(){	
 				$(".favorite").click(function(){									//클릭 시 찜하기 기능 
 					var favo = $(this).children();									//img태그 하트
 						if(favo.attr("src").indexOf("_2") > 0){						//이미지 마지막 index가 _2일 경우
@@ -197,14 +295,15 @@
 						}
 					});
 				}
+			});
 				
-			},
-			error : function(a, b, c){
-				alert("에러:"+a + b + c);
-			}
-		});
+// 			},
+// 			error : function(a, b, c){
+// 				alert("에러:"+a + b + c);
+// 			}
+// 		});
 		
-	});
+	
 	
 	
 	

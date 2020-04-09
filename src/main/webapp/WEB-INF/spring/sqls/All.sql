@@ -56,7 +56,10 @@ INSERT INTO USER_TB
 VALUES(USER_SEQ.NEXTVAL, 'michaelhj@naver.com', '세입자', '{noop}1234', '010-0000-1234',
 'ROLE_USER', '', '', '', '', '', '', '', '', '', '1');
 
-
+  
+	select *
+	FROM ROOM_TB
+  	where addr_rm like '%이천%' OR addr_dt_rm LIKE '%이천%' OR title_rm like '%이천%';
 
 UPDATE USER_TB SET PWD = '{noop}1234' WHERE SEQ = 3; 
 
@@ -109,6 +112,16 @@ CREATE TABLE ROOM_TB
     PARKING_RM      VARCHAR2(2)     NULL, 
     CONSTRAINT ROOM_TB_PK PRIMARY KEY (NO_RM)
 );
+
+	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+  	,CASE WHEN B.DIBS_FV IS NULL THEN 1
+	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV)
+  	where (addr_rm LIKE '%이천%' OR addr_dt_rm LIKE '%이천%' OR title_rm LIKE '%이천%')
+  	AND roomtype_rm in('원룸');
+  	
+
 
 SELECT * FROM ROOM_TB;
 
@@ -335,15 +348,26 @@ SELECT * FROM USERFAVORITE_TB;
 
 DELETE FROM USERFAVORITE_TB;
 
-  	select no_rm, title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
+	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, RECENT
   	from(
-  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
-	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(b.email='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV))
-	WHERE checkdib='2';
+	  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+	  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+		WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+		FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+		ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV OR a.NO_RM = b.RECENT_FV)
+		)
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
 
+  	
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, 
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB, b.DATE_FV AS recent
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(b.email='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV)
+	WHERE b.DATE_FV is NOT NULL
+	ORDER BY b.DATE_FV DESC;
+	
 	
   	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
   	CASE WHEN B.DIBS_FV IS NULL THEN 1
@@ -351,24 +375,6 @@ DELETE FROM USERFAVORITE_TB;
 	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
 	ON(A.NO_RM = B.DIBS_FV);
 
-select no_rm, email, title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib
-  	from(
-  	select no_rm, a.EMAIL,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
-	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(a.EMAIL = 'user@naver.com' AND A.NO_RM = B.DIBS_FV));
-
- 	select no_rm, title_rm,picture_rm,animal_rm,elevator_rm,veranda_rm,
-	roomin_rm, content_rm,aircon_rm, washer_rm, gasrange_rm, induction_rm,
-	desk_rm, tv_rm, ref_rm, bed_rm, showhouse_rm, closet_rm, microwave_rm, sink_rm,
-	rent_rm, roomprice_rm, expense_rm, roomtype_rm, addr_rm, addr_dt_rm, roomsize_rm,
-	roomsize2_rm, floor_rm, floor2_rm, parking_rm,
-  	CASE WHEN B.DIBS_FV IS NULL THEN 1
-	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
-	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
-	ON(B.EMAIL='user@naver.com' AND A.NO_RM = B.DIBS_FV) 
-	WHERE no_rm=6 ;
 
 DROP TABLE REVIEW_TB;
 CREATE TABLE REVIEW_TB
@@ -470,7 +476,39 @@ CREATE TABLE USERFAVORITE_TB
     ROOM_EX		 VARCHAR2(2) NOT NULL
 );
 
-SELECT * FROM USERFAVORITE_TB;
+SELECT * FROM USERFAVORITE_TB WHERE email='djkim1216@naver.com';
+
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
+  	from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV)) BB
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
+
+
+select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, checkdib, recent
+from(
+SELECT DISTINCT NO_RM  
+from(
+  	select no_rm,title_rm,picture_rm,content_rm, addr_rm,addr_dt_rm,rent_rm, roomtype_rm, b.DATE_FV recent,
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='djkim1216@naver.com' AND A.NO_RM = B.DIBS_FV OR A.NO_RM = B.RECENT_FV)) BB
+	WHERE recent IS NOT NULL
+	ORDER BY recent DESC;
+
+
+select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm,  
+  	CASE WHEN B.DIBS_FV IS NULL THEN 1
+	 WHEN B.DIBS_FV IS NOT NULL THEN 2 END AS CHECKDIB
+	FROM ROOM_TB A LEFT OUTER JOIN USERFAVORITE_TB B 
+	ON(B.EMAIL='user@naver.com' AND A.NO_RM = B.DIBS_FV)
+  		where addr_rm like '%KH%' OR addr_dt_rm LIKE '%KH%' OR title_rm like'%KH%';
+
 
 
 DROP TABLE SEARCH_TB;

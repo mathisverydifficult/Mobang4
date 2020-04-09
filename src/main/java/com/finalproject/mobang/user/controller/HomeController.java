@@ -1,8 +1,11 @@
 package com.finalproject.mobang.user.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.mobang.common.dto.AgentRoomListDto;
@@ -28,37 +32,45 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
 	@Autowired
 	private roomsearchBiz roombiz;
 	@Autowired
 	private FavoriteBiz favoritebiz;
-	
-	
+
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
-		logger.info("home");
+		logger.info("homecontroller - home");
 		
-		return "user/user_home";
+		return "redirect:home.all";
 	}
+
+//	@ResponseBody															//ajax 통신으로 페이지 이동이 아닌 값만 가져올 경우 @ResponseBody
+//	@RequestMapping(value = "/diblist.user")
+//	public List<roomsearchDto> diblist() {
+//		
+//		logger.info(CurrentUserName.currentUserName());
+//		
+//		String email = CurrentUserName.currentUserName();
+//		
+//		List<roomsearchDto>test = roombiz.dibList(email);					//찜한방리스트만 (checkdib = 2)
+//		
+//		return test;														//리턴타입이 String이 아니므로 페이지 이동(->View Resolver)이 아닌 값만 보냄
+//	}
 	
-	@ResponseBody															//ajax 통신으로 페이지 이동이 아닌 값만 가져올 경우 @ResponseBody
-	@RequestMapping(value = "/diblist.user")
-	public List<roomsearchDto> diblist() {
-		
-		logger.info(CurrentUserName.currentUserName());
-		
-		String email = CurrentUserName.currentUserName();
-		
-		List<roomsearchDto>test = roombiz.dibList(email);					//찜한방리스트만 (checkdib = 2)
-		
-		return test;														//리턴타입이 String이 아니므로 페이지 이동(->View Resolver)이 아닌 값만 보냄
-	}
-	
+
 	@RequestMapping(value = "/home.all")
-	public String mainhome(Locale locale, Model model, String email) {
+	public String mainhome(Model model, String email) {
 		logger.info("home");
 		
-		model.addAttribute("list", roombiz.dibList(email));
+		try {
+			email = CurrentUserName.currentUserName();
+			model.addAttribute("recentlist", roombiz.recentList(email));
+			model.addAttribute("diblist", roombiz.dibList(email));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "user/user_home";
 	}
@@ -81,11 +93,14 @@ public class HomeController {
 	
 	@ResponseBody															//데이터 조회시 붙이는 annotation
 	@RequestMapping(value="/room_search.all")
-	public List<roomsearchDto> roomsearch(Model model, String keyword) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
+	public List<roomsearchDto> roomsearch(Model model, String keyword, String roomArray, String rentArray) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
 		
 		String email = CurrentUserName.currentUserName();
 		
-		List<roomsearchDto> test = roombiz.selectsearchList(keyword, email);
+		List<String> roomArr = Arrays.asList(roomArray.split(","));
+		List<String> rentArr = Arrays.asList(rentArray.split(","));
+		
+		List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
 		
 		return test;
 	}
@@ -113,8 +128,8 @@ public class HomeController {
 			
 			
 			
-		} 
-		
+		}
+
 		roomsearchDto dto = roombiz.selectOne(myno);
 		String st = dto.getPicture_rm();
 		List<String> imagelist = FileListMaker.fileListMaker(st);
@@ -145,9 +160,6 @@ public class HomeController {
 		model.addAttribute("detail", dto);
 		
 		return "user/room_detail";
-		
-		
-		
 		
 	}
 	

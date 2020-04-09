@@ -54,7 +54,7 @@ import com.finalproject.mobang.user.controller.HomeController;
 @Controller
 public class LoginController {
 
-private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	LoginBiz biz;
@@ -70,6 +70,15 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		model.addAttribute("loginDto", new LoginDto());
 
 		return "login/login";
+	}
+	
+	@RequestMapping(value = "/agentlogin.all")
+	public String agentlogin(Locale locale, Model model) {
+		logger.info("agent_login");
+		
+		model.addAttribute("loginDto", new LoginDto());
+
+		return "login/agent_login";
 	}
 	
 	@RequestMapping(value = "/pwdfind.all")

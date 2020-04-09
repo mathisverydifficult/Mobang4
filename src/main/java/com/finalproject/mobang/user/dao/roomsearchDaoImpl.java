@@ -35,7 +35,8 @@ public class roomsearchDaoImpl implements roomsearchDao{
 	}
 	
 	@Override
-	public List<roomsearchDto> recentList(String email) {		//찜한 방 리스트만
+	public List<roomsearchDto> recentList(String email) {		//최근 본 리스트만
+
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		try {
@@ -47,18 +48,20 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		
 		return list;
 	}
-
 	
 	
 	
 	@Override
-	public List<roomsearchDto> selectsearchList(String keyword, String email) {	//keyword null이면 전체출력
+	public List<roomsearchDto> selectsearchList(String keyword, String email, List<String> roomArray, List<String> rentArray) {	//keyword null이면 전체출력
 		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("keyword", keyword);
 		map.put("email", email);
+		map.put("roomArray", roomArray);
+		map.put("rentArray", rentArray);
+		
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"selectsearchList",map);
