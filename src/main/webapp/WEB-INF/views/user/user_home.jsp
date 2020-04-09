@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">	
 <style>
 .card{
 	margin: 20px 1%;
@@ -21,7 +23,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>	
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		
@@ -57,45 +60,49 @@
 						<div class="row">
 							<div class="card" style="width:23%; height: 300px;">
 								<a href="">	
-								<div class="picture">
-									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
-								</div>
+								
 							    <div class="card-body">
+							    <div class="picture">
+									<img class="card-img-top" src="resources/user/img/room1.jpg" alt="Card image" style="width:100%; height:150px;">
+								</div>
 								    <h4 class="card-title">낭만있는 원룸</h4>
-								    <p class="card-text">꼭 오세요</p>
+								    <p class="card-text">놀러 오세요</p>
 							    </div>
 							    </a>
 							</div>
 							
 							<div class="card" style="width:23%; height: 300px;">
 								<a href="">	
-								<div class="picture">
-									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
-								</div>
+								
 							    <div class="card-body">
-								    <h4 class="card-title">낭만있는 원룸</h4>
-								    <p class="card-text">꼭 오세요</p>
+							    <div class="picture">
+									<img class="card-img-top" src="resources/user/img/room2.jpg" alt="Card image" style="width:100%; height:150px;">
+								</div>
+								    <h4 class="card-title">넓은 침대가 있는 원룸</h4>
+								    <p class="card-text">동물의 숲 오세요</p>
 							    </div>
 							    </a>
 							</div>
 							<div class="card" style="width:23%; height: 300px;">
 								<a href="">	
-								<div class="picture">
-									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
-								</div>
+								
 							    <div class="card-body">
+							    <div class="picture">
+									<img class="card-img-top" src="resources/user/img/room3.jpg" alt="Card image" style="width:100%; height:150px;">
+								</div>
 								    <h4 class="card-title">낭만있는 원룸</h4>
-								    <p class="card-text">꼭 오세요</p>
+								    <p class="card-text">나만 없어</p>
 							    </div>
 							    </a>
 							</div>
 							<div class="card" style="width:23%; height: 300px;">
 								<a href="">	
-								<div class="picture">
-									<img class="card-img-top" src="resources/user/img/noroom.png" alt="Card image" style="width:100%; height:150px;">
-								</div>
+								
 							    <div class="card-body">
-								    <h4 class="card-title">낭만있는 원룸</h4>
+							    <div class="picture">
+									<img class="card-img-top" src="resources/user/img/room4.jpg" alt="Card image" style="width:100%; height:150px;">
+								</div>
+								    <h4 class="card-title">엄청 큰 침대가 있는 원룸</h4>
 								    <p class="card-text">꼭 오세요</p>
 							    </div>
 							    </a>
