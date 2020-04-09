@@ -21,14 +21,14 @@
 	<div class="container">
 		<div id="header">
 			<div id="mobang_header">
-				<a id="mobang" class="mobang" href="#">모방</a> <span class="mobang">｜ 회원정보 수정	</span>
+				<a id="mobang" class="mobang" href="home.all">모방</a> <span class="mobang">｜ 회원정보 수정	</span>
 			</div>
 			<div id="delete_header">
 				<small><a class="delete" href="userdelete.user">회원탈퇴</a></small>
 			</div>
 		</div>
 
-		<form:form class="form-horizontal"  enctype="multipart/form-data" modelAttribute="loginDto" action="userupdate.user" method="post">
+		<form:form class="form-horizontal" id="update" enctype="multipart/form-data" modelAttribute="loginDto" action="userupdate.user" method="post">
 			<form:input path="email" type="hidden" id="email"/>
 			<form:input path="lifestyle" type="hidden" id="lifestyle"/>
 			<form:input path="shower" type="hidden"  id="shower" />
@@ -172,12 +172,6 @@
 					<label class="room_label">지켜줬음 해</label>
 				    <div class="col-sm-13">
 						<form:textarea path="needs" class="form-control" name="needs" rows="3" value="${needs }"></form:textarea>
-				    </div>
-				</div>
-				<div class="form-group">
-					<label class="room_label">범죄이력 증명서</label>
-				    <div class="col-sm-13">
-						<input type="text" class="form-control"  placeholder="파일 업로드 넣어야함!">
 				    </div>
 				</div>
 			</div>

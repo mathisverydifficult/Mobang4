@@ -84,11 +84,10 @@
 	
 	
 	
-	
+
 </div>	
 <div class="container">
 
-	<h2>Simple Collapsible</h2>
 	
 	<c:forEach items="${list }" var="dto" varStatus="status"> <!-- forEach 객체마다 id 다르게 주는 방법 -->
 		
@@ -107,7 +106,15 @@
 </div>		
 
 
-
-
+<br/><br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<jsp:include page="/WEB-INF/views/user/footer.jsp" />	
 </body>
 </html>

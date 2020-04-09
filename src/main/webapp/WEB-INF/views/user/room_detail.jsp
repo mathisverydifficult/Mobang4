@@ -256,22 +256,16 @@
 	</div>
 	
 	<div class="title">
-		<div style="display:inline-block"><h1>취향저격 룸메이트</h1></div>
-		<div style="display:inline-block; float:right;"><a href="">룸메이트 추천 페이지></a></div>
-	</div>
-	<div class="roommate">
-		<div class="index"></div>
-		<div class="index"></div>
-		<div class="index"></div>
-		<div class="index"></div>
-	</div>
-	<div class="title">
 		<div style="display:inline-block"><h1>이 공인중개사의 다른 방</h1></div>
 	</div>
 	<div class="thisagentroom">
 	<c:choose>
 		<c:when test="${empty agentlist}">
 			<div class="p-2 border">중개사가 올린 방이 더 이상 없습니다.</div>
+			<br/><br/>
+			<br/><br/>
+			<br/><br/>
+			<br/><br/>
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${agentlist }" var="dto" varStatus="status">

@@ -37,14 +37,14 @@ public class HomeController {
 	private roomsearchBiz roombiz;
 	@Autowired
 	private FavoriteBiz favoritebiz;
-	
+
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
-		logger.info("home");
+		logger.info("homecontroller - home");
 		
-		return "user/user_home";
+		return "redirect:home.all";
 	}
-	
+
 //	@ResponseBody															//ajax 통신으로 페이지 이동이 아닌 값만 가져올 경우 @ResponseBody
 //	@RequestMapping(value = "/diblist.user")
 //	public List<roomsearchDto> diblist() {
@@ -60,22 +60,21 @@ public class HomeController {
 	
 
 	@RequestMapping(value = "/home.all")
-	public String mainhome(Locale locale, Model model, String email) {
+	public String mainhome(Model model, String email) {
 		logger.info("home");
 		
 		try {
 			email = CurrentUserName.currentUserName();
-			if(email!=null || email!="") {
-				model.addAttribute("recentlist", roombiz.recentList(email));
-				model.addAttribute("diblist", roombiz.dibList(email));
-			}
+			
+			model.addAttribute("recentlist", roombiz.recentList(email));
+			model.addAttribute("diblist", roombiz.dibList(email));
+			return "user/user_home";
 			
 		} catch (Exception e) {
-			
-			e.printStackTrace();
+			return "user/user_home";
 		}
 		
-		return "user/user_home";
+		
 	}
 	
 	@RequestMapping(value="/homesearch.all")
@@ -103,14 +102,17 @@ public class HomeController {
 		List<String> roomArr = Arrays.asList(roomArray.split(","));
 		List<String> rentArr = Arrays.asList(rentArray.split(","));
 		
-		if(CurrentUserName.currentUserName()!=null || CurrentUserName.currentUserName()!="") {
-			String email = CurrentUserName.currentUserName();
-			List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
-			return test;
-		} else {
-			List<roomsearchDto> test = roombiz.selectList(keyword, roomArr, rentArr);
-			return test;
-		}
+			try {
+				String email = CurrentUserName.currentUserName();
+				List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
+				
+				return test;
+			} catch (Exception e) {
+				List<roomsearchDto> test = roombiz.selectList(keyword, roomArr, rentArr);
+				return test;
+			}
+			
+			
 		
 	}
 	

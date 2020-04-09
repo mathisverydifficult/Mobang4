@@ -85,11 +85,6 @@ public class AgentController {
 	
 	@RequestMapping(value = "/agent_pay.agent")
 	public String agentPay(AgentItemDto dto, Model model) {
-		String email = CurrentUserName.currentUserName();
-		logger.info(email);
-		AgentAccountDto accountdto = userbiz.selectAccount(email);
-		model.addAttribute("account", accountdto);
-		logger.info("pay value? "+accountdto);
 		model.addAttribute("dto", dto);
 		return "/agent/agent_pay";
 	}

@@ -91,6 +91,7 @@ $(function(){
 										<span class="CheckBox"></span>
 										<span class="checktext">오피스텔</span>
 									</label>
+									
 								</li>
 							</ul>
 							</h1>
@@ -327,7 +328,6 @@ $(function(){
 					for(var i=0; i<result.length; i++){
 						list[i] = result[i];
 						
-						if(list[i].checkdib!=null||list[i].checkdib!=""){
 							html += "<div class='room' style='cursor:pointer;'>	"
 								+"<div class='favorite'>"
 								+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_"+list[i].checkdib+".png' /></div>"	//checkdib : 찜한방 일경우 2, 아닐경우 1
@@ -338,19 +338,7 @@ $(function(){
 							+"<p class='explain'>"+list[i].roomtype_rm+"</p>"
 							+"<p class='explain'>"+list[i].rent_rm+"</p></a>"
 							+"</div>"
-						} else{
-							html += "<div class='room' style='cursor:pointer;'>	"
-								+"<div class='favorite'>"
-								+"<img id="+list[i].no_rm+" src='resources/user/img/favorite_1.png' /></div>"	//checkdib : 찜한방 일경우 2, 아닐경우 1
-								+"<a href='room_detail.all?myno="+list[i].no_rm+"'> <div class='photo'>"
-								+"<img src="+list[i].picture_rm.split("/_/")[0]+">"
-								+"</div>"
-							+"<p class='explain' id='roomtitle'>"+list[i].title_rm+"</p>"
-							+"<p class='explain'>"+list[i].roomtype_rm+"</p>"
-							+"<p class='explain'>"+list[i].rent_rm+"</p></a>"
-							+"</div>"
-						}
-						
+					
 						
 						myaddress(list[i].addr_rm, list[i].addr_dt_rm);		//주소에 따른 좌표 출력함수
 						

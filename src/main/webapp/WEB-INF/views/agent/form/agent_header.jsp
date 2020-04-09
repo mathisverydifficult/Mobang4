@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+    uri="http://www.springframework.org/security/tags"%>    
  <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <!DOCTYPE html>
@@ -13,7 +15,9 @@
 <script type="text/javascript" src="resources/agent/js/agent_header.js"></script>
 </head>
 <body>
-	
+<sec:authorize access="isAuthenticated()">
+   <sec:authentication property="principal.username" var="user_id" />
+</sec:authorize>	
 	<div class="agenthead">
 		<div class="headleft">
 			<a style="" href="agent_home.all"><h1>모방 | 공인중개사</h1></a>
@@ -36,8 +40,15 @@
 					</article>
 				</li>
 				<li class="second" style="margin-left: 25px;">
-					<a href="#">로그인</a>
-					<a href="usersignupform.all">회원가입</a>
+					
+					<c:if test="${empty user_id}">
+						<a href="<c:url value='/agentlogin.all'/>">로그인</a>
+						<a href="agentsignupform.all">회원가입</a>
+					</c:if>
+					<c:if test="${not empty user_id}">
+						<a href="<c:url value='/logout.all'/>">로그아웃</a>
+					</c:if>
+					
 				</li>
 				<li>
 					<a href="roommanage.agent"><div class="button">매물관리 바로가기</div></a>

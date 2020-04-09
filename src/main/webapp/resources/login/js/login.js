@@ -25,7 +25,11 @@ $(function () {
 		}
 	});*/
 	
+	$("#pwd_button").attr("disabled",true);	
 	$("#ok").attr("disabled",true);	
+	$("#email_confirm").attr("disabled",true)
+
+
 	
 	//비밀번호 확인 버튼
 	$(document).on("click", "#ok", function() {
@@ -55,6 +59,8 @@ $(function () {
 			그런데 다음과 같이 job의 값에 &가 포함된다면 시스템은 job의 값을 제대로 인식할수 없게 된다. */
 			success : function(data){
 				alert("사용가능한 이메일입니다. 인증번호를 입력해주세요.");
+				$("#email_confirm").attr("disabled",false);
+				$("#email_confirm").css("background-color","#33558b");
 			},
 			error: function(data){
 				alert("에러가 발생했습니다.");
@@ -74,7 +80,8 @@ $(function () {
 			success:function(data){
 				if(data=="complete"){
 					alert("인증이 완료되었습니다.");
-					$("#ok").attr("disabled",false);
+					$("#pwd_button").attr("disabled",false);
+					$("#pwd_button").css("background-color","#33558b");
 				}else if(data == "false"){
 					alert("인증번호를 잘못 입력하셨습니다.")
 				}
@@ -85,7 +92,15 @@ $(function () {
 		});
 	});
 	
-
+	$(document).on("click", "#pwd_button", function() {
+		if($("#pwd_find").val() != null || $("#pwd_find").val().trim() != ''){
+			if($("#pwd_find").val() === $("#pwd_confirm").val()){
+				$("#ok").attr("disabled",false);
+			} else{
+				alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+			}
+		}
+	});
 	
 });
 

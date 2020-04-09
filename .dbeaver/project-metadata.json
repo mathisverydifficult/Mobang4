@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"resources":{"src/main/webapp/WEB-INF/spring/sqls/All.sql":{"sql-editor-data-source-id":"oracle_thin-1714e29a69e-1d7e7b2b26991d52"}}}
+=======
+{"resources":{"src/main/webapp/WEB-INF/spring/sqls/All.sql":{"sql-editor-data-source-id":"oracle_thin-17152730c72-5af967a20b5cdfae"}}}
+>>>>>>> b190d796b230fb670adbed72cc6a5693673de7c8
