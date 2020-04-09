@@ -65,8 +65,25 @@ public class HomeController {
 		
 		try {
 			email = CurrentUserName.currentUserName();
-			model.addAttribute("recentlist", roombiz.recentList(email));
-			model.addAttribute("diblist", roombiz.dibList(email));
+			
+			List<roomsearchDto> recentlist = roombiz.recentList(email);
+			List<roomsearchDto> dibslist = roombiz.dibList(email);
+			model.addAttribute("recentlist", recentlist);
+			model.addAttribute("diblist", dibslist);
+			List<String> recentimagelist = new ArrayList<String>();
+			List<String> dibsimagelist = new ArrayList<String>();
+			for(int i =0; i<recentlist.size(); i++) {
+				logger.info("최근 방 imagepath : " + recentlist.get(i).getPicture_rm().split("/_/")[0]);
+				recentimagelist.add(recentlist.get(i).getPicture_rm().split("/_/")[0]);
+			}
+			for(int i =0; i<dibslist.size(); i++) {
+				logger.info("찜하기 imagepath : " + dibslist.get(i).getPicture_rm().split("/_/")[0]);
+				dibsimagelist.add(dibslist.get(i).getPicture_rm().split("/_/")[0]);
+			}
+			
+			model.addAttribute("recentimagelist",recentimagelist);
+			model.addAttribute("dibsimagelist",dibsimagelist);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
