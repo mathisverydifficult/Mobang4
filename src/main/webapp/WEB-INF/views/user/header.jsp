@@ -15,7 +15,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="resources/user/css/header.css">
-	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script type="text/javascript">
 
 function favodelete(id){		//찜한 방 취소
@@ -65,6 +65,7 @@ function favodelete(id){		//찜한 방 취소
 							<a href="<c:url value='/login.all'/>" class="aa">로그인</a>
 						</c:if>
 						<c:if test="${not empty user_id}">
+							<a id="user" href="<c:url value='userupdateform.user'/>"><i class="fas fa-user"></i>회원정보</a>
 							<a href="<c:url value='/logout.all'/>" class="aa">로그아웃</a>
 						</c:if>
 					</div>

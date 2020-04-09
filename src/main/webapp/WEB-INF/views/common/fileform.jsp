@@ -40,7 +40,6 @@
 	  });
 	 </script>
 	<%=request.getRealPath("/") %>
-	 -->
 	
 	<h1>다중파일업로드 및 저장 연습</h1>
 	<br/>

@@ -12,6 +12,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="resources/agent/css/reset.css">
 <link rel="stylesheet" type="text/css" href="resources/agent/css/agent_header.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script type="text/javascript" src="resources/agent/js/agent_header.js"></script>
 </head>
 <body>
@@ -46,6 +47,7 @@
 						<a href="agentsignupform.all">회원가입</a>
 					</c:if>
 					<c:if test="${not empty user_id}">
+						<a id="user" href="<c:url value='agentupdateform.agent'/>"><i class="fas fa-user"></i>회원정보</a>
 						<a href="<c:url value='/logout.all'/>">로그아웃</a>
 					</c:if>
 					
