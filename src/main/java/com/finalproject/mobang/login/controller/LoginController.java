@@ -224,6 +224,29 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 	}
 	
+	@RequestMapping(value = "/check.all")
+	@ResponseBody
+	public int check(Locale locale, Model model, String email) {
+		logger.info("check");
+		logger.info(email);
+		
+		LoginDto dto = biz.selectUser(email);
+	
+		try {
+			if(dto.getEmail() != null) {
+				return 1;
+			} 
+			return 0;
+		} catch (NullPointerException e) {
+			return 0;
+		}
+		 
+
+
+		
+		
+	}
+	
 	@RequestMapping(value = "/agentsignupform.all")
 	public String agentsignupform(Locale locale, Model model) {
 		logger.info("agentsignupform");
@@ -243,6 +266,71 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		if(result.hasErrors()) {
 			return "login/agent_signup";
 		} else {
+			
+			//파일 업로드
+			logger.info("user signup");
+	        List<MultipartFile> fileList = mtfRequest.getFiles("multiuserfile");
+	        
+	       
+	        String path;
+		     // 파일 저장하는 과정
+	        InputStream inputStream = null;
+			OutputStream outputStream = null;
+			StringBuffer sb = new StringBuffer();
+			
+			try {
+				path = WebUtils.getRealPath(mtfRequest.getSession().getServletContext(), "resources\\storage");
+				for (MultipartFile mf : fileList) {
+					
+					String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+				    logger.info("원본 파일명 : "+originFileName);
+				    UUID uid = UUID.randomUUID();
+					String newFileName = uid+"_"+originFileName;
+					// db에 저장하기 위한 값을 만들어주는 것.
+					sb.append("resources\\storage\\"+newFileName+"/_/");
+					
+					logger.info("저장된 파일명 : "+newFileName);
+					inputStream = mf.getInputStream();
+					
+					File storage = new File(path);
+					if(!storage.exists()) {
+						storage.mkdir();
+					}
+					// 폴더에 파일을 만드는 것.
+					File newFile = new File(path+"\\"+newFileName);
+					if(!newFile.exists()) {
+						newFile.createNewFile();
+					}
+					
+					outputStream = new FileOutputStream(newFile);
+					// 파일이 안읽어지면 확인할 용도
+					int read =0;
+					byte[] b = new byte[(int)mf.getSize()];
+					while((read=inputStream.read(b)) != -1) {
+						outputStream.write(b,0,read);
+					}
+					logger.info("파일 정상적으로 입력됨");
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					inputStream.close();
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			String resultFile = sb.toString();
+			String[] array =resultFile.split("/_/");
+			for(int i=0; i<array.length; i++) {
+				logger.info(array[i]);
+			}
+			loginDto.setUserfile(resultFile);
+			
 			loginDto.setPwd("{noop}"+loginDto.getPwd());
 			int res = biz.agentInsert(loginDto);
 				
@@ -279,7 +367,8 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 			return "login/user_update";
 		} else {
 			if(loginDto.getRoommate() != null) {
-				System.out.println(loginDto.getPwd());
+
+				
 				
 				loginDto.setPwd("{noop}"+loginDto.getPwd());
 				
@@ -330,14 +419,78 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	
 	@RequestMapping(value = "/agentupdate.agent")
 	public String agentupdate(Model model, @ModelAttribute("loginDto")@Valid LoginDto loginDto, BindingResult result,
-			RedirectAttributes rttr) {
+			RedirectAttributes rttr, MultipartHttpServletRequest mtfRequest) {
 		logger.info("agentupdate");
-		
 	
 		
 		if(result.hasErrors()) {
 			return "login/agent_update";
 		} else {
+			
+			//파일 업로드
+			logger.info("user signup");
+	        List<MultipartFile> fileList = mtfRequest.getFiles("multiuserfile");
+	        
+	       
+	        String path;
+		     // 파일 저장하는 과정
+	        InputStream inputStream = null;
+			OutputStream outputStream = null;
+			StringBuffer sb = new StringBuffer();
+			
+			try {
+				path = WebUtils.getRealPath(mtfRequest.getSession().getServletContext(), "resources\\storage");
+				for (MultipartFile mf : fileList) {
+					
+					String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+				    logger.info("원본 파일명 : "+originFileName);
+				    UUID uid = UUID.randomUUID();
+					String newFileName = uid+"_"+originFileName;
+					// db에 저장하기 위한 값을 만들어주는 것.
+					sb.append("resources\\storage\\"+newFileName+"/_/");
+					
+					logger.info("저장된 파일명 : "+newFileName);
+					inputStream = mf.getInputStream();
+					
+					File storage = new File(path);
+					if(!storage.exists()) {
+						storage.mkdir();
+					}
+					// 폴더에 파일을 만드는 것.
+					File newFile = new File(path+"\\"+newFileName);
+					if(!newFile.exists()) {
+						newFile.createNewFile();
+					}
+					
+					outputStream = new FileOutputStream(newFile);
+					// 파일이 안읽어지면 확인할 용도
+					int read =0;
+					byte[] b = new byte[(int)mf.getSize()];
+					while((read=inputStream.read(b)) != -1) {
+						outputStream.write(b,0,read);
+					}
+					logger.info("파일 정상적으로 입력됨");
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					inputStream.close();
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			String resultFile = sb.toString();
+			String[] array =resultFile.split("/_/");
+			for(int i=0; i<array.length; i++) {
+				logger.info(array[i]);
+			}
+			loginDto.setUserfile(resultFile);
+			
 			loginDto.setPwd("{noop}"+loginDto.getPwd());
 			
 			System.out.println("contorller"+loginDto);

@@ -89,7 +89,8 @@ $(function(){
         var gender = $('input[name="gender"]:checked').val();
         var animal = $('input[name="animal"]:checked').val();
         var needs = $("#needs").val();
-        
+       
+    
         $.ajax({
             url:"userupdate.user",
             type:"post",
@@ -105,11 +106,12 @@ $(function(){
                 favoriteage : favoriteage,
                 gender : gender,
                 animal :animal,
-                needs :needs
+                needs :needs,
             },
             success: function(data) {
-				alert("성공!");
-				console.log(data);
+			},
+			error: function(msg) {
+				alert(msg);
 			}
         });
     });   

@@ -54,7 +54,6 @@ public class LoginDaoImpl implements LoginDao{
 		
 		try {
 			dto = sqlSession.selectOne(NAMESPACE+"selectuser", email);
-			System.out.println("dao" + dto);
 		} catch (Exception e) {
 			System.out.println("[ERROR] : selectUser");
 			e.printStackTrace();
