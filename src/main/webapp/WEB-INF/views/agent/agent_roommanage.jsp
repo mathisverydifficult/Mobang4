@@ -45,7 +45,7 @@ $(document).ready(function() {
 					매물 등록 현황
 				</div>
 				<div style="color:white; padding: 76px 0 0 122px; font-size: 40px;">
-					32 / 50 <!-- db 데이터 불러와야함 나중에 고치기 -->
+					05 / 50 <!-- db 데이터 불러와야함 나중에 고치기 -->
 				</div>
 			</div>
 			<div class="right">
