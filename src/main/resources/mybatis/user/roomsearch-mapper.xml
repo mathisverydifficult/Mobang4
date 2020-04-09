@@ -53,6 +53,29 @@
 	ORDER BY recent DESC
   </select>
   
+  <select id="selectList" resultMap="roomsearchMap" parameterType="hashMap">
+  select DISTINCT no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+	FROM ROOM_TB 
+    <where>
+   <if test="keyword != null and keyword !='' ">
+      AND (addr_rm like '%${keyword}%' OR addr_dt_rm LIKE '%${keyword}%' OR title_rm like '%${keyword}%')
+   </if>
+   <if test="roomArray != null and roomArray !='' ">
+  	  AND roomtype_rm in
+   		<foreach collection="roomArray" item="roomtype" index="index" separator="," open="(" close=")">
+     	 	#{roomtype}
+     	 </foreach>
+   </if>
+   <if test="rentArray != null and rentArray !='' ">
+  	  AND rent_rm in
+   		<foreach collection="rentArray" item="rent" index="index" separator="," open="(" close=")">
+     	 	#{rent}
+     	 </foreach>
+   </if>
+	</where>
+  	</select>
+  	
+  
   <!-- 검색했을 경우 keyword 검색, 검색을 안했으면 전체 List 출력 -->
   <select id="selectsearchList" resultMap="roomsearchMap" parameterType="hashMap">
   	select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 

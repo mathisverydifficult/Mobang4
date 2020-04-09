@@ -65,10 +65,10 @@ public class HomeController {
 		
 		try {
 			email = CurrentUserName.currentUserName();
-			
-			model.addAttribute("recentlist", roombiz.recentList(email));
-			
-			model.addAttribute("diblist", roombiz.dibList(email));
+			if(email!=null || email!="") {
+				model.addAttribute("recentlist", roombiz.recentList(email));
+				model.addAttribute("diblist", roombiz.dibList(email));
+			}
 			
 		} catch (Exception e) {
 			
@@ -98,14 +98,20 @@ public class HomeController {
 	@RequestMapping(value="/room_search.all")
 	public List<roomsearchDto> roomsearch(Model model, String keyword, String roomArray, String rentArray) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
 		
-		String email = CurrentUserName.currentUserName();
+		
 		
 		List<String> roomArr = Arrays.asList(roomArray.split(","));
 		List<String> rentArr = Arrays.asList(rentArray.split(","));
 		
-		List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
+		if(CurrentUserName.currentUserName()!=null || CurrentUserName.currentUserName()!="") {
+			String email = CurrentUserName.currentUserName();
+			List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
+			return test;
+		} else {
+			List<roomsearchDto> test = roombiz.selectList(keyword, roomArr, rentArr);
+			return test;
+		}
 		
-		return test;
 	}
 	
 	@RequestMapping(value="/room_detail.all")
