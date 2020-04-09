@@ -199,6 +199,17 @@ label {
     margin-bottom: .5rem;
 }
 
+#pwd_button{
+	background-color: #808080;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 0px 4px 4px 0px;
+    width: 50px;
+    height: 38px;
+    font-size: 18px;
+}
+
 button#emailBtn {
     height: 38px;
     width: 50px;
@@ -210,7 +221,7 @@ button#emailBtn {
 button#email_confirm {
 	height: 38px;
     width: 50px;
-    background-color: #33558b;
+    background-color: #808080;
     color: white;
     border-radius: 0px 4px 4px 0px;
 }

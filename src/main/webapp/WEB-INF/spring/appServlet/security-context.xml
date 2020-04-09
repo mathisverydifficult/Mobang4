@@ -30,7 +30,7 @@
                username-parameter="email"
                password-parameter="pwd"
                login-page="/login.all"
-               login-processing-url="/home.user"
+               login-processing-url="/home.all"
                authentication-failure-url="/login.all"
              />
              

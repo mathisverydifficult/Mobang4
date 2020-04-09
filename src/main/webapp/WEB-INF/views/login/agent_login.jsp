@@ -31,9 +31,9 @@
 		<div class="row">
 			<div class="col-xs-6 col-md-4"></div>
 			<div class="col-xs-6 col-md-4" id="main">
-				<h2><a class="mobang" href="home.all">모방</a>｜ 로그인</h2>
+				<h2><a class="mobang" href="agent_home.all">모방</a>｜ 로그인</h2>
 				<hr class="hr"/>
-				<form name="loginfrm" action="<c:url value='/home.all'/>" method="post">
+				<form name="loginfrm" action="<c:url value='/agent_home.all'/>" method="post">
 					 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
 					 <input name="name" type="hidden" value="">
 					<div class="form-group">
@@ -146,7 +146,6 @@
 								</span>
 							</div>
 						</div>
-						
 	     			 </div>
 	      			<div class="modal-footer">
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>

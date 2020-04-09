@@ -35,6 +35,7 @@ ul,li,ol{
 		border: none;
 		border-radius: 5px;
 		margin-left:40px;
+		font-size: 23px;
 	}
 </style>
 </head>

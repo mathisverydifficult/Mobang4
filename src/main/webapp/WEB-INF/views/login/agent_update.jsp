@@ -21,7 +21,7 @@
 	<div class="container">
 		<div id="header">
 			<div id="mobang_header">
-				<a id="mobang" class="mobang" href="#">모방</a> <span class="mobang">｜ 회원정보 수정	</span>
+				<a id="mobang" class="mobang" href="home.all">모방</a> <span class="mobang">｜ 회원정보 수정	</span>
 			</div>
 			<div id="delete_header">
 				<small><a class="delete" href="userdelete.user">회원탈퇴</a></small>
@@ -63,11 +63,11 @@
 					<form:errors path="phone" cssClass="errormsg" />
 			    </div>
 			</div>
-			<div class="form-group">
-				<label class="room_label">범죄이력 증명서</label>
-			    <div class="col-sm-13">
-					<input type="text" class="form-control"  placeholder="파일 업로드 넣어야함!">
-			    </div>
+			<div class="form-group" id="file">
+					<label>공인중개사 자격증, 사업자 등록증</label>
+				    <div class = "col-sm-13">
+			    		<input multiple="multiple" id ="userfile" type="file" name="multiuserfile" placeholder="파일선택 "/><br/>
+			    	</div>
 			</div>
 			<div class="button_group">
 				<input class="btn btn-default" type="submit" id="update_btn" value="수정">

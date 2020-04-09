@@ -23,7 +23,7 @@
 %>
 <body>
 	<div class="container">
-		<h2><a class="mobang" href="#">모방</a>｜ 회원가입</h2>
+		<h2><a class="mobang" href="home.all">모방</a>｜ 회원가입</h2>
 		<hr class="hr"/>
 		<form:form class="form-horizontal" onsubmit="return userfile();"  enctype="multipart/form-data" modelAttribute="loginDto" action="usersignup.all" method="post">
 			<div class="form-group">
@@ -54,6 +54,7 @@
 						    </c:otherwise>
 						</c:choose>
 						<span class="input-group-btn">
+							<button class="btn btn-default" id="check" type="button">중복확인</button>
 							<button class="btn btn-default" id="emailBtn" type="button">전송</button>
 					    </span>
 				    </div><!-- /input-group -->

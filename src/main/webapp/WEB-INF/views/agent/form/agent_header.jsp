@@ -42,8 +42,8 @@
 				<li class="second" style="margin-left: 25px;">
 					
 					<c:if test="${empty user_id}">
-						<a href="<c:url value='/login.all'/>">로그인</a>
-						<a href="usersignupform.all">회원가입</a>
+						<a href="<c:url value='/agentlogin.all'/>">로그인</a>
+						<a href="agentsignupform.all">회원가입</a>
 					</c:if>
 					<c:if test="${not empty user_id}">
 						<a href="<c:url value='/logout.all'/>">로그아웃</a>
