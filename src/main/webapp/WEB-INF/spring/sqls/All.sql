@@ -199,6 +199,20 @@ INSERT INTO ROOM_TB VALUES
 
 );
 
+
+
+select DISTINCT no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+	FROM ROOM_TB 
+    WHERE roomtype_rm in('원룸','투룸','쓰리룸','오피스텔')
+  	AND rent_rm in('월세','전세','매매')
+  	ORDER BY NO_RM;
+  
+(addr_rm like '%이천%' OR addr_dt_rm LIKE '%이천%' OR title_rm like '%이천%')
+
+ select no_rm,title_rm,picture_rm,content_rm,addr_rm,addr_dt_rm,rent_rm, roomtype_rm 
+ FROM room_tb
+ ORDER BY NO_RM;
+
 INSERT INTO ROOM_TB VALUES
 (
     roomseq.nextval,

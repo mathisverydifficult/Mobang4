@@ -57,4 +57,9 @@ public class roomsearchBizImpl implements roomsearchBiz {
 		return dao.selectAgentList(email);
 	}
 
+	@Override
+	public List<roomsearchDto> selectList(String keyword, List<String> roomArray, List<String> rentArray) {
+		return dao.selectList(keyword, roomArray, rentArray);
+	}
+
 }
