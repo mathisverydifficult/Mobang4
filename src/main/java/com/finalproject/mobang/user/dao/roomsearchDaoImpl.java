@@ -145,6 +145,27 @@ public class roomsearchDaoImpl implements roomsearchDao{
 		
 		return list;
 	}
+
+	@Override
+	public List<roomsearchDto> selectList(String keyword, List<String> roomArray, List<String> rentArray) {
+		List<roomsearchDto> list=new ArrayList<roomsearchDto>();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("keyword", keyword);
+		map.put("roomArray", roomArray);
+		map.put("rentArray", rentArray);
+		
+		
+		try {
+			list=sqlSession.selectList(NAMESPACE+"selectList",map);
+		} catch(Exception e) {
+			System.out.println("[error] : selectList");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	
 }

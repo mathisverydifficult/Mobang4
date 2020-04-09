@@ -65,7 +65,7 @@ public class HomeController {
 		
 		try {
 			email = CurrentUserName.currentUserName();
-			
+
 			List<roomsearchDto> recentlist = roombiz.recentList(email);
 			List<roomsearchDto> dibslist = roombiz.dibList(email);
 			model.addAttribute("recentlist", recentlist);
@@ -83,13 +83,13 @@ public class HomeController {
 			
 			model.addAttribute("recentimagelist",recentimagelist);
 			model.addAttribute("dibsimagelist",dibsimagelist);
-			
+			return "user/user_home";
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			return "user/user_home";
 		}
 		
-		return "user/user_home";
+		
 	}
 	
 	@RequestMapping(value="/homesearch.all")
@@ -112,14 +112,23 @@ public class HomeController {
 	@RequestMapping(value="/room_search.all")
 	public List<roomsearchDto> roomsearch(Model model, String keyword, String roomArray, String rentArray) {	//viewResolver가 리턴타입이 String일때만 return값의 jsp를 찾아서 리턴.
 		
-		String email = CurrentUserName.currentUserName();
+		
 		
 		List<String> roomArr = Arrays.asList(roomArray.split(","));
 		List<String> rentArr = Arrays.asList(rentArray.split(","));
 		
-		List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
+			try {
+				String email = CurrentUserName.currentUserName();
+				List<roomsearchDto> test = roombiz.selectsearchList(keyword, email, roomArr, rentArr);
+				
+				return test;
+			} catch (Exception e) {
+				List<roomsearchDto> test = roombiz.selectList(keyword, roomArr, rentArr);
+				return test;
+			}
+			
+			
 		
-		return test;
 	}
 	
 	@RequestMapping(value="/room_detail.all")
