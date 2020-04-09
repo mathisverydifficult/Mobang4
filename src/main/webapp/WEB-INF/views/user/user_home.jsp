@@ -134,14 +134,14 @@
 							<div class="explain">최근 본 방이 없습니다. 로그인 후 마음에 드는 방을 찜해보세요. ${recentlist }</div>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${recentlist }" var="recent" begin="0" end="3" >
-								<div class= "part" style="cursor:pointer;">
+							<c:forEach items="${recentlist }" var="recent" begin="0" end="3" varStatus="status">
+								<div class= "part" style="cursor:pointer; height: 400px;">
 									<div class="favorite">
 										<img id="${recent.no_rm }" src= "resources/user/img/favorite_${recent.checkdib }.png"/>
 									</div>
 									<a href="room_detail.all?myno=${recent.no_rm }"> 
 										<div class="picture">
-											<img src="${recent.picture_rm }">
+											<img src="${recentimagelist[status.index] }">
 										</div>
 										<p class="explain">${recent.rent_rm}</p>
 										<p class="explain" id="roomtitle">${recent.title_rm}</p>
@@ -174,14 +174,14 @@
 							<div class="explain">로그인 후 마음에 드는 방을 찜해보세요.</div>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${diblist }" var="dib" begin="0" end="3" >
-								<div class= "part" style="cursor:pointer;">
+							<c:forEach items="${diblist }" var="dib" begin="0" end="3" varStatus="status">
+								<div class= "part" style="cursor:pointer; height: 400px;">
 									<div class="favorite">
 										<img id="${dib.no_rm }" src= "resources/user/img/favorite_${dib.checkdib }.png"/>
 									</div>
 									<a href="room_detail.all?myno=${dib.no_rm }"> 
 										<div class="picture">
-											<img src="${dib.picture_rm }">
+											<img src="${dibsimagelist[status.index] }">
 										</div>
 										<p class="explain">${dib.rent_rm}</p>
 										<p class="explain" id="roomtitle">${dib.title_rm}</p>

@@ -17,7 +17,7 @@ INSERT INTO MYMEMBER
 VALUES(MEMBERSEQ.NEXTVAL, 'kh','kh','일반');
 
 
-
+DELETE FROM USER_TB WHERE 
 SELECT MEMBERNO, MEMBERID, MEMBERPW, MEMBERNAME
 FROM MYMEMBER;
 
@@ -189,7 +189,7 @@ INSERT INTO ROOM_TB VALUES(5,'djkim1216@naver.com',null,'김동주', 'N','강남
 'Y','Y','Y','Y','Y',null,null,null,null,null,'전세','50억2천','500만원','쓰리룸','서울 강남구 테헤란로14길 6 남도빌딩','KH정보교육원','20','18','15층','20층','Y')
 
 DELETE FROM room_tb WHERE no_rm=1;
-
+DELETE FROM USER_TB WHERE EMAIL='michaelhj@naver.com';
 select no_rm,title_rm,picture_rm,addr_rm, addr_dt_rm from room_tb;
 
 INSERT INTO ROOM_TB VALUES
@@ -267,6 +267,11 @@ INSERT INTO USERFAVORITE_TB VALUES
 
 
 SELECT * FROM USERFAVORITE_TB;
+SELECT * FROM ROOM_TB;
+DELETE FROM USERFAVORITE_TB;
+DELETE FROM ROOM_TB;
+SELECT * FROM 
+
 
 SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
 		FROM (SELECT EMAIL, RECENT_FV, DATE_FV, ROOM_EX
