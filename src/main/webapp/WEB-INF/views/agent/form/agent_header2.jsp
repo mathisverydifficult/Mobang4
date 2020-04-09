@@ -40,7 +40,7 @@
 				</li>
 				<li class="second">
 					<a href="agent_mypage.agent" style="color:black;">마이페이지</a>
-					<a href="#">로그아웃</a>
+					<a href="<c:url value='/logout.all'/>">로그아웃</a>
 				</li>
 			</ul>
 		</div>
